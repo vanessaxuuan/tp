@@ -263,7 +263,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TACH tracks contacts of students grouped by module and classes. Get and mark students' weekly (from week 3 to 13) homework submission onto GitHub. Sort the empty submissions first for easy marking.
+ And all you only need is just a keyboard.
 
 
 ### User stories
@@ -272,12 +273,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | CS TA                       | add a student                                                                                     | keep track of their contacts                                                           |
+| `* * *`  | CS TA                       | add a class                                                                                       | I can add contacts based on which class in the module they are taking                  |
+| `* * *`  | CS TA                       | add a module                                                                                      | add students' contacts based on which module they are taking                           |
+| `* * *`  | CS TA                       | delete a student                                                                                  | make sure to have the correct student in the list                                      |
+| `* * *`  | CS TA                       | delete a class                                                                                    | prepare to TA a new class next semester                                                |
+| `* * *`  | CS TA                       | delete a module                                                                                   | prepare to TA a new module next semester                                               |
+| `* * *`  | CS TA                       | get my students' contact details like their email, Telegram and GitHub easily                     | can save time from the convenience of having all the contact details in one place      | 
+| `* * *`  | CS TA                       | get my students in the class                                                                      |                                                                                        | 
+| `* * *`  | CS TA                       | get my classes in the module                                                                      |                                                                                        |
+| `* * `   | TA teaching F2F classes     | get the venue for the next upcoming class                                                         | prepare to go to the venue and get there in time                                       |
+| `* * `   | TA teaching online classes  | get the zoom link for the next upcoming class                                                     | prepare to go to the venue and get there in time                                       |
+| `* * `   | Busy TA                     | rank the work that needs to be done                                                               | clear the urgent work first                                                            |
+| `* * `   | Busy TA                     | set an alarm before the tutorial starts                                                           | on time for class                                                                      |
+| `* *`    | TA                          | redo my mistakes                                                                                  |                                                                                        |
+| `*  `    | Busy TA                     | get the lecture slides link I'll be using for that class                                          | get my teaching material more easily                                                   |
+| `*  `    | TA                          | reschedule temporary makeups for my classes in case of holidays or me getting sick                | keep track of when a class timing/date changes                                         |
+| `* `     | TA                          | sent group message to a specific group of students                                                | make announcement effectively                                                          |
 
 *{More to be added}*
 
