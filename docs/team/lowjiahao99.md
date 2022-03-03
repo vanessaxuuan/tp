@@ -1,24 +1,27 @@
-#Low Jia Hao's Project Portfolio Page
+---
+layout: page
+title: Low Jia Hao's Project Portfolio Page
+---
 
-## Project: Teaching Assistant Contact Helper (**TACH**)
+## Project: Teaching Assistant Contact Helper (TACH)
 
-###Overview
+TACH helps CS Teaching Assistants tutoring multiple modules & classes by keeping
+track of their students and monitoring their progress on their tutorials.
+It is optimized for CLI users so that frequent tasks can be done faster by typing
+in commands.
 
-**TACH** stands for Teaching Assistant Contact Helper. It is a desktop app designed to manage tutorial classes and students for NUS SoC Teaching Assistants. Instructions can be typed out via a Command Line Interface (CLI), on a Graphical User Interface (GUI). It is designed for speed and convenience.
+The following sections below summarise my contributions to this project.
 
-### Summary of Contributions
-
-- **Code Contributed:**
-    - to be added
-- **Enhancements implemented:**
-    - to be added
-- **Contributions to the UG:**
-    - to be added
-- **Contributions to the DG:**
-    - to be added
-- **Contributions to team-based tasks:**
-    - to be added
-- **Review/mentoring contributions:**
-    - to be added
-- **Contributions beyond the project team:**
-    - to be added
+* **New Feature**: [To be added soon]
+  * [To be added soon]
+* **Code contributed**: [To be added soon]
+* **Enhancements to existing features**: [To be added soon]
+* **Documentation**:
+  * *User Guide*:
+    * Added documentation for the feature `add`
+  * *Developer Guide*:
+    * Added Value Proposition
+    * Added User Stories
+* **Contributions to team-based tasks**: [To be added soon]
+* **Review/mentoring contributions**: [To be added soon]
+* **Contributions beyond the project team**: [To be added soon]
