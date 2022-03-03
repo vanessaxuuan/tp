@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The class list is empty.
+* 2a. The student list from the class is empty.
 
   Use case ends.
 
