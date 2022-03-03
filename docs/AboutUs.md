@@ -19,15 +19,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: [To be added]
 
-### Jane Doe
+### Huang Qing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hqhqhq1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hqhqhq1)]
+[[portfolio](team/hqhqhq1.md)]
 
-* Role: Team Lead, Project Advisor
-* Responsibilities: UI
+
+* Role: Developer
+* Responsibilities: [To be added]
+
 
 ### Johnny Doe
 
