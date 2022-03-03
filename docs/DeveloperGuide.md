@@ -295,30 +295,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teaching Assistant Contact Helper (TACH)` and the **Actor** is the `Teaching Assistant (TA)`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - add a new module**
+
+**MSS:**
+
+1. TA adds a new module by module code
+2. Module added to the module list
+    
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The module is already exist
+  
+    Use case ends.
+
+**Use case: UC02 - add a new class to a module**
+
+**MSS:**
+
+1. TA adds a new class base on the module by class title
+2. Class added to the module
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The module is not exist
+  * 1a1. <u> Adds a new module (UC01) </u> with the module code automatically
+
+      Use case resumes from step2.
+
+**Use case: UC03 - add a student to a class**
+
+**MSS:**
+
+1. TA adds a new student based on the class by student name
+2. Student added to the class
+   Use case ends
+
+**Extensions**
+
+* 1a. The class is not exist
+  * 1a1. <u> Adds a new class (UC02) </u> with the class title automatically 
+  
+    Use case resumes from step2.
+
+    
+* 1b. Both module and class not exist
+    * 1b1.  <u> Adds a new module (UC01) </u> with the module code automatically
+    * 1b2.  <u> Adds a new class (UC02) </u> with the class title automatically
+
+      Use case resumes from step2.
+
+**Use case: UC04 - view a module**
+
+**MSS:**
+
+1. TA request to view a module code
+2. TACH shows a list of classes from that module and a list of all students added to the module
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. The module is not exist
+
+  Use case ends.
+    
+
+**Use case: UC05 - Delete a student from a class**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to view all students from a class
+2.  TACH shows a list of student from that class
+3.  TA requests to delete a specific student in the list
+4.  TACH deletes the student from the class
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The class list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TACH shows an error message.
 
       Use case resumes at step 2.
+
+
+
 
 *{More to be added}*
 
