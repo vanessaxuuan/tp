@@ -26,6 +26,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hqhqhq1)]
 [[portfolio](team/hqhqhq1.md)]
 
+* Role: Developer
+* Responsibilities: [To be added]
+
+### Low Jia Hao
+
+<img src="images/lowjiahao99.png" width="200px">
+
+[[github](https://github.com/LowJiaHao99)]
+[[portfolio](team/lowjiahao99.md)]
 
 * Role: Developer
 * Responsibilities: [To be added]
