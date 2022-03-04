@@ -72,20 +72,45 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding: `add`
 
-### Adding a person: `add`
+Add the specified item into TACH.
 
-Adds a person to the address book.
+#### Adding Modules: `add -m`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add -m MODULE…`
+* Adds the modules listed.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Example:
+* `add -m CS2103T` adds the module `CS2103T` into TACH.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+#### Adding Classes: `add -c`
+
+Format: `add -c MODULE CLASS [v/VENUE]`
+- Adds the class into the given module.
+- **NOTE**: If the module does not exist, it will create one automatically.
+
+Example: 
+- `add -c CS2103T W15-3` adds the class `WS15-3` into the module `CS2103T`.
+- `add -c CS2103T G08 v/LT27` adds the class `G08` with the venue `LT27` into module `CS2103T`.
+
+#### Adding Students `add -s`
+
+Format: `add -s MODULE CLASS STUDENT…`
+- Adds the students into the given class in the given module.
+- **NOTE**: If the module and/or class does not exist, it will create them automatically.
+
+Example:
+- `add -s CS2103T W15-3 John Smith` adds the student `John Smith` into the class `WS15-3` in the module `CS2103T`.
+
+#### Adding Student Details 
+
+Format: `add -sd NAME t/TELEGRAM_HANDLE [e/EMAIL] [g/GITHUB]`
+- Adds details about a student. 
+- **NOTE**: If the student does not exist, it will create one with the given details automatically.
+
+Example:
+- `add -sd John Smith t/JohnSmith e/johnsmith@example.com g/johnsmyname` will add the details of the Telegram handle `JohnSmith`, email `johnsmith@example.com` and Github `johnsmyname` into the student `John Smith`.
 
 ### Listing all persons : `list`
 
