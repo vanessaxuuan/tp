@@ -128,19 +128,55 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting: `del`
 
-Deletes the specified person from the address book.
+Deletes the specified item from TACH.
 
-Format: `delete INDEX`
+#### Deleting Modules: `del -m`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `del -m [MODULE]…`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* Deletes the modules listed.
+* **NOTE:** This action is **recursive**! It will also delete all classes and students assigned to the deleted modules.
+
+Example:
+* `del -m CS2103T` deletes the module and all of its classes and students like class `W15-3` in that module and 
+student `Jack Smith` in that class.
+
+#### Deleting Classes: `del -c`
+
+Format: `del -c MODULE [CLASS]…`
+
+* Deletes the classes listed for the given module.
+* **NOTE:** This action is **recursive**! It will also delete all students assigned to the deleted classes.
+
+Example:
+* `del -c CS2103T W15-3` deletes the class and all of its students.
+
+#### Deleting Students: `del -s`
+
+Format: `del -s MODULE CLASS [s/STUDENT]…`
+
+* Deletes the students in the given class in the given module.
+
+Example:
+* `del -s CS2103T W15-3 s/Jack Smith` deletes `Jack Smith` from the class `W15-3` in module `CS2103T`.
+
+### Getting: `get`
+
+#### Getting …:
+
+#### Getting …:
+
+#### Getting a Student's details: `get -s`
+
+Format: `get -s MODULE CLASS [s/STUDENT]…`
+
+* Gets the specified students' contact details and tutorial progress in the given module and class.
+
+Example:
+* `get -s CS2103T W15-3 s/Jack Smith s/Mary Jane` gets `Jack Smith`'s and `Mary Jane`'s contact details and 
+tutorial progress in the module `CS2103T` of class `W15-3`
 
 ### Clearing all entries : `clear`
 
@@ -181,12 +217,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action               | Format, Examples                                                                                                                                                      |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**            | `clear`                                                                                                                                                               |
+| **Delete _Module_**  | `del -m [MODULE]…` <br> e.g., `del -m CS2103T`                                                                                                                        |
+| **Delete _Class_**   | `del -c MODULE [CLASS]…` <br> e.g., `del -c CS2103T W15-3`                                                                                                            |
+| **Delete _Student_** | `del -s MODULE CLASS [s/STUDENT]…` <br> e.g., `delete -s CS2103T W15-3 s/Jack Smith`                                                                                  |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Get _Student_**    | `get -s MODULE CLASS [s/STUDENT]…` <br> e.g., `get -s CS2103T W15-3 s/Jack Smith`                                                                                     |
+| **List**             | `list`                                                                                                                                                                |
+| **Help**             | `help`                                                                                                                                                                |
