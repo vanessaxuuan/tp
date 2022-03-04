@@ -396,9 +396,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to `1000` persons without a noticeable sluggishness in performance for typical usage.
+3. The system should respond within two seconds.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The user interface should be easy to understand for beginner users.
+6. The commands should feel intuitive and easy to pick up and remember to a beginner user.
+7. A module should be able to have up to `20` classes.
+8. A class should be able to have up to `50` students.
+9. The source code should be open source.
+10. The product is free and ready-to-use as soon as one downloads it.
+11. The product should work offline, without an Internet connection.
 
 *{More to be added}*
 
