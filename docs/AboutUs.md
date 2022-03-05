@@ -29,6 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
+### Khor Vanessa
+
+<img src="images/vanessaxuuan.png" width="200px">
+
+[[github](http://github.com/vanessaxuuan)] 
+[[portfolio](team/vanessaxuuan.md)]
+
+* Role: Developer
+* Responsibilities: [To be added]
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
