@@ -87,31 +87,31 @@ Example:
 #### Adding Classes: `add -c`
 
 Format: `add -c MODULE CLASS [v/VENUE] [z/ZOOM]`
-- Adds the class into the given module.
-- **NOTE**: If the module does not exist, it will create one automatically.
+* Adds the class into the given module.
+* **NOTE**: If the module does not exist, it will create one automatically.
 
-Example: 
-- `add -c CS2103T WS15-3` adds the class `WS15-3` into the module `CS2103T`.
-- `add -c CS2103T G08 v/LT27` adds the class `G08` with the venue `LT27` into module `CS2103T`.
-- `add -c CS2103T WS15-3 z/https://nus-sg.zoom.us/j/0123456789` adds the class `G08` with the zoom link  `https://nus-sg.zoom.us/j/0123456789` into module `CS2103T`.
+Example:
+* `add -c CS2103T WS15-3` adds the class `WS15-3` into the module `CS2103T`.
+* `add -c CS2103T G08 v/LT27` adds the class `G08` with the venue `LT27` into module `CS2103T`.
+* `add -c CS2103T WS15-3 z/https://nus-sg.zoom.us/j/0123456789` adds the class `G08` with the zoom link  `https://nus-sg.zoom.us/j/0123456789` into module `CS2103T`.
 
 #### Adding Students `add -s`
 
 Format: `add -s MODULE CLASS STUDENT…`
-- Adds the students into the given class in the given module.
-- **NOTE**: If the module and/or class does not exist, it will create them automatically.
+* Adds the students into the given class in the given module.
+* **NOTE**: If the module and/or class does not exist, it will create them automatically.
 
 Example:
-- `add -s CS2103T WS15-3 John Smith` adds the student `John Smith` into the class `WS15-3` in the module `CS2103T`.
+* `add -s CS2103T WS15-3 John Smith` adds the student `John Smith` into the class `WS15-3` in the module `CS2103T`.
 
 #### Adding Student Details 
 
 Format: `add -sd NAME  e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]`
-- Adds details about a student. 
-- **NOTE**: If the student does not exist, it will create one with the given details automatically.
+* Adds details about a student. 
+* **NOTE**: If the student does not exist, it will create one with the given details automatically.
 
 Example:
-- `add -sd John Smith e/johnsmith@example.com t/JohnSmith g/johnsmyname` will add the details of the email `johnsmith@example.com`, Telegram handle `JohnSmith` and Github `johnsmyname` into the student `John Smith`.
+* `add -sd John Smith e/johnsmith@example.com t/JohnSmith g/johnsmyname` will add the details of the email `johnsmith@example.com`, Telegram handle `JohnSmith` and Github `johnsmyname` into the student `John Smith`.
 
 ### Listing all persons : `list`
 
