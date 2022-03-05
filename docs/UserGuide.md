@@ -155,7 +155,7 @@ Action | Format, Examples
 **Add Student Details** | `add -sd NAME e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]` <br> e.g. `add -sd John Smith e/johnsmith@example.com t/JohnSmith`
 **Delete Modules** | `del -m MODULE…` <br> e.g. `del -m CS2103T CS2101`
 **Delete Class** | `del -c MODULE CLASS…` <br> e.g. `del -c CS2103T W15-3`
-**Delete Student** | `del -s MODULE CLASS s/STUDENT…` <br> e.g. `del -s CS2103T W15-3 s/Jack Smith`
+**Delete Student** | `del -s MODULE CLASS s/STUDENT…` <br> e.g. `del -s CS2103T W15-3 s/Jack Smith s/John Doe`
 **Get Module Details** | `get -m MODULE` <br> e.g. `get -m CS2103T`
 **Get Class Details** | `get -c MODULE CLASS` <br> e.g. `get -c CS2103T W15-3`
 **Get Student Details** | `get -s MODULE CLASS s/STUDENT…` <br> e.g. `get -s CS2103T W15-3 s/Jack Smith s/Mary Jane`
