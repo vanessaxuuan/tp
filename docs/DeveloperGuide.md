@@ -257,7 +257,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a Computer Science (CS) Teaching Assistant (TA) in NUS
+* is teaching multiple Computer Science modules/classes 
+* has a need to manage a significant number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -322,6 +324,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **API**: An application programming interface (API) is the medium by which different softwares interact
+* **Interface**: An abstract type that is used to specify a behavior of certain classes
+* **System admin commands**: Terminal commands such as `pwd`, `ls`, `tar`
+* **Open source**: Open source code is publicly accessible to everyone to read, modify and distribute
 
 --------------------------------------------------------------------------------------------------------------------
 
