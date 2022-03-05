@@ -265,7 +265,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: TACH tracks contacts of students grouped by module and classes. Get and mark students' weekly (from week 3 to 13) homework submission onto GitHub. Sort the empty submissions first for easy marking.
+ And all you only need is just a keyboard.
 
 
 ### User stories
@@ -274,49 +275,141 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | CS TA                       | add a student                                                                                     | keep track of their contacts                                                         |
+| `* * *`  | CS TA                       | add a class                                                                                       | I can add contacts based on which class in the module they are taking                       |
+| `* * *`  | CS TA                       | add a module                                                                                      | add students' contacts based on which module they are taking                            |
+| `* * *`  | CS TA                       | delete a student                                                                                  | make sure to have the correct student in the list                                      |
+| `* * *`  | CS TA                       | delete a class                                                                                    | prepare to TA a new class next semester                                                    |
+| `* * *`  | CS TA                       | delete a module                                                                                   | prepare to TA a new module next semester                                                    |
+| `* * *`  | CS TA                       | get my students' contact details like their email, Telegram and GitHub easily                     | can save time from the convenience of having all the contact details in one place       | 
+| `* * *`  | CS TA                       | get my students in the class                                                                      |                                                                                             | 
+| `* * *`  | CS TA                       | get my classes in the module                                                                      |                                                                                             |
+| `* * `   | TA teaching F2F classes     | get the venue for the next upcoming class                                                         | prepare to go to the venue and get there in time                                            |
+| `* * `   | TA teaching online classes  | get the zoom link for the next upcoming class                                                     | prepare to go to the venue and get there in time                                            |
+| `* * `   | Busy TA                     | rank the work that needs to be done                                                               | clear the urgent work first                                                                 |
+| `* * `   | Busy TA                     | set an alarm before the tutorial starts                                                           | on time for class                                                                           |
+| `* *`    | TA                          | redo my mistakes                                                                                  |                                                                                             |
+| `*  `    | Busy TA                     | get the lecture slides link I'll be using for that class                                          | get my teaching material more easily                                                      |
+| `*  `    | TA                          | reschedule temporary makeups for my classes in case of holidays or me getting sick                | keep track of when a class timing/date changes                                              |
+| `* `     | TA                          | sent group message to a specific group of students                                                | make announcement effectively                                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teaching Assistant Contact Helper (TACH)` and the **Actor** is the `Teaching Assistant (TA)`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - add a new module**
+
+**MSS:**
+
+1. TA adds a new module by module code
+2. Module added to the module list
+    
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The module is already exist
+  
+    Use case ends.
+
+**Use case: UC02 - add a new class to a module**
+
+**MSS:**
+
+1. TA adds a new class base on the module by class title
+2. Class added to the module
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The module is not exist
+  * 1a1. <u> Adds a new module (UC01) </u> with the module code automatically
+
+      Use case resumes from step2.
+
+**Use case: UC03 - add a student to a class**
+
+**MSS:**
+
+1. TA adds a new student based on the class by student name
+2. Student added to the class
+   Use case ends
+
+**Extensions**
+
+* 1a. The class is not exist
+  * 1a1. <u> Adds a new class (UC02) </u> with the class title automatically 
+  
+    Use case resumes from step2.
+
+    
+* 1b. Both module and class not exist
+    * 1b1.  <u> Adds a new module (UC01) </u> with the module code automatically
+    * 1b2.  <u> Adds a new class (UC02) </u> with the class title automatically
+
+      Use case resumes from step2.
+
+**Use case: UC04 - view a module**
+
+**MSS:**
+
+1. TA request to view a module code
+2. TACH shows a list of classes from that module and a list of all students added to the module
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. The module is not exist
+
+  Use case ends.
+    
+
+**Use case: UC05 - Delete a student from a class**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to view all students from a class
+2.  TACH shows a list of student from that class
+3.  TA requests to delete a specific student in the list
+4.  TACH deletes the student from the class
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The student list from the class is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TACH shows an error message.
 
       Use case resumes at step 2.
+
+
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to `1000` persons without a noticeable sluggishness in performance for typical usage.
+3. The system should respond within two seconds.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The user interface should be easy to understand for beginner users.
+6. The commands should feel intuitive and easy to pick up and remember to a beginner user.
+7. A module should be able to have up to `20` classes.
+8. A class should be able to have up to `50` students.
+9. The source code should be open source.
+10. The product is free and ready-to-use as soon as one downloads it.
+11. The product should work offline, without an Internet connection.
 
 *{More to be added}*
 

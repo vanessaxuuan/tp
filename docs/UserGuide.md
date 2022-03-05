@@ -72,20 +72,46 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding: `add`
 
-### Adding a person: `add`
+Add the specified item into TACH.
 
-Adds a person to the address book.
+#### Adding Modules: `add -m`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add -m MODULE…`
+* Adds the modules listed.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Example:
+* `add -m CS2103T` adds the module `CS2103T` into TACH.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+#### Adding Classes: `add -c`
+
+Format: `add -c MODULE CLASS [v/VENUE] [z/ZOOM]`
+* Adds the class into the given module.
+* **NOTE**: If the module does not exist, it will create one automatically.
+
+Example:
+* `add -c CS2103T WS15-3` adds the class `WS15-3` into the module `CS2103T`.
+* `add -c CS2103T G08 v/LT27` adds the class `G08` with the venue `LT27` into module `CS2103T`.
+* `add -c CS2103T WS15-3 z/https://nus-sg.zoom.us/j/0123456789` adds the class `G08` with the zoom link  `https://nus-sg.zoom.us/j/0123456789` into module `CS2103T`.
+
+#### Adding Students `add -s`
+
+Format: `add -s MODULE CLASS STUDENT…`
+* Adds the students into the given class in the given module.
+* **NOTE**: If the module and/or class does not exist, it will create them automatically.
+
+Example:
+* `add -s CS2103T WS15-3 John Smith` adds the student `John Smith` into the class `WS15-3` in the module `CS2103T`.
+
+#### Adding Student Details 
+
+Format: `add -sd NAME  e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]`
+* Adds details about a student. 
+* **NOTE**: If the student does not exist, it will create one with the given details automatically.
+
+Example:
+* `add -sd John Smith e/johnsmith@example.com t/JohnSmith g/johnsmyname` will add the details of the email `johnsmith@example.com`, Telegram handle `JohnSmith` and Github `johnsmyname` into the student `John Smith`.
 
 ### Listing all persons : `list`
 
@@ -128,19 +154,70 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting: `del`
 
-Deletes the specified person from the address book.
+Deletes the specified item from TACH.
 
-Format: `delete INDEX`
+#### Deleting Modules: `del -m`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `del -m MODULE…`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* Deletes the modules listed.
+* **NOTE:** This action is **recursive**! It will also delete all classes and students assigned to the deleted modules.
+
+Example:
+* `del -m CS2103T` deletes the module and all of its classes and students.
+If class `W15-3` is under `CS2103T` and student `Jack Smith` is under class `W15-3`, 
+both class `W15-3` and student `Jack Smith` will be deleted.
+
+#### Deleting Classes: `del -c`
+
+Format: `del -c MODULE CLASS…`
+
+* Deletes the classes listed for the given module.
+* **NOTE:** This action is **recursive**! It will also delete all students assigned to the deleted classes.
+
+Example:
+* `del -c CS2103T W15-3` deletes the class and all of its students.
+
+#### Deleting Students: `del -s`
+
+Format: `del -s MODULE CLASS s/STUDENT…`
+
+* Deletes the students in the given class in the given module.
+
+Example:
+* `del -s CS2103T W15-3 s/Jack Smith` deletes `Jack Smith` from the class `W15-3` in module `CS2103T`.
+
+### Getting: `get`
+
+#### Getting a Module details: `get -m`
+
+Format: `get -m MODULE`
+
+* Gets all the classes and students in the given module
+
+Example:
+* `get -m CS2103T` to view all the classes and students added to the module CS2103T
+
+#### Getting a Class details: `get -c`
+
+Format: `get -c MODULE CLASS`
+
+* Gets the specified class based on the given module
+
+Example:
+* `get -c CS2103T G08` view all the students in the class `G08` from the module `CS2103T`
+
+#### Getting a Student's details: `get -s`
+
+Format: `get -s MODULE CLASS s/STUDENT…`
+
+* Gets the specified students' contact details and tutorial progress in the given module and class.
+
+Example:
+* `get -s CS2103T W15-3 s/Jack Smith s/Mary Jane` gets `Jack Smith`'s and `Mary Jane`'s contact details and 
+tutorial progress in the module `CS2103T` of class `W15-3`
 
 ### Clearing all entries : `clear`
 
@@ -181,13 +258,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action               | Format, Examples                                                                                                                                                      |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**            | `clear`                                                                                                                                                               |
+| **Delete _Module_**  | `del -m MODULE…` <br> e.g., `del -m CS2103T`                                                                                                                          |
+| **Delete _Class_**   | `del -c MODULE CLASS…` <br> e.g., `del -c CS2103T W15-3`                                                                                                              |
+| **Delete _Student_** | `del -s MODULE CLASS s/STUDENT…` <br> e.g., `delete -s CS2103T W15-3 s/Jack Smith`                                                                                    |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Get _Student_**    | `get -s MODULE CLASS s/STUDENT…` <br> e.g., `get -s CS2103T W15-3 s/Jack Smith`                                                                                       |
+| **List**             | `list`                                                                                                                                                                |
+| **Help**             | `help`                                                                                                                                                                |
 
