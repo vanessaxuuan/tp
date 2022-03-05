@@ -165,9 +165,23 @@ Example:
 
 ### Getting: `get`
 
-#### Getting …:
+#### Getting a Module details: `get -m`
 
-#### Getting …:
+Format: `get -m MODULE…`
+
+* Gets all the classes and students in the given module
+
+Example:
+* `get -m CS2103T` to view all the classes and students added to CS2103T
+
+#### Getting a Class details: `get -c`
+
+Format: `get -c MODULE CLASS`
+
+* Gets the specified class based on the given module
+
+Example:
+* `get -c CS2103T G08` view the class `G08` from the module `CS2103T`
 
 #### Getting a Student's details: `get -s`
 
