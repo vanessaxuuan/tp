@@ -178,7 +178,7 @@ Format: `get -z MODULE CLASS`
 * **NOTE:** `zoom link not found` will be shown if the zoom link is not present
 
 Example:
-* `get -z CS2103T W15-3` gets the zoom link for this class
+* `get -z CS2103T W15-3` gets the zoom link for class W15-3
 
 #### Getting the venue of a class
 Format: `get -v MODULE CLASS`
@@ -187,7 +187,7 @@ Format: `get -v MODULE CLASS`
 * **NOTE:** `venue not found` will be shown if the venue is not present
 
 Example:
-* `get -z CS2103T W15-3` gets the zoom link for this class
+* `get -v CS2103T W15-3` gets the venue for class W15-3
 
 ### Clearing all entries : `clear`
 
