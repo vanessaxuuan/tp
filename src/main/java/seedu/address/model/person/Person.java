@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a Person in the address book.
@@ -12,7 +13,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final TelegramHandle telegramHandle;
     private final Email email;
 
     // Data fields
@@ -21,10 +22,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Person(Name name, TelegramHandle telegramHandle, Email email, Address address) {
+        requireAllNonNull(name, email, address);
         this.name = name;
-        this.phone = phone;
+        this.telegramHandle = telegramHandle;
         this.email = email;
         this.address = address;
     }
@@ -33,8 +34,12 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Optional<TelegramHandle> getTelegramHandle() {
+        if (telegramHandle == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(telegramHandle);
+        }
     }
 
     public Email getEmail() {
@@ -74,7 +79,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getTelegramHandle().equals(getTelegramHandle())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress());
     }
@@ -82,15 +87,21 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, telegramHandle, email, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        String str;
+        if (getTelegramHandle().isEmpty()) {
+            str = "";
+        } else {
+            str = getTelegramHandle().get().toString();
+        }
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; TelegramHandle: ")
+                .append(str)
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
