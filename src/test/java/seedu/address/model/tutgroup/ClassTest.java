@@ -30,14 +30,14 @@ public class ClassTest {
         assertTrue(() -> T03.getZoomLink().isEmpty());
         assertTrue(() -> T04.getZoomLink().isEmpty());
     }
-    
+
     @Test
     public void getVenue_nullVenue_isEmpty() {
         assertTrue(() -> W15_2.getVenue().isEmpty());
         assertTrue(() -> W15_3.getVenue().isEmpty());
         assertTrue(() -> G07.getVenue().isEmpty());
     }
-    
+
     @Test
     public void isSameClass() {
         // same object -> returns true
@@ -57,13 +57,13 @@ public class ClassTest {
 
     }
 
-   @Test
+    @Test
     public void equals() {
         // same values -> returns true
         Person[] personsForG08 = {ALICE, BENSON};
-        Class G08Copy =  new Class(new ClassName("G08"), null,
-           new ZoomLink("https://nus-sg.zoom.us/j/34256312408"), new HashSet<>(Arrays.asList(personsForG08)));
-        assertTrue(G08.equals(G08Copy));
+        Class g08Copy = new Class(new ClassName("G08"), null,
+            new ZoomLink("https://nus-sg.zoom.us/j/34256312408"), new HashSet<>(Arrays.asList(personsForG08)));
+        assertTrue(G08.equals(g08Copy));
 
         // same object -> returns true
         assertTrue(W15_2.equals(W15_2));

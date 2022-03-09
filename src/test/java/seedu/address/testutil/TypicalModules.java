@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalClasses.G08;
-import static seedu.address.testutil.TypicalClasses.G07;
 import static seedu.address.testutil.TypicalClasses.G02;
+import static seedu.address.testutil.TypicalClasses.G07;
+import static seedu.address.testutil.TypicalClasses.G08;
 import static seedu.address.testutil.TypicalClasses.T03;
 import static seedu.address.testutil.TypicalClasses.T04;
 import static seedu.address.testutil.TypicalClasses.W15_2;
@@ -11,10 +11,9 @@ import static seedu.address.testutil.TypicalClasses.W15_3;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import seedu.address.model.tutgroup.Class;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
-
+import seedu.address.model.tutgroup.Class;
 
 /**
  * A utility class containing a list of {@code Modules} objects to be used in tests.

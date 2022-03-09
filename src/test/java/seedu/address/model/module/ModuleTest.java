@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalClasses.T03;
 import static seedu.address.testutil.TypicalClasses.T04;
+import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_CLASS;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_NAME;
-import static seedu.address.testutil.TypicalModules.CS2101_WITH_TRAILING_SPACES;
 import static seedu.address.testutil.TypicalModules.CS2101;
-import static seedu.address.testutil.TypicalModules.CS2100;
+import static seedu.address.testutil.TypicalModules.CS2101_WITH_TRAILING_SPACES;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -27,7 +27,7 @@ public class VenueTest {
         assertFalse(Venue.isValidVenue("")); // empty string
         assertFalse(Venue.isValidVenue(" ")); // spaces only
         assertFalse(Venue.isValidVenue("^")); // only non-alphanumeric characters
-        assertFalse(Venue.isValidVenue("I3-AUD*"));// contains non-alphanumeric characters
+        assertFalse(Venue.isValidVenue("I3-AUD*")); // contains non-alphanumeric characters
 
         // valid venue
         assertTrue(Venue.isValidVenue("LT27")); // alphanumeric characters with capital letters

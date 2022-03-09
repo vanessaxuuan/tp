@@ -13,11 +13,11 @@ import static seedu.address.testutil.TypicalPersons.IDA;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.tutgroup.Class;
 import seedu.address.model.tutgroup.ClassName;
 import seedu.address.model.tutgroup.Venue;
 import seedu.address.model.tutgroup.ZoomLink;
-import seedu.address.model.person.Person;
 
 public class TypicalClasses {
     private static final Person[] personsForG08 = {ALICE, BENSON};
@@ -57,6 +57,6 @@ public class TypicalClasses {
     public static final Class T03_NAME_WITH_TRAILING_WHITESPACES =
         new Class(new ClassName("T03"), new Venue("COM01-0114"),
         null, new HashSet<>(Arrays.asList(personsForT03)));
-    public static final Class T03_NAME_IN_SMALL_LETTERS= new Class(new ClassName("t03"), new Venue("COM01-0114"),
+    public static final Class T03_NAME_IN_SMALL_LETTERS = new Class(new ClassName("t03"), new Venue("COM01-0114"),
         null, new HashSet<>(Arrays.asList(personsForT03)));
 }

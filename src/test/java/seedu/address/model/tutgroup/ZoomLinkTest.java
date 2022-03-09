@@ -27,7 +27,7 @@ public class ZoomLinkTest {
         assertFalse(ZoomLink.isValidZoomLink("")); // empty string
         assertFalse(ZoomLink.isValidZoomLink(" ")); // spaces only
         assertFalse(ZoomLink.isValidZoomLink("https://google.com")); // incorrect beginning substring
-        assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/j/923072123*"));// contains non-alphanumeric
+        assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/j/923072123*")); // contains non-alphanumeric
         // characters
         assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/j/923072123")); // 9 numbers at the end
 
