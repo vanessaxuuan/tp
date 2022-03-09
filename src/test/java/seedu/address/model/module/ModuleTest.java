@@ -7,7 +7,6 @@ import static seedu.address.testutil.TypicalClasses.T04;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_CLASS;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_NAME;
 import static seedu.address.testutil.TypicalModules.CS2101_WITH_TRAILING_SPACES;
-import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2101;
 import static seedu.address.testutil.TypicalModules.CS2100;
 
@@ -16,7 +15,7 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model._class.Class;
+import seedu.address.model.tutgroup.Class;
 
 public class ModuleTest {
     private static final ModuleName cs2100Name = new ModuleName("CS2100");

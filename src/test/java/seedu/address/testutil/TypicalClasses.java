@@ -13,10 +13,10 @@ import static seedu.address.testutil.TypicalPersons.IDA;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import seedu.address.model._class.Class;
-import seedu.address.model._class.ClassName;
-import seedu.address.model._class.Venue;
-import seedu.address.model._class.ZoomLink;
+import seedu.address.model.tutgroup.Class;
+import seedu.address.model.tutgroup.ClassName;
+import seedu.address.model.tutgroup.Venue;
+import seedu.address.model.tutgroup.ZoomLink;
 import seedu.address.model.person.Person;
 
 public class TypicalClasses {

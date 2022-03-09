@@ -1,4 +1,4 @@
-package seedu.address.model._class;
+package seedu.address.model.tutgroup;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -16,7 +16,7 @@ public class Venue {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^\\w+(-\\w+)*$";
-    
+
     public final String venue;
 
     /**
@@ -34,7 +34,7 @@ public class Venue {
      * Returns true if a given string is a valid venue.
      */
     public static boolean isValidVenue(String test) {
-            return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

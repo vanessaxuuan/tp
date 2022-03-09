@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalClasses.W15_3;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import seedu.address.model._class.Class;
+import seedu.address.model.tutgroup.Class;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 

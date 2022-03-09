@@ -1,4 +1,4 @@
-package seedu.address.model._class;
+package seedu.address.model.tutgroup;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidZoomLink(String)}
  */
 public class ZoomLink {
-    
+
     public static final String MESSAGE_CONSTRAINTS =
         "ZoomLink should be of the format https://nus-sg.zoom.us/j/encodedNumbers and "
         + "adhere to the following constraints \n"
@@ -21,9 +21,14 @@ public class ZoomLink {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "https?:\\/\\/nus-sg\\.zoom\\.us\\/j\\/\\d{11}.*";
-    
+
     public final String zoomLink;
-    
+
+    /**
+     * Constructor for ZoomLink
+     *
+     * @param zoomLink The Zoom Link, cannot be null.
+     */
     public ZoomLink(String zoomLink) {
         requireNonNull(zoomLink);
         checkArgument(isValidZoomLink(zoomLink), MESSAGE_CONSTRAINTS);

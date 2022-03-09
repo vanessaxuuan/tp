@@ -1,4 +1,4 @@
-package seedu.address.model._class;
+package seedu.address.model.tutgroup;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -20,6 +20,14 @@ public class Class {
     private final ZoomLink zoomLink;
     private final Set<Person> persons = new HashSet<>();
 
+    /**
+     * Constructor to instantiate a Class
+     *
+     * @param className Name of the class, cannot be null.
+     * @param venue Venue for the class, can be null.
+     * @param zoomLink ZoomLink for the class, can be null.
+     * @param persons List of persons in the class, can be empty list.
+     */
     public Class(ClassName className, Venue venue, ZoomLink zoomLink, Set<Person> persons) {
         requireAllNonNull(className, persons);
         this.className = className;
@@ -27,7 +35,7 @@ public class Class {
         this.zoomLink = zoomLink;
         this.persons.addAll(persons);
     }
-    
+
     public ClassName getClassName() {
         return className;
     }

@@ -7,12 +7,18 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model._class.Class;
+import seedu.address.model.tutgroup.Class;
 
 public class Module {
     private final ModuleName moduleName;
     private final Set<Class> classes = new HashSet<>();
 
+    /**
+     * Constructor for Module
+     *
+     * @param moduleName Name of the module, must not be null.
+     * @param classes Set representing classes under the module, can be empty.
+     */
     public Module(ModuleName moduleName, Set<Class> classes) {
         requireAllNonNull(moduleName, classes);
         this.moduleName = moduleName;
@@ -22,7 +28,7 @@ public class Module {
     public ModuleName getModuleName() {
         return moduleName;
     }
-    
+
     /**
      * Returns an immutable person set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -73,7 +79,7 @@ public class Module {
         final StringBuilder builder = new StringBuilder();
         builder.append(getModuleName());
 
-        Set<Class> classes = getClasses() ;
+        Set<Class> classes = getClasses();
         if (!classes.isEmpty()) {
             builder.append("; Class: ");
             classes.forEach(builder::append);
@@ -81,5 +87,4 @@ public class Module {
         return builder.toString();
     }
 
-    
 }
