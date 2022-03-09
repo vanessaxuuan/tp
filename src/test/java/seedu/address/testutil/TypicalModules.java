@@ -27,17 +27,11 @@ public class TypicalModules {
     private static final ModuleName cs2103tName = new ModuleName("CS2103T");
     private static final ModuleName cs2101Name = new ModuleName("CS2101");
 
-    private static final ModuleName cs2100Name_WithTrailingSpaces = new ModuleName("CS2100  ");
-    private static final ModuleName cs2103tName_WithTrailingSpaces = new ModuleName("CS2103T  ");
-    private static final ModuleName cs2101Name_WithTrailingSpaces = new ModuleName("CS2101  ");
-
     public static final Module CS2103T = new Module(cs2103tName, new HashSet<Class>(Arrays.asList(classesForCs2103t)));
     public static final Module CS2100 = new Module(cs2100Name, new HashSet<Class>(Arrays.asList(classesForCs2100)));
-    public static final Module CS2101 = new Module(cs2103tName, new HashSet<Class>(Arrays.asList(classesForCs2101)));
+    public static final Module CS2101 = new Module(cs2101Name, new HashSet<Class>(Arrays.asList(classesForCs2101)));
     public static final Module CS2100_WITH_WRONG_NAME = new Module(cs2103tName,
         new HashSet<Class>(Arrays.asList(classesForCs2100)));
     public static final Module CS2100_WITH_WRONG_CLASS = new Module(cs2103tName,
         new HashSet<Class>(Arrays.asList(classesForCs2103t)));
-    public static final Module CS2101_WITH_TRAILING_SPACES = new Module(cs2103tName_WithTrailingSpaces,
-        new HashSet<Class>(Arrays.asList(classesForCs2101)));
 }

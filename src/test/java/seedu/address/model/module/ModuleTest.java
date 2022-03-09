@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_CLASS;
 import static seedu.address.testutil.TypicalModules.CS2100_WITH_WRONG_NAME;
 import static seedu.address.testutil.TypicalModules.CS2101;
-import static seedu.address.testutil.TypicalModules.CS2101_WITH_TRAILING_SPACES;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -32,8 +31,6 @@ public class ModuleTest {
         // different name, all other attributes same -> returns false
         assertFalse(CS2101.isSameModule(CS2100_WITH_WRONG_NAME));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        assertFalse(CS2101.isSameModule(CS2101_WITH_TRAILING_SPACES));
     }
 
     @Test
