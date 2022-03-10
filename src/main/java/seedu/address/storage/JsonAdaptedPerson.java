@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TelegramHandle;
@@ -20,18 +20,18 @@ class JsonAdaptedPerson {
     private final String name;
     private final String telegramHandle;
     private final String email;
-    private final String address;
+    private final String gitHub;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String telegramHandle,
-            @JsonProperty("email") String email, @JsonProperty("address") String address) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("TelegramHandle") String telegramHandle,
+            @JsonProperty("email") String email, @JsonProperty("gitHub") String gitHub) {
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.email = email;
-        this.address = address;
+        this.gitHub = gitHub;
     }
 
     /**
@@ -39,13 +39,17 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        if (source.getTelegramHandle().isEmpty()) {
+        email = source.getEmail().value;
+        if (source.getTelegramHandle().isEmpty() || source.getTelegramHandle().get().equals("")) {
             telegramHandle = null;
         } else {
             telegramHandle = source.getTelegramHandle().get().value;
         }
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        if (source.getGitHub().isEmpty() || source.getGitHub().get().equals("")) {
+            gitHub = null;
+        } else {
+            gitHub = source.getGitHub().get().value;
+        }
     }
 
     /**
@@ -62,13 +66,15 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (telegramHandle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName()));
-        }
-        if (!TelegramHandle.isValidPhone(telegramHandle)) {
+        TelegramHandle telegramHandleTemp;
+        if (telegramHandle != null && telegramHandle != "" && !TelegramHandle.isValidPhone(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        } else if (telegramHandle == null || telegramHandle == "") {
+            telegramHandleTemp = null;
+        } else {
+            telegramHandleTemp = new TelegramHandle(telegramHandle);
         }
-        final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
+        final TelegramHandle modelTelegramHandle = telegramHandleTemp;
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -78,14 +84,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        GitHub githubTemp;
+        if (gitHub != null && gitHub != "" && !GitHub.isValidAddress(gitHub)) {
+            throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
+        } else if (gitHub == null || gitHub == "") {
+            githubTemp = null;
+        } else {
+            githubTemp = new GitHub(gitHub);
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-        return new Person(modelName, modelTelegramHandle, modelEmail, modelAddress);
+        final GitHub modelGitHub = githubTemp;
+        return new Person(modelName, modelTelegramHandle, modelEmail, modelGitHub);
     }
-
 }

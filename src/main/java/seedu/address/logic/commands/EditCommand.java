@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -15,8 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TelegramHandle;
@@ -33,11 +33,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TELEGRAM_HANDLE + "PHONE] "
+            + "[" + PREFIX_TELEGRAM + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_GITHUB + "ADDRESS] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TELEGRAM_HANDLE + "91234567 "
+            + PREFIX_TELEGRAM + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -88,6 +88,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+
         TelegramHandle updatedTelegramHandle;
         if (personToEdit.getTelegramHandle().isEmpty()) {
             updatedTelegramHandle = editPersonDescriptor.getTelegramHandle().orElse(null);
@@ -95,10 +97,15 @@ public class EditCommand extends Command {
             updatedTelegramHandle =
                 editPersonDescriptor.getTelegramHandle().orElse(personToEdit.getTelegramHandle().get());
         }
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        return new Person(updatedName, updatedTelegramHandle, updatedEmail, updatedAddress);
+        GitHub updatedGitHub;
+        if (personToEdit.getGitHub().isEmpty()) {
+            updatedGitHub = editPersonDescriptor.getGitHub().orElse(null);
+        } else {
+            updatedGitHub = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub().get());
+        }
+
+        return new Person(updatedName, updatedTelegramHandle, updatedEmail, updatedGitHub);
     }
 
     @Override
@@ -127,7 +134,7 @@ public class EditCommand extends Command {
         private Name name;
         private TelegramHandle telegramHandle;
         private Email email;
-        private Address address;
+        private GitHub gitHub;
 
         public EditPersonDescriptor() {}
 
@@ -138,14 +145,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setTelegramHandle(toCopy.telegramHandle);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setGitHub(toCopy.gitHub);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, telegramHandle, email, address);
+            return CollectionUtil.isAnyNonNull(name, telegramHandle, email, gitHub);
         }
 
         public void setName(Name name) {
@@ -172,12 +179,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setGitHub(GitHub gitHub) {
+            this.gitHub = gitHub;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<GitHub> getGitHub() {
+            return Optional.ofNullable(gitHub);
         }
 
         @Override
@@ -198,7 +205,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getTelegramHandle().equals(e.getTelegramHandle())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+                    && getGitHub().equals(e.getGitHub());
         }
     }
 }

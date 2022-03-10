@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,33 +22,33 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withGitHub("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withTelegramHandle("94351253").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withGitHub(null)
             .withEmail("johnd@example.com").withTelegramHandle("98765432").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withTelegramHandle("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withGitHub("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTelegramHandle("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").build();
+            .withEmail("cornelia@example.com").withGitHub("10th street").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withTelegramHandle("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withGitHub("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withTelegramHandle("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withGitHub("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withTelegramHandle("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withGitHub("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withTelegramHandle("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withGitHub("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withTelegramHandle("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withGitHub("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTelegramHandle(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withTelegramHandle(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
+    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTelegramHandle(VALID_TELEGRAM_AMY)
+            .withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY).build();
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withTelegramHandle(VALID_TELEGRAM_BOB)
+            .withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

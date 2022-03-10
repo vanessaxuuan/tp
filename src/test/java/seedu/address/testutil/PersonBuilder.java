@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TelegramHandle;
@@ -19,7 +19,7 @@ public class PersonBuilder {
     private Name name;
     private TelegramHandle telegramHandle;
     private Email email;
-    private Address address;
+    private GitHub gitHub;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -28,7 +28,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         telegramHandle = new TelegramHandle(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        gitHub = new GitHub(DEFAULT_ADDRESS);
     }
 
     /**
@@ -38,7 +38,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         telegramHandle = personToCopy.getTelegramHandle().orElse(null);
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        gitHub = personToCopy.getGitHub().orElse(null);
     }
 
     /**
@@ -50,18 +50,26 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code GitHub} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withGitHub(String gitHub) {
+        if (gitHub == null) {
+            this.gitHub = null;
+        } else {
+            this.gitHub = new GitHub(gitHub);
+        }
         return this;
     }
 
     /**
      * Sets the {@code TelegramHandle} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTelegramHandle(String phone) {
-        this.telegramHandle = new TelegramHandle(phone);
+    public PersonBuilder withTelegramHandle(String teleHandle) {
+        if (teleHandle == null) {
+            this.telegramHandle = null;
+        } else {
+            this.telegramHandle = new TelegramHandle(teleHandle);
+        }
         return this;
     }
 
@@ -74,7 +82,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, telegramHandle, email, address);
+        return new Person(name, telegramHandle, email, gitHub);
     }
 
 }

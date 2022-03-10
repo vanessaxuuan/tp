@@ -17,17 +17,17 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final GitHub gitHub;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, TelegramHandle telegramHandle, Email email, Address address) {
-        requireAllNonNull(name, email, address);
+    public Person(Name name, TelegramHandle telegramHandle, Email email, GitHub gitHub) {
+        requireAllNonNull(name, email);
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.email = email;
-        this.address = address;
+        this.gitHub = gitHub;
     }
 
     public Name getName() {
@@ -46,8 +46,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Optional<GitHub> getGitHub() {
+        if (gitHub == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(gitHub);
+        }
     }
 
     /**
@@ -81,31 +85,37 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getTelegramHandle().equals(getTelegramHandle())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress());
+                && otherPerson.getGitHub().equals(getGitHub());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, telegramHandle, email, address);
+        return Objects.hash(name, telegramHandle, email, gitHub);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String str;
+        String telegramHandleString;
         if (getTelegramHandle().isEmpty()) {
-            str = "";
+            telegramHandleString = "";
         } else {
-            str = getTelegramHandle().get().toString();
+            telegramHandleString = getTelegramHandle().get().toString();
+        }
+        String githubString;
+        if (getGitHub().isEmpty()) {
+            githubString = "";
+        } else {
+            githubString = getGitHub().get().toString();
         }
         builder.append(getName())
                 .append("; TelegramHandle: ")
-                .append(str)
+                .append(telegramHandleString)
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; GitHub: ")
+                .append(githubString);
 
         return builder.toString();
     }

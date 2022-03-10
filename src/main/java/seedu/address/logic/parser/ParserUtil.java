@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.TelegramHandle;
 
@@ -61,18 +61,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String gitHub} into an {@code GitHub}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code gitHub} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static GitHub parseAddress(String gitHub) throws ParseException {
+        requireNonNull(gitHub);
+        String trimmedGitHub = gitHub.trim();
+        if (!GitHub.isValidAddress(trimmedGitHub)) {
+            throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new GitHub(trimmedGitHub);
     }
 
     /**

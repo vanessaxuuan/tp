@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -27,11 +27,13 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        if (person.getTelegramHandle().isPresent()) {
-            sb.append(PREFIX_TELEGRAM_HANDLE + person.getTelegramHandle().get().value + " ");
-        }
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        if (person.getTelegramHandle().isPresent()) {
+            sb.append(PREFIX_TELEGRAM + person.getTelegramHandle().get().value + " ");
+        }
+        if (person.getGitHub().isPresent()) {
+            sb.append(PREFIX_GITHUB + person.getGitHub().get().value + " ");
+        }
         return sb.toString();
     }
 
@@ -41,9 +43,9 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getTelegramHandle().ifPresent(phone -> sb.append(PREFIX_TELEGRAM_HANDLE).append(phone.value).append(" "));
+        descriptor.getTelegramHandle().ifPresent(phone -> sb.append(PREFIX_TELEGRAM).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getGitHub().ifPresent(address -> sb.append(PREFIX_GITHUB).append(address.value).append(" "));
         return sb.toString();
     }
 }
