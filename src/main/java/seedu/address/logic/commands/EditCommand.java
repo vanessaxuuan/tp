@@ -89,12 +89,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Telegram updatedTelegram = (personToEdit.getTelegram().isEmpty()) ?
-            editPersonDescriptor.getTelegram().orElse(null) :
-            editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram().get());
-        GitHub updatedGitHub = (personToEdit.getGitHub().isEmpty()) ?
-            editPersonDescriptor.getGitHub().orElse(null) :
-            editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub().get());
+        Telegram updatedTelegram = (personToEdit.getTelegram().isEmpty())
+            ? editPersonDescriptor.getTelegram().orElse(null)
+            : editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram().get());
+        GitHub updatedGitHub = (personToEdit.getGitHub().isEmpty())
+            ? editPersonDescriptor.getGitHub().orElse(null)
+            : editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub().get());
 
         return new Person(updatedName, updatedTelegram, updatedEmail, updatedGitHub);
     }

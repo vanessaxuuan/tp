@@ -51,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
         telegram.setText(telegramText);
 
         //empty string denote no GitHub
-        String gitHubText =  person.getGitHub().isEmpty() ? "" : person.getGitHub().get().value ; // empty string
+        String gitHubText = person.getGitHub().isEmpty() ? "" : person.getGitHub().get().value; // empty string
         gitHub.setText(gitHubText);
 
     }
