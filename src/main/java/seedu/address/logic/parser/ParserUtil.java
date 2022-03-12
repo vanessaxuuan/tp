@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -46,18 +46,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code TelegramHandle}.
+     * Parses a {@code String phone} into a {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static TelegramHandle parseTelegramHandle(String phone) throws ParseException {
+    public static Telegram parseTelegramHandle(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!TelegramHandle.isValidPhone(trimmedPhone)) {
-            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        if (!Telegram.isValidTelegram(trimmedPhone)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new TelegramHandle(trimmedPhone);
+        return new Telegram(trimmedPhone);
     }
 
     /**
@@ -69,7 +69,7 @@ public class ParserUtil {
     public static GitHub parseAddress(String gitHub) throws ParseException {
         requireNonNull(gitHub);
         String trimmedGitHub = gitHub.trim();
-        if (!GitHub.isValidAddress(trimmedGitHub)) {
+        if (!GitHub.isValidGitHub(trimmedGitHub)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
         return new GitHub(trimmedGitHub);

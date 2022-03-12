@@ -19,7 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -33,11 +33,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TELEGRAM + "PHONE] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_GITHUB + "ADDRESS] "
+            + "[" + PREFIX_GITHUB + "GITHUB] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TELEGRAM + "91234567 "
+            + PREFIX_TELEGRAM + "doejohn "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -89,23 +89,14 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Telegram updatedTelegram = (personToEdit.getTelegram().isEmpty()) ?
+            editPersonDescriptor.getTelegram().orElse(null) :
+            editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram().get());
+        GitHub updatedGitHub = (personToEdit.getGitHub().isEmpty()) ?
+            editPersonDescriptor.getGitHub().orElse(null) :
+            editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub().get());
 
-        TelegramHandle updatedTelegramHandle;
-        if (personToEdit.getTelegramHandle().isEmpty()) {
-            updatedTelegramHandle = editPersonDescriptor.getTelegramHandle().orElse(null);
-        } else {
-            updatedTelegramHandle =
-                editPersonDescriptor.getTelegramHandle().orElse(personToEdit.getTelegramHandle().get());
-        }
-
-        GitHub updatedGitHub;
-        if (personToEdit.getGitHub().isEmpty()) {
-            updatedGitHub = editPersonDescriptor.getGitHub().orElse(null);
-        } else {
-            updatedGitHub = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub().get());
-        }
-
-        return new Person(updatedName, updatedTelegramHandle, updatedEmail, updatedGitHub);
+        return new Person(updatedName, updatedTelegram, updatedEmail, updatedGitHub);
     }
 
     @Override
@@ -132,7 +123,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private TelegramHandle telegramHandle;
+        private Telegram telegram;
         private Email email;
         private GitHub gitHub;
 
@@ -143,7 +134,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setTelegramHandle(toCopy.telegramHandle);
+            setTelegram(toCopy.telegram);
             setEmail(toCopy.email);
             setGitHub(toCopy.gitHub);
         }
@@ -152,7 +143,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, telegramHandle, email, gitHub);
+            return CollectionUtil.isAnyNonNull(name, telegram, email, gitHub);
         }
 
         public void setName(Name name) {
@@ -163,12 +154,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setTelegramHandle(TelegramHandle telegramHandle) {
-            this.telegramHandle = telegramHandle;
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
         }
 
-        public Optional<TelegramHandle> getTelegramHandle() {
-            return Optional.ofNullable(telegramHandle);
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         public void setEmail(Email email) {
@@ -203,7 +194,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getTelegramHandle().equals(e.getTelegramHandle())
+                    && getTelegram().equals(e.getTelegram())
                     && getEmail().equals(e.getEmail())
                     && getGitHub().equals(e.getGitHub());
         }

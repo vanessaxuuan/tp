@@ -31,7 +31,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -108,7 +108,7 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_TELEGRAM_DESC + EMAIL_DESC_BOB + GITHUB_DESC_BOB,
-            TelegramHandle.MESSAGE_CONSTRAINTS);
+            Telegram.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + TELEGRAM_DESC_BOB + INVALID_EMAIL_DESC + GITHUB_DESC_BOB,

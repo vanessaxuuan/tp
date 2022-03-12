@@ -28,8 +28,8 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        if (person.getTelegramHandle().isPresent()) {
-            sb.append(PREFIX_TELEGRAM + person.getTelegramHandle().get().value + " ");
+        if (person.getTelegram().isPresent()) {
+            sb.append(PREFIX_TELEGRAM + person.getTelegram().get().value + " ");
         }
         if (person.getGitHub().isPresent()) {
             sb.append(PREFIX_GITHUB + person.getGitHub().get().value + " ");
@@ -43,7 +43,7 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getTelegramHandle().ifPresent(phone -> sb.append(PREFIX_TELEGRAM).append(phone.value).append(" "));
+        descriptor.getTelegram().ifPresent(phone -> sb.append(PREFIX_TELEGRAM).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getGitHub().ifPresent(address -> sb.append(PREFIX_GITHUB).append(address.value).append(" "));
         return sb.toString();

@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -81,15 +81,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
-        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(VALID_PHONE));
+        Telegram expectedTelegram = new Telegram(VALID_PHONE);
+        assertEquals(expectedTelegram, ParserUtil.parseTelegramHandle(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
-        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(phoneWithWhitespace));
+        Telegram expectedTelegram = new Telegram(VALID_PHONE);
+        assertEquals(expectedTelegram, ParserUtil.parseTelegramHandle(phoneWithWhitespace));
     }
 
     @Test

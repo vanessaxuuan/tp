@@ -14,23 +14,23 @@ public class GitHubTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new GitHub(invalidAddress));
+    public void constructor_invalidGitHub_throwsIllegalArgumentException() {
+        String invalidGitHub = "";
+        assertThrows(IllegalArgumentException.class, () -> new GitHub(invalidGitHub));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
-        assertThrows(NullPointerException.class, () -> GitHub.isValidAddress(null));
+    public void isValidGitHub() {
+        // null gitHub
+        assertThrows(NullPointerException.class, () -> GitHub.isValidGitHub(null));
 
-        // invalid addresses
-        assertFalse(GitHub.isValidAddress("")); // empty string
-        assertFalse(GitHub.isValidAddress(" ")); // spaces only
+        // invalid gitHub
+        assertFalse(GitHub.isValidGitHub("")); // empty string
+        assertFalse(GitHub.isValidGitHub(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(GitHub.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(GitHub.isValidAddress("-")); // one character
-        assertTrue(GitHub.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid gitHub
+        assertTrue(GitHub.isValidGitHub("Blk 456, Den Road, #01-355"));
+        assertTrue(GitHub.isValidGitHub("-")); // one character
+        assertTrue(GitHub.isValidGitHub("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 }

@@ -24,7 +24,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
                 .withGitHub(VALID_GITHUB_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -64,15 +64,15 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAM_BOB).build();
+        // different telegram -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different telegram -> returns false
         editedAlice = new PersonBuilder(ALICE).withGitHub(VALID_GITHUB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }

@@ -13,19 +13,17 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final TelegramHandle telegramHandle;
+    private final Telegram telegram;
     private final Email email;
-
-    // Data fields
     private final GitHub gitHub;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, TelegramHandle telegramHandle, Email email, GitHub gitHub) {
+    public Person(Name name, Telegram telegram, Email email, GitHub gitHub) {
         requireAllNonNull(name, email);
         this.name = name;
-        this.telegramHandle = telegramHandle;
+        this.telegram = telegram;
         this.email = email;
         this.gitHub = gitHub;
     }
@@ -34,12 +32,8 @@ public class Person {
         return name;
     }
 
-    public Optional<TelegramHandle> getTelegramHandle() {
-        if (telegramHandle == null) {
-            return Optional.empty();
-        } else {
-            return Optional.of(telegramHandle);
-        }
+    public Optional<Telegram> getTelegram() {
+        return (telegram == null) ? Optional.empty() : Optional.of(telegram);
     }
 
     public Email getEmail() {
@@ -47,11 +41,7 @@ public class Person {
     }
 
     public Optional<GitHub> getGitHub() {
-        if (gitHub == null) {
-            return Optional.empty();
-        } else {
-            return Optional.of(gitHub);
-        }
+        return (gitHub == null) ? Optional.empty() : Optional.of(gitHub);
     }
 
     /**
@@ -83,7 +73,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getTelegramHandle().equals(getTelegramHandle())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getGitHub().equals(getGitHub());
     }
@@ -91,26 +81,16 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, telegramHandle, email, gitHub);
+        return Objects.hash(name, telegram, email, gitHub);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String telegramHandleString;
-        if (getTelegramHandle().isEmpty()) {
-            telegramHandleString = "";
-        } else {
-            telegramHandleString = getTelegramHandle().get().toString();
-        }
-        String githubString;
-        if (getGitHub().isEmpty()) {
-            githubString = "";
-        } else {
-            githubString = getGitHub().get().toString();
-        }
+        String telegramHandleString = (getTelegram().isEmpty()) ? "" : getTelegram().get().value;
+        String githubString = (getGitHub().isEmpty()) ? "" : getGitHub().get().value;
         builder.append(getName())
-                .append("; TelegramHandle: ")
+                .append("; Telegram: ")
                 .append(telegramHandleString)
                 .append("; Email: ")
                 .append(getEmail())

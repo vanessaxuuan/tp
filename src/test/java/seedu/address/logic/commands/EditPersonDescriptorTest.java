@@ -38,16 +38,16 @@ public class EditPersonDescriptorTest {
         EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_TELEGRAM_BOB).build();
+        // different telegram -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_GITHUB_BOB).build();
+        // different gitHub -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGitHub(VALID_GITHUB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
     }

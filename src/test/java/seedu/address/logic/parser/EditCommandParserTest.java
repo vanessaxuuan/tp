@@ -33,7 +33,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -73,16 +73,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC, TelegramHandle.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_GITHUB_DESC, GitHub.MESSAGE_CONSTRAINTS); // invalid address
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC + EMAIL_DESC_AMY, TelegramHandle.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC + EMAIL_DESC_AMY, Telegram.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + TELEGRAM_DESC_BOB + INVALID_TELEGRAM_DESC, TelegramHandle.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TELEGRAM_DESC_BOB + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_TELEGRAM_AMY,
@@ -96,7 +96,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + GITHUB_DESC_AMY + NAME_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_GITHUB_AMY).build();
+                .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_TELEGRAM_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -125,7 +125,7 @@ public class EditCommandParserTest {
 
         // phone
         userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_TELEGRAM_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -137,7 +137,7 @@ public class EditCommandParserTest {
 
         // address
         userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_GITHUB_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withGitHub(VALID_GITHUB_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -150,8 +150,8 @@ public class EditCommandParserTest {
                 + TELEGRAM_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_TELEGRAM_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_GITHUB_BOB).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB)
+                .withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -162,15 +162,15 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_TELEGRAM_DESC + TELEGRAM_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_TELEGRAM_BOB).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_TELEGRAM_DESC + GITHUB_DESC_BOB
                 + TELEGRAM_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_GITHUB_BOB).build();
+        descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
+                .withGitHub(VALID_GITHUB_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

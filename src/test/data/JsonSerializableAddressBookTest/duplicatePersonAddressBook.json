@@ -1,13 +1,13 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
-    "telegramHandle": "94351253",
+    "telegram": "94351253",
     "email": "alice@example.com",
     "gitHub": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "telegramHandle": "94351253",
+    "telegram": "94351253",
     "email": "pauline@example.com",
     "gitHub": "4th street"
   } ]

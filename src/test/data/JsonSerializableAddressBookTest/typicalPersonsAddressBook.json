@@ -2,45 +2,38 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "telegramHandle": "94351253",
+    "telegram": "94351253",
     "email" : "alice@example.com",
-    "gitHub": "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "gitHub": "123, Jurong West Ave 6, #08-111"
   }, {
     "name" : "Benson Meier",
-    "telegramHandle": "98765432",
+    "telegram": "98765432",
     "email" : "johnd@example.com",
-    "gitHub": "",
-    "tagged" : [ "owesMoney", "friends" ]
+    "gitHub": ""
   }, {
     "name" : "Carl Kurz",
-    "telegramHandle": "95352563",
+    "telegram": "95352563",
     "email" : "heinz@example.com",
-    "gitHub": "wall street",
-    "tagged" : [ ]
+    "gitHub": "wall street"
   }, {
     "name" : "Daniel Meier",
-    "telegramHandle": "87652533",
+    "telegram": "",
     "email" : "cornelia@example.com",
-    "gitHub": "10th street",
-    "tagged" : [ "friends" ]
+    "gitHub": "10th street"
   }, {
     "name" : "Elle Meyer",
-    "telegramHandle": "9482224",
+    "telegram": "9482224",
     "email" : "werner@example.com",
-    "gitHub": "michegan ave",
-    "tagged" : [ ]
+    "gitHub": "michegan ave"
   }, {
     "name" : "Fiona Kunz",
-    "telegramHandle": "9482427",
+    "telegram": "9482427",
     "email" : "lydia@example.com",
-    "gitHub": "little tokyo",
-    "tagged" : [ ]
+    "gitHub": "little tokyo"
   }, {
     "name" : "George Best",
-    "telegramHandle": "9482442",
+    "telegram": "9482442",
     "email" : "anna@example.com",
-    "gitHub": "4th street",
-    "tagged" : [ ]
+    "gitHub": "4th street"
   } ]
 }

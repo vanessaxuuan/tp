@@ -23,31 +23,31 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withGitHub("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withTelegramHandle("94351253").build();
+            .withTelegram("94351253").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withGitHub(null)
-            .withEmail("johnd@example.com").withTelegramHandle("98765432").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withTelegramHandle("95352563")
+            .withEmail("johnd@example.com").withTelegram("98765432").build();
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withTelegram("95352563")
             .withEmail("heinz@example.com").withGitHub("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTelegramHandle("87652533")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTelegram(null)
             .withEmail("cornelia@example.com").withGitHub("10th street").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withTelegramHandle("9482224")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withTelegram("9482224")
             .withEmail("werner@example.com").withGitHub("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withTelegramHandle("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withTelegram("9482427")
             .withEmail("lydia@example.com").withGitHub("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withTelegramHandle("9482442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withTelegram("9482442")
             .withEmail("anna@example.com").withGitHub("4th street").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withTelegramHandle("8482424")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withTelegram("8482424")
             .withEmail("stefan@example.com").withGitHub("little india").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withTelegramHandle("8482131")
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withTelegram("8482131")
             .withEmail("hans@example.com").withGitHub("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTelegramHandle(VALID_TELEGRAM_AMY)
+    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTelegram(VALID_TELEGRAM_AMY)
             .withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withTelegramHandle(VALID_TELEGRAM_BOB)
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withTelegram(VALID_TELEGRAM_BOB)
             .withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

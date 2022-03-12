@@ -56,9 +56,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_TELEGRAM_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_GITHUB_AMY).build();
+                .withTelegram(VALID_TELEGRAM_AMY).withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_GITHUB_BOB).build();
+                .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB).build();
     }
 
     /**

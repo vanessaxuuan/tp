@@ -8,7 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.Telegram;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -18,7 +18,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String telegramHandle;
+    private final String telegram;
     private final String email;
     private final String gitHub;
 
@@ -26,10 +26,10 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("TelegramHandle") String telegramHandle,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegram") String telegram,
             @JsonProperty("email") String email, @JsonProperty("gitHub") String gitHub) {
         this.name = name;
-        this.telegramHandle = telegramHandle;
+        this.telegram = telegram;
         this.email = email;
         this.gitHub = gitHub;
     }
@@ -40,16 +40,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         email = source.getEmail().value;
-        if (source.getTelegramHandle().isEmpty() || source.getTelegramHandle().get().equals("")) {
-            telegramHandle = null;
-        } else {
-            telegramHandle = source.getTelegramHandle().get().value;
-        }
-        if (source.getGitHub().isEmpty() || source.getGitHub().get().equals("")) {
-            gitHub = null;
-        } else {
-            gitHub = source.getGitHub().get().value;
-        }
+        telegram = (source.getTelegram().isEmpty()) ? null : source.getTelegram().get().value;
+        gitHub = (source.getGitHub().isEmpty()) ? null : source.getGitHub().get().value;
     }
 
     /**
@@ -66,15 +58,15 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        TelegramHandle telegramHandleTemp;
-        if (telegramHandle != null && telegramHandle != "" && !TelegramHandle.isValidPhone(telegramHandle)) {
-            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
-        } else if (telegramHandle == null || telegramHandle == "") {
-            telegramHandleTemp = null;
+        Telegram telegramTemp;
+        if (telegram == null || telegram.equals("")) { //occurs if Person has no telegram
+            telegramTemp = null;
+        } else if (!Telegram.isValidTelegram(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         } else {
-            telegramHandleTemp = new TelegramHandle(telegramHandle);
+            telegramTemp = new Telegram(telegram);
         }
-        final TelegramHandle modelTelegramHandle = telegramHandleTemp;
+        final Telegram modelTelegram = telegramTemp;
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -85,14 +77,15 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         GitHub githubTemp;
-        if (gitHub != null && gitHub != "" && !GitHub.isValidAddress(gitHub)) {
-            throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
-        } else if (gitHub == null || gitHub == "") {
+        if (gitHub == null || gitHub.equals("")) { //occurs if Person has no gitHub
             githubTemp = null;
+        } else if (!GitHub.isValidGitHub(gitHub)) {
+            throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
         } else {
             githubTemp = new GitHub(gitHub);
         }
         final GitHub modelGitHub = githubTemp;
-        return new Person(modelName, modelTelegramHandle, modelEmail, modelGitHub);
+
+        return new Person(modelName, modelTelegram, modelEmail, modelGitHub);
     }
 }

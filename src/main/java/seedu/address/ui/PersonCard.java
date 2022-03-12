@@ -30,7 +30,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label telegramHandle;
+    private Label telegram;
     @FXML
     private Label gitHub;
     @FXML
@@ -44,20 +44,15 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-
-        if (person.getTelegramHandle().isEmpty()) {
-            telegramHandle.setText("");
-        } else {
-            telegramHandle.setText(person.getTelegramHandle().get().value);
-        }
-
         email.setText(person.getEmail().value);
 
-        if (person.getGitHub().isEmpty()) {
-            gitHub.setText("");
-        } else {
-            gitHub.setText(person.getGitHub().get().value);
-        }
+        //empty string denote no Telegram
+        String telegramText = person.getTelegram().isEmpty() ? "" : person.getTelegram().get().value;
+        telegram.setText(telegramText);
+
+        //empty string denote no GitHub
+        String gitHubText =  person.getGitHub().isEmpty() ? "" : person.getGitHub().get().value ; // empty string
+        gitHub.setText(gitHubText);
 
     }
 
