@@ -258,14 +258,14 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * is a Computer Science (CS) Teaching Assistant (TA) in NUS
-* is teaching multiple Computer Science modules/classes 
+* is teaching multiple Computer Science modules/tutorial groups 
 * has a need to manage a significant number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: TACH helps CS Teaching Assistants teaching multiple classes to manage 
+**Value proposition**: TACH helps CS Teaching Assistants teaching multiple tutorial groups to manage 
 their students in an organized manner. Our sorting feature will allow TAs to view, categorize 
 and get information of all their students at one glance.
 
@@ -277,14 +277,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                        | I want to …​                                                                          | So that I can …​                                                                  |
 |----------|--------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | CS TA                          | add a student                                                                         | keep track of them and their contacts                                             |
-| `* * *`  | CS TA                          | add a class to a student                                                              | identify which classes a student is taking                                        |
+| `* * *`  | CS TA                          | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
 | `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
-| `* * *`  | CS TA                          | delete a class from a student                                                         | make sure a student has the correct classes                                       |
+| `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
 | `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
-| `* * `   | CS TA                          | sort my students by classes                                                           | find the appropriate students for my classes easily                               |
+| `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
 | `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
 | `* * `   | CS TA                          | find students by name                                                                 | contact the appropriate student                                                   |
-| `* * `   | CS TA                          | find students by a class                                                              | see which students are in that class                                              |
+| `* * `   | CS TA                          | find students by a tutorial group                                                     | see which students are in that tutorial group                                     |
 | `* * `   | TA                             | undo my mistakes                                                                      |                                                                                   |
 | `* *`    | TA                             | redo my mistakes                                                                      |                                                                                   |
 | `* *`    | CS TA that finished a semester | clear my student contact list                                                         | easily start afresh for the next semester                                         |
@@ -300,41 +300,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. TA adds a new student to the contact list by giving their name, their email and their class
+1. TA adds a new student to the contact list by giving their name, their email and their tutorial group
 2. Student successfully added to the list
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The command has an invalid name, email and/or class.
+* 1a. The command has an invalid name, email and/or tutorial group.
   * 1a1. TACH prompts the TA to type in the valid parameters.
   Step 1a1 is repeated until the data entered is correct.
   
     Use case resumes from step 2.
 
     
-* 1b. The command does not have a name, email and/or class.
+* 1b. The command does not have a name, email and/or tutorial group.
     * 1b1.  TACH prompts the TA to add in the valid parameters.
     Step 1b1 is repeated until the data entered is correct.
 
       Use case resumes from step 2.
 <br><br>
 
-**Use case: UC02 - Add a Class to a Student**
+**Use case: UC02 - Add a Tutorial Group to a Student**
 
 **MSS:**
 
-1. TA adds a new class to a student by giving the relevant class.
-2. The new class is successfully added to the student.
+1. TA adds a new tutorial group to a student by giving the relevant tutorial group.
+2. The new tutorial group is successfully added to the student.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The command has an invalid class.
-  * 1a1. TACH prompts the TA to type in a valid class.
-  Step 1a1 is repeated until a valid class is entered.
+* 1a. The command has an invalid tutorial group.
+  * 1a1. TACH prompts the TA to type in a valid tutorial group.
+  Step 1a1 is repeated until a valid tutorial group is entered.
 
     Use case resumes from step 2.
 
@@ -352,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  TA requests to view all students.
 2.  TACH shows a list of students.
 3.  TA requests to delete a specific student in the list by their index on the list.
-4.  TACH deletes the student from the class.
+4.  TACH deletes the student from the tutorial group.
 
     Use case ends.
 
@@ -362,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1b. TA chooses instead to find students from a specific class.
+* 1b. TA chooses instead to find students from a specific tutorial group.
   
   Use case resumes at step 2.
 
@@ -373,23 +373,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 4.
 <br><br>
 
-**Use case: UC04 - Delete Class from Student**
+**Use case: UC04 - Delete a Tutorial Group from a Student**
 
 **MSS:**
 
-1. TA requests to delete a class from a student.
-2. The class is successfully deleted from the student.
+1. TA requests to delete a tutorial group from a student.
+2. The tutorial group is successfully deleted from the student.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The class requested is an invalid class or the student is not under that class.
-  * 1a1. TACH prompts the TA to type a valid class.
-  Step 1a1 is repeated until a valid class is entered.
+* 1a. The tutorial group requested is an invalid tutorial group or the student is not under that tutorial group.
+  * 1a1. TACH prompts the TA to type a valid tutorial group.
+  Step 1a1 is repeated until a valid tutorial group is entered.
 
-* 1b. The class requested to be deleted is the only class the student has.
-  * 1b1. TACH notifies the TA that the class cannot be deleted.
+* 1b. The tutorial group requested to be deleted is the only tutorial group the student has.
+  * 1b1. TACH notifies the TA that the tutorial group cannot be deleted.
 
     Use case ends.
 <br><br>
@@ -423,10 +423,12 @@ should be able to accomplish most of the tasks faster using commands than using 
 
 ### Glossary
 
+* **Tutorial Group**: Tutorial Group is synonymous with "(Tutorial) Class", we use the term Tutorial Group in our code
+and documentation to prevent it from being confused with "Java Classes".
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **API**: An application programming interface (API) is the medium by which different softwares interact
-* **Interface**: An abstract type that is used to specify a behavior of certain classes
+* **API**: An application programming interface (API) is the medium by which different software interact
+* **Interface**: An abstract type that is used to specify a behavior of certain tutorial groups
 * **System admin commands**: Terminal commands such as `pwd`, `ls`, `tar`
 * **Open source**: Open source code is publicly accessible to everyone to read, modify and distribute
 
