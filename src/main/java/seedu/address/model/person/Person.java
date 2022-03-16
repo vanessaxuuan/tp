@@ -2,8 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -13,35 +17,47 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Telegram telegram;
+    private final Phone phone;
     private final Email email;
-    private final GitHub gitHub;
+
+    // Data fields
+    private final Address address;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Telegram telegram, Email email, GitHub gitHub) {
-        requireAllNonNull(name, email);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
-        this.telegram = telegram;
+        this.phone = phone;
         this.email = email;
-        this.gitHub = gitHub;
+        this.address = address;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Optional<Telegram> getTelegram() {
-        return (telegram == null) ? Optional.empty() : Optional.of(telegram);
+    public Phone getPhone() {
+        return phone;
     }
 
     public Email getEmail() {
         return email;
     }
 
-    public Optional<GitHub> getGitHub() {
-        return (gitHub == null) ? Optional.empty() : Optional.of(gitHub);
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -73,30 +89,34 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getTelegram().equals(getTelegram())
+                && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getGitHub().equals(getGitHub());
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, telegram, email, gitHub);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String telegramHandleString = (getTelegram().isEmpty()) ? "" : getTelegram().get().value;
-        String githubString = (getGitHub().isEmpty()) ? "" : getGitHub().get().value;
         builder.append(getName())
-                .append("; Telegram: ")
-                .append(telegramHandleString)
+                .append("; Phone: ")
+                .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; GitHub: ")
-                .append(githubString);
+                .append("; Address: ")
+                .append(getAddress());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 
