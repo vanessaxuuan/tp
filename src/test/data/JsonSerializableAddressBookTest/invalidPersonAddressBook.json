@@ -1,8 +1,9 @@
 {
-  "persons": [ {
+  "students": [ {
     "name": "Hans Muster",
-    "phone": "9482424",
+    "telegram": "@HansMuster",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "gitHub": "hansMuster",
+    "tutorialGroup": [ "CS2103 W13-2" ]
   } ]
 }
