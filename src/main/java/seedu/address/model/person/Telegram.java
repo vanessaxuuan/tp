@@ -22,7 +22,7 @@ public class Telegram {
      * @param telegram A valid telegram.
      */
     public Telegram(String telegram) {
-        if (telegram == null) {
+        if (telegram == null) { //if telegram is empty it will exist as an empty string
             value = "";
         } else {
             checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);

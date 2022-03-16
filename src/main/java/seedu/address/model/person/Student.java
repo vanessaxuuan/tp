@@ -12,7 +12,8 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * Represents a Student in the address book.
- * Guarantees: details are present and not null except telegram and github, field values are validated, immutable.
+ * Guarantees: details except telegram and gitHub are present and not null  field values are validated, immutable.
+ * telegram and gitHub will be empty strings if the user command does not include them.
  */
 public class Student {
 
