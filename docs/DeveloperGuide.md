@@ -337,6 +337,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Step 1a1 is repeated until a valid class is entered.
 
     Use case resumes from step 2.
+
+* 1b. The command has an invalid student or a student that does not exist in the contact list.
+  * 1b1. TACH prompts the TA to type in a valid student.
+  Step 1b1 is repeated until a valid student is entered.
+
+    Use case resumes from step 2.
 <br><br>
     
 **Use case: UC03 - Delete a Student**
