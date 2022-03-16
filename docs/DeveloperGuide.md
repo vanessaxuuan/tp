@@ -265,33 +265,30 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: TACH tracks contacts of students grouped by module and classes. Get and mark students' weekly (from week 3 to 13) homework submission onto GitHub. Sort the empty submissions first for easy marking.
- And all you only need is just a keyboard.
+**Value proposition**: TACH helps CS Teaching Assistants teaching multiple classes to manage 
+their students in an organized manner. Our sorting feature will allow TAs to view, categorize 
+and get information of all their students at one glance.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | CS TA                       | add a student                                                                                     | keep track of their contacts                                                         |
-| `* * *`  | CS TA                       | add a class                                                                                       | I can add contacts based on which class in the module they are taking                       |
-| `* * *`  | CS TA                       | add a module                                                                                      | add students' contacts based on which module they are taking                            |
-| `* * *`  | CS TA                       | delete a student                                                                                  | make sure to have the correct student in the list                                      |
-| `* * *`  | CS TA                       | delete a class                                                                                    | prepare to TA a new class next semester                                                    |
-| `* * *`  | CS TA                       | delete a module                                                                                   | prepare to TA a new module next semester                                                    |
-| `* * *`  | CS TA                       | get my students' private contact details like their email, Telegram and GitHub easily             | can save time from the convenience of having all the contact details in one place       | 
-| `* * *`  | CS TA                       | get my students in the class                                                                      |                                                                                             | 
-| `* * *`  | CS TA                       | get my classes in the module                                                                      |                                                                                             |
-| `* * `   | TA teaching F2F classes     | get the venue for the next upcoming class                                                         | prepare to go to the venue and get there in time                                            |
-| `* * `   | TA teaching online classes  | get the zoom link for the next upcoming class                                                     | prepare to go to the venue and get there in time                                            |
-| `* * `   | Busy TA                     | rank the work that needs to be done                                                               | clear the urgent work first                                                                 |
-| `* * `   | Busy TA                     | set an alarm before the tutorial starts                                                           | on time for class                                                                           |
-| `* *`    | TA                          | redo my mistakes                                                                                  |                                                                                             |
-| `*  `    | Busy TA                     | get the lecture slides link I'll be using for that class                                          | get my teaching material more easily                                                      |
-| `*  `    | TA                          | reschedule temporary makeups for my classes in case of holidays or me getting sick                | keep track of when a class timing/date changes                                              |
-| `* `     | TA                          | sent group message to a specific group of students                                                | make announcement effectively                                                      |
+| Priority | As a …​                        | I want to …​                                                                          | So that I can …​                                                                  |
+|----------|--------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | CS TA                          | add a student                                                                         | keep track of them and their contacts                                             |
+| `* * *`  | CS TA                          | add a class to a student                                                              | identify which classes a student is taking                                        |
+| `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
+| `* * *`  | CS TA                          | delete a class from a student                                                         | prepare to TA a new class next semester                                           |
+| `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
+| `* * `   | CS TA                          | sort my students by classes                                                           | find the appropriate students for my classes easily                               |
+| `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
+| `* * `   | CS TA                          | find students by name                                                                 | contact the appropriate student                                                   |
+| `* * `   | CS TA                          | find students by a class                                                              | see which students are in that class                                              |
+| `* * `   | TA                             | undo my mistakes                                                                      |                                                                                   |
+| `* *`    | TA                             | redo my mistakes                                                                      |                                                                                   |
+| `* *`    | CS TA that finished a semester | clear my student contact list                                                         | easily start afresh for the next semester                                         |
+| `* `     | TA                             | send group messages to a specific group of students                                   | make announcements effectively                                                    |
 
 *{More to be added}*
 
@@ -299,99 +296,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Teaching Assistant Contact Helper (TACH)` and the **Actor** is the `Teaching Assistant (TA)`, unless specified otherwise)
 
-**Use case: UC01 - add a new module**
+**Use case: UC01 - Add a Student**
 
 **MSS:**
 
-1. TA adds a new module by module code
-2. Module added to the module list
-    
+1. TA adds a new student to the contact list by giving their name, their email and their class
+2. Student successfully added to the list
+
     Use case ends.
-
-**Extensions:**
-
-* 1a. The module is already exist
-  
-    Use case ends.
-
-**Use case: UC02 - add a new class to a module**
-
-**MSS:**
-
-1. TA adds a new class base on the module by class title
-2. Class added to the module
-
-    Use case ends
 
 **Extensions**
 
-* 1a. The module is not exist
-  * 1a1. <u> Adds a new module (UC01) </u> with the module code automatically
+* 1a. The command has an invalid name, email and/or class.
+  * 1a1. TACH prompts the TA to type in the valid parameters.
+  Step 1a1 is repeated until the data entered is correct.
+  
+    Use case resumes from step 2.
 
-      Use case resumes from step2.
+    
+* 1b. The command does not have a name, email and/or class.
+    * 1b1.  TACH prompts the TA to add in the valid parameters.
+    Step 1b1 is repeated until the data entered is correct.
 
-**Use case: UC03 - add a student to a class**
+      Use case resumes from step 2.
+<br><br>
+
+**Use case: UC02 - Add a Class to a Student**
 
 **MSS:**
 
-1. TA adds a new student based on the class by student name
-2. Student added to the class
-   Use case ends
+1. TA adds a new class to a student by giving the relevant class.
+2. The new class is successfully added to the student.
+
+    Use case ends.
 
 **Extensions**
 
-* 1a. The class is not exist
-  * 1a1. <u> Adds a new class (UC02) </u> with the class title automatically 
-  
-    Use case resumes from step2.
+* 1a. The command has an invalid class.
+  * 1a1. TACH prompts the TA to type in a valid class.
+  Step 1a1 is repeated until a valid class is entered.
 
+    Use case resumes from step 2.
+<br><br>
     
-* 1b. Both module and class not exist
-    * 1b1.  <u> Adds a new module (UC01) </u> with the module code automatically
-    * 1b2.  <u> Adds a new class (UC02) </u> with the class title automatically
-
-      Use case resumes from step2.
-
-**Use case: UC04 - view a module**
+**Use case: UC03 - Delete a Student**
 
 **MSS:**
 
-1. TA request to view a module code
-2. TACH shows a list of classes from that module and a list of all students added to the module
+1.  TA requests to view all students.
+2.  TACH shows a list of students.
+3.  TA requests to delete a specific student in the list by their index on the list.
+4.  TACH deletes the student from the class.
 
-   Use case ends.
+    Use case ends.
 
-**Extensions:**
+**Extensions**
 
-* 1a. The module is not exist
+* 1a. The student list is empty. There are no students that can be deleted.
 
   Use case ends.
-    
 
-**Use case: UC05 - Delete a student from a class**
-
-**MSS**
-
-1.  TA requests to view all students from a class
-2.  TACH shows a list of student from that class
-3.  TA requests to delete a specific student in the list
-4.  TACH deletes the student from the class
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The student list from the class is empty.
-
-  Use case ends.
+* 1b. TA chooses instead to find students from a specific class.
+  
+  Use case resumes at step 2.
 
 * 3a. The given index is invalid.
+  * 3a1. TACH prompts the TA to type in a valid index.
+  Step 3a1 is repeated until a valid index is entered.
 
-    * 3a1. TACH shows an error message.
+  Use case resumes at step 4.
+<br><br>
 
-      Use case resumes at step 2.
+**Use case: UC04 - Delete Class from Student**
 
+**MSS:**
 
+1. TA requests to delete a class from a student.
+2. The class is successfully deleted from the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The class requested is an invalid class or the student is not under that class.
+  * 1a1. TACH prompts the TA to type a valid class.
+  Step 1a1 is repeated until a valid class is entered.
+
+* 1b. The class requested to be deleted is the only class the student has.
+  * 1b1. TACH notifies the TA that the class cannot be deleted.
+
+    Use case ends.
+<br><br>
+
+**Use case: UC05 - Clearing All Students**
+
+**MSS:**
+
+1. TA chooses to clear all students from their contact list.
+2. TACH completely clears its list.
+
+    Use case ends.
 
 
 *{More to be added}*
@@ -405,11 +409,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. The user interface should be easy to understand for beginner users.
 6. The commands should feel intuitive and easy to pick up and remember to a beginner user.
-7. A module should be able to have up to `20` classes.
-8. A class should be able to have up to `50` students.
-9. The source code should be open source.
-10. The product is free and ready-to-use as soon as one downloads it.
-11. The product should work offline, without an Internet connection.
+7. The source code should be open source.
+8. The product is free and ready-to-use as soon as one downloads it.
+9. The product should work offline, without an Internet connection.
 
 *{More to be added}*
 
