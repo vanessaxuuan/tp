@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GitHub {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github username may only contain alphanumeric " +
-        "characters or hyphens.\n    Github username cannot have multiple consecutive hyphens.\n" +
-        "    Github username cannot begin or end with a hyphen.\n" +
-        "    Maximum is 39 characters.\n    GitHub can be null.";
+    public static final String MESSAGE_CONSTRAINTS = "Github username may only contain alphanumeric "
+        + "characters or hyphens.\n    Github username cannot have multiple consecutive hyphens.\n"
+        + "    Github username cannot begin or end with a hyphen.\n"
+        + "    Maximum is 39 characters and minimum of 2 characters.\n    GitHub can be null.";
 
     /*
      * The first character of the gitHub must not be a whitespace,
@@ -28,7 +27,7 @@ public class GitHub {
      * @param gitHub A valid gitHub.
      */
     public GitHub(String gitHub) {
-        if (gitHub == null) {  //if gitHub is empty it will exist as an empty string
+        if (gitHub == null) { //if gitHub is empty it will exist as an empty string
             value = "";
         } else {
             checkArgument(isValidGitHub(gitHub), MESSAGE_CONSTRAINTS);

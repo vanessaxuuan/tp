@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,10 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-        "Telegram may begin with a \"{@}\" character, followed by between 5 to 32 alphanumerical " +
-        "characters, can be blank";
+        "Telegram may begin with a \"{@}\" character, followed by between 5 to 32 alphanumerical "
+        + "characters, can be blank";
     public static final String VALIDATION_REGEX = "@?\\w{5,32}";
     public final String value;
 

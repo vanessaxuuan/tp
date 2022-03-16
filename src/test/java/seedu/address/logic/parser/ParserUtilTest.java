@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class ParserUtilTest {
@@ -178,7 +178,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TUTORIAL_GROUP_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(
+            Arrays.asList(VALID_TUTORIAL_GROUP_1, INVALID_TAG)));
     }
 
     @Test
@@ -188,8 +189,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<TutorialGroup> actualTutorialGroupSet = ParserUtil.parseTags(Arrays.asList(VALID_TUTORIAL_GROUP_1, VALID_TUTORIAL_GROUP_2));
-        Set<TutorialGroup> expectedTutorialGroupSet = new HashSet<TutorialGroup>(Arrays.asList(new TutorialGroup(VALID_TUTORIAL_GROUP_1), new TutorialGroup(VALID_TUTORIAL_GROUP_2)));
+        Set<TutorialGroup> actualTutorialGroupSet = ParserUtil.parseTags(
+            Arrays.asList(VALID_TUTORIAL_GROUP_1, VALID_TUTORIAL_GROUP_2));
+        Set<TutorialGroup> expectedTutorialGroupSet = new HashSet<TutorialGroup>(
+            Arrays.asList(new TutorialGroup(VALID_TUTORIAL_GROUP_1), new TutorialGroup(VALID_TUTORIAL_GROUP_2)));
 
         assertEquals(expectedTutorialGroupSet, actualTutorialGroupSet);
     }

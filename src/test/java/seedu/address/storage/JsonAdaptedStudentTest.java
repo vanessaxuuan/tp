@@ -12,15 +12,15 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Telegram;
 
 public class JsonAdaptedStudentTest {
+    private static final String INVALID_GITHUB = " ";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TELEGRAM = "+651234";
-    private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TUTORIAL_GROUP = "#friend";
 

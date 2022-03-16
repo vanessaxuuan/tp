@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.person.Name;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -198,7 +198,8 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tutorialGroups} is null.
          */
         public Optional<Set<TutorialGroup>> getTags() {
-            return (tutorialGroups != null) ? Optional.of(Collections.unmodifiableSet(tutorialGroups)) : Optional.empty();
+            return (tutorialGroups != null)
+                ? Optional.of(Collections.unmodifiableSet(tutorialGroups)) : Optional.empty();
         }
 
         @Override

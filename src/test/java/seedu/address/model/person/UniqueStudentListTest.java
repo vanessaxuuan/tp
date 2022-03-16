@@ -42,8 +42,8 @@ public class UniqueStudentListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withGitHub(VALID_GITHUB_BOB).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3)
-                .build();
+        Student editedAlice = new PersonBuilder(ALICE).withGitHub(VALID_GITHUB_BOB)
+            .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -85,8 +85,8 @@ public class UniqueStudentListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withGitHub(VALID_GITHUB_BOB).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3)
-                .build();
+        Student editedAlice = new PersonBuilder(ALICE).withGitHub(VALID_GITHUB_BOB)
+            .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

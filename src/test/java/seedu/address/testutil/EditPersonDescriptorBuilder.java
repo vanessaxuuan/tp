@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Telegram;
@@ -72,11 +72,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tutorialGroups} into a {@code Set<TutorialGroup>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Parses the {@code tutorialGroups} into a {@code Set<TutorialGroup>} and set it to the
+     * {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withTutorialGroup(String... tutorialGroups) {
-        Set<TutorialGroup> tutorialGroupSet = Stream.of(tutorialGroups).map(TutorialGroup::new).collect(Collectors.toSet());
+        Set<TutorialGroup> tutorialGroupSet = Stream.of(tutorialGroups).map(TutorialGroup::new)
+            .collect(Collectors.toSet());
         descriptor.setTutorialGroups(tutorialGroupSet);
         return this;
     }
