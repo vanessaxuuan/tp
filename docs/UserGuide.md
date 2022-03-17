@@ -51,10 +51,13 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `e/NUS_EMAIL [t/TELEGRAM]` can be used as `e/e0123456@u.nus.edu t/JohnSmith` or as `e/e0123456@u.nus.edu`
+  e.g. `e/EMAIL [t/TELEGRAM]` can be used as `e/e0123456@u.nus.edu t/JohnSmith` or as `e/e0123456@u.nus.edu`
+
+* Items with `…` after them can be used multiple times.<br>
+  e.g. `tg/TUTORIAL_GROUP…` can be used as `tg/CS2103 W15-3`, `tg/CS2103 W15-3 tg/CS2100 G08` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME e/NUS_EMAIL`, `e/NUS_EMAIL n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -77,17 +80,17 @@ Format: `list`
 
 Adds a student into TACH.
 
-Format: `add n/NAME tg/TUTORIAL_GROUP e/NUS_EMAIL [t/TELEGRAM] [g/GITHUB]`
+Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
 
 Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
-* `add n/Michael Tay e/e7777777@u.nus.edu t/MichaelTay g/michael777 tg/CS2103T W15-3`
+* `add n/Michael Tay e/michaelT@gmail.com t/MichaelTay g/michael777 tg/CS2103T W15-3 tg/CS2100 G08`
 
 ### Adding a tutorial group for a student: `addtg`
 
 Adds a tutorial group for a student already in TACH.
 
-Format: `addtg INDEX tg/TUTORIAL_GROUP`
+Format: `addtg INDEX tg/TUTORIAL_GROUP…`
 
 * Adds a tutorial group for the student at the specified `INDEX`. The index refers to the index number
 shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
@@ -95,15 +98,15 @@ shown in the current displayed student list. The index **must be a positive numb
 remain unchanged.
 
 Example:
-* `list` followed by `addtg 2 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 2nd student in TACH.
-* `find Dave` followed by `addtg 1 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 1st student in the
-results of the `find` command.
+* `list` followed by `addtg 2 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 2nd student listed in TACH.
+* `find Dave` followed by `addtg 1 tg/CS2040S T03 tg/CS3230 T01` adds the tutorial groups `CS2040S T03` and
+`CS3230 T01` for the 1st student in the results of the `find` command.
 
 ### Editing a student : `edit`
 
 Edits an existing student in TACH.
 
-Format: `edit INDEX [n/NAME] [e/NUS_EMAIL] [t/TELEGRAM] [g/GITHUB]`
+Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB]`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed
 student list. The index **must be a positive number** 1, 2, 3, …
@@ -112,8 +115,8 @@ student list. The index **must be a positive number** 1, 2, 3, …
 * Details not entered in the `edit` command will stay the same and not be replaced.
 
 Examples:
-* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student in TACH. Their Telegram will be edited to
-`DaveHunter` and their GitHub will be edited to `Hunter02`.
+* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student listed in TACH. Their Telegram will be 
+edited to `DaveHunter` and their GitHub will be edited to `Hunter02`.
 * `find Robert` followed by `edit 1 n/Bobby Smiles` edits the 1st student in the results of the `find` command. Their
 name will be edited to `Bobby Smiles`.
 
@@ -145,7 +148,7 @@ Format: `delete INDEX`
 * The index **must be a positive number** 1, 2, 3, …
 
 Examples: 
-* `list` followed by `delete 2` deletes the 2nd student in TACH.
+* `list` followed by `delete 2` deletes the 2nd student listed in TACH.
 * `find Waldo` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### Deleting a tutorial group from a student: `deletetg`
@@ -163,8 +166,8 @@ delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 cs2
 one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
 
 Examples:
-* `list` followed by `deletetg 2 CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student in TACH
-  (only if the 2nd student had more than one tutorial group).
+* `list` followed by `deletetg 2 CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
+in TACH (only if the 2nd student had more than one tutorial group).
 * `find Carmen` followed by `deletetg 1 cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
 
@@ -203,14 +206,14 @@ easier understand which parameters are invalid when typing a command.
 In the list, a **word** is defined as a bunch of *characters* (letters, numbers, punctuation, etc.) separated by spaces.
 e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 
-| Parameter          | Requirements                                                                                                                                                                                |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                     |
-| **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                     |
-| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens <br> e.g. `CS2103T W15-3_A`                                |
-| **NUS_EMAIL**      | Must either fit the format `e#######` or `e#######@u.nus.edu` <br> e.g. `e1234567` or `e1234567@u.nus.edu`                                                                                  |
-| **TELEGRAM**       | Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). <br> e.g. `Dave3` or `Lorem_ipsum_dolor_sit_amet_12345` |
-| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                    |
+| Parameter          | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                                                  |
+| **EMAIL**          | An email consists of two parts, the local part before the `@` sign, and the domain part after the `@` sign. In other words, `{LOCAL}@{DOMAIN}`<br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. They cannot start or end with the special symbols. <br> There must be an @ sign, followed by the domain name. The domain name is made up of domain labels separated by periods. <br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br><br> (Basically, just put in a valid email!) |
+| **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                |
+| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ### Saving the data
 
@@ -239,15 +242,15 @@ If your changes to the data file makes its format invalid, TACH will discard all
 
 ## Command summary
 
-| Action                                   | Format, Examples                                                                                                                                                  |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**                          | `add n/NAME tg/TUTORIAL_GROUP e/NUS_EMAIL [t/TELEGRAM] [g/GITHUB]` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
-| **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                                 |
-| **Edit Student**                         | `edit INDEX [n/NAME] [e/NUS_EMAIL] [t/TELEGRAM] [g/GITHUB]` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                        |
-| **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                    |
-| **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                               |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                          |
-| **Get Student Details**                  | `get INDEX` <br> e.g. `get 6`                                                                                                                                     |
-| **List**                                 | `list`                                                                                                                                                            |
-| **Clear**                                | `clear`                                                                                                                                                           |
-| **Help**                                 | `help`                                                                                                                                                            |
+| Action                                   | Format, Examples                                                                                                                                               |
+|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
+| **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
+| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB]` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
+| **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
+| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
+| **Get Student Details**                  | `get INDEX` <br> e.g. `get 6`                                                                                                                                  |
+| **List**                                 | `list`                                                                                                                                                         |
+| **Clear**                                | `clear`                                                                                                                                                        |
+| **Help**                                 | `help`                                                                                                                                                         |
