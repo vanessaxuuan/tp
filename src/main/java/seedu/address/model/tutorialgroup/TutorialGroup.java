@@ -13,21 +13,21 @@ public class TutorialGroup {
         + " a white space and the tutorial name";
     public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} [\\w-]+";
 
-    public final String tagName;
+    public final String tutorialGroupName;
 
     /**
      * Constructs a {@code TutorialGroup}.
      *
-     * @param tagName A valid tag name.
+     * @param tutorialGroupName A valid tutorial group name.
      */
-    public TutorialGroup(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTutorialGroupName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public TutorialGroup(String tutorialGroupName) {
+        requireNonNull(tutorialGroupName);
+        checkArgument(isValidTutorialGroupName(tutorialGroupName), MESSAGE_CONSTRAINTS);
+        this.tutorialGroupName = tutorialGroupName;
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid tutorial group name.
      */
     public static boolean isValidTutorialGroupName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -37,19 +37,19 @@ public class TutorialGroup {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TutorialGroup // instanceof handles nulls
-                && tagName.equals(((TutorialGroup) other).tagName)); // state check
+                && tutorialGroupName.equals(((TutorialGroup) other).tutorialGroupName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tutorialGroupName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tutorialGroupName + ']';
     }
 
 }

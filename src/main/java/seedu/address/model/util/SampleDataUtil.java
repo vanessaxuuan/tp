@@ -6,18 +6,18 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Telegram("alexyeoh"), new Email("alexyeoh@example.com"),
                 new GitHub("alex-yeoh"),
@@ -42,14 +42,14 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+        for (Student sampleStudent : getSampleStudents()) {
+            sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a tutorial group set containing the list of strings given.
      */
     public static Set<TutorialGroup> getTutorialGroupSet(String... strings) {
         return Arrays.stream(strings)

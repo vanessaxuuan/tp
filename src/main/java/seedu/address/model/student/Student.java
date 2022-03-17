@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -12,7 +12,7 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 /**
  * Represents a Student in the address book.
  * Guarantees: details except telegram and gitHub are present and not null  field values are validated, immutable.
- * telegram and gitHub will be empty strings if the user command does not include them.
+ * Telegram and GitHub will be empty strings if the user command does not include them.
  */
 public class Student {
 
@@ -20,9 +20,9 @@ public class Student {
     private final Name name;
     private final Telegram telegram;
     private final Email email;
-
-    // Data fields
     private final GitHub gitHub;
+
+    // Data field
     private final Set<TutorialGroup> tutorialGroups = new HashSet<>();
 
     /**
@@ -57,15 +57,15 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<TutorialGroup> getTags() {
+    public Set<TutorialGroup> getTutorialGroups() {
         return Collections.unmodifiableSet(tutorialGroups);
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -75,8 +75,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -93,7 +93,7 @@ public class Student {
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getGitHub().equals(getGitHub())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTutorialGroups().equals(getTutorialGroups());
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Student {
                 .append("; GitHub: ")
                 .append(getGitHub());
 
-        Set<TutorialGroup> tutorialGroups = getTags();
+        Set<TutorialGroup> tutorialGroups = getTutorialGroups();
         if (!tutorialGroups.isEmpty()) {
             builder.append("; Tags: ");
             tutorialGroups.forEach(builder::append);

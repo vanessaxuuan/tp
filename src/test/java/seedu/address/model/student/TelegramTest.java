@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,16 +16,16 @@ public class TelegramTest {
 
     @Test
     public void isValidTelegram() {
-        // null phone number
+        // null telegram
         assertThrows(NullPointerException.class, () -> Telegram.isValidTelegram(null));
 
-        // invalid phone numbers
+        // invalid telegrams
         assertFalse(Telegram.isValidTelegram("")); // empty string
         assertFalse(Telegram.isValidTelegram(" ")); // spaces only
         assertFalse(Telegram.isValidTelegram("tele")); // less than 5 characters
         assertFalse(Telegram.isValidTelegram("@amy bee10")); // spaces within telegram
 
-        // valid phone numbers
+        // valid telegrams
         assertTrue(Telegram.isValidTelegram("@amybe")); // exactly 5 characters
         assertTrue(Telegram.isValidTelegram("johnsmith14")); // without '@' symbol
         assertTrue(Telegram.isValidTelegram("@NathanBalakrishnanTheMan1")); // long telegram

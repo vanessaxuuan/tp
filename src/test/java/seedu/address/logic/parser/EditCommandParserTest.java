@@ -27,21 +27,21 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Telegram;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -81,23 +81,27 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_GITHUB_DESC, GitHub.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1"
-            + INVALID_TUTORIAL_GROUP_DESC, TutorialGroup.MESSAGE_CONSTRAINTS); // invalid tag
+            + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1"
+            + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); // invalid telegram
+        assertParseFailure(parser, "1"
+            + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1"
+            + INVALID_GITHUB_DESC, GitHub.MESSAGE_CONSTRAINTS); // invalid gitHub
+        assertParseFailure(parser, "1"
+            + INVALID_TUTORIAL_GROUP_DESC, TutorialGroup.MESSAGE_CONSTRAINTS); // invalid tutorial group
 
-        // invalid phone followed by valid email
+        // invalid telegram followed by valid email
         assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC + EMAIL_DESC_AMY, Telegram.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid telegram followed by invalid telegram. The test case for invalid telegram followed by valid telegram
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + TELEGRAM_DESC_BOB + INVALID_TELEGRAM_DESC,
             Telegram.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
-        // parsing it together with a valid tag results in error
+        // while parsing {@code PREFIX_TAG} alone will reset the tutorial groups of the {@code Student} being edited,
+        // parsing it together with a valid tutorial group results in error
         assertParseFailure(parser, "1" + TUTORIAL_GROUP_DESC_CS2101_G08
                 + TUTORIAL_GROUP_DESC_CS2103T_W15_3 + TUTORIAL_GROUP_EMPTY,
                 TutorialGroup.MESSAGE_CONSTRAINTS);
@@ -115,11 +119,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_BOB + TUTORIAL_GROUP_DESC_CS2103T_W15_3
                 + EMAIL_DESC_AMY + GITHUB_DESC_AMY + NAME_DESC_AMY + TUTORIAL_GROUP_DESC_CS2101_G08;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3, VALID_TUTORIAL_GROUP_CS2101_G08).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -129,11 +133,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+            .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -142,46 +146,46 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // telegram
         userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder().withTelegram(VALID_TELEGRAM_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // gitHub
         userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withGitHub(VALID_GITHUB_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder().withGitHub(VALID_GITHUB_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // tutorial groups
         userInput = targetIndex.getOneBased() + TUTORIAL_GROUP_DESC_CS2101_G08;
-        descriptor = new EditPersonDescriptorBuilder().withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();
+        descriptor = new EditStudentDescriptorBuilder().withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY
                 + TUTORIAL_GROUP_DESC_CS2101_G08 + TELEGRAM_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY
                 + TUTORIAL_GROUP_DESC_CS2101_G08 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB
                 + TUTORIAL_GROUP_DESC_CS2103T_W15_3;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB)
                 .withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08, VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -192,27 +196,28 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + INVALID_TELEGRAM_DESC + TELEGRAM_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB).build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+            .withTelegram(VALID_TELEGRAM_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_TELEGRAM_DESC + GITHUB_DESC_BOB
                 + TELEGRAM_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new EditStudentDescriptorBuilder().withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
                 .withGitHub(VALID_GITHUB_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+    public void parse_resetTutorialGroups_success() {
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + TUTORIAL_GROUP_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTutorialGroup().build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTutorialGroup().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

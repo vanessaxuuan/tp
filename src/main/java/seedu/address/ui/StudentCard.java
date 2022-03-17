@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -52,9 +52,9 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegram().value);
         gitHub.setText(student.getGitHub().value);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tutorialGroups.getChildren().add(new Label(tag.tagName)));
+        student.getTutorialGroups().stream()
+                .sorted(Comparator.comparing(tutorialGroup -> tutorialGroup.tutorialGroupName))
+                .forEach(tutorialGroup -> tutorialGroups.getChildren().add(new Label(tutorialGroup.tutorialGroupName)));
     }
 
     @Override

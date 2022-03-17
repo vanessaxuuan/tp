@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Student;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -34,27 +34,27 @@ public class PersonUtil {
         sb.append(PREFIX_TELEGRAM + student.getTelegram().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_GITHUB + student.getGitHub().value + " ");
-        student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TUTORIAL_GROUP + s.tagName + " ")
+        student.getTutorialGroups().stream().forEach(
+            s -> sb.append(PREFIX_TUTORIAL_GROUP + s.tutorialGroupName + " ")
         );
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditCommand.EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getTelegram().ifPresent(phone -> sb.append(PREFIX_TELEGRAM).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getGitHub().ifPresent(address -> sb.append(PREFIX_GITHUB).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<TutorialGroup> tutorialGroups = descriptor.getTags().get();
+        if (descriptor.getTutorialGroups().isPresent()) {
+            Set<TutorialGroup> tutorialGroups = descriptor.getTutorialGroups().get();
             if (tutorialGroups.isEmpty()) {
                 sb.append(PREFIX_TUTORIAL_GROUP);
             } else {
-                tutorialGroups.forEach(s -> sb.append(PREFIX_TUTORIAL_GROUP).append(s.tagName).append(" "));
+                tutorialGroups.forEach(s -> sb.append(PREFIX_TUTORIAL_GROUP).append(s.tutorialGroupName).append(" "));
             }
         }
         return sb.toString();

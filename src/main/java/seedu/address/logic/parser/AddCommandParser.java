@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -43,7 +43,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         GitHub gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());
-        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
+        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(
+            argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
 
         Student student = new Student(name, telegram, email, gitHub, tutorialGroupList);
 

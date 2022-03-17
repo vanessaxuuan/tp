@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -41,28 +41,28 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
-            + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIALGROUP]...\n"
+            + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TELEGRAM + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TELEGRAM + "johndoe "
+            + PREFIX_EMAIL + "e0123456@u.nus.edu";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered student list to edit
-     * @param editPersonDescriptor details to edit the student with
+     * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -71,33 +71,34 @@ public class EditCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
+        Student editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
     /**
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedPerson(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
-        GitHub updatedGitHub = editPersonDescriptor.getGitHub().orElse(studentToEdit.getGitHub());
-        Set<TutorialGroup> updatedTutorialGroups = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Telegram updatedTelegram = editStudentDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
+        GitHub updatedGitHub = editStudentDescriptor.getGitHub().orElse(studentToEdit.getGitHub());
+        Set<TutorialGroup> updatedTutorialGroups = editStudentDescriptor.getTutorialGroups()
+            .orElse(studentToEdit.getTutorialGroups());
 
         return new Student(updatedName, updatedTelegram, updatedEmail, updatedGitHub, updatedTutorialGroups);
     }
@@ -117,27 +118,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
      * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Telegram telegram;
         private Email email;
         private GitHub gitHub;
         private Set<TutorialGroup> tutorialGroups;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tutorialGroups} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setTelegram(toCopy.telegram);
             setEmail(toCopy.email);
@@ -197,7 +198,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tutorialGroups} is null.
          */
-        public Optional<Set<TutorialGroup>> getTags() {
+        public Optional<Set<TutorialGroup>> getTutorialGroups() {
             return (tutorialGroups != null)
                 ? Optional.of(Collections.unmodifiableSet(tutorialGroups)) : Optional.empty();
         }
@@ -210,18 +211,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getTelegram().equals(e.getTelegram())
                     && getEmail().equals(e.getEmail())
                     && getGitHub().equals(e.getGitHub())
-                    && getTags().equals(e.getTags());
+                    && getTutorialGroups().equals(e.getTutorialGroups());
         }
     }
 }

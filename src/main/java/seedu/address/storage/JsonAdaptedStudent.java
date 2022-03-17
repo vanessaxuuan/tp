@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -29,7 +29,7 @@ class JsonAdaptedStudent {
     private final String telegram;
     private final String email;
     private final String gitHub;
-    private final List<JsonAdaptedTutorialGroup> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTutorialGroup> inTutorialGroups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -43,7 +43,7 @@ class JsonAdaptedStudent {
         this.email = email;
         this.gitHub = gitHub;
         if (tutorialGroup != null) {
-            this.tagged.addAll(tutorialGroup);
+            this.inTutorialGroups.addAll(tutorialGroup);
         }
     }
 
@@ -55,7 +55,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         telegram = source.getTelegram().value;
         gitHub = source.getGitHub().value;
-        tagged.addAll(source.getTags().stream()
+        inTutorialGroups.addAll(source.getTutorialGroups().stream()
                 .map(JsonAdaptedTutorialGroup::new)
                 .collect(Collectors.toList()));
     }
@@ -67,10 +67,10 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<TutorialGroup> personTutorialGroups = new ArrayList<>();
-        if (tagged.isEmpty()) {
+        if (inTutorialGroups.isEmpty()) {
             throw new IllegalValueException(NO_TUTORIAL_GROUP_MESSAGE_FORMAT);
         }
-        for (JsonAdaptedTutorialGroup tag : tagged) {
+        for (JsonAdaptedTutorialGroup tag : inTutorialGroups) {
             personTutorialGroups.add(tag.toModelType());
         }
 

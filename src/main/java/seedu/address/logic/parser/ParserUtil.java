@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -99,9 +99,9 @@ public class ParserUtil {
      * Parses a {@code String tutorialGroup} into a {@code TutorialGroup}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code tutorialGroup} is invalid.
      */
-    public static TutorialGroup parseTag(String tutorialGroup) throws ParseException {
+    public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
         requireNonNull(tutorialGroup);
         String trimmedTutorialGroup = tutorialGroup.trim();
         if (!TutorialGroup.isValidTutorialGroupName(trimmedTutorialGroup)) {
@@ -113,11 +113,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tutorialGroups} into a {@code Set<TutorialGroup>}.
      */
-    public static Set<TutorialGroup> parseTags(Collection<String> tutorialGroups) throws ParseException {
+    public static Set<TutorialGroup> parseTutorialGroups(Collection<String> tutorialGroups) throws ParseException {
         requireNonNull(tutorialGroups);
         final Set<TutorialGroup> tutorialGroupSet = new HashSet<>();
         for (String tutorialGroupName : tutorialGroups) {
-            tutorialGroupSet.add(parseTag(tutorialGroupName));
+            tutorialGroupSet.add(parseTutorialGroup(tutorialGroupName));
         }
         return tutorialGroupSet;
     }

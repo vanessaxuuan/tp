@@ -17,9 +17,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Student;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -51,23 +51,23 @@ public class CommandTestUtil {
         + VALID_TUTORIAL_GROUP_CS2103T_W15_3;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "911a"; // missing '@' prefix
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "911!"; // non-alphanumeric character
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB; // empty string not allowed for addresses
     public static final String INVALID_TUTORIAL_GROUP_DESC = " " + PREFIX_TUTORIAL_GROUP
-        + "hubby*"; // '*' not allowed in tags
+        + "hubby*"; // '*' not allowed as a tutorial group
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withTelegram(VALID_TELEGRAM_AMY).withEmail(VALID_EMAIL_AMY).withGitHub(VALID_GITHUB_AMY)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3, VALID_TUTORIAL_GROUP_CS2101_G08).build();
     }
@@ -118,12 +118,12 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }

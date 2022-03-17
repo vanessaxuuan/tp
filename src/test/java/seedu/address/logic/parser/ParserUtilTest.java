@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class ParserUtilTest {
@@ -25,7 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_TELEGRAM = "+651234";
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TUTORIAL_GROUP = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_TELEGRAM = "@123456";
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -80,49 +80,49 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
+    public void parseTelegram_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
+    public void parseTelegram_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTelegram(INVALID_TELEGRAM));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+    public void parseTelegram_validValueWithoutWhitespace_returnsTelegram() throws Exception {
         Telegram expectedTelegram = new Telegram(VALID_TELEGRAM);
         assertEquals(expectedTelegram, ParserUtil.parseTelegram(VALID_TELEGRAM));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_TELEGRAM + WHITESPACE;
+    public void parseTelegram_validValueWithWhitespace_returnsTrimmedTelegram() throws Exception {
+        String telegramWithWhitespace = WHITESPACE + VALID_TELEGRAM + WHITESPACE;
         Telegram expectedTelegram = new Telegram(VALID_TELEGRAM);
-        assertEquals(expectedTelegram, ParserUtil.parseTelegram(phoneWithWhitespace));
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(telegramWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseGitHub_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGitHub((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseGitHub_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseGitHub(INVALID_GITHUB));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseGitHub_validValueWithoutWhitespace_returnsGitHub() throws Exception {
         GitHub expectedGitHub = new GitHub(VALID_GITHUB);
         assertEquals(expectedGitHub, ParserUtil.parseGitHub(VALID_GITHUB));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_GITHUB + WHITESPACE;
+    public void parseGitHub_validValueWithWhitespace_returnsTrimmedGitHub() throws Exception {
+        String gitHubWithWhitespace = WHITESPACE + VALID_GITHUB + WHITESPACE;
         GitHub expectedGitHub = new GitHub(VALID_GITHUB);
-        assertEquals(expectedGitHub, ParserUtil.parseGitHub(addressWithWhitespace));
+        assertEquals(expectedGitHub, ParserUtil.parseGitHub(gitHubWithWhitespace));
     }
 
     @Test
@@ -149,47 +149,47 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseTutorialGroup_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialGroup(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseTutorialGroup_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroup(INVALID_TUTORIAL_GROUP));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+    public void parseTutorialGroup_validValueWithoutWhitespace_returnsTutorialGroup() throws Exception {
         TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
-        assertEquals(expectedTutorialGroup, ParserUtil.parseTag(VALID_TUTORIAL_GROUP_1));
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(VALID_TUTORIAL_GROUP_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TUTORIAL_GROUP_1 + WHITESPACE;
+    public void parseTutorialGroup_validValueWithWhitespace_returnsTrimmedTutorialGroup() throws Exception {
+        String tutorialGroupWithWhitespace = WHITESPACE + VALID_TUTORIAL_GROUP_1 + WHITESPACE;
         TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
-        assertEquals(expectedTutorialGroup, ParserUtil.parseTag(tagWithWhitespace));
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(tutorialGroupWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseTutorialGroups_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialGroups(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(
-            Arrays.asList(VALID_TUTORIAL_GROUP_1, INVALID_TAG)));
+    public void parseTutorialGroups_collectionWithInvalidTutorialGroups_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialGroups(
+            Arrays.asList(VALID_TUTORIAL_GROUP_1, INVALID_TUTORIAL_GROUP)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseTutorialGroups_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTutorialGroups(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<TutorialGroup> actualTutorialGroupSet = ParserUtil.parseTags(
+    public void parseTutorialGroups_collectionWithValidTags_returnsTutorialGroupSet() throws Exception {
+        Set<TutorialGroup> actualTutorialGroupSet = ParserUtil.parseTutorialGroups(
             Arrays.asList(VALID_TUTORIAL_GROUP_1, VALID_TUTORIAL_GROUP_2));
         Set<TutorialGroup> expectedTutorialGroupSet = new HashSet<TutorialGroup>(
             Arrays.asList(new TutorialGroup(VALID_TUTORIAL_GROUP_1), new TutorialGroup(VALID_TUTORIAL_GROUP_2)));

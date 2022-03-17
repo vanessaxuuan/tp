@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * Adds a student to the address book.
@@ -21,17 +21,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_TELEGRAM + "PHONE "
+            + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_GITHUB + "ADDRESS "
-            + "[" + PREFIX_TUTORIAL_GROUP + "TAG]...\n"
+            + PREFIX_GITHUB + "GITHUB "
+            + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_TELEGRAM + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_GITHUB + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TUTORIAL_GROUP + "friends "
-            + PREFIX_TUTORIAL_GROUP + "owesMoney";
+            + PREFIX_TELEGRAM + "johndoe201 "
+            + PREFIX_EMAIL + "e0123456@u.nus.edu "
+            + PREFIX_GITHUB + "john-doe "
+            + PREFIX_TUTORIAL_GROUP + "CS2103T W15-3 "
+            + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
@@ -50,11 +50,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

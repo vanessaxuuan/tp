@@ -3,18 +3,18 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Student objects.
  */
-public class PersonBuilder {
+public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_TELEGRAM = "@amybeeee14";
@@ -28,9 +28,9 @@ public class PersonBuilder {
     private Set<TutorialGroup> tutorialGroups;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code StudentBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         telegram = new Telegram(DEFAULT_TELEGRAM);
         email = new Email(DEFAULT_EMAIL);
@@ -39,20 +39,20 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code studentToCopy}.
+     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
-    public PersonBuilder(Student studentToCopy) {
+    public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
         telegram = studentToCopy.getTelegram();
         email = studentToCopy.getEmail();
         gitHub = studentToCopy.getGitHub();
-        tutorialGroups = new HashSet<>(studentToCopy.getTags());
+        tutorialGroups = new HashSet<>(studentToCopy.getTutorialGroups());
     }
 
     /**
      * Sets the {@code Name} of the {@code Student} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public StudentBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -61,7 +61,7 @@ public class PersonBuilder {
      * Parses the {@code tutorialGroups} into a {@code Set<TutorialGroup>}
      * and set it to the {@code Student} that we are building.
      */
-    public PersonBuilder withTutorialGroup(String ... tutorialGroups) {
+    public StudentBuilder withTutorialGroup(String ... tutorialGroups) {
         this.tutorialGroups = SampleDataUtil.getTutorialGroupSet(tutorialGroups);
         return this;
     }
@@ -69,7 +69,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code GitHub} of the {@code Student} that we are building.
      */
-    public PersonBuilder withGitHub(String gitHub) {
+    public StudentBuilder withGitHub(String gitHub) {
         this.gitHub = new GitHub(gitHub);
         return this;
     }
@@ -77,7 +77,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Telegram} of the {@code Student} that we are building.
      */
-    public PersonBuilder withTelegram(String telegram) {
+    public StudentBuilder withTelegram(String telegram) {
         this.telegram = new Telegram(telegram);
         return this;
     }
@@ -85,7 +85,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Student} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
