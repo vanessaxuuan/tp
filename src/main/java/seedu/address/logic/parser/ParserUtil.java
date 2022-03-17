@@ -2,13 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Telegram;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -46,18 +51,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Telegram}.
+     * Parses a {@code String telegram} into a {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegramHandle(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Telegram.isValidTelegram(trimmedPhone)) {
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Telegram(trimmedPhone);
+        return new Telegram(trimmedTelegram);
     }
 
     /**
@@ -66,7 +71,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code gitHub} is invalid.
      */
-    public static GitHub parseAddress(String gitHub) throws ParseException {
+    public static GitHub parseGitHub(String gitHub) throws ParseException {
         requireNonNull(gitHub);
         String trimmedGitHub = gitHub.trim();
         if (!GitHub.isValidGitHub(trimmedGitHub)) {
@@ -90,4 +95,30 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String tutorialGroup} into a {@code TutorialGroup}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorialGroup} is invalid.
+     */
+    public static TutorialGroup parseTutorialGroup(String tutorialGroup) throws ParseException {
+        requireNonNull(tutorialGroup);
+        String trimmedTutorialGroup = tutorialGroup.trim();
+        if (!TutorialGroup.isValidTutorialGroupName(trimmedTutorialGroup)) {
+            throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroup(trimmedTutorialGroup);
+    }
+
+    /**
+     * Parses {@code Collection<String> tutorialGroups} into a {@code Set<TutorialGroup>}.
+     */
+    public static Set<TutorialGroup> parseTutorialGroups(Collection<String> tutorialGroups) throws ParseException {
+        requireNonNull(tutorialGroups);
+        final Set<TutorialGroup> tutorialGroupSet = new HashSet<>();
+        for (String tutorialGroupName : tutorialGroups) {
+            tutorialGroupSet.add(parseTutorialGroup(tutorialGroupName));
+        }
+        return tutorialGroupSet;
+    }
 }

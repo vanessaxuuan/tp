@@ -1,0 +1,46 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "telegram": "@APauline",
+    "email" : "alice@example.com",
+    "gitHub": "",
+    "tutorialGroup": [ "CS2103 W13-2" ]
+  }, {
+    "name" : "Benson Meier",
+    "telegram": "",
+    "email" : "johnd@example.com",
+    "gitHub": "bensonguy",
+    "tutorialGroup": [ "CS2106 T02", "CS2103 W13-2" ]
+  }, {
+    "name" : "Carl Kurz",
+    "telegram": "@CarlJr",
+    "email" : "heinz@example.com",
+    "gitHub": "JrCarl",
+    "tutorialGroup": [ "CS2106 T02" ]
+  }, {
+    "name" : "Daniel Meier",
+    "telegram": "@DanieltheName",
+    "email" : "cornelia@example.com",
+    "gitHub": "Dan-iel",
+    "tutorialGroup": [ "CS2103 W13-2" ]
+  }, {
+    "name" : "Elle Meyer",
+    "telegram": "@Elle20",
+    "email" : "werner@example.com",
+    "gitHub": "ELLE",
+    "tutorialGroup": [ "CS2106 T02", "CS2103 W13-2" ]
+  }, {
+    "name" : "Fiona Kunz",
+    "telegram": "@Fiona14",
+    "email" : "lydia@example.com",
+    "gitHub": "Fiona-14",
+    "tutorialGroup": [ "CS2106 T02" ]
+  }, {
+    "name" : "George Best",
+    "telegram": "@George11",
+    "email" : "anna@example.com",
+    "gitHub": "George-Not-Bush",
+    "tutorialGroup": [ "CS2106 T02" ]
+  } ]
+}

@@ -5,16 +5,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -28,7 +31,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_EMAIL, PREFIX_GITHUB);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_EMAIL,
+                    PREFIX_GITHUB, PREFIX_TUTORIAL_GROUP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GITHUB, PREFIX_TELEGRAM, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,14 +40,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Telegram telegram = ParserUtil.parseTelegramHandle(
-            argMultimap.getValue(PREFIX_TELEGRAM).get());
+        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        GitHub gitHub = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_GITHUB).get());
+        GitHub gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());
+        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(
+            argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
 
-        Person person = new Person(name, telegram, email, gitHub);
+        Student student = new Student(name, telegram, email, gitHub, tutorialGroupList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

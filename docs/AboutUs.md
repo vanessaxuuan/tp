@@ -5,9 +5,19 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jiahaolow2020@gmail.com`
 
 ## Project team
+
+### Low Jia Hao
+
+<img src="images/lowjiahao99.png" width="200px">
+
+[[github](https://github.com/LowJiaHao99)]
+[[portfolio](team/lowjiahao99.md)]
+
+* Role: Team lead
+* Responsibilities: Model and API testing
 
 ### Lim Jan Jay
 
@@ -17,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jaysmyname.md)]
 
 * Role: Developer
-* Responsibilities: [To be added]
+* Responsibilities: UI and GUI testing
 
 ### Huang Qing
 
@@ -27,17 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/hqhqhq1.md)]
 
 * Role: Developer
-* Responsibilities: [To be added]
-
-### Low Jia Hao
-
-<img src="images/lowjiahao99.png" width="200px">
-
-[[github](https://github.com/LowJiaHao99)]
-[[portfolio](team/lowjiahao99.md)]
-
-* Role: Developer
-* Responsibilities: [To be added]
+* Responsibilities: Storage, code quality, deliverables, deadlines, Scheduling and tracking.
 
 
 ### Khor Vanessa
@@ -48,33 +48,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/vanessaxuuan.md)]
 
 * Role: Developer
-* Responsibilities: [To be added]
+* Responsibilities: Integration, logic and documentation
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
