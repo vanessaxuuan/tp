@@ -23,6 +23,7 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+    public static final String NO_TUTORIAL_GROUP_MESSAGE_FORMAT = "Student has no tutorial group!";
 
     private final String name;
     private final String telegram;
@@ -66,6 +67,9 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<TutorialGroup> personTutorialGroups = new ArrayList<>();
+        if (tagged.isEmpty()) {
+            throw new IllegalValueException(NO_TUTORIAL_GROUP_MESSAGE_FORMAT);
+        }
         for (JsonAdaptedTutorialGroup tag : tagged) {
             personTutorialGroups.add(tag.toModelType());
         }

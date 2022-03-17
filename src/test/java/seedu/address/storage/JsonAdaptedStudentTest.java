@@ -113,4 +113,11 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_zeroTutorialGroup_throwsIllegalValueException() {
+        List<JsonAdaptedTutorialGroup> emptyTutorialGroups = new ArrayList<>();
+        JsonAdaptedStudent person =
+            new JsonAdaptedStudent(VALID_NAME, VALID_TELEGRAM, VALID_EMAIL, VALID_GITHUB, emptyTutorialGroups);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 }
