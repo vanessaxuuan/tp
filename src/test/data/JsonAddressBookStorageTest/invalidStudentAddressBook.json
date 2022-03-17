@@ -1,9 +1,9 @@
 {
   "students": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "telegram": "@personWith",
+    "telegram": "@HansMuster",
     "email": "hans@example.com",
-    "gitHub": "persons-with",
+    "gitHub": "hans-muster",
     "tutorialGroup": [ ]
   } ]
 }
