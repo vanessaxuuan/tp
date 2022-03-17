@@ -3,10 +3,13 @@ layout: page
 title: User Guide
 ---
 
-TACH is a desktop app that helps CS Teaching Assistants tutoring multiple modules & classes by keeping track of their students and monitoring their progress on their tutorials. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
+TACH is a desktop app that helps CS Teaching Assistants tutoring multiple tutorial groups by **managing their students
+in an organised manner**. Its sorting feature allows TAs to **view, categorize and get information** of all their 
+students in a glance.
+It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
 
-##Table of Contents
-[coming soon]
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,9 +29,13 @@ TACH is a desktop app that helps CS Teaching Assistants tutoring multiple module
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add -m CS2103T` : Adds a Module named `CS2103T` to TACH.
+   * **`add`**`add n/John Doe e/e0123456@u.nus.edu tg/CS2103T W15-3` : Adds a contact named `John Doe` to TACH.
 
-   * **`delete`**`delete -c CS2103T W15-3` : Deletes the Class `W15-3` from Module `CS2103T`.
+   * **`delete`**`delete 2` : Deletes the 2nd contact shown in the current list.
+
+   * **`clear`** : Deletes all contacts.
+
+   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -41,10 +48,13 @@ TACH is a desktop app that helps CS Teaching Assistants tutoring multiple module
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -m MODULE`, `MODULE` is a parameter which can be used as `add -m CS2103T`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `add -sd NAME e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]` can be used as `add -sd John Smith e/johnsmith@example.com t/JohnSmith g/johnsmyname` or without adding `t/JohnSmith`.
+  e.g. `e/NUS_EMAIL [t/TELEGRAM]` can be used as `e/e0123456@u.nus.edu t/JohnSmith` or as `e/e0123456@u.nus.edu`
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME e/NUS_EMAIL`, `e/NUS_EMAIL n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -57,145 +67,150 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding: `add`
+### Listing all students: `list`
 
-Add the specified item into TACH.
+Shows a list of all students in the address book.
 
-#### Adding Modules: `add -m`
+Format: `list`
 
-Format: `add -m MODULE…`
-* Adds the modules listed.
+### Adding a student: `add`
 
-Example:
-* `add -m CS2103T` adds the module `CS2103T` into TACH.
+Adds a student into TACH.
 
-#### Adding Classes: `add -c`
+Format: `add n/NAME tg/TUTORIAL_GROUP e/NUS_EMAIL [t/TELEGRAM] [g/GITHUB]`
 
-Format: `add -c MODULE CLASS [v/VENUE] [z/ZOOM]`
-* Adds the class into the given module.
-* **NOTE**: If the module does not exist, it will create one automatically.
+Examples:
+* `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
+* `add n/Michael Tay e/e7777777@u.nus.edu t/MichaelTay g/michael777 tg/CS2103T W15-3`
 
-Example:
-* `add -c CS2103T WS15-3` adds the class `WS15-3` into the module `CS2103T`.
-* `add -c CS2103T G08 v/LT27` adds the class `G08` with the venue `LT27` into module `CS2103T`.
-* `add -c CS2103T WS15-3 z/https://nus-sg.zoom.us/j/0123456789` adds the class `G08` with the zoom link  `https://nus-sg.zoom.us/j/0123456789` into module `CS2103T`.
+### Adding a tutorial group for a student: `addtg`
 
-#### Adding Students `add -s`
+Adds a tutorial group for a student already in TACH.
 
-Format: `add -s MODULE CLASS STUDENT…`
-* Adds the students into the given class in the given module.
-* **NOTE**: If the module and/or class does not exist, it will create them automatically.
+Format: `addtg INDEX tg/TUTORIAL_GROUP`
+
+* Adds a tutorial group for the student at the specified `INDEX`. The index refers to the index number
+shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
+* Adding of tutorial groups is cumulative; existing tutorial groups of the specified student will
+remain unchanged.
 
 Example:
-* `add -s CS2103T WS15-3 John Smith` adds the student `John Smith` into the class `WS15-3` in the module `CS2103T`.
+* `list` followed by `addtg 2 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 2nd student in TACH.
+* `find Dave` followed by `addtg 1 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 1st student in the
+results of the `find` command.
 
-#### Adding Student Details 
+### Editing a student : `edit`
 
-Format: `add -sd NAME  e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]`
-* Adds details about a student. 
-* **NOTE**: If the student does not exist, it will create one with the given details automatically.
+Edits an existing student in TACH.
 
-Example:
-* `add -sd John Smith e/johnsmith@example.com t/JohnSmith g/johnsmyname` will add the details of the email `johnsmith@example.com`, Telegram handle `JohnSmith` and Github `johnsmyname` into the student `John Smith`.
+Format: `edit INDEX [n/NAME] [e/NUS_EMAIL] [t/TELEGRAM] [g/GITHUB]`
 
-### Editing a person : `edit`
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed
+student list. The index **must be a positive number** 1, 2, 3, …
+* At least one of the optional details (Name/NUS email/Telegram/GitHub) must be provided.
+* Any detail entered in the `edit` command will replace the original detail of the student.
+* Details not entered in the `edit` command will stay the same and not be replaced.
 
-[coming soon]
+Examples:
+* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student in TACH. Their Telegram will be edited to
+`DaveHunter` and their GitHub will be edited to `Hunter02`.
+* `find Robert` followed by `edit 1 n/Bobby Smiles` edits the 1st student in the results of the `find` command. Their
+name will be edited to `Bobby Smiles`.
 
-### Locating persons by name: `find`
+### Finding students by name: `find`
 
-[coming soon]
+Finds students whose names contain any of the given keywords.
 
-### Deleting: `del`
+Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 
-Deletes the specified item from TACH.
+* The search is case-insensitive. e.g. `charles` will match `Charles`
+* The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
+* Only the name is searched.
+* Only full words will be matched e.g. `Char` **WILL NOT** match `Charles`
+* Students matching at least one keyword will be returned.
+e.g. `Charles Boyle` will return `Charles Martinet` and `Susan Boyle`
 
-#### Deleting Modules: `del -m`
+Examples:
+* `find Evans Smith` returns `Chris Evans`, `Evans Evans`, `Will Smith`, `Smith Thompson` (if they
+are in the list).
 
-Format: `del -m MODULE…`
+### Deleting a student: `delete`
 
-* Deletes the modules listed.
-* **NOTE:** This action is **recursive**! It will also delete all classes and students assigned to the deleted modules.
+Deletes the specified student from TACH.
 
-Example:
-* `del -m CS2103T` deletes the module and all of its classes and students.
-If class `W15-3` is under `CS2103T` and student `Jack Smith` is under class `W15-3`, 
-both class `W15-3` and student `Jack Smith` will be deleted.
+Format: `delete INDEX`
 
-#### Deleting Classes: `del -c`
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the current displayed student list.
+* The index **must be a positive number** 1, 2, 3, …
 
-Format: `del -c MODULE CLASS…`
+Examples: 
+* `list` followed by `delete 2` deletes the 2nd student in TACH.
+* `find Waldo` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-* Deletes the classes listed for the given module.
-* **NOTE:** This action is **recursive**! It will also delete all students assigned to the deleted classes.
+### Deleting a tutorial group from a student: `deletetg`
 
-Example:
-* `del -c CS2103T W15-3` deletes the class and all of its students.
+Deletes the specified tutorial group from the specified student.
 
-#### Deleting Students: `del -s`
+Format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
-Format: `del -s MODULE CLASS s/STUDENT…`
+* Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index 
+number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
+* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 cs2040s t03` will
+delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 cs2040s` or `deletetg 1 cs2040st03`
+**WILL NOT** successfully delete it.
+* The tutorial group **cannot be deleted** if it is the **only** tutorial group a student has. e.g. A student with only
+one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
 
-* Deletes the students in the given class in the given module.
+Examples:
+* `list` followed by `deletetg 2 CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student in TACH
+  (only if the 2nd student had more than one tutorial group).
+* `find Carmen` followed by `deletetg 1 cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
+results of the `find` command (only if the 1st student had more than one tutorial group).
 
-Example:
-* `del -s CS2103T W15-3 s/Jack Smith` deletes `Jack Smith` from the class `W15-3` in module `CS2103T`.
+### Getting a Student's details: `get`
 
-### Getting: `get`
+Gets the contact details of the specified student in TACH.
 
-#### Getting a Module details: `get -m`
+Format: `get INDEX`
 
-Format: `get -m MODULE`
-
-* Gets all the classes and students in the given module
-
-Example:
-* `get -m CS2103T` to view all the classes and students added to the module CS2103T
-
-#### Getting a Class details: `get -c`
-
-Format: `get -c MODULE CLASS`
-
-* Gets the specified class based on the given module
-
-Example:
-* `get -c CS2103T G08` view all the students in the class `G08` from the module `CS2103T`
-
-#### Getting a Student's details: `get -s`
-
-Format: `get -s MODULE CLASS s/STUDENT…`
-
-* Gets the specified students' contact details and tutorial progress in the given module and class.
-
-Example:
-* `get -s CS2103T W15-3 s/Jack Smith s/Mary Jane` gets `Jack Smith`'s and `Mary Jane`'s contact details and 
-tutorial progress in the module `CS2103T` of class `W15-3`
-
-#### Getting the zoom link of a class
-Format: `get -z MODULE CLASS`
-
-* Gets the zoom link of the class
-* **NOTE:** `zoom link not found` will be shown if the zoom link is not present
+* Gets the contact details of the student at the specified `INDEX`. The index refers to the index
+  number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
+* Displays the student's email, and their Telegram and/or GitHub if the student has them.
 
 Example:
-* `get -z CS2103T W15-3` gets the zoom link for class W15-3
-
-#### Getting the venue of a class
-Format: `get -v MODULE CLASS`
-
-* Gets the venue of the class
-* **NOTE:** `venue not found` will be shown if the venue is not present
-
-Example:
-* `get -v CS2103T W15-3` gets the venue for class W15-3
+* `list` followed by `get 2` gets the contact details of the 2nd student in TACH.
+* `find Marcus` followed by `get 1` gets the contact details of the 1st student in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-[coming soon]
+Clears all entries from TACH.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
-[coming soon]
+Exits the program.
+
+Format: `exit`
+
+### Input Requirements
+
+There are **parameters** (like Names, NUS Emails, and GitHub usernames for example) that must follow certain 
+requirements so that TACH recognises them as valid parameters. Here is a list of requirements of every parameter to 
+easier understand which parameters are invalid when typing a command.
+
+In the list, a **word** is defined as a bunch of *characters* (letters, numbers, punctuation, etc.) separated by spaces.
+e.g. `There A_RE 4 w0-rd_s.` has 4 words.
+
+| Parameter          | Requirements                                                                                                                                                                                |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                     |
+| **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                     |
+| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens <br> e.g. `CS2103T W15-3_A`                                |
+| **NUS_EMAIL**      | Must either fit the format `e#######` or `e#######@u.nus.edu` <br> e.g. `e1234567` or `e1234567@u.nus.edu`                                                                                  |
+| **TELEGRAM**       | Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). <br> e.g. `Dave3` or `Lorem_ipsum_dolor_sit_amet_12345` |
+| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                    |
 
 ### Saving the data
 
@@ -218,25 +233,21 @@ If your changes to the data file makes its format invalid, TACH will discard all
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TACH home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Module** | `add -m MODULE` <br> `e.g. add -m CS2103T`
-**Add Class** | `add -c MODULE CLASS [v/VENUE] [z/ZOOM]` <br> e.g. `add -c CS2103T G08 v/LT27 z/https://nus-sg.zoom.us/j/01`
-**Add Student** | `add -s MODULE CLASS STUDENT…` <br> e.g. `add -s CS2103T WS15-3 John Smith`
-**Add Student Details** | `add -sd NAME e/EMAIL [t/TELEGRAM_HANDLE] [g/GITHUB]` <br> e.g. `add -sd John Smith e/johnsmith@example.com t/JohnSmith`
-**Delete Modules** | `del -m MODULE…` <br> e.g. `del -m CS2103T CS2101`
-**Delete Class** | `del -c MODULE CLASS…` <br> e.g. `del -c CS2103T W15-3`
-**Delete Student** | `del -s MODULE CLASS s/STUDENT…` <br> e.g. `del -s CS2103T W15-3 s/Jack Smith s/John Doe`
-**Get Module Details** | `get -m MODULE` <br> e.g. `get -m CS2103T`
-**Get Class Details** | `get -c MODULE CLASS` <br> e.g. `get -c CS2103T W15-3`
-**Get Student Details** | `get -s MODULE CLASS s/STUDENT…` <br> e.g. `get -s CS2103T W15-3 s/Jack Smith s/Mary Jane`
-**Get zoom link** | `get -z MODULE CLASS` <br> e.g. `get -z CS2103T W15-3`
-**Get venue** | `get -v MODULE CLASS` <br> e.g. `get -v CS2103T W15-3`
-**List** | [coming soon]
-**Help** | `help`
+| Action                                   | Format, Examples                                                                                                                                                  |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**                          | `add n/NAME tg/TUTORIAL_GROUP e/NUS_EMAIL [t/TELEGRAM] [g/GITHUB]` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
+| **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                                 |
+| **Edit Student**                         | `edit INDEX [n/NAME] [e/NUS_EMAIL] [t/TELEGRAM] [g/GITHUB]` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                        |
+| **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                    |
+| **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                               |
+| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                          |
+| **Get Student Details**                  | `get INDEX` <br> e.g. `get 6`                                                                                                                                     |
+| **List**                                 | `list`                                                                                                                                                            |
+| **Clear**                                | `clear`                                                                                                                                                           |
+| **Help**                                 | `help`                                                                                                                                                            |
