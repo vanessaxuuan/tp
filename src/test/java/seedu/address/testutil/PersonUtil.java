@@ -21,7 +21,7 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code student}.
      */
-    public static String getAddCommand(Student student) {
+    public static String getAddStudentCommand(Student student) {
         return AddStudentCommand.COMMAND_WORD + " " + getPersonDetails(student);
     }
 

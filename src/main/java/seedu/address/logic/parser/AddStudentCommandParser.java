@@ -34,15 +34,17 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_EMAIL,
                     PREFIX_GITHUB, PREFIX_TUTORIAL_GROUP);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_GITHUB, PREFIX_TELEGRAM, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TUTORIAL_GROUP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).isPresent() ?
+                 argMultimap.getValue(PREFIX_TELEGRAM).get() : null);
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        GitHub gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());
+        GitHub gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).isPresent() ?
+                argMultimap.getValue(PREFIX_GITHUB).get() : null);
         Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(
             argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
 

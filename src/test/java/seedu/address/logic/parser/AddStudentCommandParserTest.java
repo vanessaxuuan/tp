@@ -26,8 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2103T_W15_3;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalStudents.AMY;
-import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -77,10 +76,15 @@ public class AddStudentCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tutorial groups
-        Student expectedStudent = new StudentBuilder(AMY).withTutorialGroup().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY,
-                new AddStudentCommand(expectedStudent));
+        // missing telegram
+        Student expectedStudentWithoutTelegram = new StudentBuilder(AMY).withTelegram(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY
+                        + TUTORIAL_GROUP_DESC_CS2101_G08, new AddStudentCommand(expectedStudentWithoutTelegram));
+
+        // missing github
+        Student expectedStudentWithoutGithub = new StudentBuilder(AMY).withGitHub(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY
+                + TUTORIAL_GROUP_DESC_CS2101_G08, new AddStudentCommand(expectedStudentWithoutGithub));
     }
 
     @Test
@@ -88,24 +92,20 @@ public class AddStudentCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB
+                        + GITHUB_DESC_BOB + TUTORIAL_GROUP_DESC_CS2103T_W15_3, expectedMessage);
 
-        // missing telegram prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_TELEGRAM_BOB + EMAIL_DESC_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
+        // missing tutorial group prefix
+        assertParseFailure(parser, NAME_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB
+                        + GITHUB_DESC_BOB + VALID_TUTORIAL_GROUP_CS2103T_W15_3, expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + TELEGRAM_DESC_BOB + VALID_EMAIL_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
-
-        // missing gitHub prefix
-        assertParseFailure(parser, NAME_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + VALID_GITHUB_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + TELEGRAM_DESC_BOB + VALID_EMAIL_BOB
+                        + GITHUB_DESC_BOB + TUTORIAL_GROUP_DESC_CS2103T_W15_3, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_TELEGRAM_BOB + VALID_EMAIL_BOB + VALID_GITHUB_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_TELEGRAM_BOB + VALID_EMAIL_BOB
+                        + VALID_GITHUB_BOB + VALID_TUTORIAL_GROUP_CS2103T_W15_3, expectedMessage);
     }
 
     @Test
@@ -131,7 +131,8 @@ public class AddStudentCommandParserTest {
                 + INVALID_TUTORIAL_GROUP_DESC + VALID_TUTORIAL_GROUP_CS2101_G08, TutorialGroup.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + INVALID_GITHUB_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB
+                        + INVALID_GITHUB_DESC  + TUTORIAL_GROUP_DESC_CS2101_G08,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
