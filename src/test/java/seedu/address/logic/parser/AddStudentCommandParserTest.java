@@ -29,7 +29,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddStudentCommand;
@@ -134,7 +133,7 @@ public class AddStudentCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_GITHUB_DESC  + TUTORIAL_GROUP_DESC_CS2101_G08,
+                        + INVALID_GITHUB_DESC + TUTORIAL_GROUP_DESC_CS2101_G08,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
