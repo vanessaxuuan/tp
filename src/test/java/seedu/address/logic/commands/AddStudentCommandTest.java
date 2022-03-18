@@ -23,7 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddCommandTest {
+public class AddStudentCommandTest {
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {
@@ -47,7 +47,8 @@ public class AddCommandTest {
         AddStudentCommand addCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
