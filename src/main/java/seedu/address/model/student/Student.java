@@ -75,6 +75,25 @@ public class Student {
     }
 
     /**
+     * add tutorial groups from 'addtg' command
+     * @param toAdd tutorial groups to add
+     * @return Student to be updated
+     */
+    public Student addTutorialGroup(Set<TutorialGroup> toAdd) {
+        tutorialGroups.addAll(toAdd);
+        return this;
+    }
+
+    public boolean tutorialGroupExists(Set<TutorialGroup> toCheck) {
+        for(TutorialGroup tg : toCheck) {
+            if(tutorialGroups.contains(tg)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

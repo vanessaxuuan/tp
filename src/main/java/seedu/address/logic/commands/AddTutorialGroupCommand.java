@@ -5,7 +5,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 import java.util.Collections;
@@ -63,17 +67,31 @@ public class AddTutorialGroupCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, addTutorialGroupDescriptor);
 
         // identify duplicate tutorial groups
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        if(studentToEdit.tutorialGroupExists(addTutorialGroupDescriptor.tutorialGroups)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GROUP);
         }
 
+        Student updatedStudent = updateStudent(studentToEdit, addTutorialGroupDescriptor);
+
         // update student to edit
-        model.setStudent(studentToEdit, editedStudent);
+        model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, updatedStudent));
+    }
+
+    /**
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
+     */
+    private static Student updateStudent(Student studentToEdit, AddTutorialGroupDescriptor addTutorialGroupDescriptor) {
+        assert studentToEdit != null;
+
+        Set<TutorialGroup> newTutorialGroups = addTutorialGroupDescriptor.getTutorialGroups()
+                .orElse(studentToEdit.getTutorialGroups());
+        studentToEdit.addTutorialGroup(newTutorialGroups);
+        return studentToEdit;
     }
 
     /**
@@ -135,7 +153,7 @@ public class AddTutorialGroupCommand extends Command {
             // state check
             AddTutorialGroupDescriptor e = (AddTutorialGroupDescriptor) other;
 
-            return getTutorialGroups().equals(e.getTutorialGroups();
+            return getTutorialGroups().equals(e.getTutorialGroups());
         }
     }
 }
