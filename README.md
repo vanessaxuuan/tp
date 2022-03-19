@@ -5,13 +5,13 @@
 ## Teaching Assistant Contact Helper (TACH)
 
 * This is a team project for a desktop application (called **TACH**) used by Computer Science (**CS**)
-Teaching Assistants (**TA**s) in NUS to manage and keep track of their students and their progress 
-on tutorial work/participation.
+Teaching Assistants (**TA**s) in NUS to manage and keep track of their students in
+the TAs tutorial groups.
 * **TACH** aims to solve problems of CS TAs regarding management and alleviate their workload by:
-  * Giving a clear summary/overview of the students' progress and details
-  * Sort a given student's work by their module and class
-* It is named `Teaching Assistant Contact Helper` (`TACH` for short) because it helps TAs with their students'
-contacts, along with their progress on their tutorials.
+  * Managing their students in an organised manner
+  * Easily access a student's contact details like their email or Telegram
+  * Find students either by their name or by their tutorial group
+* It is named `Teaching Assistant Contact Helper` (`TACH` for short) because it helps TAs with their students' contacts.
 * For detailed documentation of this project, see the
 **[TACH Product Website](https://ay2122s2-cs2103t-w15-3.github.io/tp/)**
 * This project is based on the AddressBook-Level3 project created by the

@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.AMY;
 
@@ -17,7 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -78,14 +80,14 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY
-                + GITHUB_DESC_AMY;
-        Student expectedStudent = new StudentBuilder(AMY).withTutorialGroup().build();
+        // Execute add student command
+        String addStudentCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY
+                + GITHUB_DESC_AMY + TUTORIAL_GROUP_DESC_CS2101_G08;
+        Student expectedStudent = new StudentBuilder(AMY).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addStudentCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test

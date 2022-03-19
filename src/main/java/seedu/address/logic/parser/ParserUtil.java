@@ -57,7 +57,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code telegram} is invalid.
      */
     public static Telegram parseTelegram(String telegram) throws ParseException {
-        requireNonNull(telegram);
+        if (telegram == null) {
+            return new Telegram(null);
+        }
         String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
@@ -72,7 +74,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code gitHub} is invalid.
      */
     public static GitHub parseGitHub(String gitHub) throws ParseException {
-        requireNonNull(gitHub);
+        if (gitHub == null) {
+            return new GitHub(null);
+        }
         String trimmedGitHub = gitHub.trim();
         if (!GitHub.isValidGitHub(trimmedGitHub)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
