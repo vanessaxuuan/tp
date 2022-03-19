@@ -5,15 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
-import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDescriptor;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
