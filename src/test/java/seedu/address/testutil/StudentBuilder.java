@@ -20,6 +20,7 @@ public class StudentBuilder {
     public static final String DEFAULT_TELEGRAM = "@amybeeee14";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GITHUB = "amy-bee-10";
+    public static final String DEFAULT_TUTORIAL_GROUP = "CS2101 G08";
 
     private Name name;
     private Telegram telegram;
@@ -36,6 +37,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         gitHub = new GitHub(DEFAULT_GITHUB);
         tutorialGroups = new HashSet<>();
+        tutorialGroups.add(new TutorialGroup(DEFAULT_TUTORIAL_GROUP));
     }
 
     /**
