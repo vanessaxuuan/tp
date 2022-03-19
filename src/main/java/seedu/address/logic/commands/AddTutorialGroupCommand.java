@@ -29,19 +29,19 @@ public class AddTutorialGroupCommand extends Command {
     /**
      * to be updated
      */
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tutorial groups to the student identified "
             + "by the index number used in the displayed student list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Adding of tutorial groups is cumulative.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
 
     /**
      * to be updated
      */
     public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added Tutorial Group: %1$s";
     public static final String MESSAGE_NOT_ADDED = "At least one tutorial group to add must be provided.";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group already exists under the student.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This module already exists under this student.";
 
     /**
      * to be updated
@@ -65,20 +65,17 @@ public class AddTutorialGroupCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
-
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
-        // identify duplicate tutorial groups
+        // identify duplicate modules
         if(studentToEdit.tutorialGroupExists(addTutorialGroupDescriptor.tutorialGroups)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GROUP);
         }
 
         Student updatedStudent = updateStudent(studentToEdit, addTutorialGroupDescriptor);
-
-        // update student to edit
         model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, updatedStudent));
+        return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, studentToEdit));
     }
 
     /**
@@ -90,8 +87,7 @@ public class AddTutorialGroupCommand extends Command {
 
         Set<TutorialGroup> newTutorialGroups = addTutorialGroupDescriptor.getTutorialGroups()
                 .orElse(studentToEdit.getTutorialGroups());
-        studentToEdit.addTutorialGroup(newTutorialGroups);
-        return studentToEdit;
+        return studentToEdit.addTutorialGroup(newTutorialGroups);
     }
 
     /**

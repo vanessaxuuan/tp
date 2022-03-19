@@ -75,7 +75,7 @@ public class Student {
     }
 
     /**
-     * add tutorial groups from 'addtg' command
+     * add additional tutorial groups to existing student
      * @param toAdd tutorial groups to add
      * @return Student to be updated
      */
@@ -84,6 +84,12 @@ public class Student {
         return this;
     }
 
+    /**
+     * Check if the tutorial group already exists
+     *
+     * @param toCheck is a set of tutorial Group(s)
+     * @return if any tutorial group exists under this Student
+     */
     public boolean tutorialGroupExists(Set<TutorialGroup> toCheck) {
         for(TutorialGroup tg : toCheck) {
             if(tutorialGroups.contains(tg)) {
