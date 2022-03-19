@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialGroup {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial Group name should consist of a module code followed by"
-        + " a white space and the tutorial name";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial Groups should consist of a Module code, followed by"
+        + " a space, then the tutorial name";
     public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} [\\w-]+";
 
     public final String tutorialGroupName;

@@ -35,6 +35,10 @@ public class Telegram {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isNull() {
+        return value.equals("");
+    }
+
     @Override
     public String toString() {
         return value;
