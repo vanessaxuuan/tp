@@ -62,7 +62,7 @@ public class AddTutorialGroupCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
         // identify duplicate modules
-        if(studentToEdit.tutorialGroupExists(addTutorialGroupDescriptor.tutorialGroups)) {
+        if (studentToEdit.tutorialGroupExists(addTutorialGroupDescriptor.tutorialGroups)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GROUP);
         }
 
