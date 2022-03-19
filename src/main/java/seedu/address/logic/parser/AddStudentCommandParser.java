@@ -39,7 +39,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
-        String telegramString  = argMultimap.getValue(PREFIX_TELEGRAM).isPresent()
+        String telegramString = argMultimap.getValue(PREFIX_TELEGRAM).isPresent()
                 ? argMultimap.getValue(PREFIX_TELEGRAM).get() : null;
         String gitHubString = argMultimap.getValue(PREFIX_GITHUB).isPresent()
                 ? argMultimap.getValue(PREFIX_GITHUB).get() : null;
