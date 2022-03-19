@@ -22,13 +22,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+/**
+ * Adds tutorial group to a student identified using it's displayed index from the address book
+ */
 public class AddTutorialGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addtg";
 
-    /**
-     * to be updated
-     */
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tutorial groups to the student identified "
             + "by the index number used in the displayed student list. "
             + "Adding of tutorial groups is cumulative.\n"
@@ -36,25 +36,23 @@ public class AddTutorialGroupCommand extends Command {
             + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
 
-    /**
-     * to be updated
-     */
     public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added Tutorial Group: %1$s";
     public static final String MESSAGE_NOT_ADDED = "At least one tutorial group to add must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This module already exists under this student.";
 
-    /**
-     * to be updated
-     */
     private final Index index;
     private final AddTutorialGroupDescriptor addTutorialGroupDescriptor;
 
-    public AddTutorialGroupCommand(Index index, AddTutorialGroupDescriptor addtg) {
+    /**
+     * @param index of the student in the filtered student list to edit
+     * @param details to edit the student with
+     */
+    public AddTutorialGroupCommand(Index index, AddTutorialGroupDescriptor details) {
         requireNonNull(index);
-        requireNonNull(addtg);
+        requireNonNull(details);
 
         this.index = index;
-        this.addTutorialGroupDescriptor = new AddTutorialGroupDescriptor(addtg);
+        this.addTutorialGroupDescriptor = new AddTutorialGroupDescriptor(details);
     }
 
     @Override
@@ -79,7 +77,7 @@ public class AddTutorialGroupCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * Update and returns {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
     private static Student updateStudent(Student studentToEdit, AddTutorialGroupDescriptor addTutorialGroupDescriptor) {
@@ -132,9 +130,6 @@ public class AddTutorialGroupCommand extends Command {
                     ? Optional.of(Collections.unmodifiableSet(tutorialGroups)) : Optional.empty();
         }
 
-        /**
-         * to be updated
-         */
         @Override
         public boolean equals(Object other) {
             if (other == this) {

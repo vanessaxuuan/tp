@@ -75,8 +75,9 @@ public class Student {
     }
 
     /**
-     * add additional tutorial groups to existing student
-     * @param toAdd tutorial groups to add
+     * Adds additional tutorial group(s) to existing student
+     *
+     * @param toAdd tutorial group(s) to add
      * @return Student to be updated
      */
     public Student addTutorialGroup(Set<TutorialGroup> toAdd) {
@@ -85,7 +86,7 @@ public class Student {
     }
 
     /**
-     * Check if the tutorial group already exists
+     * Checks if the tutorial group already exists
      *
      * @param toCheck is a set of tutorial Group(s)
      * @return if any tutorial group exists under this Student

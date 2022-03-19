@@ -6,20 +6,20 @@ import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDesc
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
+/**
+ * Parses input arguments and creates a new AddTutorialGroupCommand object
+ */
 public class AddTutorialGroupParser implements Parser<AddTutorialGroupCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTutorialGroupCommand
+     * and returns an AddTutorialGroupCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
