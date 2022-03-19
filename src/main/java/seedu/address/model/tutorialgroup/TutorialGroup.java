@@ -36,8 +36,8 @@ public class TutorialGroup {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TutorialGroup) // instanceof handles nulls
-                && tutorialGroupName.equals(((TutorialGroup) other).tutorialGroupName); // state check
+                || (other instanceof TutorialGroup // instanceof handles nulls
+                && tutorialGroupName.equals(((TutorialGroup) other).tutorialGroupName)); // state check
     }
 
     @Override
