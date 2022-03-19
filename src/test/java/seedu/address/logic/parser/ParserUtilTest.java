@@ -57,6 +57,18 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTelegram_null_returnsEmptyTelegram() throws ParseException {
+        Telegram telegram = new Telegram(null);
+        assertEquals(telegram, ParserUtil.parseTelegram(null));
+    }
+
+    @Test
+    public void parseGitHub_null_returnsEmptyGitHub() throws ParseException {
+        GitHub github = new GitHub(null);
+        assertEquals(github, ParserUtil.parseGitHub(null));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }

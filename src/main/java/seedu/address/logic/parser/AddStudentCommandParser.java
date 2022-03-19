@@ -39,12 +39,15 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
+        String telegramString  = argMultimap.getValue(PREFIX_TELEGRAM).isPresent()
+                ? argMultimap.getValue(PREFIX_TELEGRAM).get() : null;
+        String gitHubString = argMultimap.getValue(PREFIX_GITHUB).isPresent()
+                ? argMultimap.getValue(PREFIX_GITHUB).get() : null;
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).isPresent()
-                ? argMultimap.getValue(PREFIX_TELEGRAM).get() : null);
+        Telegram telegram = ParserUtil.parseTelegram(telegramString);
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        GitHub gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).isPresent()
-                ? argMultimap.getValue(PREFIX_GITHUB).get() : null);
+        GitHub gitHub = ParserUtil.parseGitHub(gitHubString);
         Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(
             argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
 
