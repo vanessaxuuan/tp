@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_AMY;
 import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_BOB;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +17,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDescriptor;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
+import seedu.address.model.UserPrefs;
 
 public class AddTutorialGroupCommandTest {
 
@@ -41,11 +41,13 @@ public class AddTutorialGroupCommandTest {
 
     @Test
     public void equals() {
-        final AddTutorialGroupCommand standardCommand = new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_DESCRIPTOR_AMY);
+        final AddTutorialGroupCommand standardCommand =
+                new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_DESCRIPTOR_AMY);
 
         // same values -> return true
         AddTutorialGroupDescriptor copyDescriptor = VALID_DESCRIPTOR_AMY;
-        AddTutorialGroupCommand commandWithSameValues = new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, copyDescriptor);
+        AddTutorialGroupCommand commandWithSameValues =
+                new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -58,6 +60,6 @@ public class AddTutorialGroupCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT,VALID_DESCRIPTOR_BOB)));
+        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_DESCRIPTOR_BOB)));
     }
 }
