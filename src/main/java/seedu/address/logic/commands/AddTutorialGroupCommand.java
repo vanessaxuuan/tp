@@ -33,12 +33,14 @@ public class AddTutorialGroupCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Adding of tutorial groups is cumulative.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP]...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
+            + PREFIX_TUTORIAL_GROUP + "TUTORIAL_GROUP...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_TUTORIAL_GROUP + "CS2103T W15-3 "
+            + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
 
     public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added Tutorial Group: %1$s";
     public static final String MESSAGE_NOT_ADDED = "At least one tutorial group to add must be provided.";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This module already exists under this student.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group already exists under this student.";
 
     private final Index index;
     private final AddTutorialGroupDescriptor addTutorialGroupDescriptor;
@@ -65,27 +67,52 @@ public class AddTutorialGroupCommand extends Command {
         }
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
-        // identify duplicate modules
+        // identify duplicate tutorial groups
         if(studentToEdit.tutorialGroupExists(addTutorialGroupDescriptor.tutorialGroups)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GROUP);
         }
 
-        Student updatedStudent = updateStudent(studentToEdit, addTutorialGroupDescriptor);
+        Student updatedStudent = createNewStudent(studentToEdit, addTutorialGroupDescriptor);
         model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, studentToEdit));
     }
 
     /**
-     * Update and returns {@code studentToEdit}
-     * edited with {@code editStudentDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code ddTutorialGroupDescriptor}.
      */
-    private static Student updateStudent(Student studentToEdit, AddTutorialGroupDescriptor addTutorialGroupDescriptor) {
+    private static Student createNewStudent(Student studentToEdit, AddTutorialGroupDescriptor addTutorialGroupDescriptor) {
         assert studentToEdit != null;
 
-        Set<TutorialGroup> newTutorialGroups = addTutorialGroupDescriptor.getTutorialGroups()
-                .orElse(studentToEdit.getTutorialGroups());
-        return studentToEdit.addTutorialGroup(newTutorialGroups);
+        Name currName = studentToEdit.getName();
+        Email currEmail = studentToEdit.getEmail();
+
+        Telegram currTelegram = studentToEdit.getTelegram();
+        GitHub currGitHub = studentToEdit.getGitHub();
+
+        addTutorialGroupDescriptor.addTutorialGroups(studentToEdit.getTutorialGroups());
+        Set<TutorialGroup> updatedTutorialGroups = addTutorialGroupDescriptor.getTutorialGroups().get();
+
+        return new Student(currName, currTelegram, currEmail, currGitHub, updatedTutorialGroups);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddTutorialGroupCommand)) {
+            return false;
+        }
+
+        // state check
+        AddTutorialGroupCommand e = (AddTutorialGroupCommand) other;
+        return index.equals(e.index)
+                && addTutorialGroupDescriptor.equals(e.addTutorialGroupDescriptor);
     }
 
     /**
@@ -130,8 +157,18 @@ public class AddTutorialGroupCommand extends Command {
                     ? Optional.of(Collections.unmodifiableSet(tutorialGroups)) : Optional.empty();
         }
 
+        /**
+         * Adds additional tutorial groups to the current AddTutorialGroupDescriptor
+         *
+         * @param tg tutorial group(s) to be added
+         */
+        public void addTutorialGroups(Set<TutorialGroup> tg) {
+            tutorialGroups.addAll(tg);
+        }
+
         @Override
         public boolean equals(Object other) {
+            // short circuit if same object
             if (other == this) {
                 return true;
             }
@@ -142,9 +179,8 @@ public class AddTutorialGroupCommand extends Command {
             }
 
             // state check
-            AddTutorialGroupDescriptor e = (AddTutorialGroupDescriptor) other;
-
-            return getTutorialGroups().equals(e.getTutorialGroups());
+            AddTutorialGroupDescriptor a = (AddTutorialGroupDescriptor) other;
+            return getTutorialGroups().equals(a.getTutorialGroups());
         }
     }
 }

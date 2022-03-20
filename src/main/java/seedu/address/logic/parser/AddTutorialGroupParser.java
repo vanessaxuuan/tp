@@ -7,6 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -28,18 +29,22 @@ public class AddTutorialGroupParser implements Parser<AddTutorialGroupCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_GROUP);
 
-        Index index;
+        // Exception thrown if prefix or value missing
+        if (argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialGroupCommand.MESSAGE_USAGE));
+        }
 
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialGroupCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTutorialGroupCommand.MESSAGE_USAGE), pe);
         }
 
         AddTutorialGroupDescriptor addTutorialGroupDescriptor = new AddTutorialGroupDescriptor();
-
-        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(
-                argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP));
+        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(argMultimap.
+                getAllValues(PREFIX_TUTORIAL_GROUP));
         addTutorialGroupDescriptor.setTutorialGroups(tutorialGroupList);
 
         if (!addTutorialGroupDescriptor.isAnyFieldEdited()) {

@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2103T_W15_3;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -87,5 +88,20 @@ public class StudentTest {
         // different tutorial groups -> returns false
         editedAlice = new StudentBuilder(ALICE).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void tutorialGroupExists() {
+        Student aliceCopy = new StudentBuilder(ALICE).build();
+
+        // same tutorial group -> returns true
+        assertTrue(ALICE.tutorialGroupExists(aliceCopy.getTutorialGroups()));
+
+        // different tutorial group -> returns false
+        Student editedAlice = new StudentBuilder(ALICE).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
+        assertFalse(editedAlice.tutorialGroupExists(aliceCopy.getTutorialGroups()));
+
+        // null -> returns false
+        assertFalse(ALICE.tutorialGroupExists(null));
     }
 }

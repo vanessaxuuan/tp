@@ -75,17 +75,6 @@ public class Student {
     }
 
     /**
-     * Adds additional tutorial group(s) to existing student
-     *
-     * @param toAdd tutorial group(s) to add
-     * @return Student to be updated
-     */
-    public Student addTutorialGroup(Set<TutorialGroup> toAdd) {
-        tutorialGroups.addAll(toAdd);
-        return this;
-    }
-
-    /**
      * Checks if the tutorial group already exists
      *
      * @param toCheck is a set of tutorial Group(s)

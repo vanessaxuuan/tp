@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -85,6 +87,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addTutorialGroup() throws Exception {
+        AddTutorialGroupCommand.AddTutorialGroupDescriptor desc = AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_AMY;
+        assertTrue(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, desc) instanceof AddTutorialGroupCommand);
     }
 
     @Test

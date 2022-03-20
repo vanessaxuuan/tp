@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
