@@ -30,7 +30,8 @@ public class AddTutorialGroupParser implements Parser<AddTutorialGroupCommand> {
 
         // Exception thrown if prefix or value missing
         if (argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                   AddTutorialGroupCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -42,8 +43,8 @@ public class AddTutorialGroupParser implements Parser<AddTutorialGroupCommand> {
         }
 
         AddTutorialGroupDescriptor addTutorialGroupDescriptor = new AddTutorialGroupDescriptor();
-        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(argMultimap.
-                getAllValues(PREFIX_TUTORIAL_GROUP));
+        Set<TutorialGroup> tutorialGroupList = ParserUtil.parseTutorialGroups(argMultimap
+                                                                              .getAllValues(PREFIX_TUTORIAL_GROUP));
         addTutorialGroupDescriptor.setTutorialGroups(tutorialGroupList);
 
         if (!addTutorialGroupDescriptor.isAnyFieldEdited()) {
