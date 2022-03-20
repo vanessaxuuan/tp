@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_AMY;
 import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_BOB;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDescriptor;
-import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
 
 public class AddTutorialGroupCommandTest {
 

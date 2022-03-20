@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TUTORIAL_GROUP_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2103T_W15_3;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2103T_W15_3;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -12,8 +12,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDescriptor;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
