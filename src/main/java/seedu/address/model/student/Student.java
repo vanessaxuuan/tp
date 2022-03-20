@@ -81,8 +81,8 @@ public class Student {
      * @return if any tutorial group exists under this Student
      */
     public boolean tutorialGroupExists(Set<TutorialGroup> toCheck) {
-        for(TutorialGroup tg : toCheck) {
-            if(tutorialGroups.contains(tg)) {
+        for (TutorialGroup tg : toCheck) {
+            if (tutorialGroups.contains(tg)) {
                 return true;
             }
         }

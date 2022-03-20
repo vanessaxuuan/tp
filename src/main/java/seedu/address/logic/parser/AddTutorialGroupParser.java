@@ -1,17 +1,16 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
+
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand.AddTutorialGroupDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 /**
  * Parses input arguments and creates a new AddTutorialGroupCommand object

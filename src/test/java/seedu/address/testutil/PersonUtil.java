@@ -8,8 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTutorialGroupCommand;
+import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
@@ -22,8 +21,8 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code student}.
      */
-    public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
+    public static String getAddStudentCommand(Student student) {
+        return AddStudentCommand.COMMAND_WORD + " " + getPersonDetails(student);
     }
 
     /**
