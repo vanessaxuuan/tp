@@ -75,6 +75,24 @@ public class Student {
     }
 
     /**
+     * Checks if the tutorial group already exists
+     *
+     * @param toCheck is a set of tutorial Group(s)
+     * @return if any tutorial group exists under this Student
+     */
+    public boolean tutorialGroupExists(Set<TutorialGroup> toCheck) {
+        if (toCheck == null) {
+            return false;
+        }
+        for (TutorialGroup tg : toCheck) {
+            if (tutorialGroups.contains(tg)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

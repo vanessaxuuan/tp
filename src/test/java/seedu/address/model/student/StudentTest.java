@@ -88,4 +88,19 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void tutorialGroupExists() {
+        Student aliceCopy = new StudentBuilder(ALICE).build();
+
+        // same tutorial group -> returns true
+        assertTrue(ALICE.tutorialGroupExists(aliceCopy.getTutorialGroups()));
+
+        // different tutorial group -> returns false
+        Student editedAlice = new StudentBuilder(ALICE).withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
+        assertFalse(editedAlice.tutorialGroupExists(aliceCopy.getTutorialGroups()));
+
+        // null -> returns false
+        assertFalse(ALICE.tutorialGroupExists(null));
+    }
 }
