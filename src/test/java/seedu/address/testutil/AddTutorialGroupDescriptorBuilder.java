@@ -18,6 +18,7 @@ public class AddTutorialGroupDescriptorBuilder {
             new AddTutorialGroupDescriptorBuilder(BOB).build();
     public static final AddTutorialGroupDescriptor VALID_DESCRIPTOR_AMY =
             new AddTutorialGroupDescriptorBuilder(AMY).build();
+    
     private AddTutorialGroupDescriptor descriptor;
 
     public AddTutorialGroupDescriptorBuilder() {
