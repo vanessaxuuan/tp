@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_GITHUB_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_TELEGRAM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMPTY_TUTORIAL_GROUP;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
@@ -24,7 +27,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2103T_W15_3;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -44,8 +46,6 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TUTORIAL_GROUP_EMPTY = " " + PREFIX_TUTORIAL_GROUP;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -91,6 +91,8 @@ public class EditCommandParserTest {
             + INVALID_GITHUB_DESC, GitHub.MESSAGE_CONSTRAINTS); // invalid gitHub
         assertParseFailure(parser, "1"
             + INVALID_TUTORIAL_GROUP_DESC, TutorialGroup.MESSAGE_CONSTRAINTS); // invalid tutorial group
+        assertParseFailure(parser, "1" + INVALID_EMPTY_TUTORIAL_GROUP,
+            TutorialGroup.MESSAGE_CONSTRAINTS); //empty tutorial group
 
         // invalid telegram followed by valid email
         assertParseFailure(parser, "1" + INVALID_TELEGRAM_DESC + EMAIL_DESC_AMY, Telegram.MESSAGE_CONSTRAINTS);
@@ -100,21 +102,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TELEGRAM_DESC_BOB + INVALID_TELEGRAM_DESC,
             Telegram.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tutorial groups of the {@code Student} being edited,
-        // parsing it together with a valid tutorial group results in error
-        assertParseFailure(parser, "1" + TUTORIAL_GROUP_DESC_CS2101_G08
-                + TUTORIAL_GROUP_DESC_CS2103T_W15_3 + TUTORIAL_GROUP_EMPTY,
-                TutorialGroup.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TUTORIAL_GROUP_DESC_CS2101_G08
-                + TUTORIAL_GROUP_EMPTY + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-                TutorialGroup.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TUTORIAL_GROUP_EMPTY
-                + TUTORIAL_GROUP_DESC_CS2101_G08 + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-                TutorialGroup.MESSAGE_CONSTRAINTS);
-
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                 + VALID_GITHUB_AMY + VALID_TELEGRAM_AMY, Name.MESSAGE_CONSTRAINTS);
+
+        //valid tutorial group followed by empty tutorial group
+        assertParseFailure(parser, "1" + INVALID_TUTORIAL_GROUP_DESC + INVALID_EMPTY_TUTORIAL_GROUP,
+            TutorialGroup.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -141,6 +135,7 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 
     @Test
@@ -178,6 +173,26 @@ public class EditCommandParserTest {
     }
 
     @Test
+    public void parse_emptyFields_Success() {
+        //Only for gitHub and telegram
+
+        //gitHub
+        Index targetIndex = INDEX_THIRD_STUDENT;
+        String userInput = targetIndex.getOneBased() + EMPTY_GITHUB_DESC;
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+            .withGitHub(null).build(); //empty gitHub instantiated using null during the parsing
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //telegram
+        userInput = targetIndex.getOneBased() + EMPTY_TELEGRAM_DESC;
+        descriptor = new EditStudentDescriptorBuilder()
+            .withTelegram(null).build(); //empty telegram instantiated using null during the parsing
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY
@@ -189,6 +204,15 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08, VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //repeatedTutorialGroups
+        userInput = targetIndex.getOneBased() + TUTORIAL_GROUP_DESC_CS2103T_W15_3 + TUTORIAL_GROUP_DESC_CS2103T_W15_3
+            + TUTORIAL_GROUP_DESC_CS2101_G08 + TUTORIAL_GROUP_DESC_CS2101_G08 + TUTORIAL_GROUP_DESC_CS2101_G08;
+        descriptor = new EditStudentDescriptorBuilder()
+            .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08, VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -212,14 +236,4 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_resetTutorialGroups_success() {
-        Index targetIndex = INDEX_THIRD_STUDENT;
-        String userInput = targetIndex.getOneBased() + TUTORIAL_GROUP_EMPTY;
-
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTutorialGroup().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }

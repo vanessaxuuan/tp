@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,15 +47,23 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+            if ((argMultimap.getValue(PREFIX_TELEGRAM).get().equals(""))) {
+                editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(null));
+            } else {
+                editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+            }
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            editStudentDescriptor.setGitHub(ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get()));
+            if ((argMultimap.getValue(PREFIX_GITHUB).get().equals(""))) {
+                editStudentDescriptor.setGitHub(ParserUtil.parseGitHub(null));
+            } else {
+                editStudentDescriptor.setGitHub(ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get()));
+            }
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP))
+        parseTutorialGroupsForEdit(argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP))
             .ifPresent(editStudentDescriptor::setTutorialGroups);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
@@ -67,18 +74,19 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<TutorialGroup>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<TutorialGroup>} containing zero tags.
+     * Parses {@code Collection<String> tutorialGroups} into a {@code Set<TutorialGroup>} given that
+     * {@code tutorialGroups} is non-empty.
+     *
+     * @throws ParseException if {@code tutorialGroups} contain only one element which is an empty string
      */
-    private Optional<Set<TutorialGroup>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<TutorialGroup>> parseTutorialGroupsForEdit(Collection<String> tutorialGroups) throws ParseException {
+        assert tutorialGroups != null;
 
-        if (tags.isEmpty()) {
+        if (tutorialGroups.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTutorialGroups(tagSet));
+
+        return Optional.of(ParserUtil.parseTutorialGroups(tutorialGroups));
     }
 
 }

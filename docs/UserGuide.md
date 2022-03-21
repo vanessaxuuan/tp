@@ -106,13 +106,18 @@ Example:
 
 Edits an existing student in TACH.
 
-Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB]`
+Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUPS]…`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed
 student list. The index **must be a positive number** 1, 2, 3, …
 * At least one of the optional details (Name/NUS email/Telegram/GitHub) must be provided.
 * Any detail entered in the `edit` command will replace the original detail of the student.
 * Details not entered in the `edit` command will stay the same and not be replaced.
+>*Note*:
+> 1. Tutorial groups **CANNOT** be empty.
+`edit 1 tg/` is **NOT** allowed.  
+>2. GitHub and Telegram **CAN** be empty.
+`edit 1 g/  t/` is allowed and will set GitHub and Telegram to empty strings.
 
 Examples:
 * `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student listed in TACH. Their Telegram will be 
@@ -210,7 +215,7 @@ e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                                                  |
+| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens. It can **NEVER** be empty. <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                                                  |
 | **EMAIL**          | An email consists of two parts, the local part before the `@` sign, and the domain part after the `@` sign. In other words, `{LOCAL}@{DOMAIN}`<br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. They cannot start or end with the special symbols. <br> There must be an @ sign, followed by the domain name. The domain name is made up of domain labels separated by periods. <br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br><br> (Basically, just put in a valid email!) |
 | **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                |
 | **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -246,7 +251,7 @@ If your changes to the data file makes its format invalid, TACH will discard all
 |------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
 | **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
-| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB]` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
+| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
 | **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
 | **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
 | **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
