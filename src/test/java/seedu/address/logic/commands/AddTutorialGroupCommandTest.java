@@ -60,6 +60,7 @@ public class AddTutorialGroupCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB)));
+        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, 
+                                                                       VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB)));
     }
 }
