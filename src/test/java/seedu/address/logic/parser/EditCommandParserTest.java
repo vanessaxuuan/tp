@@ -173,7 +173,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_emptyFields_Success() {
+    public void parse_emptyFields_success() {
         //Only for gitHub and telegram
 
         //gitHub

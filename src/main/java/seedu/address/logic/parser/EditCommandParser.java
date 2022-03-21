@@ -50,7 +50,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             if ((argMultimap.getValue(PREFIX_TELEGRAM).get().equals(""))) {
                 editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(null));
             } else {
-                editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+                editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(
+                    argMultimap.getValue(PREFIX_TELEGRAM).get()));
             }
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
@@ -79,7 +80,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @throws ParseException if {@code tutorialGroups} contain only one element which is an empty string
      */
-    private Optional<Set<TutorialGroup>> parseTutorialGroupsForEdit(Collection<String> tutorialGroups) throws ParseException {
+    private Optional<Set<TutorialGroup>> parseTutorialGroupsForEdit(
+        Collection<String> tutorialGroups) throws ParseException {
         assert tutorialGroups != null;
 
         if (tutorialGroups.isEmpty()) {
