@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_C
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_BOB;
+import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
 import org.junit.jupiter.api.Test;
@@ -63,7 +63,7 @@ public class AddTutorialGroupParserTest {
         Index targetIndex = INDEX_SECOND_STUDENT;
         String input = targetIndex.getOneBased() + TUTORIAL_GROUP_DESC_CS2101_G08 + TUTORIAL_GROUP_DESC_CS2103T_W15_3;
 
-        AddTutorialGroupDescriptor desc = VALID_DESCRIPTOR_BOB;
+        AddTutorialGroupDescriptor desc = VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB;
         AddTutorialGroupCommand expectedCommand = new AddTutorialGroupCommand(targetIndex, desc);
 
         assertParseSuccess(parser, input, expectedCommand);

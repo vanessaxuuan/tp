@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_AMY;
-import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_BOB;
+import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY;
+import static seedu.address.testutil.AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -42,10 +42,10 @@ public class AddTutorialGroupCommandTest {
     @Test
     public void equals() {
         final AddTutorialGroupCommand standardCommand =
-                new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_DESCRIPTOR_AMY);
+                new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY);
 
         // same values -> return true
-        AddTutorialGroupDescriptor copyDescriptor = VALID_DESCRIPTOR_AMY;
+        AddTutorialGroupDescriptor copyDescriptor = VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB;
         AddTutorialGroupCommand commandWithSameValues =
                 new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -60,6 +60,6 @@ public class AddTutorialGroupCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_DESCRIPTOR_BOB)));
+        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB)));
     }
 }

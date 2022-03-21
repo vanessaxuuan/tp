@@ -92,7 +92,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTutorialGroup() throws Exception {
         AddTutorialGroupCommand.AddTutorialGroupDescriptor desc =
-                AddTutorialGroupDescriptorBuilder.VALID_DESCRIPTOR_AMY;
+                AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY;
         assertTrue(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, desc) instanceof AddTutorialGroupCommand);
     }
 

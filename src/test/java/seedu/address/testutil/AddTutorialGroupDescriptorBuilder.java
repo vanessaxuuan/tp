@@ -14,9 +14,9 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class AddTutorialGroupDescriptorBuilder {
 
-    public static final AddTutorialGroupDescriptor VALID_DESCRIPTOR_AMY =
+    public static final AddTutorialGroupDescriptor VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY =
             new AddTutorialGroupDescriptorBuilder(AMY).build();
-    public static final AddTutorialGroupDescriptor VALID_DESCRIPTOR_BOB =
+    public static final AddTutorialGroupDescriptor VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB =
             new AddTutorialGroupDescriptorBuilder(BOB).build();
     private AddTutorialGroupDescriptor descriptor;
 
