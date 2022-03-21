@@ -105,19 +105,27 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append(getName())
-                .append("; Telegram: ")
-                .append(getTelegram())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; GitHub: ")
-                .append(getGitHub());
+                .append(getEmail());
+
+        if (!getTelegram().isNull()) {
+            builder.append("; Telegram: ")
+                    .append(getTelegram());
+        }
+
+        if (!getGitHub().isNull()) {
+            builder.append("; GitHub: ")
+                    .append(getGitHub());
+        }
 
         Set<TutorialGroup> tutorialGroups = getTutorialGroups();
-        if (!tutorialGroups.isEmpty()) {
-            builder.append("; Tags: ");
-            tutorialGroups.forEach(builder::append);
-        }
+        assert !tutorialGroups.isEmpty();
+
+        builder.append("; Tutorial Groups: ");
+        tutorialGroups.forEach(builder::append);
+
         return builder.toString();
     }
 

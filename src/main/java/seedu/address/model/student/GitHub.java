@@ -42,6 +42,13 @@ public class GitHub {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if the gitHub is null.
+     */
+    public boolean isNull() {
+        return value.equals("");
+    }
+
     @Override
     public String toString() {
         return value;
