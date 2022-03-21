@@ -14,11 +14,11 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class AddTutorialGroupDescriptorBuilder {
 
-    private AddTutorialGroupDescriptor descriptor;
     public static final AddTutorialGroupDescriptor VALID_DESCRIPTOR_BOB =
             new AddTutorialGroupDescriptorBuilder(BOB).build();
     public static final AddTutorialGroupDescriptor VALID_DESCRIPTOR_AMY =
             new AddTutorialGroupDescriptorBuilder(AMY).build();
+    private AddTutorialGroupDescriptor descriptor;
 
     public AddTutorialGroupDescriptorBuilder() {
         descriptor = new AddTutorialGroupCommand.AddTutorialGroupDescriptor();
