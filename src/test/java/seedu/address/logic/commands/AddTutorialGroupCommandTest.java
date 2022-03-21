@@ -45,7 +45,7 @@ public class AddTutorialGroupCommandTest {
                 new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY);
 
         // same values -> return true
-        AddTutorialGroupDescriptor copyDescriptor = VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB;
+        AddTutorialGroupDescriptor copyDescriptor = VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY;
         AddTutorialGroupCommand commandWithSameValues =
                 new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -60,6 +60,7 @@ public class AddTutorialGroupCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB)));
+        assertFalse(standardCommand.equals(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT,
+                VALID_TUTORIAL_GROUP_DESCRIPTOR_BOB)));
     }
 }
