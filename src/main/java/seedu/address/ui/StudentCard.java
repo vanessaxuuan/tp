@@ -7,7 +7,12 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import seedu.address.model.student.Student;
@@ -28,8 +33,8 @@ public class StudentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private final int imageLength = 30;
     public final Student student;
+    private final int imageLength = 30;
 
     @FXML
     private HBox cardPane;
@@ -79,7 +84,7 @@ public class StudentCard extends UiPart<Region> {
                     Label tgLabel = new Label(tutorialGroup.tutorialGroupName);
                     tgLabel.setBackground(getColorBackground(green));
                     tgLabel.setPadding(new Insets(0, 5, 0, 5));
-                    tutorialGroups.getChildren().add(tgLabel);});
+                    tutorialGroups.getChildren().add(tgLabel); });
     }
 
     private void setContacts(HBox hb, ImageView iv, Image i, Label l, String s) {
