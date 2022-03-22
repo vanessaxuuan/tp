@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.tutorialgroup.TutorialGroupKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 public class FindTutorialGroupCommand extends Command {
     public static final String COMMAND_WORD = "findtg";
