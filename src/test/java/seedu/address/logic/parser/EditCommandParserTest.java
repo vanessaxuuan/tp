@@ -107,7 +107,7 @@ public class EditCommandParserTest {
                 + VALID_GITHUB_AMY + VALID_TELEGRAM_AMY, Name.MESSAGE_CONSTRAINTS);
 
         //valid tutorial group followed by empty tutorial group
-        assertParseFailure(parser, "1" + INVALID_TUTORIAL_GROUP_DESC + INVALID_EMPTY_TUTORIAL_GROUP,
+        assertParseFailure(parser, "1" + TUTORIAL_GROUP_DESC_CS2103T_W15_3 + INVALID_EMPTY_TUTORIAL_GROUP,
             TutorialGroup.MESSAGE_CONSTRAINTS);
     }
 
