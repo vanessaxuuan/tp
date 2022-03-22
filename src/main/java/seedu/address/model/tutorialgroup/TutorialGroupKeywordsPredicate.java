@@ -11,6 +11,10 @@ import seedu.address.model.student.Student;
 public class TutorialGroupKeywordsPredicate implements Predicate<Student> {
     private final String keywords;
 
+    /**
+     * Constructor of the tutorial group predicate class
+     * @param keywords need to match exactly to an existing tutorial group(not Case sensitive)
+     */
     public TutorialGroupKeywordsPredicate(String keywords) {
         assert(keywords != null) : "Invalid keywords";
         this.keywords = keywords;
