@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,7 +15,7 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
  * Guarantees: details except telegram and gitHub are present and not null  field values are validated, immutable.
  * Telegram and GitHub will be empty strings if the user command does not include them.
  */
-public class Student {
+public class Student implements Comparator<Student> {
 
     // Identity fields
     private final Name name;
@@ -112,6 +113,13 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getGitHub().equals(getGitHub())
                 && otherStudent.getTutorialGroups().equals(getTutorialGroups());
+    }
+
+
+
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.getName().toString().compareTo(s2.getName().toString());
     }
 
     @Override
