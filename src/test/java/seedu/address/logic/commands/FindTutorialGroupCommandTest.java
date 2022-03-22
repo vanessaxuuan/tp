@@ -56,7 +56,7 @@ public class FindTutorialGroupCommandTest {
     }
 
     @Test
-    public void execute_TutorialGroupNotFound_noStudentList() {
+    public void execute_tutorialGroupNotFound_noStudentList() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         TutorialGroupKeywordsPredicate predicate = preparePredicate("MA1000 A08");
         FindTutorialGroupCommand command = new FindTutorialGroupCommand(predicate);
@@ -66,7 +66,7 @@ public class FindTutorialGroupCommandTest {
     }
 
     @Test
-    public void execute_TutorialGroupFound_multipleStudentsList() {
+    public void execute_tutorialGroupFound_multipleStudentsList() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 5);
         TutorialGroupKeywordsPredicate predicate = preparePredicate("CS2106 T02");
         FindTutorialGroupCommand command = new FindTutorialGroupCommand(predicate);
