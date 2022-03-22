@@ -13,7 +13,7 @@ public class TutorialGroupKeywordsPredicate implements Predicate<Student> {
 
     /**
      * Constructor of the tutorial group predicate class
-     * @param keywords need to match exactly to an existing tutorial group(not Case sensitive)
+     * @param keywords need to match exactly to an existing tutorial group(case-insensitive)
      */
     public TutorialGroupKeywordsPredicate(String keywords) {
         assert(keywords != null) : "Invalid keywords";
