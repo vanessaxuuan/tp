@@ -4,13 +4,15 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * A UI component that displays information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
@@ -33,13 +35,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label telegram;
-    @FXML
-    private Label gitHub;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tutorialGroups;
+
+    private Image telegramImage = new Image(this.getClass().getResourceAsStream("/images/TelegramLogo.png"));
+    private Image gitHubImage = new Image(this.getClass().getResourceAsStream("/images/GithubLogo.png"));
+    private Image emailImage = new Image(this.getClass().getResourceAsStream("/images/EmailLogo.png"));
 
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
@@ -47,7 +47,7 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.valueOf(displayedIndex));
         name.setText(student.getName().fullName);
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegram().value);
@@ -56,6 +56,8 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tutorialGroup -> tutorialGroup.tutorialGroupName))
                 .forEach(tutorialGroup -> tutorialGroups.getChildren().add(new Label(tutorialGroup.tutorialGroupName)));
     }
+
+    private void setContactDetail(HBox box, ImageView)
 
     @Override
     public boolean equals(Object other) {
