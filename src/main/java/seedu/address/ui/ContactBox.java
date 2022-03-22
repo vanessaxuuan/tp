@@ -15,16 +15,16 @@ import java.io.IOException;
  */
 public class ContactBox extends HBox {
 
+    private static final String FXML = "ContactBox.fxml";
+
     @FXML
     private ImageView logo;
     @FXML
     private Label details;
 
-    private ContactBox(Image img, String text) {
+    public ContactBox(Image img, String text) {
         try {
-            FXMLLoader loader = new FXMLLoader(StudentCard.class.getResource("/view/ContactBox.fxml"));
-            loader.setController(this);
-            loader.setRoot(this);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ContactBox.fxml"));
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
