@@ -56,8 +56,12 @@ public class TutorialGroupKeywordsPredicateTest {
                 .withEmail("MA1501_T03@email.com").withGitHub("MA1501-T03")
                 .withTutorialGroup("CS2101 G08").build()));
 
-        // too many keywords
+        // Too many keywords
         predicate = new TutorialGroupKeywordsPredicate("CS2103T W15-3" + "CS2101 G08");
+        assertFalse(predicate.test(new StudentBuilder().withTutorialGroup("CS2103T W15-3", "CS2101 G08").build()));
+
+        // Zero keywords
+        predicate = new TutorialGroupKeywordsPredicate(" ");
         assertFalse(predicate.test(new StudentBuilder().withTutorialGroup("CS2103T W15-3", "CS2101 G08").build()));
     }
 }
