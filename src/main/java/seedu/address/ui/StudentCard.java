@@ -35,6 +35,12 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label email;
+    @FXML
+    private Label telegram;
+    @FXML
+    private Label gitHub;
+    @FXML
     private FlowPane tutorialGroups;
 
     private Image telegramImage = new Image(this.getClass().getResourceAsStream("/images/TelegramLogo.png"));
@@ -56,8 +62,6 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tutorialGroup -> tutorialGroup.tutorialGroupName))
                 .forEach(tutorialGroup -> tutorialGroups.getChildren().add(new Label(tutorialGroup.tutorialGroupName)));
     }
-
-    private void setContactDetail(HBox box, ImageView)
 
     @Override
     public boolean equals(Object other) {
