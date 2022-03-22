@@ -12,6 +12,7 @@ public class TutorialGroupKeywordsPredicate implements Predicate<Student> {
     private final String keywords;
 
     public TutorialGroupKeywordsPredicate(String keywords) {
+        assert(keywords != null) : "Invalid keywords";
         this.keywords = keywords;
     }
 
