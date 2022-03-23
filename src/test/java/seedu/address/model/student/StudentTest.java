@@ -13,7 +13,10 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.StudentBuilder;
+
+import java.util.Set;
 
 public class StudentTest {
 
@@ -101,6 +104,6 @@ public class StudentTest {
         assertFalse(editedAlice.tutorialGroupExists(aliceCopy.getTutorialGroups()));
 
         // null -> returns false
-        assertFalse(ALICE.tutorialGroupExists(null));
+        assertFalse(ALICE.tutorialGroupExists((Set<TutorialGroup>) null));
     }
 }
