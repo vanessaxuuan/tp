@@ -190,7 +190,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTutorialGroups_collectionWithValidTags_returnsTutorialGroupSet() throws Exception {
+    public void parseTutorialGroups_collectionWithValidTutorialGroups_returnsTutorialGroupSet() throws Exception {
         Set<TutorialGroup> actualTutorialGroupSet = ParserUtil.parseTutorialGroups(
             Arrays.asList(VALID_TUTORIAL_GROUP_1, VALID_TUTORIAL_GROUP_2));
         Set<TutorialGroup> expectedTutorialGroupSet = new HashSet<TutorialGroup>(
