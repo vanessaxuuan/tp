@@ -79,7 +79,7 @@ public class DeleteTutorialGroupCommand extends Command {
         Student updatedStudent = createNewStudent(studentToEdit, deleteTutorialGroupDescriptor);
         model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS, studentToEdit));
+        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS, updatedStudent));
     }
 
     /**
@@ -115,6 +115,24 @@ public class DeleteTutorialGroupCommand extends Command {
         }
 
         return new Student(currName, currTelegram, currEmail, currGitHub, updatedTutorialGroups);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteTutorialGroupCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteTutorialGroupCommand d = (DeleteTutorialGroupCommand) other;
+        return index.equals(d.index)
+                && deleteTutorialGroupDescriptor.equals(d.deleteTutorialGroupDescriptor);
     }
 
     public static class DeleteTutorialGroupDescriptor {
