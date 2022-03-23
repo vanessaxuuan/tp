@@ -36,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_GITHUB_BOB = "boblim23";
     public static final String VALID_TUTORIAL_GROUP_CS2103T_W15_3 = "CS2103T W15-3";
     public static final String VALID_TUTORIAL_GROUP_CS2101_G08 = "CS2101 G08";
+    public static final String VALID_TUTORIAL_GROUP_CS2103_W13_2 = "CS2103 W13-2";
+    public static final String VALID_TUTORIAL_GROUP_CS2106_T02 = "CS2106 T02";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,6 +51,10 @@ public class CommandTestUtil {
         + VALID_TUTORIAL_GROUP_CS2101_G08;
     public static final String TUTORIAL_GROUP_DESC_CS2103T_W15_3 = " " + PREFIX_TUTORIAL_GROUP
         + VALID_TUTORIAL_GROUP_CS2103T_W15_3;
+    public static final String TUTORIAL_GROUP_DESC_CS2103_W13_2 = " " + PREFIX_TUTORIAL_GROUP
+            + VALID_TUTORIAL_GROUP_CS2103_W13_2;
+    public static final String TUTORIAL_GROUP_DESC_CS2106_T02 = " " + PREFIX_TUTORIAL_GROUP
+            + VALID_TUTORIAL_GROUP_CS2106_T02;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "911!"; // non-alphanumeric character

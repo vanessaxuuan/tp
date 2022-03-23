@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +21,7 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTutorialGroupsFromStudentsCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -25,6 +30,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -94,6 +100,15 @@ public class AddressBookParserTest {
         AddTutorialGroupCommand.AddTutorialGroupDescriptor desc =
                 AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY;
         assertTrue(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, desc) instanceof AddTutorialGroupCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteTutorialGroupsFromStudents() throws Exception {
+        DeleteTutorialGroupsFromStudentsCommand command = (DeleteTutorialGroupsFromStudentsCommand) parser
+                .parseCommand(DeleteTutorialGroupsFromStudentsCommand.COMMAND_WORD
+                + " " + TUTORIAL_GROUP_DESC_CS2101_G08);
+        Set<TutorialGroup> tutGroups = new HashSet<>(Arrays.asList(new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08)));
+        assertEquals(new DeleteTutorialGroupsFromStudentsCommand(tutGroups), command);
     }
 
     @Test

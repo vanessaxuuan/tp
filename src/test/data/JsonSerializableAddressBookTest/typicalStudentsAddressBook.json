@@ -29,13 +29,13 @@
     "telegram": "@Elle20",
     "email" : "werner@example.com",
     "gitHub": "ELLE",
-    "tutorialGroup": [ "CS2106 T02", "CS2103 W13-2" ]
+    "tutorialGroup": [ "CS2106 T02", "CS2103 W13-2", "CS2101 G08" ]
   }, {
     "name" : "Fiona Kunz",
     "telegram": "@Fiona14",
     "email" : "lydia@example.com",
     "gitHub": "Fiona-14",
-    "tutorialGroup": [ "CS2106 T02" ]
+    "tutorialGroup": [ "CS2106 T02", "CS2103T W15-3"]
   }, {
     "name" : "George Best",
     "telegram": "@George11",

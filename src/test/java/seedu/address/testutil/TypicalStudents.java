@@ -36,9 +36,11 @@ public class TypicalStudents {
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withTelegram("@DanieltheName")
             .withEmail("cornelia@example.com").withGitHub("Dan-iel").withTutorialGroup("CS2103 W13-2").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withTelegram("@Elle20")
-            .withEmail("werner@example.com").withGitHub("ELLE").withTutorialGroup("CS2106 T02", "CS2103 W13-2").build();
+            .withEmail("werner@example.com").withGitHub("ELLE")
+            .withTutorialGroup("CS2106 T02", "CS2103 W13-2", "CS2101 G08").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withTelegram("@Fiona14")
-            .withEmail("lydia@example.com").withGitHub("Fiona-14").withTutorialGroup("CS2106 T02").build();
+            .withEmail("lydia@example.com").withGitHub("Fiona-14")
+            .withTutorialGroup("CS2106 T02", "CS2103T W15-3").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withTelegram("@George11")
             .withEmail("anna@example.com").withGitHub("George-Not-Bush").withTutorialGroup("CS2106 T02").build();
 
