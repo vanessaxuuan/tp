@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -17,6 +19,7 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -26,6 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
+import seedu.address.testutil.DeleteTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -94,6 +98,17 @@ public class AddressBookParserTest {
         AddTutorialGroupCommand.AddTutorialGroupDescriptor desc =
                 AddTutorialGroupDescriptorBuilder.VALID_TUTORIAL_GROUP_DESCRIPTOR_AMY;
         assertTrue(new AddTutorialGroupCommand(INDEX_FIRST_STUDENT, desc) instanceof AddTutorialGroupCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteTutorialGroup() throws Exception {
+        Student student = new StudentBuilder().build();
+        DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor descriptor =
+                DeleteTutorialGroupDescriptorBuilder.VALID_DELETE_TUTORIAL_DESCRIPTOR_CS2101_G08;
+        DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
+                DeleteTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased()
+                + " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_CS2101_G08);
+        assertEquals(new DeleteTutorialGroupCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
