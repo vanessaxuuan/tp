@@ -92,7 +92,6 @@ public class DeleteTutorialGroupCommand extends Command {
 
         Name currName = studentToEdit.getName();
         Email currEmail = studentToEdit.getEmail();
-
         Telegram currTelegram = studentToEdit.getTelegram();
         GitHub currGitHub = studentToEdit.getGitHub();
 
