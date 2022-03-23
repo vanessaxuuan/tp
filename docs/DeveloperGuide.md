@@ -401,6 +401,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. TA requests to find a tutorial group.
 2. TACH list out all the students from the tutorial group.
 
+   Use case ends.
+
 **Extensions**
 
 * 1a. The tutorial group entered is not found in any student.
