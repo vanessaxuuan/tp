@@ -394,7 +394,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br><br>
 
-**Use case: UC05 - Clearing All Students**
+**Use case: UC05 - Find students from a Tutorial Group**
+
+**MSS:**
+
+1. TA requests to find a tutorial group.
+2. TACH list out all the students from the tutorial group.
+
+**Extensions**
+
+* 1a. The tutorial group entered is not found in any student.
+    * 1a1. TACH prompts that 0 student in the list.
+    
+  Use case ends.
+<br><br>
+
+**Use case: UC06 - Clearing All Students**
 
 **MSS:**
 
