@@ -154,6 +154,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Telegram and GitHub attributes
+
+<img src="images/ArchitectureDiagram.png" width="280" />
+
+The diagram above suggest that a `Student` can have 0 or 1 `Telegram` and `Github` individually. Students with empty `GitHub` and `Telegram` are stored using `GitHub` and `Telegram` instantiated with empty strings as shown below
+
+<img src="images/StudentWithEmptyTelegramAndGitHub.png" width="280" />
+
+#### How does it work?
+
+Below is a sequence diagram for `addStudentCommand`. The command was implemented such that all inputs have to be parsed by the respective methods of `ParserUtil`.
+
+<img src="images/AddStudentSequenceDiagram" width="280" />
+
+>**Note:** parseGitHub and parseTelegram methods now accommodate null as inputs<br/>
+> Here is a snippet for parseGitHub. parseTelegram has a similar format as well
+> ```
+> public static GitHub parseGitHub(String gitHub) throws ParseException {
+>     if (gitHub == null) {
+>         return new GitHub(null);
+>     }
+>     String trimmedGitHub = gitHub.trim();
+>     if (!GitHub.isValidGitHub(trimmedGitHub)) {
+>         throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
+>     }
+>     return new GitHub(trimmedGitHub);
+> }
+> ```
+
+GitHub and Telegram objects instantiated with null inputs have a value of ""
+Here is a snippet for the constructor of Telegram, GitHub also have a simillar format
+```aidl
+public Telegram(String telegram) {
+    if (telegram == null) { //if telegram is empty it will exist as an empty string
+        value = "";
+    } else {
+        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+        value = telegram;
+    }
+}
+```
+
+This means that an empty `GitHub` object will have a "" value and a `GitHub` object with a value of "" means that it is an empty `GitHub` object. The same logic applies to `Telegram` objects as well
+
+#### Why does it work?
+As shown in the previous sequence diagram, `ParserUtil` parses all the inputs for the add command. Thus an empty string (i.e. "") will be parsed though the method isValidXX, where XX is an attribute i.e. isValidName. All empty string will throw an error in any of parse methods in `ParserUtil`
+Thus an empty string will never be able to be accepted through the user input. Therefore, an empty string was used as a means to identify and instantiate attributes that can be empty (e.g. GitHub and Telegram).
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
