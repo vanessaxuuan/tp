@@ -11,12 +11,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.StudentBuilder;
-
-import java.util.Set;
 
 public class StudentTest {
 
