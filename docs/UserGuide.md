@@ -171,6 +171,20 @@ in TACH (only if the 2nd student had more than one tutorial group).
 * `find Carmen` followed by `deletetg 1 cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
 
+### Deleting tutorial groups from all students
+
+Deletes the specified tutorial group from **ALL** students in TACH.
+
+Format: `deletetgall tg/TUTORIAL_GROUP…`
+
+* Deletes the specified tutorial group in **ALL** students stored in TACH.
+* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetgall cs2040s t03` will
+  delete `CS2040S T03` from tutorial groups of all Students, but `deletetg 1 cs2040s` or `deletetg 1 cs2040st03`**WILL NOT** successfully delete `CS2040S T03` from students in TACH.
+>**WARNING:** Students with 0 tutorial groups after the deletion will automatically be deleted.
+
+Example:
+* `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial group `CS2106 T08` or `CS2103T W13-3` or both from all students with TACH. Students with 0 tutorial group will be deleted from TACH.
+
 ### Getting a Student's details: `get`
 
 Gets the contact details of the specified student in TACH.
