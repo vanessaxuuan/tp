@@ -20,7 +20,7 @@ deactivate AddressBookParser
 LogicManager -> AddressBookParser : parseCommand(commandText)
 activate AddressBookParser
 
-AddressBookParser -> AddTutorialGroupParser : parse("addtg 2 tg/CS2103T W15-3")
+AddressBookParser -> AddTutorialGroupParser : parse("addtg 2 tg/CS2103T W15-3 tg/CS2101 G08")
 activate AddTutorialGroupParser
 
 create AddTutorialGroupDescriptor

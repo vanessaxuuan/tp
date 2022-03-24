@@ -182,15 +182,15 @@ Rationale:
 
 #### Given below is an example usage scenario and how the *addtg* mechanism behaves.
 
-When the user executes `addtg 2 tg/CS2103T W15-3` command to add a tutorial group to the 2nd person listed in the address book. 
+When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book. 
 
 The following sequence diagram shows how the `addtg` operation works:
 
 <img src="images/AddTutorialGroupSequenceDiagram.png" width="900" />
 
-The following activity diagram summarizes what happens when a user executes the `addtg` command:
+The following diagram shows a brief overview of the AddTutorialGroupDescriptor created shown in the `addtg` sequence diagram above
 
-[to be updated]
+<img src="images/AddTutorialGroupDescriptorDiagram.png" width="500" />
 
 
 ### \[Proposed\] Undo/redo feature
