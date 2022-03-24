@@ -185,7 +185,7 @@ Below is a sequence diagram for `addStudentCommand`. The command was implemented
 
 GitHub and Telegram objects instantiated with null inputs have a value of ""
 Here is a snippet for the constructor of Telegram. GitHub also have a similar format
-```aidl
+```
 public Telegram(String telegram) {
     if (telegram == null) { //if telegram is empty it will exist as an empty string
         value = "";
@@ -199,8 +199,8 @@ public Telegram(String telegram) {
 This means that an empty `GitHub` object will have a "" value and a `GitHub` object with a value of "" means that it is an empty `GitHub` object. The same logic applies to `Telegram` objects as well
 
 #### Why does it work?
-As shown in the previous sequence diagram, `ParserUtil` parses all the inputs for the add command. Thus, an empty string (i.e. "") will be parsed though the method isValidXX, where XX is an attribute i.e. isValidName. All empty string will throw an error in any of parse methods in `ParserUtil`
-Thus an empty string will never be able to be accepted through the user input. Therefore, an empty string was used as a means to identify and instantiate attributes that can be empty (e.g. GitHub and Telegram).
+
+As shown in the previous sequence diagram, `ParserUtil` parses all the inputs for the add command. Thus, an empty string (i.e. "") will be parsed though the method isValidXX, where XX is an attribute i.e. isValidName. All empty string will throw an error in any of parse methods in `ParserUtil`. Thus an empty string will never be able to be accepted through the user input. Therefore, an empty string was used as a means to identify and instantiate attributes that can be empty (e.g. GitHub and Telegram).
 
 #### Design Considerations:
 
@@ -217,6 +217,58 @@ Thus an empty string will never be able to be accepted through the user input. T
 * Alternative 3 (Current Choice): stored as an invalid string i.e. ""
   * Pros: Avoid NullPointerExceptions
   * Cons: We must ensure that the conversion from Object to Json and vice-versa must be correct.
+
+### `deletetg` feature
+
+The `deletetg` command deletes a tutorial group from a student.
+
+The *deleting a tutorial group from student* mechanism is facilitated by the `LogicManger` and the 
+`AddressBookParser`. It is implemented by adding the parser class `DeleteTutorialGroupParser` and the
+command class `DeleteTutorialGroupCommand`. 
+
+`deletetg` command format: `deletetg INDEX tg/TUTORIAL_GROUP`
+
+How the command is parsed and executed (assuming the command is valid and the execution is successful):
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+command.
+2. `AddressBookParser` sees that the command has the valid starting command word `deletetg` and creates a
+new `DeleteTutorialGroupParser` that parses the command.
+3. `DeleteTutorialGroupParser` confirms the command is valid and returns a `DeleteTutorialGroupCommand` to
+be executed by the `LogicManager`
+4. `LogicManager` executes `DeleteTutorialGroupCommand`, which gets the relevant information from the
+`Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `DeleteTutorialGroupCommand` deletes the specified `TUTORIAL_GROUP` of the student and returns the relevant `CommandResult` to `LogicManager`
+
+Sequence Diagram: [[To be added soon]]
+
+<br>
+
+This feature was implemented to follow this sequence to keep it consistent with the rest of the `Command`s
+and `Parser`s.
+
+There are a few interesting details as to how the command works:
+
+- The command takes in an `Index` instead of a student's name because we felt that it was much easier to
+type in a number than the entirety of someone's name. It is also distinct and much less vague.
+
+
+- Only one tutorial group can be deleted at a time. If a person has some tutorial groups but not all
+tutorial groups to be deleted, what should the command do? Making it such that only one tutorial group can
+be deleted at a time prevents ambiguity in contrast to if several tutorial groups can be deleted at a time.
+
+
+- If the tutorial group to be deleted is the only one that the student has, the command will not work. A
+student must have at least one tutorial group. If this were not the case, it could result in some serious
+buggy behaviours regarding other commands involving tutorial groups.
+
+
+- The tutorial group must be typed exactly, but is case-insensitive. <br> An alternative would be to
+indicate an `Index` instead of the exact tutorial group, but that would mean we would either have to
+display an overall index of all the modules, or display an index of all the modules for each student.
+Either way it would make the UI more complex and cluttered. <br> This is why we decided to make it such
+that it must be typed exactly, but is case-insensitive, since two tutorial groups should be the same if
+only their cases are different.
 
 ### \[Proposed\] Undo/redo feature
 
