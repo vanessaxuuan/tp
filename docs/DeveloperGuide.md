@@ -193,6 +193,58 @@ The following diagram shows a brief overview of the AddTutorialGroupDescriptor c
 <img src="images/AddTutorialGroupDescriptorDiagram.png" width="500" />
 
 
+### `deletetg` feature
+
+The `deletetg` command deletes a tutorial group from a student.
+
+The *deleting a tutorial group from student* mechanism is facilitated by the `LogicManger` and the 
+`AddressBookParser`. It is implemented by adding the parser class `DeleteTutorialGroupParser` and the
+command class `DeleteTutorialGroupCommand`. 
+
+`deletetg` command format: `deletetg INDEX tg/TUTORIAL_GROUP`
+
+How the command is parsed and executed (assuming the command is valid and the execution is successful):
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+command.
+2. `AddressBookParser` sees that the command has the valid starting command word `deletetg` and creates a
+new `DeleteTutorialGroupParser` that parses the command.
+3. `DeleteTutorialGroupParser` confirms the command is valid and returns a `DeleteTutorialGroupCommand` to
+be executed by the `LogicManager`
+4. `LogicManager` executes `DeleteTutorialGroupCommand`, which gets the relevant information from the
+`Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `DeleteTutorialGroupCommand` deletes the specified `TUTORIAL_GROUP` of the student and returns the relevant `CommandResult` to `LogicManager`
+
+Sequence Diagram: [[To be added soon]]
+
+<br>
+
+This feature was implemented to follow this sequence to keep it consistent with the rest of the `Command`s
+and `Parser`s.
+
+There are a few interesting details as to how the command works:
+
+- The command takes in an `Index` instead of a student's name because we felt that it was much easier to
+type in a number than the entirety of someone's name. It is also distinct and much less vague.
+
+
+- Only one tutorial group can be deleted at a time. If a person has some tutorial groups but not all
+tutorial groups to be deleted, what should the command do? Making it such that only one tutorial group can
+be deleted at a time prevents ambiguity in contrast to if several tutorial groups can be deleted at a time.
+
+
+- If the tutorial group to be deleted is the only one that the student has, the command will not work. A
+student must have at least one tutorial group. If this were not the case, it could result in some serious
+buggy behaviours regarding other commands involving tutorial groups.
+
+
+- The tutorial group must be typed exactly, but is case-insensitive. <br> An alternative would be to
+indicate an `Index` instead of the exact tutorial group, but that would mean we would either have to
+display an overall index of all the modules, or display an index of all the modules for each student.
+Either way it would make the UI more complex and cluttered. <br> This is why we decided to make it such
+that it must be typed exactly, but is case-insensitive, since two tutorial groups should be the same if
+only their cases are different.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
