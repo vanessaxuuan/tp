@@ -175,8 +175,10 @@ command format: addtg INDEX tg/TUTORIAL_GROUP...
    `Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
 5. `AddTutorialGroupCommand` creates a new `Student` combining the existing and newly specified `TUTORIAL_GROUP(s)` and returns the relevant `CommandResult` to `LogicManager`
 
-Note: <br> A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
-<br>
+Rationale:
+- A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
+- An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name. 
+  - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
 
 #### Given below is an example usage scenario and how the *addtg* mechanism behaves.
 
