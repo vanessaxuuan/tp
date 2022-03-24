@@ -49,7 +49,7 @@ public class DeleteTutorialGroupParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // empty tutorial group
+        // empty tutorial group (invalid value)
         assertParseFailure(parser, "1" + TUTORIAL_GROUP_EMPTY, TutorialGroup.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is capture

@@ -29,11 +29,12 @@ public class DeleteTutorialGroupCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_invalidStudentIndex_failure() {
-        // index out of bounds
+    public void execute_invalidStudentIndexWithFilteredList_failure() {
+        // filtered list size of 1
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        // index is larger than size of filteredList
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of address book lit
+        // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
         DeleteTutorialGroupCommand deleteTutorialGroupCommand = new DeleteTutorialGroupCommand(
