@@ -37,7 +37,9 @@ public class CommandTestUtil {
     public static final String VALID_GITHUB_AMY = "amybee14";
     public static final String VALID_GITHUB_BOB = "boblim23";
     public static final String VALID_TUTORIAL_GROUP_CS2103T_W15_3 = "CS2103T W15-3";
+    public static final String VALID_TUTORIAL_GROUP_CS2103_W13_2 = "CS2103 W13-2";
     public static final String VALID_TUTORIAL_GROUP_CS2101_G08 = "CS2101 G08";
+    public static final String VALID_TUTORIAL_GROUP_CS2106_T02 = "CS2106 T02";
 
     public static final String EMPTY_GITHUB_DESC = " " + PREFIX_GITHUB + VALID_EMPTY_GITHUB;
     public static final String EMPTY_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + VALID_EMPTY_TELEGRAM;

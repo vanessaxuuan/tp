@@ -33,11 +33,14 @@ public class TutorialGroup {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * {@code TutorialGroup}s are equal if they have the same tutorial group name <strong>ignoring cases.</strong>
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TutorialGroup // instanceof handles nulls
-                && tutorialGroupName.equals(((TutorialGroup) other).tutorialGroupName)); // state check
+                && tutorialGroupName.equalsIgnoreCase(((TutorialGroup) other).tutorialGroupName)); // state check
     }
 
     @Override
