@@ -154,6 +154,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### `addtg` feature
+
+The `addtg` command adds tutorial group(s) to a student 
+
+The *add tutorial group(s) to a student* mechanism is facilitated by the `LogicManager` and the `AddressBookParser`. It is implemented by adding the parser class `AddTutorialGroupParser` and the command class `AddTutorialGroupCommand`.
+
+```
+command format: addtg INDEX tg/TUTORIAL_GROUP...
+```
+#### How the command is parsed and executed:
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+   command.
+2. `AddressBookParser` sees that the command has the valid starting command word `addtg` and creates a
+   new `AddTutorialGroupParser` that parses the command.
+3. `AddTutorialGroupParser` confirms the command is valid and returns a `AddTutorialGroupCommand` to
+   be executed by the `LogicManager`
+4. `LogicManager` executes `AddTutorialGroupCommand`, which gets the relevant information from the
+   `Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `AddTutorialGroupCommand` creates a new `Student` combining the existing and newly specified `TUTORIAL_GROUP(s)` and returns the relevant `CommandResult` to `LogicManager`
+
+Note: <br> A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
+<br>
+
+#### Given below is an example usage scenario and how the *addtg* mechanism behaves.
+
+When the user executes `addtg 2 tg/CS2103T W15-3` command to add a tutorial group to the 2nd person listed in the address book. 
+
+The following sequence diagram shows how the `addtg` operation works:
+
+<img src="images/to be added" width="900" />
+
+The following activity diagram summarizes what happens when a user executes the `addtg` command:
+
+<img src="images/to be added" width="900" />
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
