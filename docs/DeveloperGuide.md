@@ -280,6 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS TA                          | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
 | `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
 | `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
+| `* * *`  | CS TA                          | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
 | `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
 | `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
 | `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
@@ -402,7 +403,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TACH completely clears its list.
 
     Use case ends.
+<br><br>
 
+**Use case: UC06 - Delete a Tutorial Group from all Students**
+
+**MSS:**
+
+Similar to UC04 except that it applies to all students under that tutorial group instead.
+
+**Extensions**
+
+*1a. The tutorial group requested is an invalid tutorial group.
+ *1a1. TACH prompts the TA to type a valid tutorial group.
+Step 1a1 is repeated until a valid tutorial group is entered.
+
+*1b. The tutorial group requested to be deleted is the only tutorial group the student has.
+ * 1b1. TACH deletes the tutorial group from the student. 
+ * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
+Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
+<br><br>
 
 *{More to be added}*
 
