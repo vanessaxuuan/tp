@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png"/>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -158,21 +158,21 @@ This section describes some noteworthy details on how certain features are imple
 
 The diagram below shows that a `Student` may or may not have a `Telegram` and a `Github`.
 
-<img src="images/ArchitectureDiagram.png" width="570" />
+<img src="images/ArchitectureDiagram.png" width="300" />
 
 Students with empty 
 `GitHub` and `Telegram` are stored using `GitHub` and `Telegram` instantiated with empty strings as shown below.
 
-<img src="images/StudentWithEmptyTelegramAndGitHub.png" width="570" />
+<img src="images/StudentWithEmptyTelegramAndGitHub.png" width="900" />
 
 #### How does it work?
 
 Below is a sequence diagram for `addStudentCommand`. The command was implemented such that all inputs have to be parsed by the respective methods of `ParserUtil`.
 
-<img src="images/AddStudentSequenceDiagram.png" width="570" />
+<img src="images/AddStudentSequenceDiagram.png" width="900" />
 
->**Note:** parseGitHub and parseTelegram methods now accommodate null as inputs<br/>
-> Here is a snippet for parseGitHub. parseTelegram has a similar format as well
+>**Note:** parseGitHub and parseTelegram methods now accommodate null as inputs.<br/>
+> Here is a snippet for parseGitHub. parseTelegram has a similar format as well.
 > ```
 > public static GitHub parseGitHub(String gitHub) throws ParseException {
 >     if (gitHub == null) {
