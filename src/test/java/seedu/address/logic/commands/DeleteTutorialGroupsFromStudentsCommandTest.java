@@ -50,7 +50,7 @@ class DeleteTutorialGroupsFromStudentsCommandTest {
         String expectedMessage = String.format(DeleteTutorialGroupsFromStudentsCommand
                 .MESSAGE_TUTORIAL_GROUP_DELETE_SUCCESS, tutorialGroupsToDelete);
         DeleteTutorialGroupsFromStudentsCommand deleteTutorialGroupsFromStudentsCommand =
-               new DeleteTutorialGroupsFromStudentsCommand(new HashSet<>(tutorialGroupsToDelete));
+                new DeleteTutorialGroupsFromStudentsCommand(new HashSet<>(tutorialGroupsToDelete));
 
         assertCommandSuccess(deleteTutorialGroupsFromStudentsCommand, model, expectedMessage, expectedModel);
     }
