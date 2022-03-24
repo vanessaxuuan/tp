@@ -186,11 +186,11 @@ When the user executes `addtg 2 tg/CS2103T W15-3` command to add a tutorial grou
 
 The following sequence diagram shows how the `addtg` operation works:
 
-<img src="images/to be added" width="900" />
+<img src="images/AddTutorialGroupSequenceDiagram.png" width="900" />
 
 The following activity diagram summarizes what happens when a user executes the `addtg` command:
 
-<img src="images/to be added" width="900" />
+[to be updated]
 
 
 ### \[Proposed\] Undo/redo feature
