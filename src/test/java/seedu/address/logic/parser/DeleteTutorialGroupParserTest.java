@@ -45,15 +45,18 @@ public class DeleteTutorialGroupParserTest {
 
         // zero
         assertParseFailure(parser, "0" + TUTORIAL_GROUP_DESC_CS2103T_W15_3, MESSAGE_INVALID_FORMAT);
+
+        // invalid preamble and invalid tutorial group, but only the first is captured
+        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // empty tutorial group (invalid value)
+        // empty tutorial group
         assertParseFailure(parser, "1" + TUTORIAL_GROUP_EMPTY, TutorialGroup.MESSAGE_CONSTRAINTS);
 
-        // multiple invalid values, but only the first invalid value is capture
-        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC, MESSAGE_INVALID_FORMAT);
+        // invalid tutorial group
+        assertParseFailure(parser, "1" + INVALID_TUTORIAL_GROUP_DESC, TutorialGroup.MESSAGE_CONSTRAINTS);
     }
 
     @Test
