@@ -16,14 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.testutil.DeleteTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 public class DeleteTutorialGroupCommandTest {
@@ -39,9 +37,7 @@ public class DeleteTutorialGroupCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
         DeleteTutorialGroupCommand deleteTutorialGroupCommand = new DeleteTutorialGroupCommand(
-                outOfBoundIndex,
-                new DeleteTutorialGroupDescriptorBuilder()
-                        .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build());
+                outOfBoundIndex, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
         assertCommandFailure(deleteTutorialGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -54,11 +50,8 @@ public class DeleteTutorialGroupCommandTest {
         StudentBuilder studentInList = new StudentBuilder(secondStudent);
         Student editedStudent = studentInList.withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2).build();
 
-        DeleteTutorialGroupDescriptor descriptor = new DeleteTutorialGroupDescriptorBuilder()
-                .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2106_T02).build();
-
         DeleteTutorialGroupCommand deleteTutorialGroupCommand =
-                new DeleteTutorialGroupCommand(indexSecondStudent, descriptor);
+                new DeleteTutorialGroupCommand(indexSecondStudent, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2106_T02));
 
         String expectedMessage = String.format(DeleteTutorialGroupCommand.MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS,
                                                editedStudent);
@@ -73,11 +66,8 @@ public class DeleteTutorialGroupCommandTest {
     public void execute_noSuchTutorialGroup_failure() {
         Index indexSecondStudent = INDEX_SECOND_STUDENT;
 
-        DeleteTutorialGroupDescriptor descriptor = new DeleteTutorialGroupDescriptorBuilder()
-                .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();
-
         DeleteTutorialGroupCommand deleteTutorialGroupCommand =
-                new DeleteTutorialGroupCommand(indexSecondStudent, descriptor);
+                new DeleteTutorialGroupCommand(indexSecondStudent, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
         assertCommandFailure(deleteTutorialGroupCommand, model,
                 DeleteTutorialGroupCommand.MESSAGE_NO_SUCH_TUTORIAL_GROUP);
@@ -87,11 +77,8 @@ public class DeleteTutorialGroupCommandTest {
     public void execute_onlyTutorialGroup_failure() {
         Index indexFirstStudent = INDEX_FIRST_STUDENT;
 
-        DeleteTutorialGroupDescriptor descriptor = new DeleteTutorialGroupDescriptorBuilder()
-                .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2).build();
-
         DeleteTutorialGroupCommand deleteTutorialGroupCommand =
-                new DeleteTutorialGroupCommand(indexFirstStudent, descriptor);
+                new DeleteTutorialGroupCommand(indexFirstStudent, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2));
 
         assertCommandFailure(deleteTutorialGroupCommand, model,
                 DeleteTutorialGroupCommand.MESSAGE_CANNOT_DELETE_ONLY_TUTORIAL_GROUP);
@@ -99,16 +86,14 @@ public class DeleteTutorialGroupCommandTest {
 
     @Test
     public void equals() {
-        DeleteTutorialGroupDescriptor descriptor = new DeleteTutorialGroupDescriptor();
-        descriptor.setTutorialGroup(new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
         final DeleteTutorialGroupCommand standardCommand =
-                new DeleteTutorialGroupCommand(INDEX_FIRST_STUDENT, descriptor);
+                new DeleteTutorialGroupCommand(
+                        INDEX_FIRST_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
         // same values -> return true
-        DeleteTutorialGroupDescriptor copyDescriptor = new DeleteTutorialGroupDescriptor();
-        copyDescriptor.setTutorialGroup(new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
         DeleteTutorialGroupCommand commandWithSameValues =
-                new DeleteTutorialGroupCommand(INDEX_FIRST_STUDENT, copyDescriptor);
+                new DeleteTutorialGroupCommand(
+                        INDEX_FIRST_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -121,12 +106,12 @@ public class DeleteTutorialGroupCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new DeleteTutorialGroupCommand(INDEX_SECOND_STUDENT, copyDescriptor)));
+        assertFalse(standardCommand.equals(new DeleteTutorialGroupCommand(
+                INDEX_SECOND_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08))));
 
-        // different descriptor -> returns false
-        DeleteTutorialGroupDescriptor differentDescriptor = new DeleteTutorialGroupDescriptor();
-        differentDescriptor.setTutorialGroup(new TutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2));
-        assertFalse(standardCommand.equals(new DeleteTutorialGroupCommand(INDEX_FIRST_STUDENT, differentDescriptor)));
+        // different tutorial group -> returns false
+        assertFalse(standardCommand.equals(new DeleteTutorialGroupCommand(
+                INDEX_FIRST_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2106_T02))));
 
     }
 }

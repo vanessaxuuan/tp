@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddStudentCommand;
-import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
@@ -61,8 +60,4 @@ public class PersonUtil {
         return sb.toString();
     }
 
-    public static String getDeleteTutorialGroupDescriptorDetails(
-            DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor descriptor) {
-        return "" + PREFIX_TUTORIAL_GROUP + descriptor.getTutorialGroup().get();
-    }
 }

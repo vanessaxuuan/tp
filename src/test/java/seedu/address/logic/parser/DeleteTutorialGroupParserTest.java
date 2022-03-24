@@ -4,17 +4,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TUTORIAL_GROUP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2103T_W15_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.DeleteTutorialGroupDescriptorBuilder.VALID_DELETE_TUTORIAL_DESCRIPTOR_CS2101_G08;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTutorialGroupCommand;
-import seedu.address.logic.commands.DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class DeleteTutorialGroupParserTest {
@@ -71,8 +70,8 @@ public class DeleteTutorialGroupParserTest {
         Index targetIndex = INDEX_FIRST_STUDENT;
         String input = targetIndex.getOneBased() + TUTORIAL_GROUP_DESC_CS2101_G08;
 
-        DeleteTutorialGroupDescriptor desc = VALID_DELETE_TUTORIAL_DESCRIPTOR_CS2101_G08;
-        DeleteTutorialGroupCommand expectedCommand = new DeleteTutorialGroupCommand(targetIndex, desc);
+        DeleteTutorialGroupCommand expectedCommand = new DeleteTutorialGroupCommand(
+                targetIndex, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
         assertParseSuccess(parser, input, expectedCommand);
     }

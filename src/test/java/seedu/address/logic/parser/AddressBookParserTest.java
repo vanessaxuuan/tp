@@ -28,8 +28,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
-import seedu.address.testutil.DeleteTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -103,12 +103,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteTutorialGroup() throws Exception {
         Student student = new StudentBuilder().build();
-        DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor descriptor =
-                DeleteTutorialGroupDescriptorBuilder.VALID_DELETE_TUTORIAL_DESCRIPTOR_CS2101_G08;
         DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
                 DeleteTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased()
                 + " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_CS2101_G08);
-        assertEquals(new DeleteTutorialGroupCommand(INDEX_FIRST_STUDENT, descriptor), command);
+        assertEquals(new DeleteTutorialGroupCommand(
+                INDEX_FIRST_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08)), command);
     }
 
     @Test

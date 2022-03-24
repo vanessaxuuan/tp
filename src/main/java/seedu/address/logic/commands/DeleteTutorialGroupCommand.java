@@ -5,12 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Email;
@@ -45,20 +43,34 @@ public class DeleteTutorialGroupCommand extends Command {
             + "because the student at this index only has this tutorial group.";
 
     private final Index index;
-    private final DeleteTutorialGroupDescriptor deleteTutorialGroupDescriptor;
+    private final TutorialGroup tutorialGroupToDelete;
 
     /**
      * DeleteTutorialGroupCommand constructor.
      *
      * @param index of the student in the filtered student list to edit
-     * @param details to edit the student with
+     * @param tutorialGroupToDelete {@code String} of tutorial group to delete from student
      */
-    public DeleteTutorialGroupCommand(Index index, DeleteTutorialGroupDescriptor details) {
+    public DeleteTutorialGroupCommand(Index index, String tutorialGroupToDelete) {
         requireNonNull(index);
-        requireNonNull(details);
+        requireNonNull(tutorialGroupToDelete);
 
         this.index = index;
-        this.deleteTutorialGroupDescriptor = new DeleteTutorialGroupDescriptor(details);
+        this.tutorialGroupToDelete = new TutorialGroup(tutorialGroupToDelete);
+    }
+
+    /**
+     * Another DeleteTutorialGroupCommand constructor.
+     *
+     * @param index of the student in the filtered student list to edit
+     * @param tutorialGroupToDelete {@code TutorialGroup} to delete from student
+     */
+    public DeleteTutorialGroupCommand(Index index, TutorialGroup tutorialGroupToDelete) {
+        requireNonNull(index);
+        requireNonNull(tutorialGroupToDelete);
+
+        this.index = index;
+        this.tutorialGroupToDelete = tutorialGroupToDelete;
     }
 
     @Override
@@ -72,11 +84,11 @@ public class DeleteTutorialGroupCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
         // Identify if tutorial group does not exist
-        if (!studentToEdit.tutorialGroupExists(deleteTutorialGroupDescriptor.tutorialGroupToDelete)) {
+        if (!studentToEdit.tutorialGroupExists(tutorialGroupToDelete)) {
             throw new CommandException(MESSAGE_NO_SUCH_TUTORIAL_GROUP);
         }
 
-        Student updatedStudent = createNewStudent(studentToEdit, deleteTutorialGroupDescriptor);
+        Student updatedStudent = createNewStudent(studentToEdit, tutorialGroupToDelete);
         model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS, updatedStudent));
@@ -86,7 +98,7 @@ public class DeleteTutorialGroupCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code deleteTutorialGroupDescriptor}.
      */
-    private static Student createNewStudent(Student studentToEdit, DeleteTutorialGroupDescriptor tgDescriptor)
+    private static Student createNewStudent(Student studentToEdit, TutorialGroup tutorialGroupToDelete)
             throws CommandException {
         assert studentToEdit != null;
 
@@ -96,7 +108,6 @@ public class DeleteTutorialGroupCommand extends Command {
         GitHub currGitHub = studentToEdit.getGitHub();
 
         Set<TutorialGroup> currTutorialGroups = studentToEdit.getTutorialGroups();
-        TutorialGroup tutorialGroupToDelete = tgDescriptor.getTutorialGroup().get();
 
         assert studentToEdit.tutorialGroupExists(tutorialGroupToDelete);
 
@@ -131,59 +142,7 @@ public class DeleteTutorialGroupCommand extends Command {
         // state check
         DeleteTutorialGroupCommand d = (DeleteTutorialGroupCommand) other;
         return index.equals(d.index)
-                && deleteTutorialGroupDescriptor.equals(d.deleteTutorialGroupDescriptor);
+                && tutorialGroupToDelete.equals(d.tutorialGroupToDelete);
     }
 
-    public static class DeleteTutorialGroupDescriptor {
-        private TutorialGroup tutorialGroupToDelete;
-
-        public DeleteTutorialGroupDescriptor() {}
-
-        /**
-         * Copy constructor.
-         */
-        public DeleteTutorialGroupDescriptor(DeleteTutorialGroupDescriptor toCopy) {
-            setTutorialGroup(toCopy.tutorialGroupToDelete);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(tutorialGroupToDelete);
-        }
-
-        /**
-         * Sets {@code tutorialGroupToDelete} to this object's {@code tutorialGroupToDelete}
-         */
-        public void setTutorialGroup(TutorialGroup tutorialGroup) {
-            this.tutorialGroupToDelete = tutorialGroup;
-        }
-
-        /**
-         * Returns the tutorial group to delete.
-         * Returns {@code Optional#empty()} if {@code tutorialGroupToDelete} is null.
-         */
-        public Optional<TutorialGroup> getTutorialGroup() {
-            return (tutorialGroupToDelete != null)
-                    ? Optional.of(tutorialGroupToDelete) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof DeleteTutorialGroupDescriptor)) {
-                return false;
-            }
-
-            // state check
-            DeleteTutorialGroupDescriptor d = (DeleteTutorialGroupDescriptor) other;
-            return getTutorialGroup().equals(d.getTutorialGroup());
-        }
-    }
 }

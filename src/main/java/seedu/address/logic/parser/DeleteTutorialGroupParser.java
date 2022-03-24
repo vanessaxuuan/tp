@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTutorialGroupCommand;
-import seedu.address.logic.commands.DeleteTutorialGroupCommand.DeleteTutorialGroupDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -47,16 +46,10 @@ public class DeleteTutorialGroupParser implements Parser<DeleteTutorialGroupComm
 
         assert argMultimap.getAllValues(PREFIX_TUTORIAL_GROUP).size() == 1;
 
-        DeleteTutorialGroupDescriptor deleteTutorialGroupDescriptor = new DeleteTutorialGroupDescriptor();
         TutorialGroup tutorialGroupToDelete = ParserUtil.parseTutorialGroup(argMultimap
                                                                             .getAllValues(PREFIX_TUTORIAL_GROUP)
                                                                             .get(0));
-        deleteTutorialGroupDescriptor.setTutorialGroup(tutorialGroupToDelete);
 
-        if (!deleteTutorialGroupDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(DeleteTutorialGroupCommand.MESSAGE_NOT_DELETED);
-        }
-
-        return new DeleteTutorialGroupCommand(index, deleteTutorialGroupDescriptor);
+        return new DeleteTutorialGroupCommand(index, tutorialGroupToDelete);
     }
 }
