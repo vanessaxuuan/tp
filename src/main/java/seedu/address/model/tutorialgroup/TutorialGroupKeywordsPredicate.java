@@ -12,7 +12,7 @@ public class TutorialGroupKeywordsPredicate implements Predicate<Student> {
     private final String keywords;
 
     /**
-     * Constructor of the tutorial group predicate class
+     * Constructor of the tutorial group keywords predicate class
      * @param keywords need to match exactly to an existing tutorial group(case-insensitive)
      */
     public TutorialGroupKeywordsPredicate(String keywords) {

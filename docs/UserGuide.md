@@ -137,6 +137,19 @@ Examples:
 * `find Evans Smith` returns `Chris Evans`, `Evans Evans`, `Will Smith`, `Smith Thompson` (if they
 are in the list).
 
+### Finding students by tutorial group: `findtg`
+
+Finds all students in a particular tutorial group.
+
+Format `findtg TUTORIAL_GROUP`
+
+* The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
+* Only the tutorial group is searched.
+* Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
+* Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return 
+`Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
+* If no students with matching tutorial group, no student will be returned (an empty list).
+
 ### Deleting a student: `delete`
 
 Deletes the specified student from TACH.
@@ -248,6 +261,7 @@ If your changes to the data file makes its format invalid, TACH will discard all
 | **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
 | **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB]` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
 | **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
 | **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
 | **Get Student Details**                  | `get INDEX` <br> e.g. `get 6`                                                                                                                                  |
