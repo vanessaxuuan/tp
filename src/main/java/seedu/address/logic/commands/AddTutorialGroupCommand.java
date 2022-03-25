@@ -38,7 +38,7 @@ public class AddTutorialGroupCommand extends Command {
             + PREFIX_TUTORIAL_GROUP + "CS2103T W15-3 "
             + PREFIX_TUTORIAL_GROUP + "CS2101 G08";
 
-    public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added Tutorial Group: %1$s";
+    public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added tutorial group: %1$s";
     public static final String MESSAGE_NOT_ADDED = "At least one tutorial group to add must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group already exists.";
 
@@ -75,7 +75,7 @@ public class AddTutorialGroupCommand extends Command {
         Student updatedStudent = createNewStudent(studentToEdit, addTutorialGroupDescriptor);
         model.setStudent(studentToEdit, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, studentToEdit));
+        return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS, addTutorialGroupDescriptor.tutorialGroups));
     }
 
     /**
@@ -84,6 +84,8 @@ public class AddTutorialGroupCommand extends Command {
      */
     private static Student createNewStudent(Student studentToEdit, AddTutorialGroupDescriptor tgDescriptor) {
         assert studentToEdit != null;
+        // Defensive copy of tgDescriptor
+        AddTutorialGroupDescriptor tgDescriptorCopy = new AddTutorialGroupDescriptor(tgDescriptor);
 
         Name currName = studentToEdit.getName();
         Email currEmail = studentToEdit.getEmail();
@@ -91,8 +93,8 @@ public class AddTutorialGroupCommand extends Command {
         Telegram currTelegram = studentToEdit.getTelegram();
         GitHub currGitHub = studentToEdit.getGitHub();
 
-        tgDescriptor.addTutorialGroups(studentToEdit.getTutorialGroups());
-        Set<TutorialGroup> updatedTutorialGroups = tgDescriptor.getTutorialGroups().get();
+        tgDescriptorCopy.addTutorialGroups(studentToEdit.getTutorialGroups());
+        Set<TutorialGroup> updatedTutorialGroups = tgDescriptorCopy.getTutorialGroups().get();
 
         return new Student(currName, currTelegram, currEmail, currGitHub, updatedTutorialGroups);
     }
