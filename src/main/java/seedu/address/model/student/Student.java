@@ -85,8 +85,28 @@ public class Student implements Comparator<Student> {
         if (toCheck == null) {
             return false;
         }
-        for (TutorialGroup tg : toCheck) {
-            if (tutorialGroups.contains(tg)) {
+        for (TutorialGroup tgtc : toCheck) {
+            for (TutorialGroup tg : tutorialGroups) {
+                if (tgtc.equals(tg)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the tutorial group already exists. Is case-insensitive
+     *
+     * @param toCheck is the tutorial group to check with
+     * @return if any tutorial group exists under this student
+     */
+    public boolean tutorialGroupExists(TutorialGroup toCheck) {
+        if (toCheck == null) {
+            return false;
+        }
+        for (TutorialGroup tg : tutorialGroups) {
+            if (tg.equals(toCheck)) {
                 return true;
             }
         }

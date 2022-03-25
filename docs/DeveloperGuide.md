@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -153,6 +153,58 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### `deletetg` feature
+
+The `deletetg` command deletes a tutorial group from a student.
+
+The *deleting a tutorial group from student* mechanism is facilitated by the `LogicManger` and the 
+`AddressBookParser`. It is implemented by adding the parser class `DeleteTutorialGroupParser` and the
+command class `DeleteTutorialGroupCommand`. 
+
+`deletetg` command format: `deletetg INDEX tg/TUTORIAL_GROUP`
+
+How the command is parsed and executed (assuming the command is valid and the execution is successful):
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+command.
+2. `AddressBookParser` sees that the command has the valid starting command word `deletetg` and creates a
+new `DeleteTutorialGroupParser` that parses the command.
+3. `DeleteTutorialGroupParser` confirms the command is valid and returns a `DeleteTutorialGroupCommand` to
+be executed by the `LogicManager`
+4. `LogicManager` executes `DeleteTutorialGroupCommand`, which gets the relevant information from the
+`Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `DeleteTutorialGroupCommand` deletes the specified `TUTORIAL_GROUP` of the student and returns the relevant `CommandResult` to `LogicManager`
+
+Sequence Diagram: [[To be added soon]]
+
+<br>
+
+This feature was implemented to follow this sequence to keep it consistent with the rest of the `Command`s
+and `Parser`s.
+
+There are a few interesting details as to how the command works:
+
+- The command takes in an `Index` instead of a student's name because we felt that it was much easier to
+type in a number than the entirety of someone's name. It is also distinct and much less vague.
+
+
+- Only one tutorial group can be deleted at a time. If a person has some tutorial groups but not all
+tutorial groups to be deleted, what should the command do? Making it such that only one tutorial group can
+be deleted at a time prevents ambiguity in contrast to if several tutorial groups can be deleted at a time.
+
+
+- If the tutorial group to be deleted is the only one that the student has, the command will not work. A
+student must have at least one tutorial group. If this were not the case, it could result in some serious
+buggy behaviours regarding other commands involving tutorial groups.
+
+
+- The tutorial group must be typed exactly, but is case-insensitive. <br> An alternative would be to
+indicate an `Index` instead of the exact tutorial group, but that would mean we would either have to
+display an overall index of all the modules, or display an index of all the modules for each student.
+Either way it would make the UI more complex and cluttered. <br> This is why we decided to make it such
+that it must be typed exactly, but is case-insensitive, since two tutorial groups should be the same if
+only their cases are different.
 
 ### \[Proposed\] Undo/redo feature
 
