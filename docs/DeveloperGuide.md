@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png"/>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -153,6 +153,73 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Telegram and GitHub attribute implementations
+
+The diagram below shows that a `Student` may or may not have a `Telegram` and a `Github`.
+
+<img src="images/ArchitectureDiagram.png" width="300" />
+
+Students with empty 
+`GitHub` and `Telegram` are stored using `GitHub` and `Telegram` instantiated with empty strings as shown below.
+
+<img src="images/StudentWithEmptyTelegramAndGitHub.png" width="900" />
+
+#### How does it work?
+
+Below is a sequence diagram for `addStudentCommand`. The command was implemented such that all inputs have to be parsed by the respective methods of `ParserUtil`.
+
+<img src="images/AddStudentSequenceDiagram.png" width="900" />
+
+>**Note:** parseGitHub and parseTelegram methods now accommodate null as inputs.<br/>
+> Here is a snippet for parseGitHub. parseTelegram has a similar format as well.
+> ```
+> public static GitHub parseGitHub(String gitHub) throws ParseException {
+>     if (gitHub == null) {
+>         return new GitHub(null);
+>     }
+>     String trimmedGitHub = gitHub.trim();
+>     if (!GitHub.isValidGitHub(trimmedGitHub)) {
+>         throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
+>     }
+>     return new GitHub(trimmedGitHub);
+> }
+> ```
+
+GitHub and Telegram objects instantiated with null inputs have a value of ""
+Here is a snippet for the constructor of Telegram. GitHub also have a similar format.
+```
+public Telegram(String telegram) {
+    if (telegram == null) { //if telegram is empty it will exist as an empty string
+        value = "";
+    } else {
+        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+        value = telegram;
+    }
+}
+```
+
+This means that an empty `GitHub` object will have a "" value and a `GitHub` object with a value of "" means that it is an empty `GitHub` object. The same logic applies to `Telegram` objects as well.
+
+#### Why does it work?
+
+As shown in the previous sequence diagram, `ParserUtil` parses all the inputs for the add command. Thus, an empty string (i.e. "") will be parsed though the method isValidXX, where XX is an attribute i.e. isValidName. All empty string will throw an error in any of parse methods in `ParserUtil`. Thus, an empty string will never be able to be accepted through the user input. Therefore, an empty string was used as a means to identify and instantiate attributes that can be empty (e.g. GitHub and Telegram).
+
+#### Design Considerations:
+
+#### How empty GitHub and Telegram should be stored:
+
+* Alternative 1: Stored as null
+  * Pros: Easy to implement
+  * Cons: NullPointerException can occur if `.toString()`of null is called
+
+* Alternative 2: Stored as a reserved valid string e.g. "null"
+  * Pros: Avoid NullPointerExceptions
+  * Cons: Possibility of a student whose telegram and github be the string "null".
+
+* Alternative 3 (Current Choice): Stored as an invalid string i.e. ""
+  * Pros: Avoid NullPointerExceptions
+  * Cons: We must ensure that the conversion from Object to Json and vice-versa must be correct.
 
 ### `addtg` feature
 
