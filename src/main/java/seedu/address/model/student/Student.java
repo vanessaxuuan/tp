@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,7 +15,7 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
  * Guarantees: details except telegram and gitHub are present and not null  field values are validated, immutable.
  * Telegram and GitHub will be empty strings if the user command does not include them.
  */
-public class Student {
+public class Student implements Comparator<Student> {
 
     // Identity fields
     private final Name name;
@@ -84,8 +85,28 @@ public class Student {
         if (toCheck == null) {
             return false;
         }
-        for (TutorialGroup tg : toCheck) {
-            if (tutorialGroups.contains(tg)) {
+        for (TutorialGroup tgtc : toCheck) {
+            for (TutorialGroup tg : tutorialGroups) {
+                if (tgtc.equals(tg)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the tutorial group already exists. Is case-insensitive
+     *
+     * @param toCheck is the tutorial group to check with
+     * @return if any tutorial group exists under this student
+     */
+    public boolean tutorialGroupExists(TutorialGroup toCheck) {
+        if (toCheck == null) {
+            return false;
+        }
+        for (TutorialGroup tg : tutorialGroups) {
+            if (tg.equals(toCheck)) {
                 return true;
             }
         }
@@ -112,6 +133,18 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getGitHub().equals(getGitHub())
                 && otherStudent.getTutorialGroups().equals(getTutorialGroups());
+    }
+
+    /**
+     * Compares its two arguments for order. Provide a way to sort the students by their name
+     *
+     * @param s1 the first student to be compared
+     * @param s2 the second student to be compared
+     * @return a negative integer, zero, or a positive integer corresponding to less than, equal to, or greater than
+     */
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.getName().toString().compareTo(s2.getName().toString());
     }
 
     @Override
