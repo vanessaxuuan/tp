@@ -154,6 +154,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### `addtg` feature
+
+The `addtg` command adds tutorial group(s) to a student 
+
+The *add tutorial group(s) to a student* mechanism is facilitated by the `LogicManager` and the `AddressBookParser`. It is implemented by adding the parser class `AddTutorialGroupParser` and the command class `AddTutorialGroupCommand`.
+
+```
+command format: addtg INDEX tg/TUTORIAL_GROUP...
+```
+#### How the command is parsed and executed:
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+   command.
+2. `AddressBookParser` sees that the command has the valid starting command word `addtg` and creates a
+   new `AddTutorialGroupParser` that parses the command.
+3. `AddTutorialGroupParser` confirms the command is valid and returns a `AddTutorialGroupCommand` to
+   be executed by the `LogicManager`
+4. `LogicManager` executes `AddTutorialGroupCommand`, which gets the relevant information from the
+   `Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `AddTutorialGroupCommand` creates a new `Student` combining the existing and newly specified `TUTORIAL_GROUP(s)` and returns the relevant `CommandResult` to `LogicManager`
+
+Rationale:
+- A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
+- An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name. 
+  - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
+
+#### Given below is an example usage scenario and how the *addtg* mechanism behaves.
+
+When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book. 
+
+The following sequence diagram shows how the `addtg` operation works:
+
+<img src="images/AddTutorialGroupSequenceDiagram.png" width="900" />
+
+The following diagram shows a brief overview of the AddTutorialGroupDescriptor created shown in the `addtg` sequence diagram above
+
+<img src="images/AddTutorialGroupDescriptorDiagram.png" width="500" />
+
+
 ### `deletetg` feature
 
 The `deletetg` command deletes a tutorial group from a student.
@@ -332,6 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS TA                          | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
 | `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
 | `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
+| `* * *`  | CS TA                          | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
 | `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
 | `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
 | `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
@@ -471,7 +511,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TACH completely clears its list.
 
     Use case ends.
+<br><br>
 
+**Use case: UC06 - Delete a Tutorial Group from all Students**
+
+**MSS:**
+
+Similar to UC04 except that it applies to all students under that tutorial group instead.
+
+**Extensions**
+
+*1a. The tutorial group requested is an invalid tutorial group.
+ *1a1. TACH prompts the TA to type a valid tutorial group.
+Step 1a1 is repeated until a valid tutorial group is entered.
+
+*1b. The tutorial group requested to be deleted is the only tutorial group the student has.
+ * 1b1. TACH deletes the tutorial group from the student. 
+ * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
+Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
+<br><br>
 
 *{More to be added}*
 
