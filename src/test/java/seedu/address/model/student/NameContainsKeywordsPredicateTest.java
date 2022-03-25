@@ -48,8 +48,8 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        // Matching both keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Carol"));
         assertTrue(predicate.test(new StudentBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
@@ -59,9 +59,7 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice").build()));
+        NameContainsKeywordsPredicate predicate;
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
