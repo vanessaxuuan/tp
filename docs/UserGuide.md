@@ -148,7 +148,7 @@ Format `findtg TUTORIAL_GROUP`
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
 * Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return 
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
-* If no students with matching tutorial group, no student will be returned (an empty list).
+* If there are no students with matching tutorial group, no student will be returned (an empty list).
 
 ### Deleting a student: `delete`
 

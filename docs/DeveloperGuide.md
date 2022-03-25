@@ -406,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The tutorial group entered is not found in any student.
-    * 1a1. TACH prompts that 0 student in the list.
+    * 1a1. TACH prompts that there is 0 student in the list.
     
   Use case ends.
 <br><br>
@@ -479,12 +479,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
@@ -500,10 +500,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Multiple students are added to a tutorial group eg:`CS2103T W15`.
 
    2. Test case: `findtg CS2103T W15`<br>
-      Expected: all students added to the tutorial group `CS2103T W15` are listed out. Number of students list out are shown in the status message.
+      Expected: all students added to the tutorial group `CS2103T W15` are listed out. Number of students listed out are shown in the status message.
 
    3. Test case: `findtg CS2103T`<br>
-      Expected: No student listed. Since it only provide module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.  
+      Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.  
 
 2. _{ more test cases …​ }_
 
