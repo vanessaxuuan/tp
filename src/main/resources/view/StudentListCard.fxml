@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -39,19 +39,19 @@
                      <HBox fx:id="telegramBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="telegramImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="telegram" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$telegram" />
+                        <Label fx:id="telegram" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$telegram" wrapText="true" />
                         </children>
                      </HBox>
                      <HBox fx:id="gitHubBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="gitHubImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="gitHub" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$gitHub" />
+                        <Label fx:id="gitHub" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$gitHub" wrapText="true" />
                         </children>
                      </HBox>
                      <HBox fx:id="emailBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="emailImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="email" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$email" />
+                        <Label fx:id="email" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$email" wrapText="true" />
                         </children>
                      </HBox>
                   </children>
