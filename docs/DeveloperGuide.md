@@ -446,7 +446,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br><br>
 
-**Use case: UC05 - Clearing All Students**
+**Use case: UC05 - Find students from a Tutorial Group**
+
+**MSS:**
+
+1. TA requests to find a tutorial group.
+2. TACH list out all the students from the tutorial group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tutorial group entered is not found in any student.
+    * 1a1. TACH prompts that there is 0 student in the list.
+    
+  Use case ends.
+<br><br>
+
+**Use case: UC06 - Clearing All Students**
 
 **MSS:**
 
@@ -514,20 +531,33 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Finding a tutorial group
+
+1. Finding students from a particular tutorial group while all students are being shown
+   1. Prerequisites: Multiple students are added to a tutorial group eg:`CS2103T W15`.
+
+   2. Test case: `findtg CS2103T W15`<br>
+      Expected: all students added to the tutorial group `CS2103T W15` are listed out. Number of students listed out are shown in the status message.
+
+   3. Test case: `findtg CS2103T`<br>
+      Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.  
+
+2. _{ more test cases …​ }_
 
 ### Saving data
 
