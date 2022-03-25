@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -220,6 +220,45 @@ As shown in the previous sequence diagram, `ParserUtil` parses all the inputs fo
 * Alternative 3 (Current Choice): Stored as an invalid string i.e. ""
   * Pros: Avoid NullPointerExceptions
   * Cons: We must ensure that the conversion from Object to Json and vice-versa must be correct.
+
+### `addtg` feature
+
+The `addtg` command adds tutorial group(s) to a student 
+
+The *add tutorial group(s) to a student* mechanism is facilitated by the `LogicManager` and the `AddressBookParser`. It is implemented by adding the parser class `AddTutorialGroupParser` and the command class `AddTutorialGroupCommand`.
+
+```
+command format: addtg INDEX tg/TUTORIAL_GROUP...
+```
+#### How the command is parsed and executed:
+
+1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
+   command.
+2. `AddressBookParser` sees that the command has the valid starting command word `addtg` and creates a
+   new `AddTutorialGroupParser` that parses the command.
+3. `AddTutorialGroupParser` confirms the command is valid and returns a `AddTutorialGroupCommand` to
+   be executed by the `LogicManager`
+4. `LogicManager` executes `AddTutorialGroupCommand`, which gets the relevant information from the
+   `Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
+5. `AddTutorialGroupCommand` creates a new `Student` combining the existing and newly specified `TUTORIAL_GROUP(s)` and returns the relevant `CommandResult` to `LogicManager`
+
+Rationale:
+- A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
+- An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name. 
+  - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
+
+#### Given below is an example usage scenario and how the *addtg* mechanism behaves.
+
+When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book. 
+
+The following sequence diagram shows how the `addtg` operation works:
+
+<img src="images/AddTutorialGroupSequenceDiagram.png" width="900" />
+
+The following diagram shows a brief overview of the AddTutorialGroupDescriptor created shown in the `addtg` sequence diagram above
+
+<img src="images/AddTutorialGroupDescriptorDiagram.png" width="500" />
+
 
 ### `deletetg` feature
 
@@ -399,6 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS TA                          | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
 | `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
 | `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
+| `* * *`  | CS TA                          | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
 | `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
 | `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
 | `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
@@ -513,7 +553,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br><br>
 
-**Use case: UC05 - Clearing All Students**
+**Use case: UC05 - Find students from a Tutorial Group**
+
+**MSS:**
+
+1. TA requests to find a tutorial group.
+2. TACH list out all the students from the tutorial group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tutorial group entered is not found in any student.
+    * 1a1. TACH prompts that there is 0 student in the list.
+    
+  Use case ends.
+<br><br>
+
+**Use case: UC06 - Clearing All Students**
 
 **MSS:**
 
@@ -521,7 +578,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TACH completely clears its list.
 
     Use case ends.
+<br><br>
 
+**Use case: UC06 - Delete a Tutorial Group from all Students**
+
+**MSS:**
+
+Similar to UC04 except that it applies to all students under that tutorial group instead.
+
+**Extensions**
+
+*1a. The tutorial group requested is an invalid tutorial group.
+ *1a1. TACH prompts the TA to type a valid tutorial group.
+Step 1a1 is repeated until a valid tutorial group is entered.
+
+*1b. The tutorial group requested to be deleted is the only tutorial group the student has.
+ * 1b1. TACH deletes the tutorial group from the student. 
+ * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
+Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
+<br><br>
 
 *{More to be added}*
 
@@ -581,20 +656,33 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Finding a tutorial group
+
+1. Finding students from a particular tutorial group while all students are being shown
+   1. Prerequisites: Multiple students are added to a tutorial group eg:`CS2103T W15`.
+
+   2. Test case: `findtg CS2103T W15`<br>
+      Expected: all students added to the tutorial group `CS2103T W15` are listed out. Number of students listed out are shown in the status message.
+
+   3. Test case: `findtg CS2103T`<br>
+      Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.  
+
+2. _{ more test cases …​ }_
 
 ### Saving data
 
