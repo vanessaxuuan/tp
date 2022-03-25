@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2101_G08;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTutorialGroupsFromStudentsCommand;
+import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -106,9 +108,18 @@ public class AddressBookParserTest {
     public void parseCommand_deleteTutorialGroupsFromStudents() throws Exception {
         DeleteTutorialGroupsFromStudentsCommand command = (DeleteTutorialGroupsFromStudentsCommand) parser
                 .parseCommand(DeleteTutorialGroupsFromStudentsCommand.COMMAND_WORD
-                + " " + TUTORIAL_GROUP_DESC_CS2101_G08);
+                        + " " + TUTORIAL_GROUP_DESC_CS2101_G08);
         Set<TutorialGroup> tutGroups = new HashSet<>(Arrays.asList(new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08)));
         assertEquals(new DeleteTutorialGroupsFromStudentsCommand(tutGroups), command);
+    }
+
+    public void parseCommand_deleteTutorialGroup() throws Exception {
+        Student student = new StudentBuilder().build();
+        DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
+                DeleteTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased()
+                + " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_CS2101_G08);
+        assertEquals(new DeleteTutorialGroupCommand(
+                INDEX_FIRST_STUDENT, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08)), command);
     }
 
     @Test
