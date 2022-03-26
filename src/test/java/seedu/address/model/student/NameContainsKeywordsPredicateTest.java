@@ -70,4 +70,11 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withTelegram("@alice14")
                 .withEmail("alice@email.com").withGitHub("alice10").build()));
     }
+
+    @Test
+    public void test_zeroKeywords_unfilteredList() {
+        // Zero keywords
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        assertTrue(predicate.test(new StudentBuilder().withName("Alice").build()));
+    }
 }

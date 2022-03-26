@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.CARL;
+import static seedu.address.testutil.TypicalStudents.DANIEL;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,7 +56,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_zeroStudentFound() {
-        NameContainsKeywordsPredicate predicate = preparePredicate("Alvin");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Carl Kurz Elle");
         model.updateFilteredStudentList(predicate);
         boolean zeroStudentFound = model.getFilteredStudentList().isEmpty();
         assertEquals(true, zeroStudentFound);
@@ -68,6 +70,26 @@ public class FindCommandTest {
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_MultipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Carl Meier");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_invalidZeroKeywords_listNotFiltered() {
+        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        // List not filtered
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 7);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(getTypicalStudents(), model.getFilteredStudentList());
     }
 
     /**
