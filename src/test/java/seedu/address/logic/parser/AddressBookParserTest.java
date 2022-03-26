@@ -33,8 +33,8 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupKeywordsPredicate;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.StudentUtil;
 
 public class AddressBookParserTest {
 
@@ -43,7 +43,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addStudent() throws Exception {
         Student student = new StudentBuilder().build();
-        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddStudentCommand(student));
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
         assertEquals(new AddStudentCommand(student), command);
     }
 
@@ -65,7 +65,7 @@ public class AddressBookParserTest {
         Student student = new StudentBuilder().build();
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_STUDENT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 

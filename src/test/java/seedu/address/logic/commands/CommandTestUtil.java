@@ -32,6 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "@22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMPTY_GITHUB = "";
+    public static final String VALID_EMPTY_TELEGRAM = "";
     public static final String VALID_GITHUB_AMY = "amybee14";
     public static final String VALID_GITHUB_BOB = "boblim23";
     public static final String VALID_TUTORIAL_GROUP_CS2103T_W15_3 = "CS2103T W15-3";
@@ -39,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TUTORIAL_GROUP_CS2101_G08 = "CS2101 G08";
     public static final String VALID_TUTORIAL_GROUP_CS2106_T02 = "CS2106 T02";
 
+    public static final String EMPTY_GITHUB_DESC = " " + PREFIX_GITHUB + VALID_EMPTY_GITHUB;
+    public static final String EMPTY_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + VALID_EMPTY_TELEGRAM;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
@@ -55,9 +59,10 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "911!"; // non-alphanumeric character
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB; // empty string not allowed for addresses
+    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "johson!"; // non-alphanumeric
     public static final String INVALID_TUTORIAL_GROUP_DESC = " " + PREFIX_TUTORIAL_GROUP
-        + "hubby*"; // '*' not allowed as a tutorial group
+        + "CS2106* T05"; // '*' not allowed as a tutorial group
+    public static final String INVALID_EMPTY_TUTORIAL_GROUP = " " + PREFIX_TUTORIAL_GROUP;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
