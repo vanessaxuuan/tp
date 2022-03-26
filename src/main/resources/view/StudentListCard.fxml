@@ -39,24 +39,24 @@
                      <HBox fx:id="telegramBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="telegramImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="telegram" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$telegram" />
+                        <Label fx:id="telegram" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$telegram" wrapText="true" />
                         </children>
                      </HBox>
                      <HBox fx:id="gitHubBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="gitHubImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="gitHub" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$gitHub" />
+                        <Label fx:id="gitHub" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$gitHub" wrapText="true" />
                         </children>
                      </HBox>
                      <HBox fx:id="emailBox" spacing="5.0">
                         <children>
                            <ImageView fx:id="emailImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="email" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$email" />
+                        <Label fx:id="email" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$email" wrapText="true" />
                         </children>
                      </HBox>
                   </children>
                </HBox>
-            <FlowPane fx:id="tutorialGroups" hgap="5.0">
+            <FlowPane fx:id="tutorialGroups" hgap="5.0" vgap="5.0">
                   <VBox.margin>
                      <Insets top="8.0" />
                   </VBox.margin></FlowPane>
