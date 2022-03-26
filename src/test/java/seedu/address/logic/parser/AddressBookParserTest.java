@@ -27,16 +27,18 @@ import seedu.address.logic.commands.DeleteTutorialGroupsFromStudentsCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTutorialGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroupKeywordsPredicate;
 import seedu.address.testutil.AddTutorialGroupDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.StudentUtil;
 
 public class AddressBookParserTest {
 
@@ -45,7 +47,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addStudent() throws Exception {
         Student student = new StudentBuilder().build();
-        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddStudentCommand(student));
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
         assertEquals(new AddStudentCommand(student), command);
     }
 
@@ -67,7 +69,7 @@ public class AddressBookParserTest {
         Student student = new StudentBuilder().build();
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_STUDENT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
@@ -83,6 +85,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTutorialGroup() throws Exception {
+        String keyword = "CS2101 G08";
+        FindTutorialGroupCommand command = (FindTutorialGroupCommand) parser.parseCommand(
+                FindTutorialGroupCommand.COMMAND_WORD + " " + keyword);
+        assertEquals(new FindTutorialGroupCommand(new TutorialGroupKeywordsPredicate(keyword)), command);
     }
 
     @Test
