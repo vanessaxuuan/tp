@@ -52,9 +52,13 @@ public class CommandTestUtil {
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
     public static final String TUTORIAL_GROUP_DESC_CS2101_G08 = " " + PREFIX_TUTORIAL_GROUP
-        + VALID_TUTORIAL_GROUP_CS2101_G08;
+            + VALID_TUTORIAL_GROUP_CS2101_G08;
     public static final String TUTORIAL_GROUP_DESC_CS2103T_W15_3 = " " + PREFIX_TUTORIAL_GROUP
-        + VALID_TUTORIAL_GROUP_CS2103T_W15_3;
+            + VALID_TUTORIAL_GROUP_CS2103T_W15_3;
+    public static final String TUTORIAL_GROUP_DESC_CS2103_W13_2 = " " + PREFIX_TUTORIAL_GROUP
+            + VALID_TUTORIAL_GROUP_CS2103_W13_2;
+    public static final String TUTORIAL_GROUP_DESC_CS2106_T02 = " " + PREFIX_TUTORIAL_GROUP
+            + VALID_TUTORIAL_GROUP_CS2106_T02;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "911!"; // non-alphanumeric character
@@ -85,7 +89,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -100,7 +104,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -121,6 +125,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
