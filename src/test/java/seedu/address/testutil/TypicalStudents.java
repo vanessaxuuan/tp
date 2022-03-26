@@ -33,8 +33,9 @@ public class TypicalStudents {
             .withTutorialGroup("CS2106 T02", "CS2103 W13-2").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz Meier").withTelegram("@CarlJr")
             .withEmail("heinz@example.com").withGitHub("JrCarl").withTutorialGroup("CS2106 T02").build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Carl Meier").withTelegram("@DanieltheName")
-            .withEmail("cornelia@example.com").withGitHub("Dan-iel").withTutorialGroup("CS2103 W13-2").build();
+    public static final Student DANIEL = new StudentBuilder().withName("Daniel Carl Meier")
+            .withTelegram("@DanieltheName").withEmail("cornelia@example.com")
+            .withGitHub("Dan-iel").withTutorialGroup("CS2103 W13-2").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withTelegram("@Elle20")
             .withEmail("werner@example.com").withGitHub("ELLE").withTutorialGroup("CS2106 T02", "CS2103 W13-2").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withTelegram("@Fiona14")

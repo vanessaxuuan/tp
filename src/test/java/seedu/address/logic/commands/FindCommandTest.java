@@ -73,7 +73,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_MultipleStudentsFound() {
+    public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Carl Meier");
         FindCommand command = new FindCommand(predicate);
@@ -83,7 +83,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_invalidZeroKeywords_listNotFiltered() {
+    public void execute_zeroKeywords_listNotFiltered() {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         // List not filtered
