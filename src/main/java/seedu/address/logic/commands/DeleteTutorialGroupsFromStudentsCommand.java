@@ -69,9 +69,9 @@ public class DeleteTutorialGroupsFromStudentsCommand extends Command {
         Set<TutorialGroup> updatedTutorialGroup = new HashSet<>();
         updatedTutorialGroup.addAll(targetTutorialGroups);
         for (TutorialGroup tgtr : tutorialGroupsToRemove) {
-                for (TutorialGroup ttg : targetTutorialGroups) {
-                    if (ttg.equals(tgtr)) {
-                        updatedTutorialGroup.remove(ttg);
+            for (TutorialGroup ttg : targetTutorialGroups) {
+                if (ttg.equals(tgtr)) {
+                    updatedTutorialGroup.remove(ttg);
                 }
             }
         }
