@@ -127,7 +127,7 @@ name will be edited to `Bobby Smiles`.
 
 ### Finding students by name: `find`
 
-Finds students whose names contain any of the given keywords.
+Finds students whose names contain all the given keywords.
 
 Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 
@@ -135,11 +135,11 @@ Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
 * Only the name is searched.
 * Only full words will be matched e.g. `Char` **WILL NOT** match `Charles`
-* Students matching at least one keyword will be returned.
-e.g. `Charles Boyle` will return `Charles Martinet` and `Susan Boyle`
+* Only students matching all the keywords will be returned.
+e.g. `Charles Lee` will return `Charles Alex Lee`, not `Charles Tan`
 
 Examples:
-* `find Evans Smith` returns `Chris Evans`, `Evans Evans`, `Will Smith`, `Smith Thompson` (if they
+* `find Evans Smith` returns `Evans Smith`, `Evans Josh Smith` (if they
 are in the list).
 
 ### Finding students by tutorial group: `findtg`
@@ -203,20 +203,6 @@ Format: `deletetgall tg/TUTORIAL_GROUP…`
 Example:
 * `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial group will be deleted from TACH.
 
-### Getting a Student's details: `get`
-
-Gets the contact details of the specified student in TACH.
-
-Format: `get INDEX`
-
-* Gets the contact details of the student at the specified `INDEX`. The index refers to the index
-  number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* Displays the student's email, and their Telegram and/or GitHub if the student has them.
-
-Example:
-* `list` followed by `get 2` gets the contact details of the 2nd student in TACH.
-* `find Marcus` followed by `get 1` gets the contact details of the 1st student in the results of the `find` command.
-
 ### Clearing all entries : `clear`
 
 Clears all entries from TACH.
@@ -279,11 +265,10 @@ If your changes to the data file makes its format invalid, TACH will discard all
 | **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
 | **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
 | **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
-| **Find Students**                        | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Find Students by name**                | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
 | **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
-| **Get Student Details**                  | `get INDEX` <br> e.g. `get 6`                                                                                                                                  |
+| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       | |
 | **List**                                 | `list`                                                                                                                                                         |
 | **Clear**                                | `clear`                                                                                                                                                        |
 | **Help**                                 | `help`                                                                                                                                                         |
