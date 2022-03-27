@@ -123,6 +123,7 @@ public class AddressBookParserTest {
         assertEquals(new DeleteTutorialGroupsFromStudentsCommand(tutGroups), command);
     }
 
+    @Test
     public void parseCommand_deleteTutorialGroup() throws Exception {
         Student student = new StudentBuilder().build();
         DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
