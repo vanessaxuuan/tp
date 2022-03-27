@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2103_W13_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_CS2106_T02;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
@@ -36,9 +37,10 @@ class DeleteTutorialGroupsFromStudentsCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    void execute_tutorialGroupsToDelete_studentDeletedOrHaveLessTutorialGroups() throws Exception {
-
+    void execute_tutorialGroupsToDeleteWithFilteredList_studentDeletedOrEditedInMainListSuccess() throws Exception {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        showStudentAtIndex(model, INDEX_FOURTH_STUDENT);
+        showStudentAtIndex(expectedModel, INDEX_FOURTH_STUDENT);
 
         List<TutorialGroup> tutorialGroupsToDelete = new ArrayList<>(Arrays.asList(
                 new TutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2),
@@ -86,30 +88,30 @@ class DeleteTutorialGroupsFromStudentsCommandTest {
 
     private void deleteStudentsOfExpectedModelInTestcase(Model expectedModel) {
         //Students have 1 out of the 2 tutorial groups to be deleted and have 0 tutorial groups after deletion.
-        Student firstStudentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student firstStudentToDelete = model.getSortedStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         expectedModel.deleteStudent(firstStudentToDelete);
-        Student secondStudentToDelete = model.getFilteredStudentList().get(INDEX_THIRD_STUDENT.getZeroBased());
+        Student secondStudentToDelete = model.getSortedStudentList().get(INDEX_THIRD_STUDENT.getZeroBased());
         expectedModel.deleteStudent(secondStudentToDelete);
-        Student thirdStudentToDelete = model.getFilteredStudentList().get(INDEX_FOURTH_STUDENT.getZeroBased());
+        Student thirdStudentToDelete = model.getSortedStudentList().get(INDEX_FOURTH_STUDENT.getZeroBased());
         expectedModel.deleteStudent(thirdStudentToDelete);
-        Student fourthStudentToDelete = model.getFilteredStudentList().get(INDEX_SEVENTH_STUDENT.getZeroBased());
+        Student fourthStudentToDelete = model.getSortedStudentList().get(INDEX_SEVENTH_STUDENT.getZeroBased());
         expectedModel.deleteStudent(fourthStudentToDelete);
 
         //Student have both tutorial groups to be deleted and have 0 tutorial groups after deletion.
-        Student fifthStudentToDelete = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+        Student fifthStudentToDelete = model.getSortedStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
         expectedModel.deleteStudent(fifthStudentToDelete);
     }
 
     private void updateStudentsOfExpectedModelInTestcase(Model expectedModel) {
         //Student with tutorial group modified and have 1 out of the 2 given tutorial groups.
-        Student studentToRemoveOneTutorialGroup = model.getFilteredStudentList()
+        Student studentToRemoveOneTutorialGroup = model.getSortedStudentList()
                 .get(INDEX_SIXTH_STUDENT.getZeroBased());
         Student studentWithOneTutorialGroupRemoved = new StudentBuilder(studentToRemoveOneTutorialGroup)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2103T_W15_3).build();
         expectedModel.setStudent(studentToRemoveOneTutorialGroup, studentWithOneTutorialGroupRemoved);
 
         //Student with tutorial group modified and have both of the given tutorial group.
-        Student studentToRemoveTwoTutorialGroup = model.getFilteredStudentList()
+        Student studentToRemoveTwoTutorialGroup = model.getSortedStudentList()
                 .get(INDEX_FIFTH_STUDENT.getZeroBased());
         Student studentWithTwoTutorialGroupRemoved = new StudentBuilder(studentToRemoveTwoTutorialGroup)
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build();

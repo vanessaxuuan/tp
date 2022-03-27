@@ -44,9 +44,9 @@ public class DeleteTutorialGroupsFromStudentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> studentList = model.getSortedStudentList();
         List<Student> studentsToRemoveTutorialGroup = new ArrayList<>();
-        for (Student student : lastShownList) {
+        for (Student student : studentList) {
             studentsToRemoveTutorialGroup.add(student);
         }
 
@@ -66,9 +66,15 @@ public class DeleteTutorialGroupsFromStudentsCommand extends Command {
 
     private static Set<TutorialGroup> removeTutorialGroups(Set<TutorialGroup> targetTutorialGroups,
                                                            Set<TutorialGroup> tutorialGroupsToRemove) {
-        Set <TutorialGroup> updatedTutorialGroup = new HashSet<>();
+        Set<TutorialGroup> updatedTutorialGroup = new HashSet<>();
         updatedTutorialGroup.addAll(targetTutorialGroups);
-        updatedTutorialGroup.removeAll(tutorialGroupsToRemove);
+        for (TutorialGroup tgtr : tutorialGroupsToRemove) {
+            for (TutorialGroup ttg : targetTutorialGroups) {
+                if (ttg.equals(tgtr)) {
+                    updatedTutorialGroup.remove(ttg);
+                }
+            }
+        }
         return updatedTutorialGroup;
     }
 

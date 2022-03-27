@@ -177,16 +177,16 @@ Format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
 * Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index 
 number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 cs2040s t03` will
-delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 cs2040s` or `deletetg 1 cs2040st03`
+* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 tg/cs2040s t03` will
+delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 tg/cs2040s` or `deletetg 1 tg/cs2040st03`
 **WILL NOT** successfully delete it.
 * The tutorial group **cannot be deleted** if it is the **only** tutorial group a student has. e.g. A student with only
 one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
 
 Examples:
-* `list` followed by `deletetg 2 CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
+* `list` followed by `deletetg 2 tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
 in TACH (only if the 2nd student had more than one tutorial group).
-* `find Carmen` followed by `deletetg 1 cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
+* `find Carmen` followed by `deletetg 1 tg/cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
 
 ### Deleting tutorial groups from all students
@@ -199,8 +199,10 @@ Format: `deletetgall tg/TUTORIAL_GROUP…`
 * The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetgall tg/cs2040s t03` will
   delete `CS2040S T03` from tutorial groups of all Students, but `deletetgall tg/cs2040s` or `deletetgall tg/cs2040st03` **WILL NOT** successfully delete `CS2040S T03` from students in TACH.
 >**WARNING:** Students with 0 tutorial groups after the deletion will automatically be deleted.
+> >**WARNING:** **ALL** students in TACH will be deleted or edited. Even those not visible as a result of `list` command.
 
 Example:
+* `list` followed by `deletetgall tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` from all students in TACH, including those not visible after the `list` command.
 * `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial group will be deleted from TACH.
 
 ### Clearing all entries : `clear`
