@@ -13,16 +13,28 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows) or above installed in your Computer.
 
-1. Download the latest `tach.jar` from [coming soon]
+2. Download the latest `TACH.jar` from [coming soon]
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TACH.
+3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+
+5. You're ready to start using TACH! You can continue on to the [Quick Tutorial](#quick-tutorial) section to learn
+how to navigate through the app, and some basic commands. Or if you're confident, you can dive straight into all 
+the commands in [Features](#features).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Tutorial
+
+(TO BE UPDATED)
+
+(Explain UI elements)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -37,7 +49,9 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Congratulations! You've learned what each thing on the app means, and some basic commands that you can use right now
+to get started! If you want more details on what each command does, you can refer to [Features](#features) for 
+a better understanding.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,19 +191,19 @@ Format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
 * Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index 
 number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 cs2040s t03` will
-delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 cs2040s` or `deletetg 1 cs2040st03`
+* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 tg/cs2040s t03` will
+delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 tg/cs2040s` or `deletetg 1 tg/cs2040st03`
 **WILL NOT** successfully delete it.
 * The tutorial group **cannot be deleted** if it is the **only** tutorial group a student has. e.g. A student with only
 one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
 
 Examples:
-* `list` followed by `deletetg 2 CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
+* `list` followed by `deletetg 2 tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
 in TACH (only if the 2nd student had more than one tutorial group).
-* `find Carmen` followed by `deletetg 1 cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
+* `find Carmen` followed by `deletetg 1 tg/cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
 
-### Deleting tutorial groups from all students
+### Deleting tutorial groups from all students: `deletetgall`
 
 Deletes the specified tutorial group from **ALL** students in TACH.
 
@@ -228,7 +242,7 @@ e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens. It can **NEVER** be empty. <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                                                  |
+| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens. It can **NEVER** be empty. <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                      |
 | **EMAIL**          | An email consists of two parts, the local part before the `@` sign, and the domain part after the `@` sign. In other words, `{LOCAL}@{DOMAIN}`<br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. They cannot start or end with the special symbols. <br> There must be an @ sign, followed by the domain name. The domain name is made up of domain labels separated by periods. <br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br><br> (Basically, just put in a valid email!) |
 | **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                |
 | **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -258,17 +272,17 @@ If your changes to the data file makes its format invalid, TACH will discard all
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action                                   | Format, Examples                                                                                                                                               |
 |------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
 | **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
-| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                                         |
+| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
 | **Find Students by name**                | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
 | **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       | |
+| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
 | **List**                                 | `list`                                                                                                                                                         |
 | **Clear**                                | `clear`                                                                                                                                                        |
 | **Help**                                 | `help`                                                                                                                                                         |
