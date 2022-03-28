@@ -8,6 +8,10 @@ in an organised manner**. Its sorting feature allows TAs to **view, categorize a
 students in a glance.
 It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -49,13 +53,13 @@ the commands in [Features](#features).
 
    * **`exit`** : Exits the app.
 
-Congratulations! You've learned what each thing on the app means, and some basic commands that you can use right now
+Congratulations! You've learned what each component in the app is, and some basic commands that you can use right now
 to get started! If you want more details on what each command does, you can refer to [Features](#features) for
 a better understanding.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -229,7 +233,7 @@ Exits the program.
 
 Format: `exit`
 
-### Input Requirements
+## Input Requirements
 
 There are **parameters** (like Names, NUS Emails, and GitHub usernames for example) that must follow certain
 requirements so that TACH recognises them as valid parameters. Here is a list of requirements of every parameter to
@@ -247,11 +251,11 @@ e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 | **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                |
 | **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                      |
 
-### Saving the data
+## Saving the data
 
 TACH data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+## Editing the data file
 
 TACH data are saved as a JSON file `[JAR file location]/data/tach.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -259,7 +263,7 @@ TACH data are saved as a JSON file `[JAR file location]/data/tach.json`. Advance
 If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files
+## Archiving data files
 
 [coming soon]
 
