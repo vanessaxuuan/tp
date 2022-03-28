@@ -6,7 +6,7 @@ title: Lim Jan Jay's Project Portfolio Page
 ## Project: Teaching Assistant Contact Helper (TACH)
 
 TACH helps CS Teaching Assistants tutoring multiple modules & classes by keeping
-track of their students and monitoring their progress on their tutorials. 
+track of their students and monitoring their progress on their tutorials.
 It is optimized for CLI users so that frequent tasks can be done faster by typing
 in commands.
 

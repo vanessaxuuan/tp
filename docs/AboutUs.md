@@ -44,7 +44,7 @@ You can reach us at the email `jiahaolow2020@gmail.com`
 
 <img src="images/vanessaxuuan.png" width="200px">
 
-[[github](http://github.com/vanessaxuuan)] 
+[[github](http://github.com/vanessaxuuan)]
 [[portfolio](team/vanessaxuuan.md)]
 
 * Role: Developer
