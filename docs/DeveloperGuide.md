@@ -160,7 +160,7 @@ The diagram below shows that a `Student` may or may not have a `Telegram` and a 
 
 <img src="images/ArchitectureDiagram.png" width="300" />
 
-Students with empty 
+Students with empty
 `GitHub` and `Telegram` are stored using `GitHub` and `Telegram` instantiated with empty strings as shown below.
 
 <img src="images/StudentWithEmptyTelegramAndGitHub.png" width="900" />
@@ -223,7 +223,7 @@ As shown in the previous sequence diagram, `ParserUtil` parses all the inputs fo
 
 ### `addtg` feature
 
-The `addtg` command adds tutorial group(s) to a student 
+The `addtg` command adds tutorial group(s) to a student
 
 The *add tutorial group(s) to a student* mechanism is facilitated by the `LogicManager` and the `AddressBookParser`. It is implemented by adding the parser class `AddTutorialGroupParser` and the command class `AddTutorialGroupCommand`.
 
@@ -244,12 +244,12 @@ command format: addtg INDEX tg/TUTORIAL_GROUP...
 
 Rationale:
 - A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
-- An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name. 
+- An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name.
   - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
 
 #### Given below is an example usage scenario and how the *addtg* mechanism behaves.
 
-When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book. 
+When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book.
 
 The following sequence diagram shows how the `addtg` operation works:
 
@@ -264,9 +264,9 @@ The following diagram shows a brief overview of the AddTutorialGroupDescriptor c
 
 The `deletetg` command deletes a tutorial group from a student.
 
-The *deleting a tutorial group from student* mechanism is facilitated by the `LogicManger` and the 
+The *deleting a tutorial group from student* mechanism is facilitated by the `LogicManger` and the
 `AddressBookParser`. It is implemented by adding the parser class `DeleteTutorialGroupParser` and the
-command class `DeleteTutorialGroupCommand`. 
+command class `DeleteTutorialGroupCommand`.
 
 `deletetg` command format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
@@ -418,15 +418,15 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * is a Computer Science (CS) Teaching Assistant (TA) in NUS
-* is teaching multiple Computer Science modules/tutorial groups 
+* is teaching multiple Computer Science modules/tutorial groups
 * has a need to manage a significant number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: TACH helps CS Teaching Assistants teaching multiple tutorial groups to manage 
-their students in an organized manner. Our sorting feature will allow TAs to view, categorize 
+**Value proposition**: TACH helps CS Teaching Assistants teaching multiple tutorial groups to manage
+their students in an organized manner. Our sorting feature will allow TAs to view, categorize
 and get information of all their students at one glance.
 
 
@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
 | `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
 | `* * *`  | CS TA                          | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
-| `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place | 
+| `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place |
 | `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
 | `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
 | `* * `   | CS TA                          | find students by name                                                                 | contact the appropriate student                                                   |
@@ -471,10 +471,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The command has an invalid name, email and/or tutorial group.
   * 1a1. TACH prompts the TA to type in the valid parameters.
   Step 1a1 is repeated until the data entered is correct.
-  
+
     Use case resumes from step 2.
 
-    
+
 * 1b. The command does not have a name, email and/or tutorial group.
     * 1b1.  TACH prompts the TA to add in the valid parameters.
     Step 1b1 is repeated until the data entered is correct.
@@ -505,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 2.
 <br><br>
-    
+
 **Use case: UC03 - Delete a Student**
 
 **MSS:**
@@ -524,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 1b. TA chooses instead to find students from a specific tutorial group.
-  
+
   Use case resumes at step 2.
 
 * 3a. The given index is invalid.
@@ -568,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The tutorial group entered is not found in any student.
     * 1a1. TACH prompts that there is 0 student in the list.
-    
+
   Use case ends.
 <br><br>
 
@@ -595,7 +595,7 @@ Similar to UC04 except that it applies to all students under that tutorial group
 Step 1a1 is repeated until a valid tutorial group is entered.
 
 *1b. The tutorial group requested to be deleted is the only tutorial group the student has.
- * 1b1. TACH deletes the tutorial group from the student. 
+ * 1b1. TACH deletes the tutorial group from the student.
  * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
 Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
 <br><br>
@@ -607,7 +607,7 @@ Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to `1000` persons without a noticeable sluggishness in performance for typical usage.
 3. The system should respond within two seconds.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
 should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. The user interface should be easy to understand for beginner users.
 6. The commands should feel intuitive and easy to pick up and remember to a beginner user.
@@ -682,7 +682,7 @@ testers are expected to do more *exploratory* testing.
       Expected: all students added to the tutorial group `CS2103T W15` are listed out. Number of students listed out are shown in the status message.
 
    3. Test case: `findtg CS2103T`<br>
-      Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.  
+      Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.
 
 2. _{ more test cases …​ }_
 

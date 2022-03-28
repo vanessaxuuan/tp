@@ -8,8 +8,8 @@ title: Teaching Assistant Contact Helper (TACH)
 
 ![Ui](images/Ui.png)
 
-The Teaching Assistant Contact Helper (TACH) is a desktop app that helps Computer Science (CS) 
-Teaching Assistants tutoring multiple tutorial groups, by **managing their students in an organised manner**. 
+The Teaching Assistant Contact Helper (TACH) is a desktop app that helps Computer Science (CS)
+Teaching Assistants tutoring multiple tutorial groups, by **managing their students in an organised manner**.
 sorting feature allows TAs to **view, categorize and get information** of all their students in a glance.
 It is optimized for Command Line Interface (CLI) users so that frequent tasks can be done faster by
 typing in commands. While it has a GUI (Graphical User Interface), most of the user interactions happen using the CLI.

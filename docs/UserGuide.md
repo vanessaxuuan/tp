@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 TACH is a desktop app that helps CS Teaching Assistants tutoring multiple tutorial groups by **managing their students
-in an organised manner**. Its sorting feature allows TAs to **view, categorize and get information** of all their 
+in an organised manner**. Its sorting feature allows TAs to **view, categorize and get information** of all their
 students in a glance.
 It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
 
@@ -25,7 +25,7 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
    ![Ui](images/Ui.png)
 
 5. You're ready to start using TACH! You can continue on to the [Quick Tutorial](#quick-tutorial) section to learn
-how to navigate through the app, and some basic commands. Or if you're confident, you can dive straight into all 
+how to navigate through the app, and some basic commands. Or if you're confident, you can dive straight into all
 the commands in [Features](#features).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ the commands in [Features](#features).
    * **`exit`** : Exits the app.
 
 Congratulations! You've learned what each thing on the app means, and some basic commands that you can use right now
-to get started! If you want more details on what each command does, you can refer to [Features](#features) for 
+to get started! If you want more details on what each command does, you can refer to [Features](#features) for
 a better understanding.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -129,12 +129,12 @@ student list. The index **must be a positive number** 1, 2, 3, …
 * Details not entered in the `edit` command will stay the same and not be replaced.
 >*Note*:
 > 1. Tutorial groups **CANNOT** be empty.
-`edit 1 tg/` is **NOT** allowed.  
+`edit 1 tg/` is **NOT** allowed.
 >2. GitHub and Telegram **CAN** be empty.
 `edit 1 g/  t/` is allowed and will set GitHub and Telegram to empty strings.
 
 Examples:
-* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student listed in TACH. Their Telegram will be 
+* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student listed in TACH. Their Telegram will be
 edited to `DaveHunter` and their GitHub will be edited to `Hunter02`.
 * `find Robert` followed by `edit 1 n/Bobby Smiles` edits the 1st student in the results of the `find` command. Their
 name will be edited to `Bobby Smiles`.
@@ -165,7 +165,7 @@ Format `findtg TUTORIAL_GROUP`
 * The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
 * Only the tutorial group is searched.
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
-* Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return 
+* Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
 * If there are no students with matching tutorial group, no student will be returned (an empty list).
 
@@ -179,7 +179,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the current displayed student list.
 * The index **must be a positive number** 1, 2, 3, …
 
-Examples: 
+Examples:
 * `list` followed by `delete 2` deletes the 2nd student listed in TACH.
 * `find Waldo` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
@@ -189,7 +189,7 @@ Deletes the specified tutorial group from the specified student.
 
 Format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
-* Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index 
+* Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index
 number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
 * The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 tg/cs2040s t03` will
 delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 tg/cs2040s` or `deletetg 1 tg/cs2040st03`
@@ -198,7 +198,7 @@ delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 tg/
 one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
 
 Examples:
-* `list` followed by `deletetg 2 tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed 
+* `list` followed by `deletetg 2 tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed
 in TACH (only if the 2nd student had more than one tutorial group).
 * `find Carmen` followed by `deletetg 1 tg/cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
@@ -231,8 +231,8 @@ Format: `exit`
 
 ### Input Requirements
 
-There are **parameters** (like Names, NUS Emails, and GitHub usernames for example) that must follow certain 
-requirements so that TACH recognises them as valid parameters. Here is a list of requirements of every parameter to 
+There are **parameters** (like Names, NUS Emails, and GitHub usernames for example) that must follow certain
+requirements so that TACH recognises them as valid parameters. Here is a list of requirements of every parameter to
 easier understand which parameters are invalid when typing a command.
 
 In the list, a **word** is defined as a bunch of *characters* (letters, numbers, punctuation, etc.) separated by spaces.
@@ -259,7 +259,7 @@ TACH data are saved as a JSON file `[JAR file location]/data/tach.json`. Advance
 If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files 
+### Archiving data files
 
 [coming soon]
 

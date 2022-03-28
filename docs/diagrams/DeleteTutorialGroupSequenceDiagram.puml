@@ -71,5 +71,4 @@ deactivate DeleteTutorialGroupCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml
