@@ -270,7 +270,8 @@ If your changes to the data file makes its format invalid, TACH will discard all
 | **Find Students by name**                | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
 | **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       | |
+| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
+| **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                    |
 | **List**                                 | `list`                                                                                                                                                         |
 | **Clear**                                | `clear`                                                                                                                                                        |
 | **Help**                                 | `help`                                                                                                                                                         |
