@@ -282,7 +282,9 @@ be executed by the `LogicManager`
 `Model` component, getting the filtered student list and acquiring the student at the specified `Index`.
 5. `DeleteTutorialGroupCommand` deletes the specified `TUTORIAL_GROUP` of the student and returns the relevant `CommandResult` to `LogicManager`
 
-Sequence Diagram: [[To be added soon]]
+Sequence Diagram:
+
+<img src="images/DeleteTutorialGroupSequenceDiagram.png" width="900" />
 
 <br>
 
