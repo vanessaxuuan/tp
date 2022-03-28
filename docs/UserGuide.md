@@ -3,10 +3,30 @@ layout: page
 title: User Guide
 ---
 
-TACH is a desktop app that helps CS Teaching Assistants tutoring multiple tutorial groups by **managing their students
-in an organised manner**. Its sorting feature allows TAs to **view, categorize and get information** of all their
-students in a glance.
-It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
+## Introduction
+
+TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) tutoring multiple tutorial groups by
+**managing their students in an organised manner**.
+
+TAs can **add, edit and delete** students and their tutorial groups from their list easily.
+TAs can also **find** students by their name or by their tutorial group.
+
+TACH automatically sorts students in alphabetical order, and all the students' contact details are right next to
+their names, so that you can get their details in a glance, and you easily know which contacts belong to whom.
+
+TACH works by typing what you want to do as commands. It is optimized for keyboard users, so if you can type fast,
+TACH can work even faster.
+
+## How to use this guide
+
+**The goal of this guide is to help you**, the reader, to **understand how to use our app better**, regardless of
+whether you are a new user or an experienced user.
+
+If you are a new user and want to learn how to download and set up the app, go to **[Quick Start](#quick-start)**.
+<br>If you have already installed the app and want to learn the basics, go to **[Quick Tutorial](#quick-tutorial)**.
+
+If you are an experienced user who wants to use app to its full potential, or you just want a quick refresher on
+the commands, you can refer to the list of possible commands available in TACH via **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,24 +39,35 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
 
 ## Quick Start
 
-1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows) or above installed in your Computer.
+1. Ensure you have **[Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows)** or above installed in your Computer.
 
 2. Download the latest `TACH.jar` from [coming soon]
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
-4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
+   ![Ui](images/QuickStart.png)
 
-5. You're ready to start using TACH! You can continue on to the [Quick Tutorial](#quick-tutorial) section to learn
-how to navigate through the app, and some basic commands. Or if you're confident, you can dive straight into all
-the commands in [Features](#features).
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* You can **resize** the app by clicking and dragging the edges of the window to see more users at a time.
+You can also **maximise** the window.
+
+</div>
+
+5. You're ready to start using TACH! You can continue to the **[Quick Tutorial](#quick-tutorial)** to learn
+how to navigate through the app, and some basic commands.
+<br>Or if you're feeling confident, you can dive straight into all the **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Tutorial
 
-(TO BE UPDATED)
+Here is a quick summary of all the components of the app:
+
+(Insert image Ui but with callouts here)
 
 (Explain UI elements)
 
@@ -54,7 +85,7 @@ the commands in [Features](#features).
    * **`exit`** : Exits the app.
 
 Congratulations! You've learned what each component in the app is, and some basic commands that you can use right now
-to get started! If you want more details on what each command does, you can refer to [Features](#features) for
+to get started! If you want more details on what each command does, you can refer to **[Commands](#commands)** for
 a better understanding.
 
 --------------------------------------------------------------------------------------------------------------------
