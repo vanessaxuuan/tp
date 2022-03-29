@@ -25,8 +25,8 @@ whether you are a new user or an experienced user.
 If you are a new user and want to learn how to download and set up the app, go to **[Quick Start](#quick-start)**.
 <br>If you have already installed the app and want to learn the basics, go to **[Quick Tutorial](#quick-tutorial)**.
 
-If you are an experienced user who wants to use app to its full potential, or you just want a quick refresher on
-the commands, you can refer to the list of possible commands available in TACH via **[Commands](#commands)**.
+If you are an experienced user who wants to use the app to its full potential, or you just want a quick refresher on
+the commands, you can look at all the commands for TACH via **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
