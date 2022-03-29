@@ -3,10 +3,30 @@ layout: page
 title: User Guide
 ---
 
-TACH is a desktop app that helps CS Teaching Assistants tutoring multiple tutorial groups by **managing their students
-in an organised manner**. Its sorting feature allows TAs to **view, categorize and get information** of all their
-students in a glance.
-It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
+## Introduction
+
+TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) tutoring multiple tutorial groups by
+**managing their students in an organised manner**.
+
+TAs can **add, edit and delete** students and their tutorial groups from their list easily.
+TAs can also **find** students by their name or by their tutorial group.
+
+TACH automatically sorts students in alphabetical order, and all the students' contact details are right next to
+their names, so that you can get their details in a glance, and you easily know which contacts belong to whom.
+
+TACH works by typing what you want to do as commands. It is optimized for keyboard users, so if you can type fast,
+TACH can work even faster.
+
+## How to use this guide
+
+**The goal of this guide is to help you**, the reader, to **understand how to use our app better**, regardless of
+whether you are a new user or an experienced user.
+
+If you are a new user and want to learn how to download and set up the app, go to **[Quick Start](#quick-start)**.
+<br>If you have already installed the app and want to learn the basics, go to **[Quick Tutorial](#quick-tutorial)**.
+
+If you are an experienced user who wants to use the app to its full potential, or you just want a quick refresher on
+the commands, you can look at all the commands for TACH via **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,42 +39,123 @@ It is optimized for CLI users so that frequent tasks can be done faster by typin
 
 ## Quick Start
 
-1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows) or above installed in your Computer.
+1. Ensure you have **[Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows)** or above installed in your Computer.
 
 2. Download the latest `TACH.jar` from [coming soon]
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
-4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
+   ![Quick Start](images/QuickStart.png)
 
-5. You're ready to start using TACH! You can continue on to the [Quick Tutorial](#quick-tutorial) section to learn
-how to navigate through the app, and some basic commands. Or if you're confident, you can dive straight into all
-the commands in [Features](#features).
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* You can **resize** the app by clicking and dragging the edges of the window to see more users at a time.
+You can also **maximise** the window.
+
+</div>
+
+5. You're ready to start using TACH! You can continue to the **[Quick Tutorial](#quick-tutorial)** to learn
+how to navigate through the app, and some basic commands.
+<br>Or if you're feeling confident, you can dive straight into all the **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Tutorial
 
-(TO BE UPDATED)
+### App Components
 
-(Explain UI elements)
+Here is a quick summary of all the components of the app:
+<br> (Remember that you can **resize the window**!)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+![Quick Tutorial Components](images/QuickTutorialComponents.png)
 
-   * **`list`** : Lists all contacts.
+- ![Options](images/IconColourOrange.png) **Options**: Various options that you can use for the app.
 
-   * **`add`**`add n/John Doe e/e0123456@u.nus.edu tg/CS2103T W15-3` : Adds a contact named `John Doe` to TACH.
+- ![Command Box](images/IconColourRed.png) **Command Box**: **The place where you type your commands.** Press the
+**⏎Enter** key on your keyboard to submit your commands.
 
-   * **`delete`**`delete 2` : Deletes the 2nd contact shown in the current list.
+- ![Student Box](images/IconColourCyan.png) **Student Box**: Represents a student and all their details. It has
+an index, the student's name, their contact details, and their tutorial group(s).
 
-   * **`clear`** : Deletes all contacts.
+- ![Index](images/IconColourPink.png) **Index**: A number showing where the student is positioned in the current list.
 
-   * **`exit`** : Exits the app.
+- ![Name](images/IconColourYellow.png) **Name**: The student's name.
+
+- ![Contact Details](images/IconColourGreen.png) **Contact Details**: The student's contact details.
+The student must have an ![Email](images/LogoEmail.png) **Email**,
+but their ![Telegram](images/LogoTelegram.png) **Telegram** and ![GitHub](images/LogoGithub.png) **GitHub** usernames
+can be optional.
+
+- ![Tutorial Groups](images/IconColourBlue.png) **Tutorial Group(s)**: The student's tutorial group(s). The student
+must have at least one tutorial group.
+
+- ![Results Display](images/IconColourPurple.png) **Results Display**: Displays the results of a successful command,
+or an appropriate error message if the command is invalid.
+
+### Quick Command Tutorial
+
+Now that you know what each of the components are, it's time to learn a few commands! Commands will look like
+**`this`**. Type the following commands exactly into the command box and press the **⏎Enter** key to submit
+your command. The effect of the command is described after the command.
+
+1. **`list`** : Lists all the students in TACH.
+<br><br>
+2. **`add n/Carl Sagan e/carlsagan42@gmail.com tg/CS2100 G01`** : Adds the student "Carl Sagan" with their email
+and tutorial group to TACH. They should appear as the 3rd person (Index 3) on the list.
+<br><br>
+3. **`delete 2`**: Deletes the 2nd person in the displayed list. In this tutorial, "Bernice Yu" should be deleted
+from the list.
+<br><br>
+4. **`find david`**: Finds all students that have "David" in their name. In this tutorial, only "David Li" should
+be visible to you.
+<br><br>
+5. **`edit 1 n/David Lee t/DavidLee777 g/david-lee`** : Edits the 1st person in the visible list by changing
+their name, their Telegram and their GitHub. In this tutorial, this should edit "David Li" to "David Lee" and
+add their Telegram and GitHub usernames.
+<br>The app should now display all the students, and you should be able to see "David Lee" as the 4th student with
+their Telegram and GitHub added.
+<br><br>
+6. **`findtg cs2106 t05`** : Finds all students that have "CS2106 T05" as a tutorial group. In this tutorial,
+you should see 3 students that have "CS2106 T05" as their tutorial group.
+<br><br>
+7. **`list`** : Lists all the students in TACH again.
+<br><br>
+8. **`deletetgall tg/cs2106 t05`** : Deletes the tutorial group "CS2106 T05" from every student. Students that
+have no tutorial groups afterwards will be deleted as well. In this tutorial, you should see that "CS2106 T05"
+is nowhere to be found, and the student "Charlotte Oliveiro" is deleted since they no longer have any
+tutorial groups.
+<br><br>
+9. Experiment with some commands! Try out the same commands but with different formats, or you can take a look at
+**[Commands](#commands)** for a few more commands that are not covered in this tutorial. When you're ready,
+you can move on to the next two easy commands to complete the tutorial.
+<br><br>
+10. **`clear`** : Clears TACH of all students.
+<br><br>
+11. **`exit`** : Exits the app.
+
+This completes the command tutorial! You're now ready to start adding your own students!
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about reloading sample students:**<br>
+
+If you ever get stuck or want to try out the tutorial again, follow these instructions to reload the
+sample students into the app.
+
+1. Exit the app.
+2. Go to the folder that TACH is in.
+3. Delete the `data` folder.
+4. Reopen the app again.
+
+The app should give back the original sample students for you to try out commands again!
+
+</div>
 
 Congratulations! You've learned what each component in the app is, and some basic commands that you can use right now
-to get started! If you want more details on what each command does, you can refer to [Features](#features) for
+to get started! If you want more details on what each command does, you can refer to **[Commands](#commands)** for
 a better understanding.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -90,7 +191,7 @@ Format: `help`
 
 ### Listing all students: `list`
 
-Shows a list of all students in the address book.
+Shows a list of all students in TACH.
 
 Format: `list`
 
@@ -281,16 +382,16 @@ If your changes to the data file makes its format invalid, TACH will discard all
 
 ## Command Summary
 
-| Action                                   | Format, Examples                                                                                                                                               |
-|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
-| **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
-| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
-| **Find Students by name**                | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
-| **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
-| **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
-| **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                    |
-| **List**                                 | `list`                                                                                                                                                         |
-| **Clear**                                | `clear`                                                                                                                                                        |
-| **Help**                                 | `help`                                                                                                                                                         |
+| Action                                        | Format, Examples                                                                                                                                               |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**                               | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
+| **Add Tutorial Group for Student**            | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
+| **Edit Student**                              | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
+| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Find Tutorial Group**                       | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
+| **Delete Student**                            | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
+| **Deleting Tutorial Group from Student**      | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
+| **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                         |
+| **List**                                      | `list`                                                                                                                                                         |
+| **Clear**                                     | `clear`                                                                                                                                                        |
+| **Help**                                      | `help`                                                                                                                                                         |
