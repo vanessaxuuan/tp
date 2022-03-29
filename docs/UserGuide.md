@@ -166,15 +166,15 @@ To go back to [Table of Contents](#table-of-contents)
 ## Commands
 
 List of commands:
-  1. [Help](#viewing-help--help)
-  2. [List](#listing-all-students-list)
+  1. [Viewing help](#viewing-help--help)
+  2. [Listing students](#listing-all-students-list)
   3. [Adding](#adding)
      - [Adding a student](#adding-a-student-add)
      - [Adding a tutorial group](#adding-a-tutorial-group-for-a-student-addtg)
   4. [Editing a student](#editing-a-student--edit)
   5. [Finding](#finding)
-     - [Find by name](#finding-students-by-name-find)
-     - [Find by tutorial group](#finding-students-by-tutorial-group-findtg)
+     - [Finding students by name](#finding-students-by-name-find)
+     - [Findind students by tutorial group](#finding-students-by-tutorial-group-findtg)
   6. [Deleting](#deleting)
      - [Deleting a student](#deleting-a-student-delete)
      - [Deleting a tutorial group from a student](#deleting-a-tutorial-group-from-a-student-deletetg)
@@ -339,6 +339,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student listed in TACH.
 * `find Waldo` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+<br><br>
 
 #### Deleting a tutorial group from a student: `deletetg`
 
@@ -383,10 +384,10 @@ from the previous `findtg` [output](#finding-students-by-tutorial-group-findtg)
 ![Results Display](images/DeleteTgAllResult.png)<br><br>
 
 Note:
-- The plane is empty as all the students displayed previously after `findtg` are affected.
-- Simple enter `list` to show the updated list.
+- The display is empty as all the students displayed previously after `findtg` are affected.
+- Simply enter `list` to show the updated list.
 
-The following diagram shows the actual list with `CS2100 T05` deleted from all the students 
+The following diagram shows the actual list with `CS2100 T05` deleted from all the students. Compare with the [initial List](#listing-all-students-list) for further understanding.
 
 ![Results Display](images/ListAfterDeleteTgAll.png)<br><br>
 
@@ -453,8 +454,8 @@ the data of your previous TACH home folder.
 ## Glossary
 | Terms                                         | Definition                                                                                                                                               |
 |-----------------------------------------------|-------------------------------------------------------------------|
-| **Hard disk**                                 |                                                                   |
-| **JSON file**                                 |                                                                   |
+| **Hard disk**                                 | A storage device for data in your computer                        |
+| **JSON file**                                 | A file that uses human-readable text to store and transmit data objects such as `Students` in the case of TACH                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -466,7 +467,7 @@ the data of your previous TACH home folder.
 | **Add Tutorial Group for Student**            | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
 | **Edit Student**                              | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
 | **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
-| **Find Tutorial Group**                       | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
+| **Find Students by Tutorial Group**           | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                            | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
 | **Deleting Tutorial Group from Student**      | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
 | **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                         |
