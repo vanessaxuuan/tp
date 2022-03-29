@@ -41,7 +41,7 @@ the commands, you can look at all the commands for TACH via **[Commands](#comman
 
 1. Ensure you have **[Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows)** or above installed in your Computer.
 
-2. Download the latest `TACH.jar` from [coming soon]
+2. Download the latest release of `TACH.jar` **[here](https://github.com/AY2122S2-CS2103T-W15-3/tp/releases)**.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
@@ -57,13 +57,17 @@ You can also **maximise** the window.
 
 </div>
 
-5. You're ready to start using TACH! You can continue to the **[Quick Tutorial](#quick-tutorial)** to learn
-how to navigate through the app, and some basic commands.
-<br>Or if you're feeling confident, you can dive straight into all the **[Commands](#commands)**.
+You're ready to start using TACH! You can continue learning how to use TACH through the
+**[Quick Tutorial](#quick-tutorial)**.
+
+On the other hand, if you're feeling confident, you can dive straight into all the **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Tutorial
+
+This quick tutorial will teach you how to navigate through the app and its components, and some basic commands
+that you can use right now!
 
 ### App Components
 
@@ -85,7 +89,7 @@ an index, the student's name, their contact details, and their tutorial group(s)
 - ![Name](images/IconColourYellow.png) **Name**: The student's name.
 
 - ![Contact Details](images/IconColourGreen.png) **Contact Details**: The student's contact details.
-The student must have an ![Email](images/LogoEmail.png) **Email**,
+  - The student must have an ![Email](images/LogoEmail.png) **Email**,
 but their ![Telegram](images/LogoTelegram.png) **Telegram** and ![GitHub](images/LogoGithub.png) **GitHub** usernames
 can be optional.
 
