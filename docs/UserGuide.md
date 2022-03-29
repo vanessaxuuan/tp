@@ -46,7 +46,7 @@ the commands, you can refer to the list of possible commands available in TACH v
 3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
 4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
-   ![Ui](images/QuickStart.png)
+   ![Quick Start](images/QuickStart.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -67,9 +67,30 @@ how to navigate through the app, and some basic commands.
 
 Here is a quick summary of all the components of the app:
 
-(Insert image Ui but with callouts here)
+![Quick Tutorial Components](images/QuickTutorialComponents.png)
 
-(Explain UI elements)
+- ![Options](images/IconColourOrange.png) **Options**: Various options that you can use for the app.
+
+- ![Command Box](images/IconColourRed.png) **Command Box**: **The place where you type your commands.** Press the
+**⏎Enter** key on your keyboard to submit your commands.
+
+- ![Student Box](images/IconColourCyan.png) **Student Box**: Represents a student and all their details. It has
+an index, the student's name, their contact details, and their tutorial group(s).
+
+- ![Index](images/IconColourPink.png) **Index**: A number showing where the student is positioned in the current list.
+
+- ![Name](images/IconColourYellow.png) **Name**: The student's name.
+
+- ![Contact Details](images/IconColourGreen.png) **Contact Details**: The student's contact details.
+The student must have an ![Email](images/LogoEmail.png) **Email**,
+but their ![Telegram](images/LogoTelegram.png) **Telegram** and ![GitHub](images/LogoGithub.png) **GitHub** usernames
+can be optional.
+
+- ![Tutorial Groups](images/IconColourBlue.png) **Tutorial Group(s)**: The student's tutorial group(s). The student
+must have at least one tutorial group.
+
+- ![Results Display](images/IconColourPurple.png) **Results Display**: Displays the results of a successful command,
+or an appropriate error message if the command is invalid.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
