@@ -115,7 +115,7 @@ be visible to you.
 5. **`edit 1 n/David Lee t/DavidLee777 g/david-lee`** : Edits the 1st person in the visible list by changing
 their name, their Telegram and their GitHub. In this tutorial, this should edit "David Li" to "David Lee" and
 add their Telegram and GitHub usernames.
-<br>The list should now display all the students, and you should be able to see "David Lee" as the 4th student with
+<br>The app should now display all the students, and you should be able to see "David Lee" as the 4th student with
 their Telegram and GitHub added.
 <br><br>
 6. **`findtg cs2106 t05`** : Finds all students that have "CS2106 T05" as a tutorial group. In this tutorial,
@@ -129,10 +129,10 @@ is nowhere to be found, and the student "Charlotte Oliveiro" is deleted since th
 tutorial groups.
 <br><br>
 9. Experiment with some commands! Try out the same commands but with different formats, or you can take a look at
-**[Commands](#commands)** for a few more commands that we have not covered. When you're ready, you can move on
-to the next two easy commands to finish the tutorial.
+**[Commands](#commands)** for a few more commands that are not covered in this tutorial. When you're ready,
+you can move on to the next two easy commands to complete the tutorial.
 <br><br>
-10. **`clear`** : Clears TACH of all students. 
+10. **`clear`** : Clears TACH of all students.
 <br><br>
 11. **`exit`** : Exits the app.
 
@@ -382,16 +382,16 @@ If your changes to the data file makes its format invalid, TACH will discard all
 
 ## Command Summary
 
-| Action                                   | Format, Examples                                                                                                                                               |
-|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**                          | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
-| **Add Tutorial Group for Student**       | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
-| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
-| **Find Students by name**                | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
-| **Find Tutorial Group**                  | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
-| **Delete Student**                       | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
-| **Deleting Tutorial Group from Student** | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
-| **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                    |
-| **List**                                 | `list`                                                                                                                                                         |
-| **Clear**                                | `clear`                                                                                                                                                        |
-| **Help**                                 | `help`                                                                                                                                                         |
+| Action                                        | Format, Examples                                                                                                                                               |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**                               | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
+| **Add Tutorial Group for Student**            | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
+| **Edit Student**                              | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
+| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Find Tutorial Group**                       | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
+| **Delete Student**                            | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
+| **Deleting Tutorial Group from Student**      | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
+| **Deleting Tutorial Group from all Students** | `deletetgall tg/TUTORIAL_GROUP…` <br> e.g. `deletetgall tg/CS2106 T08`                                                                                         |
+| **List**                                      | `list`                                                                                                                                                         |
+| **Clear**                                     | `clear`                                                                                                                                                        |
+| **Help**                                      | `help`                                                                                                                                                         |
