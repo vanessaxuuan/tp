@@ -33,7 +33,7 @@ public class SampleDataUtil {
                 getTutorialGroupSet("CS2100 G01")),
             new Student(new Name("Irfan Ibrahim"), new Telegram("irfanIbrahim"), new Email("irfan@example.com"),
                 new GitHub("irfan-the-jet-plane"),
-                getTutorialGroupSet("CS2100 G01")),
+                getTutorialGroupSet("CS2100 G01", "CS2106 T05")),
             new Student(new Name("Roy Balakrishnan"), new Telegram("@royBalakrishnan"), new Email("royb@example.com"),
                 new GitHub("roy-balakrishnan"),
                 getTutorialGroupSet("CS2106 T05", "CS3230 T03"))
