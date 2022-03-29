@@ -28,7 +28,7 @@ public class SampleDataUtil {
             new Student(new Name("Charlotte Oliveiro"), new Telegram("@CharlotteO"), new Email("charlotte@example.com"),
                 new GitHub("charlotte-oliveiro"),
                 getTutorialGroupSet("CS2106 T05")),
-            new Student(new Name("David Li"), new Telegram(null), new Email("lidavid@example.com"),
+            new Student(new Name("David Li"), new Telegram(null), new Email("callmedavid@example.com"),
                 new GitHub(null),
                 getTutorialGroupSet("CS2100 G01")),
             new Student(new Name("Irfan Ibrahim"), new Telegram("irfanIbrahim"), new Email("irfan@example.com"),

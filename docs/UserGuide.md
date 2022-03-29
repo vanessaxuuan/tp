@@ -65,7 +65,10 @@ how to navigate through the app, and some basic commands.
 
 ## Quick Tutorial
 
+### App Components
+
 Here is a quick summary of all the components of the app:
+<br> (Remember that you can **resize the window**!)
 
 ![Quick Tutorial Components](images/QuickTutorialComponents.png)
 
@@ -92,18 +95,64 @@ must have at least one tutorial group.
 - ![Results Display](images/IconColourPurple.png) **Results Display**: Displays the results of a successful command,
 or an appropriate error message if the command is invalid.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Quick Command Tutorial
 
-   * **`list`** : Lists all contacts.
+Now that you know what each of the components are, it's time to learn a few commands! Commands will look like
+**`this`**. Type the following commands exactly into the command box and press the **⏎Enter** key to submit
+your command. The effect of the command is described after the command.
 
-   * **`add`**`add n/John Doe e/e0123456@u.nus.edu tg/CS2103T W15-3` : Adds a contact named `John Doe` to TACH.
+1. **`list`** : Lists all the students in TACH.
+<br><br>
+2. **`add n/Carl Sagan e/carlsagan42@gmail.com tg/CS2100 G01`** : Adds the student "Carl Sagan" with their email
+and tutorial group to TACH. They should appear as the 3rd person (Index 3) on the list.
+<br><br>
+3. **`delete 2`**: Deletes the 2nd person in the displayed list. In this tutorial, "Bernice Yu" should be deleted
+from the list.
+<br><br>
+4. **`find david`**: Finds all students that have "David" in their name. In this tutorial, only "David Li" should
+be visible to you.
+<br><br>
+5. **`edit 1 n/David Lee t/DavidLee777 g/david-lee`** : Edits the 1st person in the visible list by changing
+their name, their Telegram and their GitHub. In this tutorial, this should edit "David Li" to "David Lee" and
+add their Telegram and GitHub usernames.
+<br>The list should now display all the students, and you should be able to see "David Lee" as the 4th student with
+their Telegram and GitHub added.
+<br><br>
+6. **`findtg cs2106 t05`** : Finds all students that have "CS2106 T05" as a tutorial group. In this tutorial,
+you should see 3 students that have "CS2106 T05" as their tutorial group.
+<br><br>
+7. **`list`** : Lists all the students in TACH again.
+<br><br>
+8. **`deletetgall tg/cs2106 t05`** : Deletes the tutorial group "CS2106 T05" from every student. Students that
+have no tutorial groups afterwards will be deleted as well. In this tutorial, you should see that "CS2106 T05"
+is nowhere to be found, and the student "Charlotte Oliveiro" is deleted since they no longer have any
+tutorial groups.
+<br><br>
+9. Experiment with some commands! Try out the same commands but with different formats, or you can take a look at
+**[Commands](#commands)** for a few more commands that we have not covered. When you're ready, you can move on
+to the next two easy commands to finish the tutorial.
+<br><br>
+10. **`clear`** : Clears TACH of all students. 
+<br><br>
+11. **`exit`** : Exits the app.
 
-   * **`delete`**`delete 2` : Deletes the 2nd contact shown in the current list.
+This completes the command tutorial! You're now ready to start adding your own students!
 
-   * **`clear`** : Deletes all contacts.
+<div markdown="block" class="alert alert-info">
 
-   * **`exit`** : Exits the app.
+**:information_source: Note about reloading sample students:**<br>
+
+If you ever get stuck or want to try out the tutorial again, follow these instructions to reload the
+sample students into the app.
+
+1. Exit the app.
+2. Go to the folder that TACH is in.
+3. Delete the `data` folder.
+4. Reopen the app again.
+
+The app should give back the original sample students for you to try out commands again!
+
+</div>
 
 Congratulations! You've learned what each component in the app is, and some basic commands that you can use right now
 to get started! If you want more details on what each command does, you can refer to **[Commands](#commands)** for
@@ -142,7 +191,7 @@ Format: `help`
 
 ### Listing all students: `list`
 
-Shows a list of all students in the address book.
+Shows a list of all students in TACH.
 
 Format: `list`
 
