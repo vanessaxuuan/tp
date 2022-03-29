@@ -34,7 +34,7 @@ the commands, you can look at all the commands for TACH via **[Commands](#comman
 
 * Table of Contents
 {:toc}
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
@@ -156,30 +156,54 @@ The app should give back the original sample students for you to try out command
 
 Congratulations! You've learned what each component in the app is, and some basic commands that you can use right now
 to get started! If you want more details on what each command does, you can refer to **[Commands](#commands)** for
-a better understanding.
+a better understanding. <br><br>
+
+
+To go back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
+List of commands:
+  1. [Help](#viewing-help--help)
+  2. [List](#listing-all-students-list)
+  3. [Adding](#adding)
+     - [Adding a student](#adding-a-student-add)
+     - [Adding a tutorial group](#adding-a-tutorial-group-for-a-student-addtg)
+  4. [Editing a student](#editing-a-student--edit)
+  5. [Finding](#finding)
+     - [Find by name](#finding-students-by-name-find)
+     - [Find by tutorial group](#finding-students-by-tutorial-group-findtg)
+  6. [Deleting](#deleting)
+     - [Deleting a student](#deleting-a-student-delete)
+     - [Deleting a tutorial group from a student](#deleting-a-tutorial-group-from-a-student-deletetg)
+     - [Deleting a tutorial group from all students](#deleting-tutorial-groups-from-all-students-deletetgall)
+  7. [Clearing all entries](#clearing-all-entries--clear)
+  8. [Exiting the program](#exiting-the-program--exit)
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. <br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.<br>
 
-* Items in square brackets are optional.<br>
-  e.g. `e/EMAIL [t/TELEGRAM]` can be used as `e/e0123456@u.nus.edu t/JohnSmith` or as `e/e0123456@u.nus.edu`
 
-* Items with `…` after them can be used multiple times.<br>
-  e.g. `tg/TUTORIAL_GROUP…` can be used as `tg/CS2103 W15-3`, `tg/CS2103 W15-3 tg/CS2100 G08` etc.
+* Items in square brackets are optional. <br>
+  e.g. `e/EMAIL [t/TELEGRAM]` can be used as `e/e0123456@u.nus.edu t/JohnSmith` or as `e/e0123456@u.nus.edu`<br><br>
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
+* Items with `…` after them can be added multiple times. <br>
+  e.g. `tg/TUTORIAL_GROUP…` can be used as `tg/CS2103 W15-3`, `tg/CS2103 W15-3 tg/CS2100 G08` etc.<br><br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Parameters can be in any order. <br>
+  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.<br><br>
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`. <br>
+  - `help123` will not be interpreted as `help`.<br><br>
+  
+* `INDEX` represents the corresponding student currently displayed in TACH, and it has to be a positive integer. 
 
 </div>
 
@@ -195,7 +219,16 @@ Shows a list of all students in TACH.
 
 Format: `list`
 
-### Adding a student: `add`
+![Results Display](images/ListCommandResult.png)
+
+Note:
+```
+The students will be sorted by name in alphabeticaal order
+```
+
+### Adding 
+
+#### Adding a student: `add`
 
 Adds a student into TACH.
 
@@ -205,7 +238,12 @@ Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
 * `add n/Michael Tay e/michaelT@gmail.com t/MichaelTay g/michael777 tg/CS2103T W15-3 tg/CS2100 G08`
 
-### Adding a tutorial group for a student: `addtg`
+The following diagram shows the output for the following input: <br>
+`add n/Chloe Lee e/chloexlee@gmail.com t/chloe201 g/jchloechloe tg/CS2101 G08`
+
+![Results Display](images/AddStudentResult.png)<br><br>
+
+#### Adding a tutorial group for a student: `addtg`
 
 Adds a tutorial group for a student already in TACH.
 
@@ -244,7 +282,14 @@ edited to `DaveHunter` and their GitHub will be edited to `Hunter02`.
 * `find Robert` followed by `edit 1 n/Bobby Smiles` edits the 1st student in the results of the `find` command. Their
 name will be edited to `Bobby Smiles`.
 
-### Finding students by name: `find`
+The following diagram shows the output for `edit 5 t/chloe201 g/chloechloe ` 
+from the previous `Add student` [output](#adding-a-student-add)
+
+![Results Display](images/EditingResult.png)
+
+### Finding
+
+#### Finding students by name: `find`
 
 Finds students whose names contain all the given keywords.
 
@@ -261,7 +306,7 @@ Examples:
 * `find Evans Smith` returns `Evans Smith`, `Evans Josh Smith` (if they
 are in the list).
 
-### Finding students by tutorial group: `findtg`
+#### Finding students by tutorial group: `findtg`
 
 Finds all students in a particular tutorial group.
 
@@ -274,7 +319,14 @@ Format `findtg TUTORIAL_GROUP`
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
 * If there are no students with matching tutorial group, no student will be returned (an empty list).
 
-### Deleting a student: `delete`
+The following diagram shows the result for `findtgall CS2100 T05` 
+from the initial `List` [output](#listing-all-students-list)
+
+![Results Display](images/FindTgResult.png)<br><br>
+
+### Deleting
+
+#### Deleting a student: `delete`
 
 Deletes the specified student from TACH.
 
@@ -288,7 +340,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student listed in TACH.
 * `find Waldo` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Deleting a tutorial group from a student: `deletetg`
+#### Deleting a tutorial group from a student: `deletetg`
 
 Deletes the specified tutorial group from the specified student.
 
@@ -308,7 +360,7 @@ in TACH (only if the 2nd student had more than one tutorial group).
 * `find Carmen` followed by `deletetg 1 tg/cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
 results of the `find` command (only if the 1st student had more than one tutorial group).
 
-### Deleting tutorial groups from all students: `deletetgall`
+#### Deleting tutorial groups from all students: `deletetgall`
 
 Deletes the specified tutorial group from **ALL** students in TACH.
 
@@ -324,6 +376,19 @@ Format: `deletetgall tg/TUTORIAL_GROUP…`
 Example:
 * `find Eve` followed by `deletetgall tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` from all students in TACH, including those not visible after the `find Eve` command(i.e. students whose name does not contain `Eve`)
 * `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial group will be deleted from TACH.
+
+The following diagram show the output of `deletetgall tg/CS2100 T05` 
+from the previous `findtg` [output](#finding-students-by-tutorial-group-findtg)
+
+![Results Display](images/DeleteTgAllResult.png)<br><br>
+
+Note:
+- The plane is empty as all the students displayed previously after `findtg` are affected.
+- Simple enter `list` to show the updated list.
+
+The following diagram shows the actual list with `CS2100 T05` deleted from all the students 
+
+![Results Display](images/ListAfterDeleteTgAll.png)<br><br>
 
 ### Clearing all entries : `clear`
 
@@ -357,26 +422,39 @@ e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 
 ## Saving the data
 
-TACH data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TACH data are saved in the [hard disk](#glossary) automatically after any command that changes the data. There is no need to save manually.
 
 ## Editing the data file
 
-TACH data are saved as a JSON file `[JAR file location]/data/tach.json`. Advanced users are welcome to update data directly by editing that data file.
+TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
-</div>
+</div> <br><br>
 
-## Archiving data files
 
-[coming soon]
+To go back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TACH home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous TACH home folder.
+
+**Q**: Does TACH works on both MacOS and Microsoft Windows? <br>
+**A**: Yes. It is supported on both systems.
+
+**Q**: TACH doesn't seem to work on my computer, how may I get help? <br>
+**A**: You may drop us an email here with the relevant questions: **[link](vanessakhor19@gmail.com)**. <br><br>
+
+--------------------------------------------------------------------------------------------------------------------
+## Glossary
+| Terms                                         | Definition                                                                                                                                               |
+|-----------------------------------------------|-------------------------------------------------------------------|
+| **Hard disk**                                 |                                                                   |
+| **JSON file**                                 |                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
