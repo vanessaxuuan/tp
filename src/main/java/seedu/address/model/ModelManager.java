@@ -114,6 +114,11 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    @Override
+    public ObservableList<Student> getSortedStudentList() {
+        return sortedStudents;
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
