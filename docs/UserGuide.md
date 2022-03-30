@@ -321,6 +321,8 @@ Format: `deletetgall tg/TUTORIAL_GROUP…`
 * Deletes the specified tutorial group from **ALL** students stored in TACH.
 * The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetgall tg/cs2040s t03` will
   delete `CS2040S T03` from tutorial groups of all Students, but `deletetgall tg/cs2040s` or `deletetgall tg/cs2040st03` **WILL NOT** successfully delete `CS2040S T03` from students in TACH.
+> **NOTE**: After the deletion, you will see all the remaining students in TACH.
+
 >**WARNING:** 
 > 1. Students with 0 tutorial groups after the deletion will automatically be deleted.
 > 2. **ALL** students in TACH will be deleted or edited. Even those not visible as a result of `find` command.

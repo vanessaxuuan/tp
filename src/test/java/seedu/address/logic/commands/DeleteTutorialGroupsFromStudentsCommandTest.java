@@ -41,6 +41,7 @@ class DeleteTutorialGroupsFromStudentsCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showStudentAtIndex(model, INDEX_FOURTH_STUDENT);
         showStudentAtIndex(expectedModel, INDEX_FOURTH_STUDENT);
+        expectedModel.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
 
         List<TutorialGroup> tutorialGroupsToDelete = new ArrayList<>(Arrays.asList(
                 new TutorialGroup(VALID_TUTORIAL_GROUP_CS2103_W13_2),
