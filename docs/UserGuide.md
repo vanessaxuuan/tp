@@ -387,7 +387,10 @@ Example:
 The following diagram shows the output of `deletetgall tg/CS2100 T05` 
 from the previous `findtg` [output](#finding-students-by-tutorial-group-findtg)
 
-![Results Display](images/DeleteTgAllResult.png)<br><br>
+![Results Display](images/DeleteTgAllResult.png)<br>
+
+Note:
+- 3 students, `Gwak Seo Hyeon`, `John Smith` and `Pranith Loganathan` are deleted because they have 0 tutorial groups left after `CS2100 T05` is deleted.
 
 ### Clearing all entries : `clear`
 
