@@ -60,6 +60,8 @@ public class DeleteTutorialGroupsFromStudentsCommand extends Command {
                 model.setStudent(studentToRemoveTutorialGroup, updatedStudent);
             }
         }
+
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_TUTORIAL_GROUP_DELETE_SUCCESS,
                 tutorialGroupsToDelete.toString()));
     }
