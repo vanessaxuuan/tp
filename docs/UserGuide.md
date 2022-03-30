@@ -384,18 +384,10 @@ Example:
 * `find Eve` followed by `deletetgall tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` from all students in TACH, including those not visible after the `find Eve` command(i.e. students whose name does not contain `Eve`)
 * `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial group will be deleted from TACH.
 
-The following diagram show the output of `deletetgall tg/CS2100 T05` 
+The following diagram shows the output of `deletetgall tg/CS2100 T05` 
 from the previous `findtg` [output](#finding-students-by-tutorial-group-findtg)
 
 ![Results Display](images/DeleteTgAllResult.png)<br><br>
-
-Note:
-- The display is empty as all the students displayed previously after `findtg` are affected.
-- Simply enter `list` to show the updated list.
-
-The following diagram shows the actual list with `CS2100 T05` deleted from all the students. Compare with the [initial List](#listing-all-students-list) for further understanding.
-
-![Results Display](images/ListAfterDeleteTgAll.png)<br><br>
 
 ### Clearing all entries : `clear`
 
