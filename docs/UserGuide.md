@@ -163,28 +163,28 @@ to get started! If you want more details on what each command does, you can refe
 a better understanding. <br><br>
 
 
-To go back to [Table of Contents](#table-of-contents)
+Go back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
 List of commands:
-  1. [Viewing help](#viewing-help--help)
-  2. [Listing students](#listing-all-students-list)
-  3. [Adding](#adding)
+* [Viewing help](#viewing-help--help)
+* [Listing students](#listing-all-students-list)
+* [Adding](#adding)
      - [Adding a student](#adding-a-student-add)
      - [Adding a tutorial group](#adding-a-tutorial-group-for-a-student-addtg)
-  4. [Editing a student](#editing-a-student--edit)
-  5. [Finding](#finding)
+* [Editing a student](#editing-a-student--edit)
+* [Finding](#finding)
      - [Finding students by name](#finding-students-by-name-find)
      - [Findind students by tutorial group](#finding-students-by-tutorial-group-findtg)
-  6. [Deleting](#deleting)
+* [Deleting](#deleting)
      - [Deleting a student](#deleting-a-student-delete)
      - [Deleting a tutorial group from a student](#deleting-a-tutorial-group-from-a-student-deletetg)
      - [Deleting a tutorial group from all students](#deleting-tutorial-groups-from-all-students-deletetgall)
-  7. [Clearing all entries](#clearing-all-entries--clear)
-  8. [Exiting the program](#exiting-the-program--exit)
+* [Clearing all entries](#clearing-all-entries--clear)
+* [Exiting the program](#exiting-the-program--exit)
 
 <div markdown="block" class="alert alert-info">
 
@@ -435,7 +435,7 @@ If your changes to the data file makes its format invalid, TACH will discard all
 </div> <br><br>
 
 
-To go back to [Table of Contents](#table-of-contents)
+Go back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
