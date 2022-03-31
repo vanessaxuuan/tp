@@ -163,7 +163,7 @@ to get started! If you want more details on what each command does, you can refe
 a better understanding. <br><br>
 
 
-Go back to [Table of Contents](#table-of-contents)
+Go back to **[Table of Contents](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -225,10 +225,7 @@ Format: `list`
 
 ![Results Display](images/ListCommandResult.png)
 
-Note:
-```
-The students will be sorted by name in alphabeticaal order
-```
+The students will be sorted in alphabetical order by their names.
 
 ### Adding 
 
@@ -435,7 +432,7 @@ If your changes to the data file makes its format invalid, TACH will discard all
 </div> <br><br>
 
 
-Go back to [Table of Contents](#table-of-contents)
+Go back to **[Table of Contents](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -449,14 +446,15 @@ the data of your previous TACH home folder.
 **A**: Yes. It is supported on both systems.
 
 **Q**: TACH doesn't seem to work on my computer, how may I get help? <br>
-**A**: You may drop us an email here with the relevant questions: **[link](vanessakhor19@gmail.com)**. <br><br>
+**A**: You may drop us an email here with the relevant questions: **[Link](mailto:vanessakhor19@gmail.com)**. <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
-| Terms                                         | Definition                                                                                                                                               |
-|-----------------------------------------------|-------------------------------------------------------------------|
-| **Hard disk**                                 | A storage device for data in your computer                        |
-| **JSON file**                                 | A file that uses human-readable text to store and transmit data objects such as `Students` in the case of TACH                                                        |
+
+| Terms         | Definition                                                                                                     |
+|---------------|----------------------------------------------------------------------------------------------------------------|
+| **Hard disk** | A storage device for data in your computer                                                                     |
+| **JSON file** | A file that uses human-readable text to store and transmit data objects such as `Students` in the case of TACH |
 
 --------------------------------------------------------------------------------------------------------------------
 
