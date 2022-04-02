@@ -18,7 +18,6 @@ This developer’s guide assumes its readers to have a basic understanding of pr
 The purpose of this Developer Guide is to help readers understand the design and implementation of TACH, so that 
 any reader who is interested can become a contributor to this project as well.
 
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
@@ -29,12 +28,12 @@ This project is based on the AddressBook-Level3(AB3) project created by the [SE-
 
 Following are a few syntaxes to take note before proceeding with the rest of the contents in our developer guide:
 
-| Syntax                                                                  | Description                                                  |
-|-------------------------------------------------------------------------|--------------------------------------------------------------|
-| `Markdown`                                                              | Denotes file path, distinct classes, their usage or examples |
+| Syntax                                                             | Description                                                  |
+|--------------------------------------------------------------------|--------------------------------------------------------------|
+| `Markdown`                                                         | Denotes file path, distinct classes, their usage or examples |
 | <div markdown="span" class="alert alert-info">:information_source: Note | Important information to take note of                        |
-| Words in `UPPER_CASE`                <br/>                              | Parameters to be supplied by the user                        |
-| parameter end with `…`                                                  | This parameter can be added multiple times                                            |
+| Words in `UPPER_CASE`                                              | Parameters to be supplied by the user                        |
+| parameter end with `…`                                             | This parameter can be added multiple times                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
