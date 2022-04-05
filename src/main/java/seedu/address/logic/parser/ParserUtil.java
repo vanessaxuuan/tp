@@ -29,8 +29,11 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (!StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        if (!StringUtil.isNonNegativeUnsignedIntegerThatDoesNotOverflow(trimmedIndex)) {
+
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import seedu.address.commons.core.index.Index;
@@ -35,7 +36,7 @@ public class DeleteTutorialGroupParser implements Parser<DeleteTutorialGroupComm
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
                     DeleteTutorialGroupCommand.MESSAGE_USAGE), pe);
         }
 
