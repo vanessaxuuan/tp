@@ -52,13 +52,16 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@u.nus.edu-")); // domain name ends with a hyphen
         assertFalse(Email.isValidEmail("peterjack@u.nus.e")); // top level domain has less than two chars
         assertFalse(Email.isValidEmail("peterjack@email.com")); // Unaccepted domain name
+        assertFalse(Email.isValidEmail("1234567890123456789012345678901234567890" +
+                "1234567890123456789012345@gmail.com")); // 65 character long local name (too long)
 
         // valid email
         assertTrue(Email.isValidEmail("PeterJack_1190@u.nus.edu")); // underscore in local part
         assertTrue(Email.isValidEmail("PeterJack.1190@u.nus.edu")); // period in local part
         assertTrue(Email.isValidEmail("PeterJack+1190@u.nus.edu")); // '+' symbol in local part
         assertTrue(Email.isValidEmail("PeterJack-1190@u.nus.edu")); // hyphen in local part
-        assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
+        assertTrue(Email.isValidEmail("1234567890123456789012345678901234567890" +
+                "123456789012345678901234@gmail.com")); // 64 character long local name
 
         // accepted domains
         assertTrue(Email.isValidEmail("peterjack@u.nus.edu"));

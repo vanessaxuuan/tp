@@ -14,7 +14,7 @@ public class Email {
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
+            + "characters. The local-part cannot be longer than 64 characters.\n"
             + "2. This is followed by a '@' and then a domain name. The domain name must be one of the following:\n"
             + "u.nus.edu    nus.edu.sg    gmail.com    yahoo.com    outlook.com    hotmail.com";
     // alphanumeric and special characters
@@ -42,7 +42,12 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            String[] localAndDomain = test.split("@");
+            return localAndDomain[0].length() <= 64;
+        } else {
+            return false;
+        }
     }
 
     @Override
