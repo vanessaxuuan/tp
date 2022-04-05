@@ -59,6 +59,13 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("PeterJack+1190@u.nus.edu")); // '+' symbol in local part
         assertTrue(Email.isValidEmail("PeterJack-1190@u.nus.edu")); // hyphen in local part
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
-        assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+
+        // accepted domains
+        assertTrue(Email.isValidEmail("peterjack@u.nus.edu"));
+        assertTrue(Email.isValidEmail("peterjack@nus.edu.sg"));
+        assertTrue(Email.isValidEmail("peterjack@gmail.com"));
+        assertTrue(Email.isValidEmail("peterjack@yahoo.com"));
+        assertTrue(Email.isValidEmail("peterjack@outlook.com"));
+        assertTrue(Email.isValidEmail("peterjack@hotmail.com"));
     }
 }
