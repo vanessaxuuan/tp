@@ -36,8 +36,7 @@ public class DeleteTutorialGroupParser implements Parser<DeleteTutorialGroupComm
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
-                    DeleteTutorialGroupCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         // Exception thrown if more than one value

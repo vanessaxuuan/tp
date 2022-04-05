@@ -32,9 +32,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        if (!StringUtil.isNonNegativeUnsignedIntegerThatDoesNotOverflow(trimmedIndex)) {
 
-        }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
