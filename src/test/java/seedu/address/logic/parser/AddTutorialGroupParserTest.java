@@ -38,10 +38,6 @@ public class AddTutorialGroupParserTest {
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
-        //index equal to 2147483647
-        assertParseFailure(parser, "2147483647" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-            MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-
         //index larger than 2147483647
         assertParseFailure(parser, "2147483648" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
             MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

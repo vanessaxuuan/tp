@@ -79,9 +79,6 @@ public class EditCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
-        //index equal to 2147483647
-        assertParseFailure(parser, "2147483647", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-
         //index larger than 2147483647
         assertParseFailure(parser, "2147483648", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }

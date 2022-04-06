@@ -80,7 +80,7 @@ public class StringUtil {
             BigInteger parsedInteger = new BigInteger(s);
             Integer maxInt = Integer.MAX_VALUE;
             String maxIntString = maxInt.toString();
-            if (parsedInteger.compareTo(new BigInteger(maxIntString)) != -1) { //check for overflow
+            if (parsedInteger.compareTo(new BigInteger(maxIntString)) == 1) { //check for overflow
                 return false;
             }
             int value = Integer.parseInt(s);
