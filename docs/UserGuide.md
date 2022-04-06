@@ -5,7 +5,8 @@ title: User Guide
 
 ## Introduction
 
-TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) tutoring multiple tutorial groups by
+TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) from 
+National University of Singapore (NUS) who tutors multiple tutorial groups by
 **managing their students in an organised manner**.
 
 TAs can **add, edit and delete** students and their tutorial groups from their list easily.
