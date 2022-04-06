@@ -9,12 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialGroup {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial Groups should consist of a module code, followed by"
-        + " a space, then the tutorial name. It should not be blank. The tutorial name can be a single digit (1 - 9) "
-        + "or any length of alphanumeric characters with at least 1 digit but it cannot end or start with a hyphen.A "
-        + "tutorial group can only have a maximum of 100 characters including whitespace.";
+    public static final String MESSAGE_CONSTRAINTS = "Must STRICTLY consist of a module code, followed by a "
+        + "space, then the tutorial name. It should not be blank. The tutorial name must have a non-zero digit and "
+        + "cannot start or end with a hyphen. The name consist of letters or hyphens or digits or underscores."
+        + "Tutorial Group may only have a maximum of 100 characters including whitespace.";
     public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} "
-        + "([a-zA-Z]{1,}[0-9]{1,}|[1-9]{1,})([\\w-][^-])*";
+        + "[\\w-]+"; // ensures correct module code and tutorial name contain letters or digits or underscores or
+    // hyphens
 
     public final String tutorialGroupName;
 
@@ -33,8 +34,25 @@ public class TutorialGroup {
      * Returns true if a given string is a valid tutorial group name.
      */
     public static boolean isValidTutorialGroupName(String test) {
-        if (test.length() >= 100) {
-           return false;
+        if (test.length() >= 100 || !test.contains(" ")) {
+            return false;
+        }
+        String[] tutorialGroupSplitByOneWhitespace = test.split(" ", 2);
+        String tutorialName = tutorialGroupSplitByOneWhitespace[1];
+        for (int i = 1; i <= 10; i++) {
+            if (tutorialName.contains(String.format("%d", i))) {
+                break;
+            }
+            if (i == 10) {
+                return false;
+            }
+        }
+        String lastCharacterOfTutorialName = tutorialName.substring(tutorialName.length() - 1);
+        String firstCharacterOfTutorialName = tutorialName.substring(0, 1);
+        if (!lastCharacterOfTutorialName.matches("[\\w]")
+            || !firstCharacterOfTutorialName.matches("[\\w]")) {
+            //ensures tutorial name does not start and end with hyphens
+            return false;
         }
         return test.matches(VALIDATION_REGEX);
     }

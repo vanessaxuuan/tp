@@ -2,7 +2,6 @@ package seedu.address.model.tutorialgroup;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.tutorialgroup.TutorialGroup.isValidTutorialGroupName;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -21,29 +20,38 @@ public class TutorialGroupTest {
     }
 
     @Test
-    public void isValidTutorialGroupName_nullTutorialGroup_throwsNullPointerException() {
-        // null tutorial group name
-        assertThrows(NullPointerException.class, () -> isValidTutorialGroupName(null));
+    public void isValidTutorialGroupName() {
+        assertThrows(NullPointerException.class, () ->
+            TutorialGroup.isValidTutorialGroupName(null)); // null tutorial group name
+
+        assertFalse(TutorialGroup.isValidTutorialGroupName("")); // empty tutorial group
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S")); // without tutorial name
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS50 T01")); // module code only 2 digits
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S  T05")); // 2 spaces
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S T05-")); // end with hyphen
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S -T05")); // tutorial name start with hyphen
+        assertFalse(TutorialGroup.isValidTutorialGroupName(
+            "CS2040S T05!")); // tutorial name has special character
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S* T05")); // module has special character
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
+            + "W5124541414124112321321312321312323132332131313131141"
+            + "4124112321321312321312323132332131313131")); // tutorial group with 100 characters
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
+            + "W5124541414124112321321312321312323132332131313131141"
+            + "4124112321321312321312323132332131313131")); // tutorial group with 100 characters
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
+            + "W51245414141241123213421312321312323132332131313131141"
+            + "4124112321321312321312323132332131313131")); // tutorial group with 101 characters
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
+            + "W000000000000000000000000000000000000000000000"
+            + "0000000000000")); // long tutorial group with only 0 digits for tutorial name.
+
+        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2106 "
+            + "W512454141412411232132131232131232313233213131313114141"
+            + "2411232132131232131232313233213131313")); // tutorial group with 99 characters
+        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2106 T05")); // valid tutorial group
+        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2103T W15-3")); // hyphen
+        assertTrue(TutorialGroup.isValidTutorialGroupName(
+            "CS2106 5")); // only has tutorial name with one non-zero digit
     }
-
-    @Test
-    public void isValidTutorialGroupName_TutorialGroupLongerThan100Characters_returnsFalse() {
-        // tutorial group with 100 characters
-        assertFalse(isValidTutorialGroupName("CS2106 "
-            + "W51245414141241123213213123213123231323321313131311414124112321321312321312323132332131313131"));
-
-        // tutorial group with 101 characters
-        assertFalse(isValidTutorialGroupName("CS2106 "
-            + "W512454141412411232134213123213123231323321313131311414124112321321312321312323132332131313131"));
-    }
-
-    @Test
-    public void isValidTutorialGroupName_TutorialGroupLessThan100Characters_returnsTrue() {
-        // tutorial group with 99 characters
-        assertTrue(isValidTutorialGroupName("CS2106 "
-            + "W5124541414124112321321312321312323132332131313131141412411232132131232131232313233213131313"));
-    }
-
-
-
 }
