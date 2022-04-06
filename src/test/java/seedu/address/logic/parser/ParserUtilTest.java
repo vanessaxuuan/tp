@@ -24,13 +24,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TELEGRAM = "+651234";
     private static final String INVALID_GITHUB = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_EMAIL = "u.nus.edu";
     private static final String INVALID_TUTORIAL_GROUP = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_TELEGRAM = "@123456";
     private static final String VALID_GITHUB = "Walk-Rachel";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_EMAIL = "rachel@u.nus.edu";
     private static final String VALID_TUTORIAL_GROUP_1 = "ST2334 T01";
     private static final String VALID_TUTORIAL_GROUP_2 = "ES2660 G04";
 
