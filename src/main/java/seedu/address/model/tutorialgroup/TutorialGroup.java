@@ -9,9 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialGroup {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial Groups should consist of a Module code, followed by"
-        + " a space, then the tutorial name. It should not be blank.";
-    public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} [\\w-]+";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial Groups should consist of a module code, followed by"
+        + " a space, then the tutorial name. It should not be blank. The tutorial name can be a single digit (1 - 9) "
+        + "or any length of alphanumeric characters with at least 1 digit but it cannot end or start with a hyphen.A "
+        + "tutorial group can only have a maximum of 100 characters including whitespace.";
+    public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} "
+        + "([a-zA-Z]{1,}[0-9]{1,}|[1-9]{1,})([\\w-][^-])*";
 
     public final String tutorialGroupName;
 
@@ -30,6 +33,9 @@ public class TutorialGroup {
      * Returns true if a given string is a valid tutorial group name.
      */
     public static boolean isValidTutorialGroupName(String test) {
+        if (test.length() >= 100) {
+           return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
