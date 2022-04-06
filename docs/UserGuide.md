@@ -395,6 +395,9 @@ Clears all entries from TACH.
 
 Format: `clear`
 
+>**WARNING:**
+> This action erases the data file and **CANNOT** be undone! Consider carefully before calling the command.
+
 ### Exiting the program : `exit`
 
 Exits the program.
