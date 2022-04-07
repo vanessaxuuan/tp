@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
-import com.sandec.mdfx.MarkdownView;
 import org.apache.commons.io.IOUtils;
+
+import com.sandec.mdfx.MarkdownView;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -52,9 +53,10 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
 
         try {
-            helpGuide = IOUtils.toString(HelpWindow.class.getResourceAsStream("/help/helpGuide.md"),
-                StandardCharsets.UTF_8);
+            helpGuide = IOUtils.toString(HelpWindow.class
+                    .getResourceAsStream("/help/helpGuide.md"), StandardCharsets.UTF_8);
         }
+
         catch (IOException | NullPointerException e) { // could not find path
             helpGuide = "File not found, this page is empty!";
         }
