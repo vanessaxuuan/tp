@@ -396,7 +396,7 @@ Clears all entries from TACH.
 Format: `clear`
 
 >**WARNING:**
-> This action erases the data file and **CANNOT** be undone! Consider carefully before calling the command.
+> This action erases all the student data stored in your computer and CANNOT be undone! Consider carefully before calling the command as you will have to re-enter the students' details if clear is executed accidentally.
 
 ### Exiting the program : `exit`
 
