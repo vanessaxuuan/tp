@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
-import com.sandec.mdfx.MarkdownView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
@@ -13,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+
+import com.sandec.mdfx.MarkdownView;
 import org.apache.commons.io.IOUtils;
 import seedu.address.commons.core.LogsCenter;
 
@@ -51,7 +52,7 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
 
         try {
-        helpGuide = IOUtils.toString(HelpWindow.class.getResourceAsStream("/help/helpGuide.md"),
+            helpGuide = IOUtils.toString(HelpWindow.class.getResourceAsStream("/help/helpGuide.md"),
                 StandardCharsets.UTF_8);
         }
         catch (IOException | NullPointerException e) { // could not find path
