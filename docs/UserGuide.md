@@ -206,7 +206,7 @@ List of commands:
 * Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`. <br>
   - `help123` will not be interpreted as `help`.<br><br>
-  
+
 * `INDEX` represents the corresponding student currently displayed in TACH, and it has to be a positive integer. 
 
 </div>
