@@ -1,3 +1,45 @@
+## A quick Command Summary
+
+1. **Add Student** : `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> 
+e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname`
+
+
+2. **Add Tutorial Group for Student** : `addtg INDEX tg/TUTORIAL_GROUP…` <br> 
+e.g. `addtg 5 tg/CS2100 G08`
+
+
+3. **Edit Student** : `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> 
+e.g. `edit 3 n/Mary Sue t/PresentPerfect`
+
+
+4. **Find Students by name** : `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> 
+e.g. `find Jack Jane`
+
+
+5. **Find Students by Tutorial Group** : `findtg TUTORIAL_GROUP` <br> 
+e.g. `findtg CS2101 G08`
+
+6. **Delete Student** : `delete INDEX` <br> 
+e.g. `delete 4`
+
+
+7. **Deleting Tutorial Group from Student** : `deletetg INDEX tg/TUTORIAL_GROUP` <br> 
+e.g. `deletetg 4 tg/cs2030s t11`
+
+
+8. **Deleting Tutorial Group from all Students** : `deletetgall tg/TUTORIAL_GROUP…` <br> 
+e.g. `deletetgall tg/CS2106 T08`
+
+
+9. **List** : `list`
+
+
+10. **Clear** : `clear`
+
+
+11. **Help** : `help`
+---
+Refer below for more details
 
 ## Commands
 
