@@ -24,32 +24,32 @@ import seedu.address.model.student.Student;
 public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withGitHub(null).withEmail("alice@example.com")
+            .withGitHub(null).withEmail("alice@u.nus.edu")
             .withTelegram("@APauline")
             .withTutorialGroup("CS2103 W13-2").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withGitHub("bensonguy")
-            .withEmail("johnd@example.com").withTelegram(null)
+            .withEmail("johnd@u.nus.edu").withTelegram(null)
             .withTutorialGroup("CS2106 T02", "CS2103 W13-2").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz Meier").withTelegram("@CarlJr")
-            .withEmail("heinz@example.com").withGitHub("JrCarl").withTutorialGroup("CS2106 T02").build();
+            .withEmail("heinz@u.nus.edu").withGitHub("JrCarl").withTutorialGroup("CS2106 T02").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Carl Meier")
-            .withTelegram("@DanieltheName").withEmail("cornelia@example.com")
+            .withTelegram("@DanieltheName").withEmail("cornelia@u.nus.edu")
             .withGitHub("Dan-iel").withTutorialGroup("CS2103 W13-2").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withTelegram("@Elle20")
-            .withEmail("werner@example.com").withGitHub("ELLE")
+            .withEmail("werner@u.nus.edu").withGitHub("ELLE")
             .withTutorialGroup("CS2106 T02", "CS2103 W13-2", "CS2101 G08").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withTelegram("@Fiona14")
-            .withEmail("lydia@example.com").withGitHub("Fiona-14")
+            .withEmail("lydia@u.nus.edu").withGitHub("Fiona-14")
             .withTutorialGroup("CS2106 T02", "CS2103T W15-3").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withTelegram("@George11")
-            .withEmail("anna@example.com").withGitHub("George-Not-Bush").withTutorialGroup("CS2106 T02").build();
+            .withEmail("anna@u.nus.edu").withGitHub("George-Not-Bush").withTutorialGroup("CS2106 T02").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withTelegram("@Hooooon")
-            .withEmail("stefan@example.com").withGitHub("hoon-meier-14").withTutorialGroup("CS2106 T02").build();
+            .withEmail("stefan@u.nus.edu").withGitHub("hoon-meier-14").withTutorialGroup("CS2106 T02").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withTelegram("@idaida10")
-            .withEmail("hans@example.com").withGitHub("mueller-ida-20").withTutorialGroup("CS2103 W13-2").build();
+            .withEmail("hans@u.nus.edu").withGitHub("mueller-ida-20").withTutorialGroup("CS2103 W13-2").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withTelegram(VALID_TELEGRAM_AMY)

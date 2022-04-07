@@ -12,15 +12,30 @@ in commands.
 
 The following sections below summarise my contributions to this project.
 
-* **New Feature**: [To be added soon]
-    * [To be added soon]
-* **Code contributed**: [To be added soon]
-* **Enhancements to existing features**: [To be added soon]
+* **Code contributed**: **[RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=hqhqhq1&breakdown=true)**
+* **New Feature**: Added find tutorial group feature
+   * What it does: allows the user to view all students in a particular tutorial group
+   * Justification: this feature improves the product significantly because users will need to sort students by tutorial 
+  group to have a clear overview of a particular tutorial group, and it also allows users to manage their students by tutorial 
+  groups
+* **Project management**:
+  * set up, keep track and assigning of issues
+  * update milestones with respective issues and set deadline
+* **Enhancements to existing features**: 
+  * Changed add feature to add student feature to suit our product purpose (Pull request [#58](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/58))
+  * Added automatically sort student by alphabetical order feature (Pull request [#67](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/67))
+  * Updated ui for help window
+  * Wrote additional tests for existing features (Pull request [#58](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/58))
 * **Documentation**:
     * *User Guide*:
-        * Added documentation for the features `get module`, `get class` and `get student`
+        * Added documentation for the features `add` and `findtg`
+        * Updated command summary
     * *Developer Guide*:
-        * Added user cases
-* **Contributions to team-based tasks**: [To be added soon]
-* **Review/mentoring contributions**: [To be added soon]
-* **Contributions beyond the project team**: [To be added soon]
+        * Added use cases and user stories (Pull request [#30](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/30))
+        * Added and updated the following sections: Introduction, Acknowledgement and Navigation
+        * Added implementation details of the `findtg` feature. [#67](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/67))
+* **Contributions to team-based tasks**: 
+  * PRs reviewed (with non-trivial review comments): [#56](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/56), 
+  [#72](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/72), [#83](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/83), .
+  
+* **Tools:**: [To be added soon]
