@@ -51,7 +51,7 @@ If the app does not open with a double-click especially for MacOS users:
    1. For simplicity, move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
    2. Open up your **terminal** application.
    3. Enter `cd Desktop` in your terminal to go into your desktop directory.
-   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app 
+   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app
    
 <div markdown="block" class="alert alert-info">
 
