@@ -39,6 +39,7 @@ public class NameTest {
         assertFalse(Name.isValidName("peter   jack")); // consecutive spaces
         assertFalse(Name.isValidName("peter\'\'jack")); // consecutive apostrophes
         assertFalse(Name.isValidName("Peter Jack 2jjj")); // Has a number but does not end with it
+        assertFalse(Name.isValidName("Peter Jack 2 jjj")); // Has a number but does not end with it
         assertFalse(Name.isValidName("WatermelonWatermelonWatermelonWatermelonWatermelon"
                 + "WatermelonWatermelonWatermelonWatermelonWatermelons")); // 101 characters
 
@@ -47,7 +48,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("Max-Ernest")); // name with hyphen
         assertTrue(Name.isValidName("Jeanne d'Arc")); // name with apostrophe
-        assertTrue(Name.isValidName("Johnson-Johnson d'Arby")); // name with all hyphen, space and apostrophe
+        assertTrue(Name.isValidName("Johnson-Johnson d'Arby")); // name with a hyphen, space and apostrophe
         assertTrue(Name.isValidName("Peter Jack 2")); // ends with a number
         assertTrue(Name.isValidName("Peter Jack 000000000000000")); // ends with a number
         assertTrue(Name.isValidName("WatermelonWatermelonWatermelonWatermelonWatermelon"
