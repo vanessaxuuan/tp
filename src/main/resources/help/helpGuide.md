@@ -39,7 +39,8 @@ e.g. `deletetgall tg/CS2106 T08`
 
 11. **Help** : `help`
 ---
-Refer below for more details
+---
+Refer below for more details about command formats.
 
 ## Commands
 
