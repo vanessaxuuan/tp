@@ -10,9 +10,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain letters, and can contain a single space, apostrophe or hyphen surrounded by "
-                    + "letters. Names must start with a letter but can end with numbers. "
-                    + "Names cannot be blank and cannot be longer than 100 characters in total.";
+            "Names must contain letters. Can contain spaces, apostrophes and hyphens as long as they are in between "
+                    + "letters. Consecutive spaces, apostrophes or hyphens are not allowed. "
+                    + "Names must start with a letter. "
+                    + "Numbers are allowed, but they must strictly be at the end of the name. "
+                    + "Names cannot be blank and cannot be more than 100 characters long, including spaces.";
 
     /*
      * The first character of the address must not be a whitespace,
