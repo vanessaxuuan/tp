@@ -34,7 +34,7 @@ public class TutorialGroup {
      * Returns true if a given string is a valid tutorial group name.
      */
     public static boolean isValidTutorialGroupName(String test) {
-        if (test.length() >= 100 || !test.contains(" ")) {
+        if (test.length() > 100 || !test.contains(" ")) {
             return false;
         }
         String[] tutorialGroupSplitByOneWhitespace = test.split(" ", 2);
