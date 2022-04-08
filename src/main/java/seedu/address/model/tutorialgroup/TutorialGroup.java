@@ -12,7 +12,8 @@ public class TutorialGroup {
     public static final String MESSAGE_CONSTRAINTS = "Must STRICTLY consist of a module code, followed by a "
         + "space, then the tutorial name. It should not be blank. The tutorial name must have a non-zero digit and "
         + "cannot start or end with a hyphen. The name consist of letters or hyphens or digits or underscores."
-        + "Tutorial Group may only have a maximum of 100 characters including whitespace.";
+        + "Tutorial Group may only have a maximum of 100 characters including whitespace."
+        + "ALL letters in tutorial group inputs will be converted into uppercase letters.";
     public static final String VALIDATION_REGEX = "[A-Za-z]{2,3}[1-8]\\d{3}[A-Za-z]{0,2} "
         + "[\\w-]+"; // ensures correct module code and tutorial name contain letters or digits or underscores or
     // hyphens
@@ -26,6 +27,7 @@ public class TutorialGroup {
      */
     public TutorialGroup(String tutorialGroupName) {
         requireNonNull(tutorialGroupName);
+        assert tutorialGroupName == tutorialGroupName.toUpperCase() : "tutorial group should be in uppercase";
         checkArgument(isValidTutorialGroupName(tutorialGroupName), MESSAGE_CONSTRAINTS);
         this.tutorialGroupName = tutorialGroupName;
     }
