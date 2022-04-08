@@ -29,8 +29,6 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    private String helpGuide;
-
     @FXML
     private Button copyButton;
 
@@ -52,16 +50,21 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
 
+        String helpGuide;
+
         try {
             helpGuide = IOUtils.toString(HelpWindow.class
                     .getResourceAsStream("/help/helpGuide.md"), StandardCharsets.UTF_8);
         }
 
-        catch (IOException | NullPointerException e) { // could not find path
-            helpGuide = "File not found, this page is empty!";
+        // could not find helpGuide path
+        catch (NullPointerException | IOException e) {
+            helpGuide = "File not found!";
         }
 
+        //Solution for viewing markDown from third party library https://github.com/JPro-one/markdown-javafx-renderer
         helpGuideView = new MarkdownView(helpGuide);
+        helpGuideView.getStylesheets().add("/com/sandec/mdfx/mdfx-default.css");
         helpGuideView.setPadding(new Insets(20));
 
         scrollPane.setContent(helpGuideView);
