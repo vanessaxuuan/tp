@@ -74,7 +74,7 @@ public class AddTutorialGroupCommand extends Command {
 
         Student updatedStudent = createNewStudent(studentToEdit, addTutorialGroupDescriptor);
         model.setStudent(studentToEdit, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.getFilteredStudentList();
         return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS,
                 addTutorialGroupDescriptor.tutorialGroups));
     }
