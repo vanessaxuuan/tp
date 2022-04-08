@@ -11,8 +11,8 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain letters, and can contain a single space, apostrophe or hyphen surrounded by "
-                    + "letters. Names can end with numbers. Names cannot be blank and cannot be longer than "
-                    + "100 characters in total.";
+                    + "letters. Names must start with a letter but can end with numbers. "
+                    + "Names cannot be blank and cannot be longer than 100 characters in total.";
 
     /*
      * The first character of the address must not be a whitespace,
