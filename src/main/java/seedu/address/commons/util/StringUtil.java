@@ -45,7 +45,7 @@ public class StringUtil {
      * @param sentence1 cannot be null
      * @param sentence2 cannot be null, cannot be empty
      */
-    public static boolean containsSentenceIgnoreCase(String sentence1, String sentence2) {
+    public static boolean containsFullSentenceIgnoreCase(String sentence1, String sentence2) {
         requireNonNull(sentence1);
         requireNonNull(sentence2);
 
