@@ -38,7 +38,8 @@ public class StringUtilTest {
         assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(Long.toString(Integer.MAX_VALUE + 1)));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(
+            Long.toString(Integer.MAX_VALUE + 1)));
 
         // EP: number equal to Integer.MAX_VALUE
         assertTrue(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(Long.toString(Integer.MAX_VALUE)));
