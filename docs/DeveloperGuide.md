@@ -674,11 +674,6 @@ Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from 
     Use case ends.
 
 **Extensions**
-
-* 1a. TA chooses instead to find students from a specific tutorial group.
-
-  Use case resumes at step 2.
-
 * 1a. The given index is invalid.
     * 1a1. TACH prompts the TA to type in a valid index.
       Step 1a1 is repeated until a valid index is entered.
@@ -686,6 +681,7 @@ Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from 
 * 1b. The email/telegram/github/name, that is provided, is invalid.
     * 1b1. TACH prompts the TA to type in a valid attribute for the attribute that is invalid.
       Step 1b1 is repeated until the provided attributes are valid.
+
 * 1c. The tutorial group ,if provided, is empty or invalid
     * 1c1. TACH prompts the TA to type in a non-empty and valid tutorial group.
       Step 1c1 is repeated until the tutorial group is valid and non-empty.
@@ -775,7 +771,9 @@ testers are expected to do more *exploratory* testing.
 1. Troubleshooting with corrupted files:
    1. Prerequisite: Corrupted data file.
        * To simulate a corrupted data file:
-         1. Open the data folder in the folder where TACH is in. Edit TACH.json and change one of the fields to an invalid one e.g. change from
+         1. Open the data folder in the folder where TACH is in. Edit TACH.json and change one of the fields to an invalid one 
+         e.g. Add a `!` at the end of Irfan's email.
+         i.e.change from
              > "name" : "Irfan Ibrahim",
              <br>"telegram" : "@irfan201",
              <br>"email" : "irfan@hotmail.com",
@@ -793,8 +791,9 @@ testers are expected to do more *exploratory* testing.
    2. Test case: Corrupted data file 
    <br>Open the data folder in the folder where TACH is in. Edit all the data such that it meets the requirement stated here.[Input Requirements](https://ay2122s2-cs2103t-w15-3.github.io/tp/UserGuide.html#input-requirements) 
    <br> Expected: TACH will now load the data file and not an empty one.
-      1. Example: To resolve the issue in step i, change Irfan's email to a valid one. i.e.
-         <br>change:
+      1. Example: To resolve the issue in step i, change Irfan's email from an invalid one (`irfan@hotmail.com!`) 
+      to a valid one (`irfan@hotmail.com`) by removing the `!` at the end. i.e.
+         <br>change from :
           > "name" : "Irfan Ibrahim",
           <br>"telegram" : "@irfan201",
           <br>"email" : "irfan@hotmail.com!",
