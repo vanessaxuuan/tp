@@ -17,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        String sentence = String.join(" ", keywords);
+        String keys = String.join(" ", keywords);
         String name = student.getName().fullName;
-        return StringUtil.containsWordIgnoreCase(name, sentence);
+        return StringUtil.containsPartialSentenceIgnoreCase(name, keys);
     }
 
     @Override

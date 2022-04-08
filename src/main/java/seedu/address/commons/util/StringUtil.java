@@ -13,24 +13,24 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code name} contains the {@code keys}.
-     *   Ignores case, but white space in {@code keys} must match {@code name}'s.
+     * Returns true if the {@code sentence} contains the {@code keys}.
+     *   Ignores case, but white space in {@code keys} must match {@code sentence}'s.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "abd d") == true
      *       containsWordIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
      *       containsWordIgnoreCase("ABc def", "abc defg") == false // not a substring
      *       </pre>
-     * @param name cannot be null
+     * @param sentence cannot be null
      * @param keys cannot be null, cannot be empty
      */
-    public static boolean containsWordIgnoreCase(String name, String keys) {
-        requireNonNull(name);
+    public static boolean containsPartialSentenceIgnoreCase(String sentence, String keys) {
+        requireNonNull(sentence);
         requireNonNull(keys);
 
-        String capitalizedName = name.toUpperCase();
-        String capitalizedKeys = keys.toUpperCase();
-        checkArgument(!keys.isEmpty(), "keys cannot be empty");
+        checkArgument(!keys.isBlank(), "keys cannot be empty");
+        String capitalizedName = sentence.toUpperCase().trim();
+        String capitalizedKeys = keys.toUpperCase().trim();
         return capitalizedName.contains(capitalizedKeys);
     }
 
