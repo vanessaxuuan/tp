@@ -33,19 +33,19 @@ public class TutorialGroupTest {
         assertFalse(TutorialGroup.isValidTutorialGroupName(
             "CS2040S T05!")); // tutorial name has special character
         assertFalse(TutorialGroup.isValidTutorialGroupName("CS2040S* T05")); // module has special character
-        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
-            + "W51245414141241123213421312321312323132332131313131141"
-            + "4124112321321312321312323132332131313131")); // tutorial group with 101 characters
-        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2106 "
-            + "W000000000000000000000000000000000000000000000"
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2103T "
+            + "WT1234567890123456789012345678901234567890123456789"
+            + "012345678901234567890123456789012345678901")); // tutorial group with 101 characters
+        assertFalse(TutorialGroup.isValidTutorialGroupName("CS2103T "
+            + "W00000000000000000000000000000000000000000000"
             + "0000000000000")); // long tutorial group with only 0 digits for tutorial name.
 
-        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2106 "
-            + "W5124541414124112321321312321312323132332131313131141"
-            + "4124112321321312321312323132332131313131")); // tutorial group with 100 characters
-        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2106 "
-            + "W5124541414124112321321312321312323132332131313131141"
-            + "412411232132131232131232313233213131313")); // tutorial group with 99 characters
+        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2103T "
+            + "WT1234567890123456789012345678901234567890123456789"
+            + "01234567890123456789012345678901234567890")); // tutorial group with 100 characters
+        assertTrue(TutorialGroup.isValidTutorialGroupName("CS2103T "
+                + "WT1234567890123456789012345678901234567890123456789"
+                + "0123456789012345678901234567890123456789")); // tutorial group with 99 characters
         assertTrue(TutorialGroup.isValidTutorialGroupName("CS2106 T05")); // valid tutorial group
         assertTrue(TutorialGroup.isValidTutorialGroupName("CS2103T W15-3")); // hyphen
         assertTrue(TutorialGroup.isValidTutorialGroupName(
