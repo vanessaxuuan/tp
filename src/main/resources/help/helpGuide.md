@@ -87,6 +87,13 @@ Adds a student into TACH.
 
 Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
 
+Note:
+* Students with the same names will be considered as duplicate students.
+  - e.g. If `Sam` exists in TACH, another `Sam` **cannot be added again** even if their contact details are different.
+  - Do manually differentiate them by saving them as `Sam1` and `Sam2` for easier reference.
+  - This is because if two `Sam`s  are in the same tutorial group, you might not be able to recognize which `Sam` is which `Sam` in TACH as you most likely will not be able to remember their personal contact details to differentiate them.
+  - Thus, names would be used to uniquely identify everyone.
+
 Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
 * `add n/Michael Tay e/michaelT@gmail.com t/MichaelTay g/michael777 tg/CS2103T W15-3 tg/CS2100 G08`
@@ -145,7 +152,8 @@ Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 * The search is case-insensitive. e.g. `charles` will match `Charles`
 * The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
 * Only the name is searched.
-* Only full words will be matched e.g. `Char` **WILL NOT** match `Charles`
+* Words can be partially matched e.g. `Char` **WILL** match `Charles`
+* Multiple keywords can be partially matched too e.g. `Alex Ko` will match `Alex Koh`
 * Only students matching all the keywords will be returned.
   e.g. `Charles Lee` will return `Charles Alex Lee`, not `Charles Tan`
 
@@ -160,6 +168,8 @@ Finds all students in a particular tutorial group.
 Format `findtg TUTORIAL_GROUP`
 
 * The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
+* The search ignores extra whitespaces. e.g. `cs2101<><><>g08` will match `cs2101<>g08` 
+(`<>` illustrates whitespace)
 * Only the tutorial group is searched.
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
 * Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return
@@ -245,4 +255,30 @@ easier understand which parameters are invalid when typing a command.
 
 In the list, a **word** is defined as a bunch of *characters* (letters, numbers, punctuation, etc.) separated by spaces.
 e.g. `There A_RE 4 w0-rd_s.` has 4 words.
+
+1. **INDEX** : Must be a positive integer (1, 2, 3, …) 
+
+
+2. **NAME**  : Must have at least one word, and each word can only have letters and numbers <br> 
+e.g. `Edward the 4th`
+
+
+3. **TUTORIAL_GROUP** : Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, 
+underscores and hyphens. It can **NEVER** be empty. <br> 
+e.g. `CS2103T W15-3_A` 
+
+
+4. **EMAIL** : An email consists of three parts in the following order, the local part, the `@` sign, and the domain part. <br> The local part should only contain letters, 
+numbers, and these special symbols: `+` `_` `.` `-`. It cannot start or end with the special symbols. It must be at most 64 characters long. <br> There must be an @ sign afterwards, followed by the domain name. <br> 
+The domain name must be one of the following: `u.nus.edu` `nus.edu.sg` `gmail.com` `yahoo.com` `outlook.com` `hotmail.com` <br> (Our original intention
+is for you to put in your students' NUS emails which are given to you on LumiNUS, but we also provide the freedom to use some of the more popular email providers listed above, should they be more convenient.) <br>
+e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br>
+
+
+5. **TELEGRAM** : May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br>
+e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`
+
+
+6. **GITHUB** : Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> 
+e.g. `12345678` or `cake-is-a-lie77` 
 
