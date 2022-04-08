@@ -41,6 +41,9 @@ public class DeleteTutorialGroupCommand extends Command {
             + "have this tutorial group.";
     public static final String MESSAGE_CANNOT_DELETE_ONLY_TUTORIAL_GROUP = "This tutorial group cannot be deleted "
             + "because the student at this index only has this tutorial group.";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = String.format(
+        Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, "Index is larger than the number of "
+            + "students in the viewed list.");
 
     private final Index index;
     private final TutorialGroup tutorialGroupToDelete;
@@ -79,7 +82,7 @@ public class DeleteTutorialGroupCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 

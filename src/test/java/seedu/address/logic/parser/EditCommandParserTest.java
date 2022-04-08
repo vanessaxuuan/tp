@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_GITHUB_DESC;
@@ -55,28 +56,38 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "",
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string",
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string",
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
+
+        //index larger than 2147483647
+        assertParseFailure(parser, "2147483648",
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test
