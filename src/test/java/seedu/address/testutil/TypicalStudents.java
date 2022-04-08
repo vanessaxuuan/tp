@@ -42,7 +42,7 @@ public class TypicalStudents {
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withTelegram("@Fiona14")
             .withEmail("lydia@u.nus.edu").withGitHub("Fiona-14")
             .withTutorialGroup("CS2106 T02", "CS2103T W15-3").build();
-    public static final Student GEORGE = new StudentBuilder().withName("George Best").withTelegram("@George11")
+    public static final Student GEORGE = new StudentBuilder().withName("George Fiona Kun").withTelegram("@George11")
             .withEmail("anna@u.nus.edu").withGitHub("George-Not-Bush").withTutorialGroup("CS2106 T02").build();
 
     // Manually added
