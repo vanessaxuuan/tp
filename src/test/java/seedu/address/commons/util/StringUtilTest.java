@@ -40,7 +40,7 @@ public class StringUtilTest {
         // EP: number larger than Integer.MAX_VALUE
         assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(Long.toString(Integer.MAX_VALUE + 1)));
 
-        // EP: number larger than Integer.MAX_VALUE
+        // EP: number equal to Integer.MAX_VALUE
         assertTrue(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(Long.toString(Integer.MAX_VALUE)));
 
         // EP: valid numbers, should return true
