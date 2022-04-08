@@ -49,6 +49,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = String.format(
+        Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, "Index is larger than the number of "
+            + "students in the viewed list.");
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -71,7 +74,7 @@ public class EditCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());

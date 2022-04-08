@@ -39,8 +39,7 @@ public class AddTutorialGroupParser implements Parser<AddTutorialGroupCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
-                    AddTutorialGroupCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, pe.getMessage()));
         }
 
         AddTutorialGroupDescriptor addTutorialGroupDescriptor = new AddTutorialGroupDescriptor();

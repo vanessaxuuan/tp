@@ -41,6 +41,9 @@ public class AddTutorialGroupCommand extends Command {
     public static final String MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS = "Added tutorial group: %1$s";
     public static final String MESSAGE_NOT_ADDED = "At least one tutorial group to add must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group already exists.";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = String.format(
+        Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, "Index is larger than the number of "
+        + "students in the viewed list.");
 
     private final Index index;
     private final AddTutorialGroupDescriptor addTutorialGroupDescriptor;
@@ -63,7 +66,7 @@ public class AddTutorialGroupCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 

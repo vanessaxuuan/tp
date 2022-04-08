@@ -69,13 +69,14 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} represents a nonZero unsigned integer that is less than {@code Integer.MAX_VALUE}
+     * Returns true if {@code s} represents a nonZero unsigned integer that is less than
+     * or equal to {@code Integer.MAX_VALUE}
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonZeroSignedIntegerLessThanIntegerLimit(String s) {
+    public static boolean isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(String s) {
         try {
             BigInteger parsedInteger = new BigInteger(s);
             Integer maxInt = Integer.MAX_VALUE;

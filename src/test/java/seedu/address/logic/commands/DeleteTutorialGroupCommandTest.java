@@ -40,7 +40,8 @@ public class DeleteTutorialGroupCommandTest {
         DeleteTutorialGroupCommand deleteTutorialGroupCommand = new DeleteTutorialGroupCommand(
                 outOfBoundIndex, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
-        assertCommandFailure(deleteTutorialGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTutorialGroupCommand, model,
+            DeleteTutorialGroupCommand.MESSAGE_INDEX_OUT_OF_RANGE);
     }
 
     @Test

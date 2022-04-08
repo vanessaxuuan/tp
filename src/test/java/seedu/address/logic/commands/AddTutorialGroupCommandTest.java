@@ -36,7 +36,7 @@ public class AddTutorialGroupCommandTest {
         AddTutorialGroupCommand addTutorialGroupCommand = new AddTutorialGroupCommand(outOfBoundIndex,
                 new AddTutorialGroupDescriptorBuilder().withTutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08).build());
 
-        assertCommandFailure(addTutorialGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(addTutorialGroupCommand, model, AddTutorialGroupCommand.MESSAGE_INDEX_OUT_OF_RANGE);
     }
 
     @Test

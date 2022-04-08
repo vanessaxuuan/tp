@@ -11,6 +11,9 @@ package seedu.address.commons.core.index;
 public class Index {
     private int zeroBasedIndex;
 
+    public static final String MESSAGE_CONSTRAINT = "Index is not a non-zero unsigned integer that is less than or"
+        + " equal to 2,147,483,647.";
+
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
      * {@link Index#fromOneBased(int)}.

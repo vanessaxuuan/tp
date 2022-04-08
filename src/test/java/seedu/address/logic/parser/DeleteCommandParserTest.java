@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 
 /**
@@ -27,6 +28,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "a",
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 }

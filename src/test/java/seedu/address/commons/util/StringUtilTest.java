@@ -16,36 +16,36 @@ public class StringUtilTest {
     public void isNonZeroUnsignedInteger() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("  "));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("")); // Boundary value
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("  "));
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("a"));
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("aaa"));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("a"));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("aaa"));
 
         // EP: zero
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("0"));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("0"));
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("01"));
+        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("01"));
 
         // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("-1"));
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("+1"));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("-1"));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("+1"));
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("1 0")); // Spaces in the middle
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(Long.toString(Integer.MAX_VALUE + 1)));
+        assertFalse(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(Long.toString(Integer.MAX_VALUE + 1)));
 
         // EP: number equal to Integer.MAX_VALUE
-        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit(Long.toString(Integer.MAX_VALUE)));
+        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit(Long.toString(Integer.MAX_VALUE)));
 
         // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("1")); // Boundary value
-        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanIntegerLimit("10"));
+        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("1")); // Boundary value
+        assertTrue(StringUtil.isNonZeroSignedIntegerLessThanOrEqualToIntegerLimit("10"));
     }
 
 

@@ -30,8 +30,8 @@ public class AddTutorialGroupParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, TUTORIAL_GROUP_DESC_CS2101_G08, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-
+        assertParseFailure(parser, TUTORIAL_GROUP_DESC_CS2101_G08,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
         // no field specified
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
 
@@ -40,18 +40,18 @@ public class AddTutorialGroupParserTest {
 
         //index larger than 2147483647
         assertParseFailure(parser, "2147483648" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-            MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-            MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // zero
         assertParseFailure(parser, "0" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
-            MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test
@@ -61,7 +61,8 @@ public class AddTutorialGroupParserTest {
                 + TUTORIAL_GROUP_EMPTY, TutorialGroup.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test
