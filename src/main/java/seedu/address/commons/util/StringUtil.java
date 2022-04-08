@@ -13,29 +13,25 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code name} contains the {@code keys}.
+     *   Ignores case, but white space in {@code keys} must match {@code name}'s.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "abd d") == true
+     *       containsWordIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
+     *       containsWordIgnoreCase("ABc def", "abc defg") == false // not a substring
      *       </pre>
-     * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param name cannot be null
+     * @param keys cannot be null, cannot be empty
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
-        requireNonNull(sentence);
-        requireNonNull(word);
+    public static boolean containsWordIgnoreCase(String name, String keys) {
+        requireNonNull(name);
+        requireNonNull(keys);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        String capitalizedName = name.toUpperCase();
+        String capitalizedKeys = keys.toUpperCase();
+        checkArgument(!keys.isEmpty(), "keys cannot be empty");
+        return capitalizedName.contains(capitalizedKeys);
     }
 
     /**
