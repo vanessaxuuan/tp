@@ -23,6 +23,9 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = String.format(
+        Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, "Index is larger than the number of "
+            + "students in the viewed list.");
 
     private final Index targetIndex;
 
@@ -36,7 +39,7 @@ public class DeleteCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());

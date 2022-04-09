@@ -8,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GitHub {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github username may only contain alphanumeric "
+    public static final String MESSAGE_CONSTRAINTS = "Github username must only contain alphanumeric "
         + "characters or hyphens.\n    Github username cannot have multiple consecutive hyphens.\n"
         + "    Github username cannot begin or end with a hyphen.\n"
-        + "    Maximum is 39 characters and minimum of 2 characters.\n    GitHub can be null.";
+        + "    Maximum is 39 characters and minimum of 2 characters.\n    GitHub can be blank.";
 
     /*
      * The first character of the gitHub must not be a whitespace,
