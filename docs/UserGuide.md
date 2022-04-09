@@ -297,15 +297,14 @@ Finds students whose names contain all the given keywords.
 Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `charles` will match `Charles`
-* The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
+* The order of the keywords matters. e.g. `Charles Boyle` will not match `Boyle Charles`
 * Only the name is searched.
-* Only full words will be matched e.g. `Char` **WILL NOT** match `Charles`
-* Only students matching all the keywords will be returned.
-e.g. `Charles Lee` will return `Charles Alex Lee`, not `Charles Tan`
-
-Examples:
-* `find Evans Smith` returns `Evans Smith`, `Evans Josh Smith` (if they
-are in the list).
+* Keywords can match the name partially e.g. `Char` **WILL** match `Charles`
+  - e.g. `Charles Bo` will match `Charles Boyle`, but `Charle Boyle` will not match `Charles Boyle`
+  - Partial matching only applies to the last word of the keyword(s)
+* The whitespace positions have to tally e.g. `Alex Lee En` **will not** match `Alex Leeen`
+* Students whose names contain the keyword fully or partially will be returned 
+  - e.g. `find char` will return `Charles Alex Lee`, `Charles Boyle`, and `Charles Tan` if they are in the list of students
 
 #### Finding students by tutorial group: `findtg`
 
