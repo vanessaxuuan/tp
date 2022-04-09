@@ -2,6 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -9,9 +12,9 @@ title: Developer Guide
 
 ## **Introduction**
 
-TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) in National University of Singapore (NUS)
-to manage their students. The application is highly optimised for users who can type fast as it is based on the Command
-Line Interface (CLI). Thus, the main interaction with TACH will be done through user text-based commands.
+TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) in National University of Singapore (NUS) to manage their students. The 
+application is highly optimised for users who can type fast as it is based on the Command Line Interface (CLI). Thus, 
+the main interaction with TACH will be done through user text-based commands.
 
 This developer’s guide assumes its readers to have a basic understanding of programming.
 
@@ -137,6 +140,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+Go back to **[Table of Contents](#table-of-contents)**
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -172,9 +177,25 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+Go back to **[Table of Contents](#table-of-contents)**
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+
+* [Telegram and GitHub attribute implementations](#telegram-and-github-attribute-implementations)
+    * [How it works](#how-it-works)
+    * [Why it works](#why-it-works)
+    * [Design considerations regarding how empty GitHub and Telegram should be stored](#design-considerations-regarding-how-empty-github-and-telegram-should-be-stored)
+* [`addtg` feature](#addtg-feature)
+    * [How `addtg` command is parsed and executed](#how-addtg-command-is-parsed-and-executed)
+    * [Example usage scenario and how the `addtg` mechanism behaves](#example-usage-scenario-and-how-the-addtg-mechanism-behaves)
+* [`deletetg` feature](#deletetg-feature)
+    * [How `deletetg` command is parsed and executed](#how-deletetg-command-is-parsed-and-executed)
+    * [A few interesting details regarding how `deletetg` command works](#a-few-interesting-details-regarding-how-deletetg-command-works)
+* [`findtg` feature](#findtg-feature)
+    * [How `findtg` command is parsed and executed](#how-findtg-command-is-parsed-and-executed)
+    * [Example usage scenario and how the `findtg` mechanism behaves](#example-usage-scenario-and-how-the-findtg-mechanism-behaves)
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -182,14 +203,14 @@ This section describes some noteworthy details on how certain features are imple
 
 The diagram below shows that a `Student` may or may not have a `Telegram` and a `Github`.
 
-<img src="images/ArchitectureDiagram.png" width="300" />
+<img src="images/ModelClassDiagram.png" width="450" />
 
 Students with empty
 `GitHub` and `Telegram` are stored using `GitHub` and `Telegram` instantiated with empty strings as shown below.
 
 <img src="images/StudentWithEmptyTelegramAndGitHub.png" width="900" />
 
-#### How does it work?
+#### How it works
 
 Below is a sequence diagram for `addStudentCommand`. The command was implemented such that all inputs have to be parsed by the respective methods of `ParserUtil`.
 
@@ -225,13 +246,11 @@ public Telegram(String telegram) {
 
 This means that an empty `GitHub` object will have a "" value and a `GitHub` object with a value of "" means that it is an empty `GitHub` object. The same logic applies to `Telegram` objects as well.
 
-#### Why does it work?
+#### Why it works
 
 As shown in the previous sequence diagram, `ParserUtil` parses all the inputs for the add command. Thus, an empty string (i.e. "") will be parsed though the method isValidXX, where XX is an attribute i.e. isValidName. All empty string will throw an error in any of parse methods in `ParserUtil`. Thus, an empty string will never be able to be accepted through the user input. Therefore, an empty string was used as a means to identify and instantiate attributes that can be empty (e.g. GitHub and Telegram).
 
-#### Design Considerations:
-
-#### How empty GitHub and Telegram should be stored:
+#### Design considerations regarding how empty GitHub and Telegram should be stored
 
 * Alternative 1: Stored as null
   * Pros: Easy to implement
@@ -254,7 +273,9 @@ The *add tutorial group(s) to a student* mechanism is facilitated by the `LogicM
 ```
 command format: addtg INDEX tg/TUTORIAL_GROUP...
 ```
-#### How the command is parsed and executed:
+#### How `addtg` command is parsed and executed
+
+Assuming the command is valid and execution is successful,
 
 1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
    command.
@@ -271,7 +292,7 @@ Rationale:
 - An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name.
   - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
 
-#### Given below is an example usage scenario and how the *addtg* mechanism behaves.
+#### Example usage scenario and how the `addtg` mechanism behaves
 
 When the user executes `addtg 2 tg/CS2103T W15-3 tg/CS2101 G08` command to add a tutorial group to the 2nd person listed in the address book.
 
@@ -283,6 +304,7 @@ The following diagram shows a brief overview of the AddTutorialGroupDescriptor c
 
 <img src="images/AddTutorialGroupDescriptorDiagram.png" width="500" />
 
+Go back to **[Table of Contents](#table-of-contents)**
 
 ### `deletetg` feature
 
@@ -296,7 +318,9 @@ command class `DeleteTutorialGroupCommand`.
 command format: deletetg INDEX tg/TUTORIAL_GROUP
 ```
 
-How the command is parsed and executed (assuming the command is valid and the execution is successful):
+#### How `deletetg` command is parsed and executed
+
+Assuming the command is valid and execution is successful,
 
 1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
 command.
@@ -317,7 +341,7 @@ Sequence Diagram:
 This feature was implemented to follow this sequence to keep it consistent with the rest of the `Command`s
 and `Parser`s.
 
-There are a few interesting details as to how the command works:
+#### A few interesting details regarding how `deletetg` command works
 
 - The command takes in an `Index` instead of a student's name because we felt that it was much easier to
 type in a number than the entirety of someone's name. It is also distinct and much less vague.
@@ -352,7 +376,9 @@ command class `FindTutorialGroupCommand` and the model class `TutorialGroupKeywo
 command format: findtg TUTORIAL_GROUP
 ```
 
-How the command is parsed and executed (assuming the command is valid and the execution is successful):
+#### How `findtg` command is parsed and executed
+
+Assuming the command is valid and execution is successful,
 
 1. `LogicManager` is called to execute the command, using the `AddressBookParser` class to parse the
    command.
@@ -367,7 +393,7 @@ filter out all students with the specified `TUTORIAL_GROUP` name
 6. `FindTutorialGroupCommand` filter out all students in the specified `TUTORIAL_GROUP` and returns the relevant 
 `CommandResult` to `LogicManager`
 
-#### Given below is an example usage scenario and how the *findtg* mechanism behaves.
+#### Example usage scenario and how the *findtg* mechanism behaves
 
 When the user executes `findtg CS2100 T05` command to find a tutorial group.
 
@@ -385,8 +411,7 @@ There are a few interesting details as to how the command works:
 - `findtg` do not support find partial keyword to prevent ambiguity and TAs usually teach a single module with multiple
 tutorial group. This operation is provided for users to sort students by their specified tutorial group
 
-
-
+Go back to **[Table of Contents](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -424,29 +449,39 @@ and get information of all their students at one glance.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                        | I want to …​                                                                          | So that I can …​                                                                  |
-|----------|--------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `* * *`  | CS TA                          | add a student                                                                         | keep track of them and their contacts                                             |
-| `* * *`  | CS TA                          | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
-| `* * *`  | CS TA                          | delete a student                                                                      | make sure I have the correct student in the list                                  |
-| `* * *`  | CS TA                          | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
-| `* * *`  | CS TA                          | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
-| `* * *`  | CS TA                          | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place |
-| `* * `   | CS TA                          | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
-| `* * `   | CS TA                          | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
-| `* * `   | CS TA                          | find students by name                                                                 | contact the appropriate student                                                   |
-| `* * `   | CS TA                          | find students by a tutorial group                                                     | see which students are in that tutorial group                                     |
-| `* * `   | TA                             | undo my mistakes                                                                      |                                                                                   |
-| `* *`    | TA                             | redo my mistakes                                                                      |                                                                                   |
-| `* *`    | CS TA that finished a semester | clear my student contact list                                                         | easily start afresh for the next semester                                         |
-| `* `     | TA                             | send group messages to a specific group of students                                   | make announcements effectively                                                    |
+|----------|-------------------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | CS TA                                     | add a student                                                                         | keep track of them and their contacts                                             |
+| `* * *`  | CS TA                                     | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
+| `* * *`  | CS TA                                     | delete a student                                                                      | make sure I have the correct student in the list                                  |
+| `* * *`  | CS TA                                     | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
+| `* * *`  | CS TA                                     | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
+| `* * *`  | CS TA                                     | find students by name                                                                 | contact the appropriate student                                                   |
+| `* * *`  | CS TA using the application               | see all the students' contact information that I stored                               |                                                                                   |
+| `* * *`  | CS TA                                     | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place |
+| `* * *`  | CS TA who is experienced in CLI programs  | type everything in one command at one go                                              | manage things in the application more quickly                                     |
+| `* * *`  | CS TA new to the application              | be able to find a user guide for the application                                      | refer to it when needed                                                           |
+| `* * *`  | CS TA using the application               | be able to exit the application                                                       |                                                                                   |
+| `* * `   | CS TA                                     | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
+| `* * `   | CS TA                                     | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
+| `* * `   | CS TA                                     | find students by a tutorial group                                                     | see which students are in that tutorial group                                     |
+| `* * `   | CS TA                                     | undo my mistakes                                                                      |                                                                                   |
+| `* *`    | CS TA                                     | redo my mistakes                                                                      |                                                                                   |
+| `* *`    | CS TA                                     | store zoom link and venue of tutorial session                                         | find them easily when it is time for tutorial                                     |
+| `* *`    | CS TA that finished a semester            | clear my student contact list                                                         | easily start afresh for the next semester                                         |
+| `* *`    | Forgetful TA                              | store timing of the tutorial session                                                  | find them easily when I lose track of time                                        |
+| `* *`    | CS TA                                     | keep track of the assignments submitted by students                                   | mark accordingly                                                                  |
+| `* `     | CS TA                                     | send group messages to a specific group of students                                   | make announcements effectively                                                    |
+| `* `     | CS TA                                     | see the announcements that I have sent to the students in a tutorial group            |                                                                                   |
+| `* `     | Busy TA                                   | set an alarm before the tutorial starts                                               | be on time for tutorial session                                                   |
 
-*{More to be added}*
+
+Go back to **[Table of Contents](#table-of-contents)**
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Teaching Assistant Contact Helper (TACH)` and the **Actor** is the `Teaching Assistant (TA)`, unless specified otherwise)
 
-**Use case: UC01 - Add a Student**
+**Use case: UC01 - Add a student**
 
 **MSS:**
 
@@ -471,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 <br><br>
 
-**Use case: UC02 - Add a Tutorial Group to a Student**
+**Use case: UC02 - Add a tutorial group to a student**
 
 **MSS:**
 
@@ -495,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 2.
 <br><br>
 
-**Use case: UC03 - Delete a Student**
+**Use case: UC03 - Delete a student**
 
 **MSS:**
 
@@ -523,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 4.
 <br><br>
 
-**Use case: UC04 - Delete a Tutorial Group from a Student**
+**Use case: UC04 - Delete a tutorial group from a student**
 
 **MSS:**
 
@@ -537,14 +572,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The tutorial group requested is an invalid tutorial group or the student is not under that tutorial group.
   * 1a1. TACH prompts the TA to type a valid tutorial group.
   Step 1a1 is repeated until a valid tutorial group is entered.
-
+  
 * 1b. The tutorial group requested to be deleted is the only tutorial group the student has.
   * 1b1. TACH notifies the TA that the tutorial group cannot be deleted.
 
     Use case ends.
 <br><br>
 
-**Use case: UC05 - Find students from a Tutorial Group**
+**Use case: UC05 - Find students from a tutorial group**
 
 **MSS:**
 
@@ -561,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 <br><br>
 
-**Use case: UC06 - Clearing All Students**
+**Use case: UC06 - Clearing all students**
 
 **MSS:**
 
@@ -571,7 +606,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br><br>
 
-**Use case: UC06 - Delete a Tutorial Group from all Students**
+**Use case: UC07 - Delete a tutorial group from all students**
 
 **MSS:**
 
@@ -589,7 +624,71 @@ Step 1a1 is repeated until a valid tutorial group is entered.
 Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
 <br><br>
 
-*{More to be added}*
+**Use case: UC08 - Get user guide**
+
+**MSS:**
+
+1. TA requests for the user guide.
+2. TACH provides the link to the user guide.
+
+   Use case ends.
+<br><br>
+
+**Use case: UC09 - Exit TACH**
+
+**MSS:**
+
+1. TA requests to exit TACH.
+2. TACH closes.
+
+   Use case ends.
+<br><br>
+
+**Use case: UC10 - See list of all students**
+
+**MSS:**
+
+1. TA request to see list of all students in TACH.
+2. TACH displays the list of all students that are stored.
+
+   Use case ends.
+<br><br>
+
+**Use case: UC11 - Find a student**
+
+**MSS:**
+
+1. TA requests to find a student.
+2. TACH list out all the students that was requested. 
+
+   Use case ends.
+<br><br>
+
+**Use case: UC12 - Edit a student**
+
+**MSS:**
+
+1. TA requests to edit information of a specific student in the list by their index on the list.
+2. TACH updates the student specified by the index with the information provided by TA
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. TACH prompts the TA to type in a valid index.
+      Step 1a1 is repeated until a valid index is entered.
+
+* 1b. The email/telegram/github/name, that is provided, is invalid.
+    * 1b1. TACH prompts the TA to type in a valid attribute for the attribute that is invalid.
+      Step 1b1 is repeated until the provided attributes are valid.
+
+* 1c. The tutorial group ,if provided, is empty or invalid
+    * 1c1. TACH prompts the TA to type in a non-empty and valid tutorial group.
+      Step 1c1 is repeated until the tutorial group is valid and non-empty.
+  Use case resumes at step 2.
+  <br><br>
+
+Go back to **[Table of Contents](#table-of-contents)**
 
 ### Non-Functional Requirements
 
@@ -603,8 +702,6 @@ should be able to accomplish most of the tasks faster using commands than using 
 7. The source code should be open source.
 8. The product is free and ready-to-use as soon as one downloads it.
 9. The product should work offline, without an Internet connection.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -643,8 +740,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a student while all students are being shown
@@ -660,8 +755,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
-
 ### Finding a tutorial group
 
 1. Finding students from a particular tutorial group while all students are being shown
@@ -673,12 +766,48 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `findtg CS2103T`<br>
       Expected: No student listed. Since user only input module code without tutorial group details. All invalid entry of tutorial group or no matching tutorial group will result in no student listed.
 
-2. _{ more test cases …​ }_
+### Dealing with corrupted data files
 
-### Saving data
+1. Troubleshooting with corrupted files:
+   1. Prerequisite: Corrupted data file.
+       * To simulate a corrupted data file:
+         1. Open the data folder in the folder where TACH is in. Edit TACH.json and change one of the fields to an invalid one 
+         e.g. Add a `!` at the end of Irfan's email.
+         i.e.change from
+             > "name" : "Irfan Ibrahim",
+             <br>"telegram" : "@irfan201",
+             <br>"email" : "irfan@hotmail.com",
+             <br>"gitHub" : "",
+             <br>"inTutorialGroups" : [ "CS2106 T01" ]
 
-1. Dealing with missing/corrupted data files
+            to
+            > "name" : "Irfan Ibrahim",
+            <br>"telegram" : "@irfan201",
+            <br>"email" : "irfan@hotmail.com!",
+            <br>"gitHub" : "",
+            <br>"inTutorialGroups" : [ "CS2106 T01" ]
+      
+            > **NOTE:** If there is no data file, open TACH and enter the command `list`. The data file should appeared in the folder where TACH is in.
+   2. Test case: Corrupted data file 
+   <br>Open the data folder in the folder where TACH is in. Edit all the data such that it meets the requirement stated here.[Input Requirements](https://ay2122s2-cs2103t-w15-3.github.io/tp/UserGuide.html#input-requirements) 
+   <br> Expected: TACH will now load the data file and not an empty one.
+      1. Example: To resolve the issue in step i, change Irfan's email from an invalid one (`irfan@hotmail.com!`) 
+      to a valid one (`irfan@hotmail.com`) by removing the `!` at the end. i.e.
+         <br>change from :
+          > "name" : "Irfan Ibrahim",
+          <br>"telegram" : "@irfan201",
+          <br>"email" : "irfan@hotmail.com!",
+          <br>"gitHub" : "",
+          <br>"inTutorialGroups" : [ "CS2106 T01" ]
+   
+         to
+         > "name" : "Irfan Ibrahim",
+         <br>"telegram" : "@irfan201",
+         <br>"email" : "irfan@hotmail.com",
+         <br>"gitHub" : "",
+         <br>"inTutorialGroups" : [ "CS2106 T01" ]
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Go back to **[Table of Contents](#table-of-contents)**
 
-1. _{ more test cases …​ }_
+
+

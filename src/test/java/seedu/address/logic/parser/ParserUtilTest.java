@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -24,13 +23,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TELEGRAM = "+651234";
     private static final String INVALID_GITHUB = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_EMAIL = "u.nus.edu";
     private static final String INVALID_TUTORIAL_GROUP = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_TELEGRAM = "@123456";
     private static final String VALID_GITHUB = "Walk-Rachel";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_EMAIL = "rachel@u.nus.edu";
     private static final String VALID_TUTORIAL_GROUP_1 = "ST2334 T01";
     private static final String VALID_TUTORIAL_GROUP_2 = "ES2660 G04";
 
@@ -43,7 +42,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -171,6 +170,13 @@ public class ParserUtilTest {
         String tutorialGroupWithWhitespace = WHITESPACE + VALID_TUTORIAL_GROUP_1 + WHITESPACE;
         TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1);
         assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(tutorialGroupWithWhitespace));
+    }
+
+    @Test
+    public void parseTutorialGroup_validTutorialInLowercase_returnsTutorialGroupInUppercase() throws Exception {
+        String validTutorialGroupInLowercase = VALID_TUTORIAL_GROUP_1.toLowerCase();
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1.toUpperCase());
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(validTutorialGroupInLowercase));
     }
 
     @Test

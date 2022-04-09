@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -40,7 +39,8 @@ public class DeleteTutorialGroupCommandTest {
         DeleteTutorialGroupCommand deleteTutorialGroupCommand = new DeleteTutorialGroupCommand(
                 outOfBoundIndex, new TutorialGroup(VALID_TUTORIAL_GROUP_CS2101_G08));
 
-        assertCommandFailure(deleteTutorialGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTutorialGroupCommand, model,
+            DeleteTutorialGroupCommand.MESSAGE_INDEX_OUT_OF_RANGE);
     }
 
     @Test

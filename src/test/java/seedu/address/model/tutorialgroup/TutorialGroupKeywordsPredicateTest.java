@@ -53,7 +53,7 @@ public class TutorialGroupKeywordsPredicateTest {
         // Keywords match email, github, and telegram, but does not match tutorial group
         predicate = new TutorialGroupKeywordsPredicate("MA1501_T03");
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withTelegram("MA1501_T03")
-                .withEmail("MA1501_T03@email.com").withGitHub("MA1501-T03")
+                .withEmail("MA1501_T03@gmail.com").withGitHub("MA1501-T03")
                 .withTutorialGroup("CS2101 G08").build()));
 
         // Too many keywords
