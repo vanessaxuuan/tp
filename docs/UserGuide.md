@@ -48,7 +48,12 @@ the commands, you can look at all the commands for TACH via **[Commands](#comman
 
 4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
    ![Quick Start](images/QuickStart.png)
-
+If the app does not open with a double-click especially for MacOS users:
+   1. For simplicity, move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
+   2. Open up your **terminal** application.
+   3. Enter `cd Desktop` in your terminal to go into your desktop directory.
+   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app
+   
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -236,6 +241,13 @@ Adds a student into TACH.
 
 Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
 
+Note:
+* Students with the same names will be considered as duplicate students.
+  - e.g. If `Sam` exists in TACH, another `Sam` **cannot be added again** even if their contact details are different.
+  - Do manually differentiate them by saving them as `Sam 1` and `Sam 2` for easier reference.
+  - This is because if two `Sam`s  are in the same tutorial group, you might not be able to recognize which `Sam` is which `Sam` in TACH as you most likely will not be able to remember their personal contact details to differentiate them.
+  - Thus, names would be used to uniquely identify everyone.
+
 Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
 * `add n/Michael Tay e/michaelT@gmail.com t/MichaelTay g/michael777 tg/CS2103T W15-3 tg/CS2100 G08`
@@ -300,7 +312,8 @@ Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 * The search is case-insensitive. e.g. `charles` will match `Charles`
 * The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
 * Only the name is searched.
-* Only full words will be matched e.g. `Char` **WILL NOT** match `Charles`
+* Words can be partially matched e.g. `Char` **WILL** match `Charles`
+* Multiple keywords can be partially matched too e.g. `Alex Ko` will match `Alex Koh`
 * Only students matching all the keywords will be returned.
 e.g. `Charles Lee` will return `Charles Alex Lee`, not `Charles Tan`
 
@@ -315,13 +328,15 @@ Finds all students in a particular tutorial group.
 Format `findtg TUTORIAL_GROUP`
 
 * The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
+* The search ignores extra whitespaces. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
+  - `<>` illustrates whitespace
 * Only the tutorial group is searched.
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
 * Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
 * If there are no students with matching tutorial group, no student will be returned (an empty list).
 
-The following diagram shows the result for `findtgall CS2100 T05` 
+The following diagram shows the result for `findtg CS2100 T05` 
 from the initial `List` [output](#listing-all-students-list)
 
 ![Results Display](images/FindTgResult.png)<br><br>
