@@ -252,7 +252,8 @@ Format: `addtg INDEX tg/TUTORIAL_GROUP…`
 
 * Adds a tutorial group for the student at the specified `INDEX`. The index refers to the index number
 shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* Adding of tutorial groups is cumulative; existing tutorial groups of the specified student will
+* Adding of tutorial groups is cumulative 
+  - existing tutorial groups of the specified student will
 remain unchanged.
 
 Example:
