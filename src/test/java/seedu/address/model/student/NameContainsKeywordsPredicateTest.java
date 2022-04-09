@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.testutil.StudentBuilder;
 
 public class NameContainsKeywordsPredicateTest {
@@ -77,7 +76,7 @@ public class NameContainsKeywordsPredicateTest {
     public void test_zeroKeywords_throwsIllegalArgumentException() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertThrows(IllegalArgumentException.class, "keys cannot be empty", ()
-                -> predicate.test(new StudentBuilder().withName("Alice").build()));
+        assertThrows(IllegalArgumentException.class, "keys cannot be empty",
+                () -> predicate.test(new StudentBuilder().withName("Alice").build()));
     }
 }
