@@ -87,13 +87,15 @@ public class EditCommand extends Command {
 
         //keep the current list of filtered student and edited student
         if (!model.getFilteredStudentList().equals(model.getSortedStudentList())) {
-            FilteredList<Student> test = (FilteredList<Student>) model.getFilteredStudentList();
+            FilteredList<Student> filteredStudents = (FilteredList<Student>) model.getFilteredStudentList();
+
             @SuppressWarnings("unchecked")
             //test.getPredicate() must be a Predicate<Student> type
-            Predicate<Student> predicateTest = (Predicate<Student>) test.getPredicate();
+            Predicate<Student> predicateForFilteredStudents = (Predicate<Student>) filteredStudents.getPredicate();
+
             Predicate<Student> predicateToObtainEditedStudent = (Student s) -> s.equals(editedStudent);
 
-            model.updateFilteredStudentList(predicateTest.or(predicateToObtainEditedStudent));
+            model.updateFilteredStudentList(predicateForFilteredStudents.or(predicateToObtainEditedStudent));
         } else {
             //the list is not filtered, show all students
             model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

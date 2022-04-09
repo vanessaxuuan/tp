@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.function.Predicate;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
@@ -27,7 +29,6 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
-import java.util.function.Predicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
