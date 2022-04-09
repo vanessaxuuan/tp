@@ -173,6 +173,13 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTutorialGroup_validTutorialInLowercase_returnsTutorialGroupInUppercase() throws Exception {
+        String validTutorialGroupInLowercase = VALID_TUTORIAL_GROUP_1.toLowerCase();
+        TutorialGroup expectedTutorialGroup = new TutorialGroup(VALID_TUTORIAL_GROUP_1.toUpperCase());
+        assertEquals(expectedTutorialGroup, ParserUtil.parseTutorialGroup(validTutorialGroupInLowercase));
+    }
+
+    @Test
     public void parseTutorialGroups_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialGroups(null));
     }

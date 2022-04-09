@@ -110,7 +110,7 @@ public class ParserUtil {
         if (!TutorialGroup.isValidTutorialGroupName(trimmedTutorialGroup)) {
             throw new ParseException(TutorialGroup.MESSAGE_CONSTRAINTS);
         }
-        return new TutorialGroup(trimmedTutorialGroup);
+        return new TutorialGroup(trimmedTutorialGroup.toUpperCase());
     }
 
     /**
