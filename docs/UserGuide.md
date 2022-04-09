@@ -428,12 +428,14 @@ TACH data are saved in the [hard disk](#glossary) automatically after any comman
 
 ## Editing the data file
 
-TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. Advanced users are welcome to update data directly by editing that data file.
+TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. <br>
+**You should not edit the data file directly.** <br>
+Only advanced users who are absolutely familiar with the format are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
-</div> <br><br>
-
+><div markdown="span" class="alert alert-warning">:exclamation: Caution:
+>If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
+>This action CANNOT be undone! For advanced users consider keeping a copy first before changing any field to the data file.
+></div>
 
 Go back to **[Table of Contents](#table-of-contents)**
 
