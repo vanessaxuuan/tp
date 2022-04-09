@@ -100,7 +100,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         // empty keys not allowed
-        assertThrows(IllegalArgumentException.class, "keys cannot be empty", (
+        assertThrows(IllegalArgumentException.class, "Keys cannot be empty", (
         ) -> command.execute(model));
     }
 

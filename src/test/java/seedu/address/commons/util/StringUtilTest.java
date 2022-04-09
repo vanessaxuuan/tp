@@ -66,7 +66,7 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialSentenceIgnoreCase_emptyKeys_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "keys cannot be empty", ()
+        assertThrows(IllegalArgumentException.class, "Keys cannot be empty", ()
             -> StringUtil.containsPartialSentenceIgnoreCase("typical sentence", "  "));
     }
 
