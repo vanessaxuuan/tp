@@ -9,9 +9,9 @@ title: Developer Guide
 
 ## **Introduction**
 
-TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) to manage their students. The 
-application is highly optimised for users who can type fast as it is based on the Command Line Interface (CLI). Thus, 
-the main interaction with TACH will be done through user text-based commands.
+TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) in National University of Singapore (NUS)
+to manage their students. The application is highly optimised for users who can type fast as it is based on the Command
+Line Interface (CLI). Thus, the main interaction with TACH will be done through user text-based commands.
 
 This developer’s guide assumes its readers to have a basic understanding of programming.
 
