@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.DANIEL;
+import static seedu.address.testutil.TypicalStudents.FIONA;
+import static seedu.address.testutil.TypicalStudents.GEORGE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -73,23 +76,32 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleStudentsFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Carl Meier");
+    public void execute_oneKeyword_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Meier");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(BENSON, CARL, DANIEL), model.getFilteredStudentList());
     }
 
     @Test
-    public void execute_zeroKeywords_listNotFiltered() {
+    public void execute_multipleKeywords_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Fiona Kun");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA, GEORGE), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void zeroKeywords_throwsIllegalArgumentException() {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        // List not filtered
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 7);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(getTypicalStudents(), model.getFilteredStudentList());
+        // empty keys not allowed
+        assertThrows(IllegalArgumentException.class, "Keys cannot be empty", (
+        ) -> command.execute(model));
     }
 
     /**

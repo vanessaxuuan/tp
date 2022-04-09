@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -72,9 +73,10 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_zeroKeywords_unfilteredList() {
+    public void test_zeroKeywords_throwsIllegalArgumentException() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertTrue(predicate.test(new StudentBuilder().withName("Alice").build()));
+        assertThrows(IllegalArgumentException.class, "Keys cannot be empty", (
+        ) -> predicate.test(new StudentBuilder().withName("Alice").build()));
     }
 }

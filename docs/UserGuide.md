@@ -265,7 +265,8 @@ Format: `addtg INDEX tg/TUTORIAL_GROUP…`
 
 * Adds a tutorial group for the student at the specified `INDEX`. The index refers to the index number
 shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* Adding of tutorial groups is cumulative; existing tutorial groups of the specified student will
+* Adding of tutorial groups is cumulative 
+  - existing tutorial groups of the specified student will
 remain unchanged.
 
 Example:
@@ -310,16 +311,14 @@ Finds students whose names contain all the given keywords.
 Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `charles` will match `Charles`
-* The order of the keywords does not matter. e.g. `Charles Boyle` will match `Boyle Charles`
+* The order of the keywords matters. e.g. `Charles Boyle` will not match `Boyle Charles`
 * Only the name is searched.
-* Words can be partially matched e.g. `Char` **WILL** match `Charles`
-* Multiple keywords can be partially matched too e.g. `Alex Ko` will match `Alex Koh`
-* Only students matching all the keywords will be returned.
-e.g. `Charles Lee` will return `Charles Alex Lee`, not `Charles Tan`
-
-Examples:
-* `find Evans Smith` returns `Evans Smith`, `Evans Josh Smith` (if they
-are in the list).
+* Keywords can match the name partially e.g. `Char` **WILL** match `Charles`
+  - e.g. `Charles Bo` will match `Charles Boyle`, but `Charle Boyle` will not match `Charles Boyle`
+  - Partial matching only applies to the last word of the keyword(s)
+* The whitespace positions have to tally e.g. `Alex Lee En` **will not** match `Alex Leeen`
+* Students whose names contain the keyword fully or partially will be returned 
+  - e.g. `find char` will return `Charles Alex Lee`, `Charles Boyle`, and `Charles Tan` if they are in the list of students
 
 #### Finding students by tutorial group: `findtg`
 
@@ -486,7 +485,7 @@ the data of your previous TACH home folder.
 | **Add Student**                               | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
 | **Add Tutorial Group for Student**            | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
 | **Edit Student**                              | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
-| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Jane`                                                                                                 |
+| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Ho`                                                                                                 |
 | **Find Students by Tutorial Group**           | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                            | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
 | **Deleting Tutorial Group from Student**      | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |

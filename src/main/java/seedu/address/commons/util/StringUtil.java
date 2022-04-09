@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -14,29 +13,25 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code sentence} contains the {@code keys}.
+     *   Ignores case, but white space in {@code keys} must match {@code sentence}'s.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc") == true
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc d") == true
+     *       containsPartialSentenceIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc defg") == false // not a substring
      *       </pre>
      * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param keys cannot be null, cannot be empty
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsPartialSentenceIgnoreCase(String sentence, String keys) {
         requireNonNull(sentence);
-        requireNonNull(word);
+        requireNonNull(keys);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        checkArgument(!keys.isBlank(), "Keys cannot be empty");
+        String capitalizedName = sentence.toUpperCase().trim();
+        String capitalizedKeys = keys.toUpperCase().trim();
+        return capitalizedName.contains(capitalizedKeys);
     }
 
     /**
@@ -50,7 +45,7 @@ public class StringUtil {
      * @param sentence1 cannot be null
      * @param sentence2 cannot be null, cannot be empty
      */
-    public static boolean containsSentenceIgnoreCase(String sentence1, String sentence2) {
+    public static boolean containsFullSentenceIgnoreCase(String sentence1, String sentence2) {
         requireNonNull(sentence1);
         requireNonNull(sentence2);
 

@@ -23,7 +23,7 @@ public class TutorialGroupKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return student.getTutorialGroups().stream()
-                .anyMatch(tg -> StringUtil.containsSentenceIgnoreCase(tg.tutorialGroupName, keywords));
+                .anyMatch(tg -> StringUtil.containsFullSentenceIgnoreCase(tg.tutorialGroupName, keywords));
     }
 
     @Override
