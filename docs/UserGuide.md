@@ -243,7 +243,7 @@ Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
 Note:
 * Students with the same names will be considered as duplicate students.
   - e.g. If `Sam` exists in TACH, another `Sam` **cannot be added again** even if their contact details are different.
-  - Do manually differentiate them by saving them as `Sam1` and `Sam2` for easier reference.
+  - Do manually differentiate them by saving them as `Sam 1` and `Sam 2` for easier reference.
   - This is because if two `Sam`s  are in the same tutorial group, you might not be able to recognize which `Sam` is which `Sam` in TACH as you most likely will not be able to remember their personal contact details to differentiate them.
   - Thus, names would be used to uniquely identify everyone.
 
