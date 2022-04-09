@@ -13,7 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -49,6 +51,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = String.format(
+        Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, "Index is larger than the number of "
+            + "students in the viewed list.");
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -71,7 +76,7 @@ public class EditCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
@@ -82,7 +87,22 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
+        //keep the current list of filtered student and edited student
+        if (!model.getFilteredStudentList().equals(model.getSortedStudentList())) {
+            FilteredList<Student> filteredStudents = (FilteredList<Student>) model.getFilteredStudentList();
+
+            @SuppressWarnings("unchecked")
+            //test.getPredicate() must be a Predicate<Student> type
+            Predicate<Student> predicateForFilteredStudents = (Predicate<Student>) filteredStudents.getPredicate();
+
+            Predicate<Student> predicateToObtainEditedStudent = (Student s) -> s.equals(editedStudent);
+
+            model.updateFilteredStudentList(predicateForFilteredStudents.or(predicateToObtainEditedStudent));
+        } else {
+            //the list is not filtered, show all students
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TUTORIAL_GROUP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2101_G08;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_GROUP_DESC_CS2103T_W15_3;
@@ -28,7 +29,8 @@ public class DeleteTutorialGroupParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, TUTORIAL_GROUP_DESC_CS2101_G08, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, TUTORIAL_GROUP_DESC_CS2101_G08,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // no field specified
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
@@ -41,13 +43,20 @@ public class DeleteTutorialGroupParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-6" + TUTORIAL_GROUP_DESC_CS2103T_W15_3, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-6" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // zero
-        assertParseFailure(parser, "0" + TUTORIAL_GROUP_DESC_CS2103T_W15_3, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
 
         // invalid preamble and invalid tutorial group, but only the first is captured
-        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-1" + INVALID_TUTORIAL_GROUP_DESC,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
+
+        //index larger than 2147483647
+        assertParseFailure(parser, "2147483648" + TUTORIAL_GROUP_DESC_CS2103T_W15_3,
+            String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, Index.MESSAGE_CONSTRAINT));
     }
 
     @Test

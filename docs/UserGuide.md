@@ -5,7 +5,8 @@ title: User Guide
 
 ## Introduction
 
-TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) tutoring multiple tutorial groups by
+TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) from 
+National University of Singapore (NUS) who tutors multiple tutorial groups by
 **managing their students in an organised manner**.
 
 TAs can **add, edit and delete** students and their tutorial groups from their list easily.
@@ -47,7 +48,12 @@ the commands, you can look at all the commands for TACH via **[Commands](#comman
 
 4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
    ![Quick Start](images/QuickStart.png)
-
+If the app does not open with a double-click especially for MacOS users:
+   1. For simplicity, move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
+   2. Open up your **terminal** application.
+   3. Enter `cd Desktop` in your terminal to go into your desktop directory.
+   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app
+   
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -206,8 +212,8 @@ List of commands:
 * Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`. <br>
   - `help123` will not be interpreted as `help`.<br><br>
-  
-* `INDEX` represents the corresponding student currently displayed in TACH, and it has to be a positive integer. 
+
+* For information on the requirements of the different inputs, refer to [Input Requirements](#input-requirements).
 
 </div>
 
@@ -234,6 +240,13 @@ The students will be sorted in alphabetical order by their names.
 Adds a student into TACH.
 
 Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
+
+Note:
+* Students with the same names will be considered as duplicate students.
+  - e.g. If `Sam` exists in TACH, another `Sam` **cannot be added again** even if their contact details are different.
+  - Do manually differentiate them by saving them as `Sam 1` and `Sam 2` for easier reference.
+  - This is because if two `Sam`s  are in the same tutorial group, you might not be able to recognize which `Sam` is which `Sam` in TACH as you most likely will not be able to remember their personal contact details to differentiate them.
+  - Thus, names would be used to uniquely identify everyone.
 
 Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
@@ -314,13 +327,15 @@ Finds all students in a particular tutorial group.
 Format `findtg TUTORIAL_GROUP`
 
 * The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
+* The search ignores extra whitespaces. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
+  - `<>` illustrates whitespace
 * Only the tutorial group is searched.
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
 * Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
 * If there are no students with matching tutorial group, no student will be returned (an empty list).
 
-The following diagram shows the result for `findtgall CS2100 T05` 
+The following diagram shows the result for `findtg CS2100 T05` 
 from the initial `List` [output](#listing-all-students-list)
 
 ![Results Display](images/FindTgResult.png)<br><br>
@@ -395,6 +410,9 @@ Clears all entries from TACH.
 
 Format: `clear`
 
+>**WARNING:**
+> This action erases all the student data stored in your computer and CANNOT be undone! Consider carefully before calling the command as you will have to re-enter the students' details if clear is executed accidentally.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -410,14 +428,14 @@ easier understand which parameters are invalid when typing a command.
 In the list, a **word** is defined as a bunch of *characters* (letters, numbers, punctuation, etc.) separated by spaces.
 e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 
-| Parameter          | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **INDEX**          | Must be a positive integer (1, 2, 3, …)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **NAME**           | Must have at least one word, and each word can only have letters and numbers <br> e.g. `Edward the 4th`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **TUTORIAL_GROUP** | Must start with a valid module code, followed by a space, then a word that can contain letters, numbers, underscores and hyphens. It can **NEVER** be empty. <br> e.g. `CS2103T W15-3_A`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **EMAIL**          | An email consists of three parts in the following order, the local part, the `@` sign, and the domain part. <br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. It cannot start or end with the special symbols. It must be at most 64 characters long. <br> There must be an @ sign afterwards, followed by the domain name. <br> The domain name must be one of the following: `u.nus.edu` `nus.edu.sg` `gmail.com` `yahoo.com` `outlook.com` `hotmail.com` <br><br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br><br> (Our original intention is for you to put in your students` NUS emails which are given to you on LumiNUS, but we also provide the freedom to use some of the more popular email providers listed above, should they be more convenient.) |
-| **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Parameter          | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **INDEX**          | Must be a positive integer that can be a maximum of 2,147,483,647 (1, 2, 3, … , 2147483647).<br> e.g. `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **NAME**           | Must contain letters. Can contain spaces, apostrophes and hyphens as long as they are in between letters. Consecutive spaces, apostrophes or hyphens are not allowed. Name must start with a letter. Numbers are allowed, but they must strictly be at the end of the name. Cannot be empty, and must not be more than 100 characters long, including spaces. <br> e.g. `John Smith 2` or `Johnson-Johnson Maxine d'Arby`                                                                                                                                                                                                                                                                                                                                                                                              |
+| **TUTORIAL_GROUP** | Must **STRICTLY** consist of a module code, followed by a space, then the tutorial name. It should not be blank. The tutorial name must have a non-zero digit and cannot start or end with a hyphen. The name consist of letters or hyphens or digits or underscores. Tutorial Group may only have a maximum of 100 characters including whitespace. <br> e.g. `CS2103T W15-3_A` <br><br>**ALL** letters in tutorial group inputs will be converted into uppercase letters <br>e.g. `addtg 2 tg/cs2101 t01` will add `CS2101 T01` into the turoial group of student 2, assuming there are more than 2 students in the list that you see.                                                                                                                                                                               |
+| **EMAIL**          | An email consists of three parts in the following order, the local part, the `@` sign, and the domain part. <br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. It cannot start or end with the special symbols. It must be at most 64 characters long. <br> There must be an @ sign afterwards, followed by the domain name. <br> The domain name must be one of the following: `u.nus.edu` `nus.edu.sg` `gmail.com` `yahoo.com` `outlook.com` `hotmail.com` <br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br> (Our original intention is for you to put in your students' NUS emails which are given to you on LumiNUS, but we also provide the freedom to use some of the more popular email providers listed above, should they be more convenient.) |
+| **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ## Saving the data
 
@@ -425,12 +443,14 @@ TACH data are saved in the [hard disk](#glossary) automatically after any comman
 
 ## Editing the data file
 
-TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. Advanced users are welcome to update data directly by editing that data file.
+TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. <br>
+**You should not edit the data file directly.** <br>
+Only advanced users who are absolutely familiar with the format are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
-</div> <br><br>
-
+><div markdown="span" class="alert alert-warning">:exclamation: Caution:
+>If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
+>This action CANNOT be undone! For advanced users consider keeping a copy first before changing any field to the data file.
+></div>
 
 Go back to **[Table of Contents](#table-of-contents)**
 
