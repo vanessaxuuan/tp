@@ -93,7 +93,7 @@ public class DeleteTutorialGroupCommand extends Command {
 
         Student updatedStudent = createNewStudent(studentToEdit, tutorialGroupToDelete);
         model.setStudent(studentToEdit, updatedStudent);
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.getFilteredStudentList();
         return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS, updatedStudent));
     }
 
