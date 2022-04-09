@@ -13,7 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -85,7 +87,22 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
+        //keep the current list of filtered student and edited student
+        if (!model.getFilteredStudentList().equals(model.getSortedStudentList())) {
+            FilteredList<Student> filteredStudents = (FilteredList<Student>) model.getFilteredStudentList();
+
+            @SuppressWarnings("unchecked")
+            //test.getPredicate() must be a Predicate<Student> type
+            Predicate<Student> predicateForFilteredStudents = (Predicate<Student>) filteredStudents.getPredicate();
+
+            Predicate<Student> predicateToObtainEditedStudent = (Student s) -> s.equals(editedStudent);
+
+            model.updateFilteredStudentList(predicateForFilteredStudents.or(predicateToObtainEditedStudent));
+        } else {
+            //the list is not filtered, show all students
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
