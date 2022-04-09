@@ -60,8 +60,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialSentenceIgnoreCase_nullKeys_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()
-                -> StringUtil.containsPartialSentenceIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, (
+        ) -> StringUtil.containsPartialSentenceIgnoreCase("typical sentence", null));
     }
 
     @Test
