@@ -16,10 +16,10 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code keys}.
      *   Ignores case, but white space in {@code keys} must match {@code sentence}'s.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "abd d") == true
-     *       containsWordIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
-     *       containsWordIgnoreCase("ABc def", "abc defg") == false // not a substring
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc") == true
+     *       containsPartialSentenceIgnoreCase("ABc def", "abd d") == true
+     *       containsPartialSentenceIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc defg") == false // not a substring
      *       </pre>
      * @param sentence cannot be null
      * @param keys cannot be null, cannot be empty
@@ -28,7 +28,7 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(keys);
 
-        checkArgument(!keys.isBlank(), "keys cannot be empty");
+        checkArgument(!keys.isBlank(), "Keys cannot be empty");
         String capitalizedName = sentence.toUpperCase().trim();
         String capitalizedKeys = keys.toUpperCase().trim();
         return capitalizedName.contains(capitalizedKeys);

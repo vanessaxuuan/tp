@@ -76,7 +76,7 @@ public class NameContainsKeywordsPredicateTest {
     public void test_zeroKeywords_throwsIllegalArgumentException() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertThrows(IllegalArgumentException.class, "keys cannot be empty",
+        assertThrows(IllegalArgumentException.class, "Keys cannot be empty",
                 () -> predicate.test(new StudentBuilder().withName("Alice").build()));
     }
 }
