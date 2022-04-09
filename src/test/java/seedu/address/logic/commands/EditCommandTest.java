@@ -27,6 +27,8 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
+import java.util.function.Predicate;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -92,8 +94,11 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
+        Predicate<Student> predicateToObtainEditedStudent = (Student s) -> s.equals(editedStudent);
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.updateFilteredStudentList(predicateToObtainEditedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

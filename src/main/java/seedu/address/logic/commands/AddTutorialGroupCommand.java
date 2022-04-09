@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -74,7 +73,7 @@ public class AddTutorialGroupCommand extends Command {
 
         Student updatedStudent = createNewStudent(studentToEdit, addTutorialGroupDescriptor);
         model.setStudent(studentToEdit, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.getFilteredStudentList();
         return new CommandResult(String.format(MESSAGE_ADD_TUTORIAL_GROUP_SUCCESS,
                 addTutorialGroupDescriptor.tutorialGroups));
     }
