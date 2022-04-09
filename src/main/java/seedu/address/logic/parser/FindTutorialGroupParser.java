@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.logic.commands.FindTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.TutorialGroupKeywordsPredicate;
@@ -23,6 +26,17 @@ public class FindTutorialGroupParser implements Parser<FindTutorialGroupCommand>
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTutorialGroupCommand.MESSAGE_USAGE));
         }
 
-        return new FindTutorialGroupCommand(new TutorialGroupKeywordsPredicate(trimmedArgs));
+        // Check for presence of whitespace
+        int whitespacePos = trimmedArgs.indexOf(" ");
+        if (whitespacePos == -1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTutorialGroupCommand.MESSAGE_USAGE));
+        }
+
+        // remove extra whitespaces
+        String moduleCode = trimmedArgs.substring(0, whitespacePos).trim();
+        String trimmedGroup = trimmedArgs.substring(whitespacePos).trim();
+        String trimmedTutorialGroup = moduleCode + " " + trimmedGroup;
+        return new FindTutorialGroupCommand(new TutorialGroupKeywordsPredicate(trimmedTutorialGroup));
     }
 }
