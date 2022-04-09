@@ -17,7 +17,7 @@ public class StringUtil {
      *   Ignores case, but white space in {@code keys} must match {@code sentence}'s.
      *   <br>examples:<pre>
      *       containsPartialSentenceIgnoreCase("ABc def", "abc") == true
-     *       containsPartialSentenceIgnoreCase("ABc def", "abd d") == true
+     *       containsPartialSentenceIgnoreCase("ABc def", "abc d") == true
      *       containsPartialSentenceIgnoreCase("ABc def", "abcd") == false // whitespace does not tally
      *       containsPartialSentenceIgnoreCase("ABc def", "abc defg") == false // not a substring
      *       </pre>
