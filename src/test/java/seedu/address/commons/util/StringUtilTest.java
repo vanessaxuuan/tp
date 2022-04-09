@@ -72,8 +72,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialSentenceIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()
-                -> StringUtil.containsPartialSentenceIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, (
+        ) -> StringUtil.containsPartialSentenceIgnoreCase(null, "abc"));
     }
 
     /*
