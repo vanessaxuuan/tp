@@ -14,7 +14,7 @@
 <?import com.sandec.mdfx.MarkdownView?>
 
 <fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
-         minHeight="700" minWidth="900" >
+         minHeight="700" minWidth="1110" >
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -23,7 +23,7 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <VBox  minHeight="700" minWidth="900" prefHeight="700" prefWidth="900">
+      <VBox  minHeight="700" minWidth="900" prefHeight="700" prefWidth="1110">
         <HBox alignment="TOP_CENTER" fx:id="helpMessageContainer">
             <Label fx:id="helpMessage" text="Label">
               <HBox.margin>
