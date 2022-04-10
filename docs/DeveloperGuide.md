@@ -3,22 +3,15 @@ layout: page
 title: Developer Guide
 ---
 
-## Table of Contents
-
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Introduction**
 
-TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) in National University of Singapore (NUS) to manage their students. The 
-application is highly optimised for users who can type fast as it is based on the Command Line Interface (CLI). Thus, 
+TACH is a desktop application for Computer Science (CS) Teaching Assistants (TAs) in National University of Singapore (NUS) to manage their students. The
+application is highly optimised for users who can type fast as it is based on the Command Line Interface (CLI). Thus,
 the main interaction with TACH will be done through user text-based commands.
 
 This developer’s guide assumes its readers to have a basic understanding of programming.
 
-The purpose of this Developer Guide is to help readers understand the design and implementation of TACH, so that 
+The purpose of this Developer Guide is to help readers understand the design and implementation of TACH, so that
 any reader who is interested can become a contributor to this project as well.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -27,16 +20,24 @@ any reader who is interested can become a contributor to this project as well.
 This project is based on the AddressBook-Level3(AB3) project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Navigation
 
-Following are a few syntaxes to take note before proceeding with the rest of the contents in our developer guide:
+Following are a few syntaxes to take note of before proceeding with the rest of the developer guide:
 
-| Syntax                                                             | Description                                                  |
-|--------------------------------------------------------------------|--------------------------------------------------------------|
-| `Markdown`                                                         | Denotes file path, distinct classes, their usage or examples |
-| <div markdown="span" class="alert alert-info">:information_source: Note | Important information to take note of                        |
-| Words in `UPPER_CASE`                                              | Parameters to be supplied by the user                        |
-| parameter end with `…`                                             | This parameter can be added multiple times                                            |
+| Syntax                                                                  | Description                                                   |
+|-------------------------------------------------------------------------|---------------------------------------------------------------|
+| `Markdown`                                                              | Denotes file path, distinct classes, their usage or examples. |
+| <div markdown="span" class="alert alert-info">:information_source: Note | Important information to take note of.                        |
+| Words in `UPPER_CASE`                                                   | Parameters to be supplied by the user.                        |
+| parameter end with `…`                                                  | This parameter can be added multiple times.                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -448,31 +449,31 @@ and get information of all their students at one glance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                        | I want to …​                                                                          | So that I can …​                                                                  |
-|----------|-------------------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `* * *`  | CS TA                                     | add a student                                                                         | keep track of them and their contacts                                             |
-| `* * *`  | CS TA                                     | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
-| `* * *`  | CS TA                                     | delete a student                                                                      | make sure I have the correct student in the list                                  |
-| `* * *`  | CS TA                                     | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
-| `* * *`  | CS TA                                     | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
-| `* * *`  | CS TA                                     | find students by name                                                                 | contact the appropriate student                                                   |
-| `* * *`  | CS TA using the application               | see all the students' contact information that I stored                               |                                                                                   |
-| `* * *`  | CS TA                                     | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place |
-| `* * *`  | CS TA who is experienced in CLI programs  | type everything in one command at one go                                              | manage things in the application more quickly                                     |
-| `* * *`  | CS TA new to the application              | be able to find a user guide for the application                                      | refer to it when needed                                                           |
-| `* * *`  | CS TA using the application               | be able to exit the application                                                       |                                                                                   |
-| `* * `   | CS TA                                     | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
-| `* * `   | CS TA                                     | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
-| `* * `   | CS TA                                     | find students by a tutorial group                                                     | see which students are in that tutorial group                                     |
-| `* * `   | CS TA                                     | undo my mistakes                                                                      |                                                                                   |
-| `* *`    | CS TA                                     | redo my mistakes                                                                      |                                                                                   |
-| `* *`    | CS TA                                     | store zoom link and venue of tutorial session                                         | find them easily when it is time for tutorial                                     |
-| `* *`    | CS TA that finished a semester            | clear my student contact list                                                         | easily start afresh for the next semester                                         |
-| `* *`    | Forgetful TA                              | store timing of the tutorial session                                                  | find them easily when I lose track of time                                        |
-| `* *`    | CS TA                                     | keep track of the assignments submitted by students                                   | mark accordingly                                                                  |
-| `* `     | CS TA                                     | send group messages to a specific group of students                                   | make announcements effectively                                                    |
-| `* `     | CS TA                                     | see the announcements that I have sent to the students in a tutorial group            |                                                                                   |
-| `* `     | Busy TA                                   | set an alarm before the tutorial starts                                               | be on time for tutorial session                                                   |
+| Priority | As a …​                                  | I want to …​                                                                          | So that I can …​                                                                  |
+|----------|------------------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | CS TA                                    | add a student                                                                         | keep track of them and their contacts                                             |
+| `* * *`  | CS TA                                    | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
+| `* * *`  | CS TA                                    | delete a student                                                                      | make sure I have the correct student in the list                                  |
+| `* * *`  | CS TA                                    | delete a tutorial group from a student                                                | make sure a student has the correct tutorial groups                               |
+| `* * *`  | CS TA                                    | delete a tutorial group from all students                                             | remove non-existing tutorial groups at the end of a semester easily               |
+| `* * *`  | CS TA                                    | find students by name                                                                 | contact the appropriate student                                                   |
+| `* * *`  | CS TA using the application              | see all the students' contact information that I stored                               |                                                                                   |
+| `* * *`  | CS TA                                    | get my students' private contact details like their email, Telegram and GitHub easily | can save time from the convenience of having all the contact details in one place |
+| `* * *`  | CS TA who is experienced in CLI programs | type everything in one command at one go                                              | manage things in the application more quickly                                     |
+| `* * *`  | CS TA new to the application             | be able to find a user guide for the application                                      | refer to it when needed                                                           |
+| `* * *`  | CS TA using the application              | be able to exit the application                                                       |                                                                                   |
+| `* * `   | CS TA                                    | sort my students by tutorial groups                                                   | find the appropriate students for my tutorial groups easily                       |
+| `* * `   | CS TA                                    | sort my students by name                                                              | easily find someone if I forgot part of their name                                |
+| `* * `   | CS TA                                    | find students by a tutorial group                                                     | see which students are in that tutorial group                                     |
+| `* * `   | CS TA                                    | undo my mistakes                                                                      |                                                                                   |
+| `* *`    | CS TA                                    | redo my mistakes                                                                      |                                                                                   |
+| `* *`    | CS TA                                    | store zoom link and venue of tutorial session                                         | find them easily when it is time for tutorial                                     |
+| `* *`    | CS TA that finished a semester           | clear my student contact list                                                         | easily start afresh for the next semester                                         |
+| `* *`    | Forgetful TA                             | store timing of the tutorial session                                                  | find them easily when I lose track of time                                        |
+| `* *`    | CS TA                                    | keep track of the assignments submitted by students                                   | mark accordingly                                                                  |
+| `* `     | CS TA                                    | send group messages to a specific group of students                                   | make announcements effectively                                                    |
+| `* `     | CS TA                                    | see the announcements that I have sent to the students in a tutorial group            |                                                                                   |
+| `* `     | Busy TA                                  | set an alarm before the tutorial starts                                               | be on time for tutorial session                                                   |
 
 
 Go back to **[Table of Contents](#table-of-contents)**
