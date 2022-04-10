@@ -615,13 +615,13 @@ Similar to UC04 except that it applies to all students under that tutorial group
 
 **Extensions**
 
-*1a. The tutorial group requested is an invalid tutorial group.
- *1a1. TACH prompts the TA to type a valid tutorial group.
+* 1a. The tutorial group requested is an invalid tutorial group.
+  * 1a1. TACH prompts the TA to type a valid tutorial group.
 Step 1a1 is repeated until a valid tutorial group is entered.
 
-*1b. The tutorial group requested to be deleted is the only tutorial group the student has.
- * 1b1. TACH deletes the tutorial group from the student.
- * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
+* 1b. The tutorial group requested to be deleted is the only tutorial group the student has.
+  * 1b1. TACH deletes the tutorial group from the student.
+  * 1b2. The student with no tutorial groups remaining afterwards will be deleted. 
 Steps 1b1 - 1b2 are repeated until the requested tutorial group is removed from all the students under it.
 <br><br>
 
@@ -769,12 +769,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Dealing with corrupted data files
 
-1. Troubleshooting with corrupted files:
+* Troubleshooting with corrupted files:
    1. Prerequisite: Corrupted data file.
        * To simulate a corrupted data file:
-         1. Open the data folder in the folder where TACH is in. Edit TACH.json and change one of the fields to an invalid one 
+         * Open the data folder in the folder where TACH is in. Edit TACH.json and change one of the fields to an invalid one 
          e.g. Add a `!` at the end of Irfan's email.
-         i.e.change from
+           i.e. change from
              > "name" : "Irfan Ibrahim",
              <br>"telegram" : "@irfan201",
              <br>"email" : "irfan@hotmail.com",
@@ -792,7 +792,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: Corrupted data file 
    <br>Open the data folder in the folder where TACH is in. Edit all the data such that it meets the requirement stated here.[Input Requirements](https://ay2122s2-cs2103t-w15-3.github.io/tp/UserGuide.html#input-requirements) 
    <br> Expected: TACH will now load the data file and not an empty one.
-      1. Example: To resolve the issue in step i, change Irfan's email from an invalid one (`irfan@hotmail.com!`) 
+      * Example: To resolve the issue in step i, change Irfan's email from an invalid one (`irfan@hotmail.com!`) 
       to a valid one (`irfan@hotmail.com`) by removing the `!` at the end. i.e.
          <br>change from :
           > "name" : "Irfan Ibrahim",
