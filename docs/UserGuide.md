@@ -49,7 +49,7 @@ refresher on the commands, you can look at all the commands for TACH via **[Comm
 4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
    ![Quick Start](images/QuickStart.png)
 <br>
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 **:exclamation: For macOS users:**<br>
 
