@@ -259,7 +259,7 @@ As shown in the previous sequence diagram, `ParserUtil` parses all the inputs fo
 
 * Alternative 2: Stored as a reserved valid string e.g. "null"
   * Pros: Avoid NullPointerExceptions
-  * Cons: Possibility of a student whose telegram and github be the string "null".
+  * Cons: Possibility of a student whose telegram or github be the string "null".
 
 * Alternative 3 (Current Choice): Stored as an invalid string i.e. ""
   * Pros: Avoid NullPointerExceptions
@@ -289,7 +289,7 @@ Assuming the command is valid and execution is successful,
 5. `AddTutorialGroupCommand` creates a new `Student` combining the existing and newly specified `TUTORIAL_GROUP(s)` and returns the relevant `CommandResult` to `LogicManager`
 
 Rationale:
-- A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` is because a `Student` object is immutable.
+- A new `Student` is created with the new combined information instead of adding the new tutorial group(s) to the existing `Student` because a `Student` object is immutable.
 - An `Index` based on the current list shown is used to specify which `Student` will be updated. An alternative would be to use the name of the student instead of an index. However, an index makes it easier and faster for users to key in the command as it is way shorter (length) as compared to a student's name.
   - Hence, to increase efficiency of TACH, we have chosen `index` to be our indicator.
 

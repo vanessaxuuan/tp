@@ -36,9 +36,9 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
-Student *--> Name
+Student *--> "1" Name
 Student *--> "0..1" Telegram
-Student *--> Email
+Student *--> "1" Email
 Student *--> "0..1" GitHub
 Student *--> "1..*" TutorialGroup
 

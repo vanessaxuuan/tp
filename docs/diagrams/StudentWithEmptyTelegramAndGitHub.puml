@@ -10,8 +10,8 @@ object "__:Email__" as email
 
 gitHub : value = ""
 telegram : value = ""
-name : value = "john smith"
-tg : value = "CS2103 WT13-2"
+name : fullName = "john smith"
+tg : tutorialGroupName = "CS2103 WT13-2"
 email : value = example@u.nus.edu
 
 student --> tg
