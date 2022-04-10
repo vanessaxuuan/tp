@@ -19,9 +19,9 @@ any reader who is interested can become a contributor to this project as well.
 
 - This project is based on the AddressBook-Level3(AB3) project created by the [SE-EDU initiative](https://se-education.org). <br>
 - Libraries used: 
-  - [JavaFX](https://openjfx.io/),
-  - [Jackson](https://github.com/FasterXML/jackson), 
-  - [JUnit5](https://github.com/junit-team/junit5), 
+  - [JavaFX](https://openjfx.io/)
+  - [Jackson](https://github.com/FasterXML/jackson)
+  - [JUnit5](https://github.com/junit-team/junit5)
   - [Markdown-javafx-renderer](https://github.com/JPro-one/markdown-javafx-renderer)
 
 --------------------------------------------------------------------------------------------------------------------
