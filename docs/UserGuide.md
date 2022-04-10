@@ -119,7 +119,7 @@ your command. The effect of each command is described after the command itself.
 
 1. **`list`** : Lists all the students in TACH.
 <br><br>
-2. **`add n/Carl Sagan e/carlsagan42@gmail.com tg/CS2100 G01`** : Adds the student "Carl Sagan" with their email
+2. **`add n/Carl Sagan e/carlsagan42@gmail.com tg/cs2100 g01`** : Adds the student "Carl Sagan" with their email
 and tutorial group to TACH. They should appear as the 3rd person (Index 3) on the list.
 <br><br>
 3. **`delete 2`**: Deletes the 2nd person in the displayed list. Here, "Bernice Yu" should be deleted
@@ -131,8 +131,6 @@ be visible to you now.
 5. **`edit 1 n/David Lee t/DavidLee777 g/david-lee`** : Edits the 1st person in the visible list by changing
 their name, their Telegram and their GitHub. This should edit "David Li" to "David Lee" and add their
 Telegram and GitHub usernames.
-<br>The app should now display all the students, and you should be able to see "David Lee" as the 4th student with
-their Telegram and GitHub added.
 <br><br>
 6. **`findtg cs2106 t05`** : Finds all students that have "CS2106 T05" as a tutorial group. In this tutorial,
 you should see 3 students that have "CS2106 T05" as their tutorial group.
@@ -175,7 +173,7 @@ to get started! If you want more details on what each command does, you can refe
 a better understanding. <br><br>
 
 
-Go back to **[Table of Contents](#table-of-contents)**
+Go back to **[Table of Contents](#table-of-contents)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,8 +200,8 @@ List of commands:
 
 **:information_source: Notes about the command format:**
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. <br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you. <br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used like `add n/John Doe` for example.<br>
 
 
 * Items in square brackets are optional. <br>
@@ -225,7 +223,8 @@ List of commands:
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Opens a window showing the [Command Summary](#command-summary) and the [Input Requirements](#input-requirements),
+and also gives a reference to the full user guide, which is this page.
 
 Format: `help`
 
@@ -248,32 +247,31 @@ Adds a student into TACH.
 Format: `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…`
 
 Note:
-* Students with the same names will be considered as duplicate students.
+* Adding a student with the exact same name as another student in TACH is **not allowed**.
   - e.g. If `Sam` exists in TACH, another `Sam` **cannot be added again** even if their contact details are different.
-  - Do manually differentiate them by saving them as `Sam 1` and `Sam 2` for easier reference.
-  - This is because if two `Sam`s  are in the same tutorial group, you might not be able to recognize which `Sam` is which `Sam` in TACH as you most likely will not be able to remember their personal contact details to differentiate them.
-  - Thus, names would be used to uniquely identify everyone.
+  - You can manually differentiate them by saving them as `Sam 1` and `Sam 2` for example, or use your own way
+  of identifying them.
+* Names in TACH are used to uniquely identify students. If two students who have the same name are in the same
+tutorial group, it would be difficult to differentiate the two students.
 
 Examples:
 * `add n/John Doe tg/CS2100 G08 e/e0123456@u.nus.edu`
 * `add n/Michael Tay e/michaelT@gmail.com t/MichaelTay g/michael777 tg/CS2103T W15-3 tg/CS2100 G08`
 
-The following diagram shows the output for the following input: <br>
+The following image shows the output for the following command: <br>
 `add n/Chloe Lee e/chloexlee@gmail.com t/chloe201 g/jchloechloe tg/CS2101 G08`
 
 ![Results Display](images/AddStudentResult.png)<br><br>
 
-#### Adding a tutorial group for a student: `addtg`
+#### Adding tutorial group(s) for a student: `addtg`
 
-Adds a tutorial group for a student already in TACH.
+Adds tutorial group(s) for a student in TACH.
 
 Format: `addtg INDEX tg/TUTORIAL_GROUP…`
 
-* Adds a tutorial group for the student at the specified `INDEX`. The index refers to the index number
-shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* Adding of tutorial groups is cumulative 
-  - existing tutorial groups of the specified student will
-remain unchanged.
+* Adds one or more tutorial groups for the student at the specified `INDEX`.
+* Adding of tutorial groups is cumulative. (Existing tutorial groups of the specified student will
+remain unchanged.)
 
 Example:
 * `list` followed by `addtg 2 tg/CS2040S T03` adds the tutorial group `CS2040S T03` for the 2nd student listed in TACH.
@@ -286,25 +284,25 @@ Edits an existing student in TACH.
 
 Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUPS]…`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed
-student list. The index **must be a positive number** 1, 2, 3, …
-* At least one of the optional details (Name/NUS email/Telegram/GitHub) must be provided.
-* Any detail entered in the `edit` command will replace the original detail of the student.
+* Edits the student at the specified `INDEX`
+* At least one of the optional details (Name/NUS email/Telegram/GitHub/Tutorial Groups) must be provided.
+* Any details entered in the `edit` command will replace the original details of the student.
 * Details not entered in the `edit` command will stay the same and not be replaced.
+
 >*Note*:
-> 1. Tutorial groups **CANNOT** be empty.
+> * Tutorial groups **CANNOT** be empty.
 `edit 1 tg/` is **NOT** allowed.
->2. GitHub and Telegram **CAN** be empty.
-`edit 1 g/  t/` is allowed and will set GitHub and Telegram to empty strings.
+> * GitHub and Telegram **CAN** be empty.
+`edit 1 g/  t/` is allowed and will set the student to have no GitHub and Telegram.
 
 Examples:
-* `list` followed by `edit 2 t/DaveHunter g/Hunter02` edits the 2nd student listed in TACH. Their Telegram will be
-edited to `DaveHunter` and their GitHub will be edited to `Hunter02`.
+* `list` followed by `edit 2 t/DaveHunter g/` edits the 2nd student listed in TACH. Their Telegram will be
+edited to `DaveHunter` and they will not have any GitHub username.
 * `find Robert` followed by `edit 1 n/Bobby Smiles` edits the 1st student in the results of the `find` command. Their
 name will be edited to `Bobby Smiles`.
 
-The following diagram shows the output for `edit 5 t/chloe201 g/chloechloe ` 
-from the previous `Add student` [output](#adding-a-student-add)
+The following diagram shows the output for `edit 5 t/chloe201 g/chloechloe`
+from the previous `Add student` [command](#adding-a-student-add)
 
 ![Results Display](images/EditingResult.png)
 
@@ -316,15 +314,14 @@ Finds students whose names contain all the given keywords.
 
 Format `find KEYWORD [ADDTIONAL_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `charles` will match `Charles`
-* The order of the keywords matters. e.g. `Charles Boyle` will not match `Boyle Charles`
 * Only the name is searched.
+* The search ignores cases. e.g. `charles` will match `Charles`
+* The order of the keywords matters. e.g. `Charles Boyle` will not match `Boyle Charles`
 * Keywords can match the name partially e.g. `Char` **WILL** match `Charles`
-  - e.g. `Charles Bo` will match `Charles Boyle`, but `Charle Boyle` will not match `Charles Boyle`
-  - Partial matching only applies to the last word of the keyword(s)
-* The whitespace positions have to tally e.g. `Alex Lee En` **will not** match `Alex Leeen`
+  - e.g. `Charles Bo` and `les Boyle` will match `Charles Boyle`, but `Charle Boyle` will not match `Charles Boyle`
+* The positions of the spaces matter. e.g. `Alex Lee En` **will not** match `Alex Leeen`
 * Students whose names contain the keyword fully or partially will be returned 
-  - e.g. `find char` will return `Charles Alex Lee`, `Charles Boyle`, and `Charles Tan` if they are in the list of students
+  - e.g. `find char` will return `Charles Alex Lee`, `Charles Boyle`, and `Racharl Tan` if they are in the list of students
 
 #### Finding students by tutorial group: `findtg`
 
@@ -332,19 +329,18 @@ Finds all students in a particular tutorial group.
 
 Format `findtg TUTORIAL_GROUP`
 
-* The search is case-insensitive. e.g. `cs2101 g08` will match `CS2101 G08`
-* The search ignores extra whitespaces. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
-  - `<>` illustrates whitespace
+* The search ignores cases. e.g. `cs2101 g08` will match `CS2101 G08`
+* The search ignores extra spaces. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
+  - In this example, `<>` means a space.
 * Only the tutorial group is searched.
 * Only the exact tutorial group will be matched e.g. `CS2101 G` **WILL NOT** match `CS2101 G08`
 * Students with matching tutorial group will be returned. e.g. `findtg CS2101 G08` will return
 `Charles Martinet` and `Susan Boyle` only if both of them are in the tutorial group `CS2101 G08`
-* If there are no students with matching tutorial group, no student will be returned (an empty list).
+* If there are no students with matching tutorial group, no student will be returned and an empty list is displayed.
 
-The following diagram shows the result for `findtg CS2100 T05` 
-from the initial `list` [output](#listing-all-students-list)
+The following diagram shows the result for `findtg CS2100 T05`
 
-![Results Display](images/FindTgResult.png)<br><br>
+![Results Display](images/FindTgResult.png)
 
 ### Deleting
 
@@ -355,8 +351,6 @@ Deletes the specified student from TACH.
 Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the current displayed student list.
-* The index **must be a positive number** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student listed in TACH.
@@ -369,19 +363,18 @@ Deletes the specified tutorial group from the specified student.
 
 Format: `deletetg INDEX tg/TUTORIAL_GROUP`
 
-* Deletes the specified tutorial group of the student at the specified `INDEX`. The index refers to the index
-number shown in the current displayed student list. The index **must be a positive number** 1, 2, 3, …
-* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetg 1 tg/cs2040s t03` will
+* Deletes the specified tutorial group of the student at the specified `INDEX`.
+* The tutorial group must be written **EXACTLY**, but *ignores cases*. e.g. `deletetg 1 tg/cs2040s t03` will
 delete `CS2040S T03` if that person has that tutorial group, but `deletetg 1 tg/cs2040s` or `deletetg 1 tg/cs2040st03`
 **WILL NOT** successfully delete it.
 * The tutorial group **cannot be deleted** if it is the **only** tutorial group a student has. e.g. A student with only
-one tutorial group `CS2040S T03` cannot have their tutorial group deleted.
+the tutorial group `CS2040S T03` cannot have that tutorial group deleted.
 
 Examples:
 * `list` followed by `deletetg 2 tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` of the 2nd student listed
-in TACH (only if the 2nd student had more than one tutorial group).
+in TACH (only if the 2nd student has more than one tutorial group).
 * `find Carmen` followed by `deletetg 1 tg/cs2100 g01` deletes the tutorial group `CS2100 G01` of the 1st student in the
-results of the `find` command (only if the 1st student had more than one tutorial group).
+results of the `find` command (only if the 1st student has more than one tutorial group).
 
 #### Deleting tutorial groups from all students: `deletetgall`
 
@@ -390,20 +383,20 @@ Deletes the specified tutorial group from **ALL** students in TACH.
 Format: `deletetgall tg/TUTORIAL_GROUP…`
 
 * Deletes the specified tutorial group from **ALL** students stored in TACH.
-* The tutorial group must be written **EXACTLY**, but is *case-insensitive*. e.g. `deletetgall tg/cs2040s t03` will
+* The tutorial group must be written **EXACTLY**, but *ignores cases*. e.g. `deletetgall tg/cs2040s t03` will
   delete `CS2040S T03` from tutorial groups of all Students, but `deletetgall tg/cs2040s` or `deletetgall tg/cs2040st03` **WILL NOT** successfully delete `CS2040S T03` from students in TACH.
 > **NOTE**: After the deletion, you will see all the updated remaining students in TACH.
 
 >**WARNING:** 
 > 1. Students with 0 tutorial groups after the deletion will automatically be deleted.
-> 2. **ALL** students in TACH will be affected. Even those not visible as a result of `find` command.
+> 2. **ALL** students in TACH will be affected. Even those not visible as a result of the `find` command.
 
 Example:
-* `find Eve` followed by `deletetgall tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` from all students in TACH, including those not visible after the `find Eve` command(i.e. students whose name does not contain `Eve`)
-* `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial group will be deleted from TACH.
+* `find Eve` followed by `deletetgall tg/CS2103T W15-3` deletes the tutorial group `CS2103T W15-3` from all students in TACH, including those not visible after the `find Eve` command (i.e. students whose name does not contain `Eve`)
+* `deletetgall tg/CS2106 T08 tg/CS2103T W13-3` will remove tutorial groups `CS2106 T08` and `CS2103T W13-3` from all students in TACH. Students with 0 tutorial groups after the tutorial groups' deletion will be deleted from TACH.
 
 The following diagram shows the output of `deletetgall tg/CS2100 T05` 
-from the previous `findtg` [output](#finding-students-by-tutorial-group-findtg)
+from the previous `findtg` [command](#finding-students-by-tutorial-group-findtg)
 
 ![Results Display](images/DeleteTgAllResult.png)<br>
 
@@ -412,7 +405,7 @@ Note:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from TACH.
+Clears all entries from TACH. This means every student and all their details.
 
 Format: `clear`
 
@@ -436,29 +429,29 @@ e.g. `There A_RE 4 w0-rd_s.` has 4 words.
 
 | Parameter          | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **INDEX**          | Must be a positive integer that can be a maximum of 2,147,483,647 (1, 2, 3, … , 2147483647).<br> e.g. `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **NAME**           | Must contain letters. Can contain spaces, apostrophes and hyphens as long as they are in between letters. Consecutive spaces, apostrophes or hyphens are not allowed. Name must start with a letter. Numbers are allowed, but they must strictly be at the end of the name. Cannot be empty, and must not be more than 100 characters long, including spaces. <br> e.g. `John Smith 2` or `Johnson-Johnson Maxine d'Arby`                                                                                                                                                                                                                                                                                                                                                                                              |
-| **TUTORIAL_GROUP** | Must **STRICTLY** consist of a module code, followed by a space, then the tutorial name. It should not be blank. The tutorial name must have a non-zero digit and cannot start or end with a hyphen. The name consist of letters or hyphens or digits or underscores. Tutorial Group may only have a maximum of 100 characters including whitespace. <br> e.g. `CS2103T W15-3_A` <br><br>**ALL** letters in tutorial group inputs will be converted into uppercase letters <br>e.g. `addtg 2 tg/cs2101 t01` will add `CS2101 T01` into the turoial group of student 2, assuming there are more than 2 students in the list that you see.                                                                                                                                                                               |
+| **INDEX**          | Must be a positive number that can be a maximum of 2,147,483,647 (1, 2, 3, … , 2147483647).<br> e.g. `100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **NAME**           | Must contain letters. Can contain spaces, apostrophes and hyphens as long as they are in between letters. Consecutive spaces, apostrophes or hyphens are not allowed. Name must start with a letter. Numbers are allowed, but they must strictly be at the end of the name separated by a space. Cannot be empty, and must not be more than 100 characters long, including spaces. <br> e.g. `John Smith 2` or `Johnson-Johnson Maxine d'Arby`                                                                                                                                                                                                                                                                                                                                                                         |
+| **TUTORIAL_GROUP** | Must **STRICTLY** consist of a module code, followed by a space, then the tutorial name. It should not be blank. The tutorial name must have a non-zero digit and cannot start or end with a hyphen. The name can consist of a combination of letters, hyphens, digits or underscores. Tutorial groups can only have a maximum of 100 characters including spaces. <br> e.g. `CS2103T W15-3_A` <br><br>**ALL** letters in tutorial group inputs will be converted into uppercase letters <br>e.g. `addtg 2 tg/cs2101 t01` will add `CS2101 T01` into the list of tutorial groups of student 2, assuming there are at least 2 students in the list that you see.                                                                                                                                                        |
 | **EMAIL**          | An email consists of three parts in the following order, the local part, the `@` sign, and the domain part. <br> The local part should only contain letters, numbers, and these special symbols: `+` `_` `.` `-`. It cannot start or end with the special symbols. It must be at most 64 characters long. <br> There must be an @ sign afterwards, followed by the domain name. <br> The domain name must be one of the following: `u.nus.edu` `nus.edu.sg` `gmail.com` `yahoo.com` `outlook.com` `hotmail.com` <br> e.g. `e0123456@u.nus.edu` or `jasminelim@gmail.com` <br> (Our original intention is for you to put in your students' NUS emails which are given to you on LumiNUS, but we also provide the freedom to use some of the more popular email providers listed above, should they be more convenient.) |
 | **TELEGRAM**       | May include `@` at the start. Must be exactly one word that can contain letters, numbers and underscores. It must be between 5 to 32 characters long (inclusive). This does not count the `@` symbol. <br> e.g. `Dave3` or `@Lorem_ipsum_dolor_sit_amet_12345`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be at most 39 characters long. <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **GITHUB**         | Must be exactly one word that can contain letters, numbers and hyphens. It must be between 2 to 39 characters long (inclusive). <br> e.g. `12345678` or `cake-is-a-lie77`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ## Saving the data
 
-TACH data are saved in the [hard disk](#glossary) automatically after any command that changes the data. There is no need to save manually.
+TACH data is saved in your computer's [hard disk](#glossary) automatically after any command that changes the data is entered. There is no need to save manually.
 
 ## Editing the data file
 
-TACH data are saved as a [JSON file](#glossary) `[JAR file location]/data/tach.json`. <br>
-**You should not edit the data file directly.** <br>
-Only advanced users who are absolutely familiar with the format are welcome to update data directly by editing that data file.
+TACH data is saved as a [JSON file](#glossary) under `[TACH file location]/data/tach.json`. <br>
+**You should not edit the data file directly unless you are absolutely sure of what you are doing!** <br>
+Only advanced users who are absolutely familiar with the data format should try updating the data directly by editing the data file.
 
 ><div markdown="span" class="alert alert-warning">:exclamation: Caution:
->If your changes to the data file makes its format invalid, TACH will discard all data and start with an empty data file at the next run.
->This action CANNOT be undone! For advanced users consider keeping a copy first before changing any field to the data file.
+>If your changes to the data file make its format invalid, TACH will consider the data corrupted and discard ALL data, starting with an empty data file in the next run.
+>This action CANNOT be undone! Please consider making a copy of the data first before attempting to edit the data file.
 ></div>
 
-Go back to **[Table of Contents](#table-of-contents)**
+Go back to **[Table of Contents](#table-of-contents)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
