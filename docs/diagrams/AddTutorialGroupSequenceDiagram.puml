@@ -8,17 +8,19 @@ participant ":AddTutorialGroupParser" as AddTutorialGroupParser LOGIC_COLOR
 participant ":AddTutorialGroupDescriptor" as AddTutorialGroupDescriptor LOGIC_COLOR
 participant ":AddTutorialGroupCommand" as AddTutorialGroupCommand LOGIC_COLOR
 participant ":Student" as Student LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-create AddressBookParser
-LogicManager -> AddressBookParser
-activate AddressBookParser
-
-AddressBookParser --> LogicManager
-deactivate AddressBookParser
-
+ -> LogicManager : execute("addtg 2 tg/CS2103T W15-3 tg/CS2101 G08")
+activate LogicManager
 LogicManager -> AddressBookParser : parseCommand(commandText)
 activate AddressBookParser
+
+create AddTutorialGroupParser
+AddressBookParser -> AddTutorialGroupParser
+activate AddTutorialGroupParser
+AddTutorialGroupParser --> AddressBookParser
+deactivate AddTutorialGroupParser
 
 AddressBookParser -> AddTutorialGroupParser : parse("addtg 2 tg/CS2103T W15-3 tg/CS2101 G08")
 activate AddTutorialGroupParser
@@ -49,7 +51,7 @@ deactivate AddTutorialGroupParser
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> AddTutorialGroupCommand : execute(model)
+LogicManager -> AddTutorialGroupCommand : execute()
 activate AddTutorialGroupCommand
 
 create Student
@@ -58,6 +60,13 @@ activate Student
 
 Student --> AddTutorialGroupCommand
 deactivate Student
+
+create CommandResult
+AddTutorialGroupCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTutorialGroupCommand
+deactivate CommandResult
 
 AddTutorialGroupCommand --> LogicManager
 deactivate AddTutorialGroupCommand
