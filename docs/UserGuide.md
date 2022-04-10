@@ -54,10 +54,12 @@ refresher on the commands, you can look at all the commands for TACH via **[Comm
 **:exclamation: For macOS users:**<br>
 
 If the app does not open by double-clicking, follow these steps instead:
-   1. Move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
-   2. Open up your **terminal** application.
-   3. Enter `cd Desktop` in your terminal to go into your desktop directory.
-   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app.
+
+1. Move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
+2. Open up your **terminal** application.
+3. Enter `cd Desktop` in your terminal to go into your desktop directory.
+4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app.
+
 </div>
    
 <div markdown="block" class="alert alert-info">
@@ -223,10 +225,12 @@ List of commands:
 
 ### Viewing help : `help`
 
-Opens a window showing the [Command Summary](#command-summary) and the [Input Requirements](#input-requirements),
+Opens a window showing the **[Command Summary](#command-summary)** and the **[Input Requirements](#input-requirements)**,
 and also gives a reference to the full user guide, which is this page.
 
 Format: `help`
+
+![Help Window](images/HelpWindow.png)
 
 ### Listing all students: `list`
 
@@ -470,10 +474,10 @@ the data of your previous TACH home folder.
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
-| Terms         | Definition                                                                                                     |
-|---------------|----------------------------------------------------------------------------------------------------------------|
-| **Hard disk** | A storage device for data in your computer                                                                     |
-| **JSON file** | A file that uses human-readable text to store and transmit data objects such as `Students` in the case of TACH |
+| Terms         | Definition                                                                                                      |
+|---------------|-----------------------------------------------------------------------------------------------------------------|
+| **Hard disk** | A storage device for data in your computer.                                                                     |
+| **JSON file** | A file that uses human-readable text to store and transmit data objects such as `Students` in the case of TACH. |
 
 --------------------------------------------------------------------------------------------------------------------
 
