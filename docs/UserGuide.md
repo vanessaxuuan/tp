@@ -5,15 +5,15 @@ title: User Guide
 
 ## Introduction
 
-TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) from 
-National University of Singapore (NUS) who tutors multiple tutorial groups by
-**managing their students in an organised manner**.
+TACH is a desktop app that helps Computer Science (CS) Teaching Assistants (TAs) (like you!)
+from National University of Singapore (NUS), especially those that tutor
+multiple tutorial groups, by **managing their students in an organised manner**.
 
-TAs can **add, edit and delete** students and their tutorial groups from their list easily.
-TAs can also **find** students by their name or by their tutorial group.
+You can **add, edit and delete** students and their tutorial groups from the list easily.
+You can also **find** students by their name or by their tutorial group.
 
 TACH automatically sorts students in alphabetical order, and all the students' contact details are right next to
-their names, so that you can get their details in a glance, and you easily know which contacts belong to whom.
+their names, so that you can get their details in a glance, and easily know which contacts belong to whom.
 
 TACH works by typing what you want to do as commands. It is optimized for keyboard users, so if you can type fast,
 TACH can work even faster.
@@ -23,11 +23,11 @@ TACH can work even faster.
 **The goal of this guide is to help you**, the reader, to **understand how to use our app better**, regardless of
 whether you are a new user or an experienced user.
 
-If you are a new user and want to learn how to download and set up the app, go to **[Quick Start](#quick-start)**.
+If you are a **new user** and want to learn how to download and set up the app, go to **[Quick Start](#quick-start)**.
 <br>If you have already installed the app and want to learn the basics, go to **[Quick Tutorial](#quick-tutorial)**.
 
-If you are an experienced user who wants to use the app to its full potential, or you just want a quick refresher on
-the commands, you can look at all the commands for TACH via **[Commands](#commands)**.
+If you are an **experienced user** who wants to use the app to its full potential, or just want a quick
+refresher on the commands, you can look at all the commands for TACH via **[Commands](#commands)**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,17 +42,23 @@ the commands, you can look at all the commands for TACH via **[Commands](#comman
 
 1. Ensure you have **[Java 11](https://www.oracle.com/java/technologies/downloads/#java11-windows)** or above installed in your Computer.
 
-2. Download the latest release of `TACH.jar` **[here](https://github.com/AY2122S2-CS2103T-W15-3/tp/releases)**.
+2. Download the latest release of `TACH.jar` **[here](https://github.com/AY2122S2-CS2103T-W15-3/tp/releases/latest)**.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TACH.
 
 4. Double-click the file to start the app. The app should appear in a few seconds and look similar to the image below. Note how the app contains some sample data.<br><br>
    ![Quick Start](images/QuickStart.png)
-If the app does not open with a double-click especially for MacOS users:
-   1. For simplicity, move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
+<br>
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: For macOS users:**<br>
+
+If the app does not open by double-clicking, follow these steps instead:
+   1. Move the downloaded `TACH.jar` to a new folder (e.g. TACHfolder) in your `Desktop`.
    2. Open up your **terminal** application.
    3. Enter `cd Desktop` in your terminal to go into your desktop directory.
-   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app
+   4. Then, enter `java -jar TACHfolder/TACH.jar` to open the app.
+</div>
    
 <div markdown="block" class="alert alert-info">
 
@@ -72,7 +78,7 @@ On the other hand, if you're feeling confident, you can dive straight into all t
 
 ## Quick Tutorial
 
-This quick tutorial will teach you how to navigate through the app and its components, and some basic commands
+This quick tutorial will teach you how to navigate through the app and its components, along with some basic commands
 that you can use right now!
 
 ### App Components
@@ -84,8 +90,8 @@ Here is a quick summary of all the components of the app:
 
 - ![Options](images/IconColourOrange.png) **Options**: Various options that you can use for the app.
 
-- ![Command Box](images/IconColourRed.png) **Command Box**: **The place where you type your commands.** Press the
-**⏎Enter** key on your keyboard to submit your commands.
+- ![Command Box](images/IconColourRed.png) **Command Box**: **The place where you type your commands.** 
+Once you have finished typing your command, press the **⏎Enter** key on your keyboard to submit your command.
 
 - ![Student Box](images/IconColourCyan.png) **Student Box**: Represents a student and all their details. It has
 an index, the student's name, their contact details, and their tutorial group(s).
@@ -109,22 +115,22 @@ or an appropriate error message if the command is invalid.
 
 Now that you know what each of the components are, it's time to learn a few commands! Commands will look like
 **`this`**. Type the following commands exactly into the command box and press the **⏎Enter** key to submit
-your command. The effect of the command is described after the command.
+your command. The effect of each command is described after the command itself.
 
 1. **`list`** : Lists all the students in TACH.
 <br><br>
 2. **`add n/Carl Sagan e/carlsagan42@gmail.com tg/CS2100 G01`** : Adds the student "Carl Sagan" with their email
 and tutorial group to TACH. They should appear as the 3rd person (Index 3) on the list.
 <br><br>
-3. **`delete 2`**: Deletes the 2nd person in the displayed list. In this tutorial, "Bernice Yu" should be deleted
+3. **`delete 2`**: Deletes the 2nd person in the displayed list. Here, "Bernice Yu" should be deleted
 from the list.
 <br><br>
-4. **`find david`**: Finds all students that have "David" in their name. In this tutorial, only "David Li" should
-be visible to you.
+4. **`find david`**: Finds all students that have "David" in their name. Only "David Li" should
+be visible to you now.
 <br><br>
 5. **`edit 1 n/David Lee t/DavidLee777 g/david-lee`** : Edits the 1st person in the visible list by changing
-their name, their Telegram and their GitHub. In this tutorial, this should edit "David Li" to "David Lee" and
-add their Telegram and GitHub usernames.
+their name, their Telegram and their GitHub. This should edit "David Li" to "David Lee" and add their
+Telegram and GitHub usernames.
 <br>The app should now display all the students, and you should be able to see "David Lee" as the 4th student with
 their Telegram and GitHub added.
 <br><br>
@@ -336,7 +342,7 @@ Format `findtg TUTORIAL_GROUP`
 * If there are no students with matching tutorial group, no student will be returned (an empty list).
 
 The following diagram shows the result for `findtg CS2100 T05` 
-from the initial `List` [output](#listing-all-students-list)
+from the initial `list` [output](#listing-all-students-list)
 
 ![Results Display](images/FindTgResult.png)<br><br>
 
@@ -485,7 +491,7 @@ the data of your previous TACH home folder.
 | **Add Student**                               | `add n/NAME e/EMAIL [t/TELEGRAM] [g/GITHUB] tg/TUTORIAL_GROUP…` <br> e.g. `add n/John Smith tg/CS2103T W15-3 e/e0123456@u.nus.edu t/johnsmyname g/johnsmyname` |
 | **Add Tutorial Group for Student**            | `addtg INDEX tg/TUTORIAL_GROUP…` <br> e.g. `addtg 5 tg/CS2100 G08`                                                                                             |
 | **Edit Student**                              | `edit INDEX [n/NAME] [e/EMAIL] [t/TELEGRAM] [g/GITHUB] [tg/TUTORIAL_GROUP]…` <br> e.g. `edit 3 n/Mary Sue t/PresentPerfect`                                    |
-| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Ho`                                                                                                 |
+| **Find Students by name**                     | `find KEYWORD [ADDTIONAL_KEYWORDS]` <br> e.g. `find Jack Ho`                                                                                                   |
 | **Find Students by Tutorial Group**           | `findtg TUTORIAL_GROUP` <br> e.g. `findtg CS2101 G08`                                                                                                          |
 | **Delete Student**                            | `delete INDEX` <br> e.g. `delete 4`                                                                                                                            |
 | **Deleting Tutorial Group from Student**      | `deletetg INDEX tg/TUTORIAL_GROUP` <br> e.g. `deletetg 4 tg/cs2030s t11`                                                                                       |
