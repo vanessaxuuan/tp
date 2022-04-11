@@ -37,7 +37,7 @@ You can reach us at the email `jiahaolow2020@gmail.com`
 [[portfolio](team/hqhqhq1.md)]
 
 * Role: Developer
-* Responsibilities: Storage, code quality, deliverables, deadlines, Scheduling and tracking.
+* Responsibilities: Storage, code quality, deliverables, deadlines, Scheduling and tracking
 
 
 ### Khor Vanessa
