@@ -24,8 +24,9 @@ The following sections below summarise my contributions to this project.
 * **Enhancements to existing features**: 
   * Changed add feature to add student feature to suit our product purpose (Pull request [#58](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/58))
   * Added automatically sort student by alphabetical order feature (Pull request [#67](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/67))
-  * Updated ui for help window
+  * Updated ui for help window (Pull request [#162](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/162))
   * Wrote additional tests for existing features (Pull request [#58](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/58))
+  * Enhanced `edit`, `addtg`, `deletetg` features to keep at current list instead of go back to main list (Pull request [#167](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/167))
 * **Documentation**:
     * *User Guide*:
         * Added documentation for the features `add` and `findtg`
@@ -36,6 +37,8 @@ The following sections below summarise my contributions to this project.
         * Added implementation details of the `findtg` feature. [#67](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/67))
 * **Contributions to team-based tasks**: 
   * PRs reviewed (with non-trivial review comments): [#56](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/56), 
-  [#72](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/72), [#83](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/83), .
+  [#72](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/72), [#83](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/83).
   
-* **Tools:**: [To be added soon]
+* **Tools:** 
+  * Integrated a third party library ([markdown-javafx-renderer](https://github.com/JPro-one/markdown-javafx-renderer)) to the project
+(Pull request [#162](https://github.com/AY2122S2-CS2103T-W15-3/tp/pull/162))
