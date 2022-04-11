@@ -29,13 +29,13 @@ activate ParserUtil
 ParserUtil --> AddStudentCommandParser : t
 deactivate ParserUtil
 
-ParserUtil -> AddStudentCommandParser : parseGitHub(null)
+AddStudentCommandParser -> ParserUtil : parseGitHub(null)
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : g
 deactivate ParserUtil
 
-ParserUtil -> AddStudentCommandParser : parseTutorialGroup("CS2106 T04")
+AddStudentCommandParser -> ParserUtil : parseTutorialGroup("CS2106 T04")
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : tg
