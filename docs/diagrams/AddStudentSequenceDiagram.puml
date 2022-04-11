@@ -1,50 +1,58 @@
 @startuml
 !include style.puml
 
-box Logic LOGIC_COLOR_T1
+box add LOGIC_COLOR_T1
 participant ":AddStudentCommandParser" as AddStudentCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
-participant "a:AddStudentCommand" as AddStudentCommand LOGIC_COLOR
+participant "s:Student" as Student LOGIC_COLOR
+participant ":AddStudentCommand" as AddStudentCommand LOGIC_COLOR
 end box
 
--> AddStudentCommandParser : parse("n/john smith e/eg@eg.com t/john1 tg/CS2106 T04")
+-> AddStudentCommandParser : parse("n/john smith e/johnsmith@gmail.com t/john1 tg/CS2106 T04")
 activate AddStudentCommandParser
 
-AddStudentCommandParser -> ParserUtil : parseName("n/john smith")
+AddStudentCommandParser -> ParserUtil : parseName("john smith")
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : n
 deactivate ParserUtil
 
-AddStudentCommandParser -> ParserUtil : parseEmail("e/eg@eg.com")
+AddStudentCommandParser -> ParserUtil : parseEmail("johnsmith@gmail.com")
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : e
 deactivate ParserUtil
 
-AddStudentCommandParser -> ParserUtil : parseTelegram("t/john1")
+AddStudentCommandParser -> ParserUtil : parseTelegram("john1")
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : t
 deactivate ParserUtil
 
-ParserUtil -> AddStudentCommandParser : parseGitHub(null)
+AddStudentCommandParser -> ParserUtil : parseGitHub(null)
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : g
 deactivate ParserUtil
 
-ParserUtil -> AddStudentCommandParser : parseTutorialGroup("CS2106 T04")
+AddStudentCommandParser -> ParserUtil : parseTutorialGroup("CS2106 T04")
 activate ParserUtil
 
 ParserUtil --> AddStudentCommandParser : tg
 deactivate ParserUtil
 
+create Student
+AddStudentCommandParser -> Student : new Student(n, e, t, g, tg)
+activate Student
+
+Student --> AddStudentCommandParser : s
+deactivate Student
+
 create AddStudentCommand
-AddStudentCommandParser -> AddStudentCommand : new AddStudentCommandParser(n, e, t, g, tg)
+AddStudentCommandParser -> AddStudentCommand : new AddStudentCommand(s)
 activate AddStudentCommand
 
-AddStudentCommand --> AddStudentCommandParser : d
+AddStudentCommand --> AddStudentCommandParser
 deactivate AddStudentCommand
 
 [<--AddStudentCommandParser

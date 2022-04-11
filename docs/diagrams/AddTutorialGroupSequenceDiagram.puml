@@ -10,6 +10,8 @@ participant ":AddTutorialGroupCommand" as AddTutorialGroupCommand LOGIC_COLOR
 participant ":Student" as Student LOGIC_COLOR
 end box
 
+activate LogicManager
+
 create AddressBookParser
 LogicManager -> AddressBookParser
 activate AddressBookParser
