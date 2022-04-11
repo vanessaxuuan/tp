@@ -334,7 +334,7 @@ Finds all students in a particular tutorial group.
 Format `findtg TUTORIAL_GROUP`
 
 * The search ignores cases. e.g. `cs2101 g08` will match `CS2101 G08`
-* The search ignores extra spaces between module code and tutorial code. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
+* The search ignores extra spaces between the module name and the tutorial group name. e.g. `cs2101<><><>g08` will match `cs2101<>g08`
   - In this example, `<>` means a space.
   - However, e.g. `cs2101<>g<>08` **will not** match `cs2101<>g08`
 * Only the tutorial group is searched.

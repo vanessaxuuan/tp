@@ -454,7 +454,7 @@ and get information of all their students at one glance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                  | I want to …​                                                                          | So that I can …​                                                                  |
+| Priority | As a …​                               | I want to …​                                                                       | So that I can …​                                                               |
 |----------|------------------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | CS TA                                    | add a student                                                                         | keep track of them and their contacts                                             |
 | `* * *`  | CS TA                                    | add a tutorial group to a student                                                     | identify which tutorial groups a student is taking                                |
@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Forgetful CS TA                          | find students by parts of their names                                                 | contact the appropriate student even if I don't remember their full names         |
 | `* * *`  | CS TA using the application              | see all the students' contact information that I stored                               |                                                                                   |
 | `* * *`  | CS TA with small desktop screen          | see all the students' contact information that I stored                               |                                                                                   |
-| `* * *`  | CS TA                                    | get my students' private contact details like their email, Telegram and GitHub easily | save time from the convenience of having all the contact details in one place |
+| `* * *`  | CS TA                                    | get my students' private contact details like their email, Telegram and GitHub easily | save time from the convenience of having all the contact details in one place     |
 | `* * *`  | CS TA who is experienced in CLI programs | type everything in one command at one go                                              | manage things in the application more quickly                                     |
 | `* * *`  | CS TA new to the application             | be able to find a user guide for the application                                      | refer to it when needed                                                           |
 | `* * *`  | CS TA using the application              | be able to exit the application                                                       |                                                                                   |
